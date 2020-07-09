@@ -3,30 +3,32 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import styled from 'styled-components'
-import { Provider as ReduxProvider } from 'react-redux'
-import { applyMiddleware, createStore } from 'redux'
-import thunkMiddleware, { ThunkMiddleware } from 'redux-thunk'
-import { appReducer, IAppState } from '@/state'
+
+import Lists from '@web/Lists/Lists'
+import Todo from '@web/Todo/Todo'
+import Todos from '@web/Todos/Todos'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 export const App = () => {
-
-  const store = createStore(appReducer, applyMiddleware(thunkMiddleware as ThunkMiddleware<IAppState>))
-  
   return (
-    <ReduxProvider store={store}>
       <Container>
-        App
+        <Lists />
+        <Todos />
+        <Todo />
       </Container>
-    </ReduxProvider>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
+const Container = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background-color: rgb(240, 240, 240);
+`
 
 export default App

@@ -12,9 +12,10 @@ mix.options({
 mix.webpackConfig({
 	resolve: {
 		alias: {
-			'@': path.resolve(__dirname, 'resources/js')
+			'@': path.resolve(__dirname, 'resources/js'),
+			'@web': path.resolve(__dirname, 'resources/js/bundles/web')
 		},
 	}
 })
 
-mix.ts('resources/js/bundles/App.tsx', 'public/js/app.js').sourceMaps()
+mix.ts('resources/js/bundles/web/App.tsx', 'public/js/app.js').sourceMaps()
