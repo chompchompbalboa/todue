@@ -12,7 +12,26 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group([
+    'prefix' => 'app',
+    'middleware' => [ 'auth' ]
+], function () {
+    Route::get('/', function () {
+        return view('app');
+    })->name('app');
+});
 
 Route::get('/', function () {
-    return view('app');
+    return view('site');
+})->name('site');
+
+//-----------------------------------------------------------------------------
+// Authentication
+//-----------------------------------------------------------------------------
+Route::namespace('Auth')->group(function () {
+  Route::post('/user/login', 'LoginController@login');
+  Route::post('/user/logout', 'LoginController@logout');
+  Route::post('/user/register', 'RegisterController@register');
 });
+
+

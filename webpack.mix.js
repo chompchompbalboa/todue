@@ -19,3 +19,4 @@ mix.webpackConfig({
 })
 
 mix.ts('resources/js/bundles/web/App.tsx', 'public/js/app.js').sourceMaps()
+mix.ts('resources/js/bundles/web/Site.tsx', 'public/js/site.js').sourceMaps()
