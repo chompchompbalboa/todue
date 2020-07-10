@@ -23,7 +23,7 @@ Route::group([
 
 Route::get('/', function () {
     return view('site');
-})->name('site');
+})->middleware('guest')->name('site');
 
 //-----------------------------------------------------------------------------
 // Authentication

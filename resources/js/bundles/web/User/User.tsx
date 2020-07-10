@@ -3,13 +3,16 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import styled from 'styled-components'
+
+import UserLogout from '@web/User/UserLogout'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const Todo = () => {
+export const User = () => {
   return (
       <Container>
-        Todo
+        <UserLogout />
       </Container>
   )
 }
@@ -19,7 +22,6 @@ export const Todo = () => {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   width: 100%;
-  height: 100%;
 `
 
-export default Todo
+export default User

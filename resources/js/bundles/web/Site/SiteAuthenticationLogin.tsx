@@ -38,7 +38,7 @@ export const SiteAuthenticationLogin = () => {
     else {
       action.userLogin(emailInputValue, passwordInputValue)
         .then(() => {
-          window.location.reload()
+          window.location = window.location.href + 'app' as any
         })
         .catch(() => {
           setTimeout(() => {

@@ -18,9 +18,7 @@ export const Lists = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 20rem;
-  height: 100%;
-  background-color: rgb(250, 250, 250);
+  width: 100%;
 `
 
 export default Lists
