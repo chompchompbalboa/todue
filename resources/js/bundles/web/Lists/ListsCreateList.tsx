@@ -2,18 +2,24 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import UserLogout from '@web/User/UserLogout'
+import { createList } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const User = () => {
+export const ListsCreateList = () => {
+  
+  // Redux
+  const dispatch = useDispatch()
+  
   return (
-      <Container>
-        <UserLogout />
-      </Container>
+    <Container
+      onClick={() => dispatch(createList())}>
+      Create List
+    </Container>
   )
 }
 
@@ -21,8 +27,7 @@ export const User = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 100%;
-  padding: 1rem;
+  cursor: pointer;
 `
 
-export default User
+export default ListsCreateList

@@ -18,8 +18,10 @@ export const App = () => {
         <Column 
           backgroundColor="rgb(250, 250, 250)"
           width="20rem">
-          <Lists />
-          <User />
+          <ColumnContainer>
+            <Lists />
+            <User />
+          </ColumnContainer>
         </Column>
         <Column 
           width="50%">
@@ -52,5 +54,13 @@ interface IColumn {
   backgroundColor?: string
   width: string
 }
+
+const ColumnContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
 
 export default App

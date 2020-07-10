@@ -4,15 +4,15 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import UserLogout from '@web/User/UserLogout'
+import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const User = () => {
+export const TodosHeader = () => {
   return (
       <Container>
-        <UserLogout />
+        <TodosHeaderListName />
       </Container>
   )
 }
@@ -22,7 +22,8 @@ export const User = () => {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   width: 100%;
+  height: 100%;
   padding: 1rem;
 `
 
-export default User
+export default TodosHeader

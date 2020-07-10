@@ -4,25 +4,35 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import UserLogout from '@web/User/UserLogout'
+import { IList } from '@/state/list/types'
+
+import ListsListName from '@web/Lists/ListsListName'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const User = () => {
+export const ListsList = ({
+  listId
+}: IListsList) => {
+  
   return (
-      <Container>
-        <UserLogout />
-      </Container>
+    <Container>
+      <ListsListName
+        listId={listId}/>
+    </Container>
   )
 }
 
 //-----------------------------------------------------------------------------
+// Props
+//-----------------------------------------------------------------------------
+interface IListsList {
+  listId: IList['id']
+}
+                               
+//-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div`
-  width: 100%;
-  padding: 1rem;
-`
+const Container = styled.div``
 
-export default User
+export default ListsList

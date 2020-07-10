@@ -1,28 +1,26 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
-import styled from 'styled-components'
-
-import UserLogout from '@web/User/UserLogout'
+import { IList } from '@/state/list/types'
 
 //-----------------------------------------------------------------------------
-// Component
+// Exports
 //-----------------------------------------------------------------------------
-export const User = () => {
-  return (
-      <Container>
-        <UserLogout />
-      </Container>
-  )
+export type IActiveActions = IUpdateActiveListId
+
+//-----------------------------------------------------------------------------
+// Example Action
+
+//-----------------------------------------------------------------------------
+export const UPDATE_ACTIVE_LIST_ID = 'UPDATE_ACTIVE_LIST_ID'
+interface IUpdateActiveListId {
+  type: typeof UPDATE_ACTIVE_LIST_ID
+  nextActiveListId: IList['id']
 }
 
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const Container = styled.div`
-  width: 100%;
-  padding: 1rem;
-`
-
-export default User
+export const updateActiveListId = (nextActiveListId: IList['id']): IActiveActions => {
+	return {
+		type: UPDATE_ACTIVE_LIST_ID,
+		nextActiveListId
+	}
+}

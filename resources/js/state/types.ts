@@ -1,16 +1,11 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import { combineReducers } from 'redux'
-import activeReducer from '@/state/active/reducers'
-import listReducer from '@/state/list/reducers'
+import { AnyAction } from 'redux'
+import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 
 //-----------------------------------------------------------------------------
-// Combine Reducers
+// Exports
 //-----------------------------------------------------------------------------
-export const appReducer = combineReducers({
-  active: activeReducer,
-  list: listReducer,
-})
-
-export type IAppState = ReturnType<typeof appReducer>
+export type IThunkAction = ThunkAction<Promise<void>, {}, {}, AnyAction>
+export type IThunkDispatch = ThunkDispatch<{}, {}, AnyAction>
