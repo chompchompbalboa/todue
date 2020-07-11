@@ -17,6 +17,8 @@ Route::group([
     'middleware' => [ 'auth' ]
 ], function () {
     Route::get('/', function () {
+  $user = Auth::user();
+  dd($user);
         return view('app');
     })->name('app');
 });

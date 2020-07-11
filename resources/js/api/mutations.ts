@@ -6,7 +6,7 @@ import axios from '@/api/axios'
 //-----------------------------------------------------------------------------
 // Mutations
 //-----------------------------------------------------------------------------
-export const exampleMutation = async () => {
-	return axios.post('')
+export const createList = async () => {
+	return axios.get('api/user')
 }
 

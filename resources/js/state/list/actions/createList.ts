@@ -3,6 +3,8 @@
 //-----------------------------------------------------------------------------
 import { v4 as createUuid } from 'uuid'
 
+import { mutation } from '@/api'
+
 import { IAppState } from '@/state'
 import { IThunkDispatch } from '@/state/types'
 import { IList } from '@/state/list/types'
@@ -42,5 +44,6 @@ export const createList = () => {
     ]))
     
     dispatch(updateActiveListId(newList.id))
+    mutation.createList()
 	}
 }
