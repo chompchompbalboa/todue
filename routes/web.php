@@ -17,9 +17,11 @@ Route::group([
     'middleware' => [ 'auth' ]
 ], function () {
     Route::get('/', function () {
-  $user = Auth::user();
-  dd($user);
-        return view('app');
+        $user = Auth::user();
+        $accessToken = $user->createToken('authToken')->accessToken;
+        return view('app')->with([
+            'accessToken' => $accessToken
+        ]);
     })->name('app');
 });
 

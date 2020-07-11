@@ -4,13 +4,22 @@
 import axiosDefault from 'axios'
 
 //-----------------------------------------------------------------------------
-// Attach X-CSRF token to each request
+// Attach tokens to request
 //-----------------------------------------------------------------------------
-const token: HTMLMetaElement | null = document.querySelector('meta[name="csrf-token"]')
 let axiosWithToken = axiosDefault
 
+const accessToken: HTMLMetaElement | null = document.querySelector('meta[name="access-token"]')
+const csrfToken: HTMLMetaElement | null = document.querySelector('meta[name="csrf-token"]')
+
 if (axiosWithToken?.defaults?.headers?.common) {
-  axiosWithToken.defaults.headers.common['X-CSRF-TOKEN'] = token !== null ? token.content : null
+  // Api access token
+  if(accessToken) {
+    axiosWithToken.defaults.headers.common['Accept'] = 'application/json'
+    axiosWithToken.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken.content
+  }
+
+  // CSRF token
+  axiosWithToken.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken !== null ? csrfToken.content : null
   axiosWithToken.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 }
 
