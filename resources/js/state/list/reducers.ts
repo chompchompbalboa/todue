@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 // Initial
 //-----------------------------------------------------------------------------
+import defaultInitialData from '@/state/initialData'
 import {
   IAllLists,
   IList
@@ -16,14 +17,26 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
+const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
+const getInitialState = () => {
+  let allLists: IListState['allLists'] = {}
+  let lists: IListState['lists'] = []
+  initialListData.map(list => {
+    allLists[list.id] = list
+    lists.push(list.id)
+  })
+  return { allLists, lists }
+}
+const { allLists, lists } = getInitialState()
+
 export type IListState = {
   allLists: IAllLists,
   lists: IList['id'][]
 }
 
 export const initialDraftState: IListState = {
-  allLists: {},
-  lists: []
+  allLists: allLists,
+  lists: lists
 }
 
 //-----------------------------------------------------------------------------

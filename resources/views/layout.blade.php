@@ -11,8 +11,7 @@
   </head>
   <body>
     <section id="react-container"></section>
-    <script>
-    </script>
+    @yield('data')
     @yield('react-script')
   </body>
 </html>

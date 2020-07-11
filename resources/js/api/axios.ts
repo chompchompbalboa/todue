@@ -1,26 +1,26 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import axiosDefault from 'axios'
+import axios from 'axios'
 
 //-----------------------------------------------------------------------------
 // Attach tokens to request
 //-----------------------------------------------------------------------------
-let axiosWithToken = axiosDefault
+let axiosWithTokens = axios
 
 const accessToken: HTMLMetaElement | null = document.querySelector('meta[name="access-token"]')
 const csrfToken: HTMLMetaElement | null = document.querySelector('meta[name="csrf-token"]')
 
-if (axiosWithToken?.defaults?.headers?.common) {
+if (axiosWithTokens?.defaults?.headers?.common) {
   // Api access token
   if(accessToken) {
-    axiosWithToken.defaults.headers.common['Accept'] = 'application/json'
-    axiosWithToken.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken.content
+    axiosWithTokens.defaults.headers.common['Accept'] = 'application/json'
+    axiosWithTokens.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken.content
   }
 
   // CSRF token
-  axiosWithToken.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken !== null ? csrfToken.content : null
-  axiosWithToken.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  axiosWithTokens.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken !== null ? csrfToken.content : null
+  axiosWithTokens.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 }
 
-export default axiosWithToken
+export default axiosWithTokens

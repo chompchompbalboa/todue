@@ -1,6 +1,8 @@
 //-----------------------------------------------------------------------------
 // Initial
 //-----------------------------------------------------------------------------
+import defaultInitialData from '@/state/initialData'
+
 import { IList } from '@/state/list/types'
 
 import { 
@@ -11,12 +13,13 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
+const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
 export type IActiveState = {
   listId: IList['id']
 }
 
 export const initialState: IActiveState = {
-  listId: null
+  listId: initialListData.length > 0 ? initialListData[0].id : null
 }
 
 //-----------------------------------------------------------------------------

@@ -20,7 +20,8 @@ Route::group([
         $user = Auth::user();
         $accessToken = $user->createToken('authToken')->accessToken;
         return view('app')->with([
-            'accessToken' => $accessToken
+            'accessToken' => $accessToken,
+            'lists' => $user->lists()->orderBy('updatedAt', 'desc')->get()
         ]);
     })->name('app');
 });

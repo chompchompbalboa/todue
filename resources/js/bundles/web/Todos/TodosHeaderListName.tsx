@@ -6,18 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 
 import { updateList } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeaderListName = () => {
+export const TodosHeaderListName = ({
+  listId
+}: ITodosHeaderListName) => {
   
   // Redux
   const dispatch = useDispatch()
-  const activeListId = useSelector((state: IAppState) => state.active.listId)
-  const activeListName = useSelector((state: IAppState) => state.list.allLists[activeListId]?.name)
+  const activeListName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
  
   // State
   const [ localActiveListName, setLocalActiveListName ] = useState(activeListName)
@@ -31,7 +33,9 @@ export const TodosHeaderListName = () => {
                                
   // Complete Editing
   const completeEditing = () => {
-    dispatch(updateList(activeListId, { name: localActiveListName }))
+    if(activeListName !== localActiveListName) {
+      dispatch(updateList(listId, { name: localActiveListName }))
+    }
   }
   
   return (
@@ -41,6 +45,14 @@ export const TodosHeaderListName = () => {
       onChange={(e: ChangeEvent<HTMLInputElement>) => setLocalActiveListName(e.target.value)}/>
   )
 }
+
+//-----------------------------------------------------------------------------
+// Props
+//-----------------------------------------------------------------------------
+interface ITodosHeaderListName {
+  listId: IList['id']
+}
+
 
 //-----------------------------------------------------------------------------
 // Styled Components

@@ -20,7 +20,8 @@ export const Todos = () => {
   return (
       <Container>
         {activeListId && 
-          <TodosHeader />
+          <TodosHeader
+            listId={activeListId}/>
         }
       </Container>
   )

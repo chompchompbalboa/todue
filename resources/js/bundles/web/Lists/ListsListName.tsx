@@ -21,12 +21,14 @@ export const ListsListName = ({
   
   // Redux
   const dispatch = useDispatch()
+  const isActiveList = useSelector((state: IAppState) => state.active.listId === listId)
   const listName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
   
   return (
     <Container>
       {listName
         ? <Name
+            isActiveList={isActiveList}
             onClick={() => dispatch(updateActiveListId(listId))}>
             {listName}
           </Name>
@@ -48,8 +50,15 @@ interface IListsListName {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   cursor: pointer;
+  font-weight: inherit;
 `
                                
-const Name = styled.div``
+const Name = styled.div`
+  font-size: 1.25rem;
+  font-weight: ${ ({ isActiveList }: IName ) => isActiveList ? 'bold' : 'inherit' };
+`
+interface IName {
+  isActiveList: boolean
+}
 
 export default ListsListName

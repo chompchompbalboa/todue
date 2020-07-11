@@ -23,8 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group([
     'middleware' => [ 'auth:api' ]
-], function () {
-    Route::get('/user', function () {
-        return $request->user();
-    });
+], function () {  
+
+    // Resource Controllers
+    Route::resources([
+      'list' => 'TodoListController',
+    ]);
+
 });

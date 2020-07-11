@@ -33,6 +33,11 @@ interface IListsList {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
+const Container = styled.div`
+  height: 1.75rem;
+  &:hover {
+    font-weight: bold;
+  }
+`
 
 export default ListsList

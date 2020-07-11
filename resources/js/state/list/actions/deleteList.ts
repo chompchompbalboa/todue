@@ -1,8 +1,6 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import { v4 as createUuid } from 'uuid'
-
 import { mutation } from '@/api'
 
 import { IAppState } from '@/state'
@@ -13,37 +11,28 @@ import {
   updateActiveListId
 } from '@/state/active/actions'
 import {
-  setAllLists,
   setLists
 } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
 // Action
 //-----------------------------------------------------------------------------
-export const createList = () => {
+export const deleteList = (listId: IList['id']) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
     const {
-      allLists,
       lists
     } = getState().list
+
+    const nextLists = lists.filter(currentListId => currentListId !== listId)
+
+    const listIndex = lists.findIndex(currentListId => currentListId === listId)
+    const nextActiveListId = listIndex === lists.length - 1
+      ? nextLists[nextLists.length - 1]
+      : nextLists[listIndex]
     
-    const newList: IList = {
-      id: createUuid(),
-      name: null
-    }
-    
-    dispatch(setAllLists({
-      ...allLists,
-      [newList.id]: newList
-    }))
-    
-    dispatch(setLists([
-      newList.id,
-      ...lists
-    ]))
-    
-    dispatch(updateActiveListId(newList.id))
-    mutation.createList(newList)
+    dispatch(setLists(nextLists))
+    dispatch(updateActiveListId(nextLists.length > 0 ? nextActiveListId : null))
+    mutation.deleteList(listId)
 	}
 }
