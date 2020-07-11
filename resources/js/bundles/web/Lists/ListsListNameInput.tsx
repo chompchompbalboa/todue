@@ -9,6 +9,7 @@ import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
 import {
+  deleteList,
   updateList
 } from '@/state/list/actions'
 
@@ -28,7 +29,12 @@ export const ListsListNameInput = ({
                                
   // Completed Editing
   const completeEditing = () => {
-    dispatch(updateList(listId, { name: localListName }))
+    if(localListName === null) {
+      dispatch(deleteList(listId))
+    }
+    else if(listName !== localListName) {
+      dispatch(updateList(listId, { name: localListName }, { name: listName }))
+    }
   }
                                
   // Handle Key Press

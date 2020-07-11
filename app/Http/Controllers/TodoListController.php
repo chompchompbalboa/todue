@@ -10,12 +10,8 @@ use App\Models\TodoListUser;
 
 class TodoListController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+    // Store
     public function store(Request $request)
     {
         // Create the todo list
@@ -28,26 +24,21 @@ class TodoListController extends Controller
         return response(null, 200);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Update
     public function update(Request $request, TodoList $list)
     {
         return $list->update($request->all());
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Delete
     public function destroy($id)
     {
         return TodoList::destroy($id);
+    }
+
+    // Restore
+    public function restore($id)
+    {
+        return TodoList::withTrashed()->where('id', $id)->restore();
     }
 }

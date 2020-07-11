@@ -19,6 +19,10 @@ export const deleteList = async (listId: IList['id']) => {
 	return axios.delete('api/list/' + listId)
 }
 
+export const restoreList = async (listId: string) => {
+	return axios.post('/api/list/restore/' + listId)
+}
+
 export const updateList = async (listId: IList['id'], updates: IListUpdates) => {
 	return axios.patch('api/list/' + listId, updates)
 }

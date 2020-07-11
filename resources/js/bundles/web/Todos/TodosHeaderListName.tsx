@@ -34,7 +34,7 @@ export const TodosHeaderListName = ({
   // Complete Editing
   const completeEditing = () => {
     if(activeListName !== localActiveListName) {
-      dispatch(updateList(listId, { name: localActiveListName }))
+      dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
     }
   }
   

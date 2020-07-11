@@ -1,8 +1,6 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import { mutation } from '@/api'
-
 import {
   IAllLists,
   IList,
@@ -16,6 +14,7 @@ export type IListActions = ISetAllLists | ISetLists | IUpdateList
 
 export { createList } from '@/state/list/actions/createList'
 export { deleteList } from '@/state/list/actions/deleteList'
+export { updateList } from '@/state/list/actions/updateList'
 
 //-----------------------------------------------------------------------------
 // Set All Lists
@@ -59,8 +58,7 @@ interface IUpdateList {
   updates: IListUpdates
 }
 
-export const updateList = (listId: IList['id'], updates: IListUpdates): IListActions => {
-	mutation.updateList(listId, updates)
+export const updateListReducer = (listId: IList['id'], updates: IListUpdates): IListActions => {
 	return {
 		type: UPDATE_LIST,
 		listId,

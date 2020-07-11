@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 import { combineReducers } from 'redux'
 import activeReducer from '@/state/active/reducers'
+import historyReducer from '@/state/history/reducers'
 import listReducer from '@/state/list/reducers'
 
 //-----------------------------------------------------------------------------
@@ -10,6 +11,7 @@ import listReducer from '@/state/list/reducers'
 //-----------------------------------------------------------------------------
 export const appReducer = combineReducers({
   active: activeReducer,
+  history: historyReducer,
   list: listReducer,
 })
 

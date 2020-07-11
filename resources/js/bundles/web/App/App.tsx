@@ -4,6 +4,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { useHistory } from '@/hooks'
+
 import Lists from '@web/Lists/Lists'
 import Todo from '@web/Todo/Todo'
 import Todos from '@web/Todos/Todos'
@@ -13,6 +15,10 @@ import User from '@web/User/User'
 // Component
 //-----------------------------------------------------------------------------
 export const App = () => {
+
+  // Listen for undo/redo
+  useHistory()
+
   return (
       <Container>
         <Column 

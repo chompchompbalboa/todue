@@ -24,6 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'middleware' => [ 'auth:api' ]
 ], function () {  
+  
+    // Restore soft deleted models
+    Route::post('/list/restore/{list}', 'TodoListController@restore');
 
     // Resource Controllers
     Route::resources([

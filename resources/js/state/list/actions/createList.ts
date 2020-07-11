@@ -9,9 +9,8 @@ import { IAppState } from '@/state'
 import { IThunkDispatch } from '@/state/types'
 import { IList } from '@/state/list/types'
 
-import {
-  updateActiveListId
-} from '@/state/active/actions'
+import { updateActiveListId } from '@/state/active/actions'
+import { createHistoryStep } from '@/state/history/actions'
 import {
   setAllLists,
   setLists
@@ -24,26 +23,46 @@ export const createList = () => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
     const {
-      allLists,
-      lists
-    } = getState().list
+      active: {
+        listId: activeListId
+      },
+      list: {
+        allLists,
+        lists
+      }
+    } = getState()
     
     const newList: IList = {
       id: createUuid(),
       name: null
     }
-    
-    dispatch(setAllLists({
-      ...allLists,
-      [newList.id]: newList
-    }))
-    
-    dispatch(setLists([
-      newList.id,
-      ...lists
-    ]))
-    
-    dispatch(updateActiveListId(newList.id))
-    mutation.createList(newList)
+
+    const actions = (isHistoryStep?: boolean) => {
+      dispatch(setAllLists({
+        ...allLists,
+        [newList.id]: newList
+      }))
+      dispatch(setLists([
+        newList.id,
+        ...lists
+      ]))
+      dispatch(updateActiveListId(newList.id))
+      if(isHistoryStep) {
+        mutation.restoreList(newList.id)
+      }
+      else {
+        mutation.createList(newList)
+      }
+    }
+
+    const undoActions = () => {
+      dispatch(setAllLists(allLists))
+      dispatch(setLists(lists))
+      dispatch(updateActiveListId(activeListId))
+      mutation.deleteList(newList.id)
+    }
+
+    dispatch(createHistoryStep({ actions, undoActions }))
+    actions()
 	}
 }
