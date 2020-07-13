@@ -53,6 +53,8 @@ export const createTodo = (
       dateCreated: moment().format('YYYY-MM-DD HH:mm:ss'),
       dateCurrent: moment(newTodoDateCurrent).format('YYYY-MM-DD HH:mm:ss'),
       dateCompleted: null,
+      timeStart: null,
+      timeEnd: null
     }
 
     const nextAllTodos = {

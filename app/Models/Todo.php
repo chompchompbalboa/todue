@@ -15,6 +15,27 @@ class Todo extends Model
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
-    protected $visible = [ 'id', 'listId', 'text', 'dateCreated', 'dateCurrent', 'dateCompleted' ];
-    protected $fillable = [ 'id', 'listId', 'text', 'dateCreated', 'dateCurrent', 'dateCompleted' ];
+    protected $visible = [ 
+      'id', 
+      'listId', 
+      'text', 
+      'dateCreated', 
+      'dateCurrent', 
+      'dateCompleted',
+      'timeStart',
+      'timeEnd',
+      'priority'
+    ];
+
+    protected $fillable = [ 
+      'id', 
+      'listId', 
+      'text', 
+      'dateCreated', 
+      'dateCurrent', 
+      'dateCompleted',
+      'timeStart',
+      'timeEnd',
+      'priority'
+    ];
 }

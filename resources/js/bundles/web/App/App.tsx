@@ -22,7 +22,7 @@ export const App = () => {
   return (
       <Container>
         <Column 
-          backgroundColor="rgb(250, 250, 250)"
+          backgroundColor="rgb(255, 255, 255)"
           width="20rem">
           <ColumnContainer>
             <Lists />
