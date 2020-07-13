@@ -11,6 +11,7 @@ export interface ITodo {
   dateCompleted: string
   timeStart: string
   timeEnd: string
+  priority: number
 }
 
 export interface ITodoUpdates {
@@ -19,4 +20,5 @@ export interface ITodoUpdates {
   dateCompleted?: ITodo['dateCompleted']
   timeStart?: ITodo['timeStart']
   timeEnd?: ITodo['timeEnd']
+  priority?: ITodo['priority']
 }

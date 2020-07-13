@@ -54,7 +54,8 @@ export const createTodo = (
       dateCurrent: moment(newTodoDateCurrent).format('YYYY-MM-DD HH:mm:ss'),
       dateCompleted: null,
       timeStart: null,
-      timeEnd: null
+      timeEnd: null,
+      priority: null
     }
 
     const nextAllTodos = {
