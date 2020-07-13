@@ -2,25 +2,18 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import moment from 'moment'
 import styled from 'styled-components'
-
-import { IList } from '@/state/list/types'
-
-import TodosHeaderListActions from '@web/Todos/TodosHeaderListActions'
-import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeader = ({
-  listId
-}: ITodosHeader) => {
+export const TodosTodoDate = ({
+  dateString
+}: ITodosTodoDate) => {
   return (
       <Container>
-        <TodosHeaderListName
-          listId={listId}/>
-        <TodosHeaderListActions
-          listId={listId}/>
+        {moment(dateString).format('dddd MMMM Do')}
       </Container>
   )
 }
@@ -28,23 +21,19 @@ export const TodosHeader = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosHeader {
-  listId: IList['id']
+interface ITodosTodoDate {
+  dateString: string
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  z-index: 10;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  padding: 1rem;
-  padding-bottom: 0.5rem;
-  display: flex;
-  align-items: flex-end;
-  background-color: rgb(235, 235, 235);
+  cursor: default;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
 `
 
-export default TodosHeader
+export default TodosTodoDate

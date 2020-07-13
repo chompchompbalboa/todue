@@ -48,7 +48,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(235, 235, 235);
 `
 
 const Column = styled.div`

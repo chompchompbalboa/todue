@@ -17,11 +17,32 @@ Route::group([
     'middleware' => [ 'auth' ]
 ], function () {
     Route::get('/', function () {
+        // Get the user
         $user = Auth::user();
+        // Create an api access token for the user
         $accessToken = $user->createToken('authToken')->accessToken;
+        // Build the initial data
+        $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
+        $lists = [];
+        foreach($userLists as $index => $userList) {
+            if($index === 0) { // If this is the initial active list, load its todos
+                array_push($lists, [
+                    'id' => $userList->id,
+                    'name' => $userList->name,
+                    'todos' => $userList->todos()->orderBy('dateCurrent', 'desc')->get()
+                ]);
+            }
+            else {
+                array_push($lists, [
+                    'id' => $userList->id,
+                    'name' => $userList->name
+                ]);
+            }
+        }
+        // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
-            'lists' => $user->lists()->orderBy('updatedAt', 'desc')->get()
+            'lists' => $lists
         ]);
     })->name('app');
 });

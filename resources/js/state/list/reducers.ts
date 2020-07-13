@@ -4,7 +4,8 @@
 import defaultInitialData from '@/state/initialData'
 import {
   IAllLists,
-  IList
+  IList,
+  IListFromDatabase
 } from '@/state/list/types'
 
 import { 
@@ -14,15 +15,21 @@ import {
   UPDATE_LIST
 } from '@/state/list/actions'
 
+import { resolveVisibleTodos } from '@/state/todo/resolvers'
+
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
+const initialListData: IListFromDatabase[] = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
 const getInitialState = () => {
   let allLists: IListState['allLists'] = {}
   let lists: IListState['lists'] = []
-  initialListData.map(list => {
-    allLists[list.id] = list
+  initialListData.map((list, index) => {
+    allLists[list.id] = {
+      ...list,
+      todos: index === 0 ? list.todos.map(todo => todo.id) : [],
+      visibleTodos: index === 0 ? resolveVisibleTodos(list.todos) : []
+    }
     lists.push(list.id)
   })
   return { allLists, lists }

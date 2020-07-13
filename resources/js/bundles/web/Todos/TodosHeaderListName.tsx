@@ -3,12 +3,13 @@
 //-----------------------------------------------------------------------------
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
 import { updateList } from '@/state/list/actions'
+
+import ReactInputAutosize from 'react-input-autosize'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -39,10 +40,18 @@ export const TodosHeaderListName = ({
   }
   
   return (
-    <StyledInput
+    <ReactInputAutosize
       value={localActiveListName || ''}
       onBlur={completeEditing}
-      onChange={(e: ChangeEvent<HTMLInputElement>) => setLocalActiveListName(e.target.value)}/>
+      onChange={(e: ChangeEvent<HTMLInputElement>) => setLocalActiveListName(e.target.value)}
+      inputStyle={{
+        fontSize: '1.25rem',
+        fontWeight: 'bold',
+        border: 'none',
+        outline: 'none',
+        backgroundColor: 'transparent',
+        marginRight: '0.25rem'
+      }}/>
   )
 }
 
@@ -52,17 +61,5 @@ export const TodosHeaderListName = ({
 interface ITodosHeaderListName {
   listId: IList['id']
 }
-
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const StyledInput = styled.input`
-  font-size: 1.25rem;
-  font-weight: bold;
-  border: none;
-  outline: none;
-  background-color: transparent;
-`
 
 export default TodosHeaderListName

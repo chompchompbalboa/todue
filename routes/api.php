@@ -27,10 +27,12 @@ Route::group([
   
     // Restore soft deleted models
     Route::post('/list/restore/{list}', 'TodoListController@restore');
+    Route::post('/todo/restore/{todo}', 'TodoController@restore');
 
     // Resource Controllers
     Route::resources([
       'list' => 'TodoListController',
+      'todo' => 'TodoController',
     ]);
 
 });

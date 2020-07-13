@@ -27,7 +27,7 @@ export const ListsListNameInput = ({
   // State
   const [ localListName, setLocalListName ] = useState(listName)
                                
-  // Completed Editing
+  // Complete Editing
   const completeEditing = () => {
     if(localListName === null) {
       dispatch(deleteList(listId))

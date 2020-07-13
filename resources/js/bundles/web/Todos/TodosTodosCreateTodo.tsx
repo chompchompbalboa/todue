@@ -2,33 +2,33 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { IList } from '@/state/list/types'
 
-import TodosHeaderListActions from '@web/Todos/TodosHeaderListActions'
-import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
+import { createTodo } from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeader = ({
+export const TodosTodosCreateTodo = ({
   listId
-}: ITodosHeader) => {
+}: ITodosTodosCreateTodo) => {
+
+  // Redux
+  const dispatch = useDispatch()
+
   return (
-      <Container>
-        <TodosHeaderListName
-          listId={listId}/>
-        <TodosHeaderListActions
-          listId={listId}/>
-      </Container>
+      <Container
+        onClick={() => dispatch(createTodo(listId))}/>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosHeader {
+interface ITodosTodosCreateTodo {
   listId: IList['id']
 }
 
@@ -36,15 +36,9 @@ interface ITodosHeader {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  z-index: 10;
-  position: sticky;
-  top: 0;
+  cursor: text;
+  height: 3rem;
   width: 100%;
-  padding: 1rem;
-  padding-bottom: 0.5rem;
-  display: flex;
-  align-items: flex-end;
-  background-color: rgb(235, 235, 235);
 `
 
-export default TodosHeader
+export default TodosTodosCreateTodo

@@ -16,6 +16,8 @@ export { createList } from '@/state/list/actions/createList'
 export { deleteList } from '@/state/list/actions/deleteList'
 export { updateList } from '@/state/list/actions/updateList'
 
+export { refreshListVisibleTodos } from '@/state/list/actions/refreshListVisibleTodos'
+
 //-----------------------------------------------------------------------------
 // Set All Lists
 //-----------------------------------------------------------------------------

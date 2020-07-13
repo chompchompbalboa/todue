@@ -2,25 +2,25 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { IList } from '@/state/list/types'
-
-import TodosHeaderListActions from '@web/Todos/TodosHeaderListActions'
-import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
+import { IAppState } from '@/state'
+import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeader = ({
-  listId
-}: ITodosHeader) => {
+export const TodoText = ({
+  todoId
+}: ITodoText) => {
+
+  // Redux
+  const todoText = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].text)
+
   return (
       <Container>
-        <TodosHeaderListName
-          listId={listId}/>
-        <TodosHeaderListActions
-          listId={listId}/>
+        {todoText}
       </Container>
   )
 }
@@ -28,23 +28,17 @@ export const TodosHeader = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosHeader {
-  listId: IList['id']
+interface ITodoText {
+  todoId: ITodo['id']
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  z-index: 10;
-  position: sticky;
-  top: 0;
-  width: 100%;
   padding: 1rem;
-  padding-bottom: 0.5rem;
-  display: flex;
-  align-items: flex-end;
-  background-color: rgb(235, 235, 235);
+  font-size: 1.1rem;
+  font-weight: bold;
 `
 
-export default TodosHeader
+export default TodoText

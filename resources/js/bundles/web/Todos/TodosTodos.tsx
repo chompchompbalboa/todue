@@ -2,24 +2,45 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
-import TodosHeaderListActions from '@web/Todos/TodosHeaderListActions'
-import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
+import TodosTodosCreateTodo from '@web/Todos/TodosTodosCreateTodo'
+import TodosTodosDate from '@web/Todos/TodosTodosDate'
+import TodosTodosTodo from '@web/Todos/TodosTodosTodo'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeader = ({
+export const TodosTodos = ({
   listId
-}: ITodosHeader) => {
+}: ITodosTodos) => {
+
+  // Redux
+  const visibleTodos = useSelector((state: IAppState) => state.list.allLists[listId].visibleTodos)
+
   return (
       <Container>
-        <TodosHeaderListName
-          listId={listId}/>
-        <TodosHeaderListActions
+        {visibleTodos && visibleTodos.map(todoId => {
+          if(todoId.length === 10) {
+            return (
+              <TodosTodosDate 
+                key={todoId}
+                dateString={todoId}/>
+            )
+          }
+          else {
+            return (
+              <TodosTodosTodo 
+                key={todoId}
+                todoId={todoId}/>
+            )
+          }
+        })}
+        <TodosTodosCreateTodo
           listId={listId}/>
       </Container>
   )
@@ -28,7 +49,7 @@ export const TodosHeader = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosHeader {
+interface ITodosTodos {
   listId: IList['id']
 }
 
@@ -36,15 +57,8 @@ interface ITodosHeader {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  z-index: 10;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  padding: 1rem;
-  padding-bottom: 0.5rem;
-  display: flex;
-  align-items: flex-end;
-  background-color: rgb(235, 235, 235);
+  position: relative;
+  padding-left: 1rem;
 `
 
-export default TodosHeader
+export default TodosTodos

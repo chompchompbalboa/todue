@@ -4,9 +4,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 
+import { SETTINGS } from '@/assets/icons'
+
 import { IList } from '@/state/list/types'
 
 import Dropdown from '@/components/Dropdown'
+import Icon from '@/components/Icon'
 import TodosHeaderDeleteList from '@web/Todos/TodosHeaderDeleteList'
 
 //-----------------------------------------------------------------------------
@@ -33,7 +36,9 @@ export const TodosHeaderListActions = ({
       <IconContainer
         isDropdownVisible={isDropdownVisible}
         onClick={() => setIsDropdownVisible(true)}>
-        ...
+        <Icon
+          icon={SETTINGS}
+          size="0.9rem"/>
       </IconContainer>
       <Dropdown
         containerRef={container}
@@ -57,15 +62,14 @@ interface ITodosHeaderListActions {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  width: 100%;
   position: relative;`
 
 const IconContainer = styled.div`
+  position: relative;
   cursor: pointer;
-  text-align: right;
   font-weight: ${ ({ isDropdownVisible }: IIconContainer) => isDropdownVisible ? 'bold' : 'inherit' };
-  &:hover {
-
-  }
+  color: rgb(50, 50, 50);
 `
 interface IIconContainer {
   isDropdownVisible: boolean

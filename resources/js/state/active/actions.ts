@@ -2,15 +2,15 @@
 // Imports
 //-----------------------------------------------------------------------------
 import { IList } from '@/state/list/types'
+import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type IActiveActions = IUpdateActiveListId
+export type IActiveActions = IUpdateActiveListId | IUpdateActiveTodoId
 
 //-----------------------------------------------------------------------------
-// Example Action
-
+// Update Active List Id
 //-----------------------------------------------------------------------------
 export const UPDATE_ACTIVE_LIST_ID = 'UPDATE_ACTIVE_LIST_ID'
 interface IUpdateActiveListId {
@@ -22,5 +22,21 @@ export const updateActiveListId = (nextActiveListId: IList['id']): IActiveAction
 	return {
 		type: UPDATE_ACTIVE_LIST_ID,
 		nextActiveListId
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Update Active Todo Id
+//-----------------------------------------------------------------------------
+export const UPDATE_ACTIVE_TODO_ID = 'UPDATE_ACTIVE_TODO_ID'
+interface IUpdateActiveTodoId {
+  type: typeof UPDATE_ACTIVE_TODO_ID
+  nextActiveTodoId: ITodo['id']
+}
+
+export const updateActiveTodoId = (nextActiveTodoId: ITodo['id']): IActiveActions => {
+	return {
+		type: UPDATE_ACTIVE_TODO_ID,
+		nextActiveTodoId
 	}
 }

@@ -15,6 +15,7 @@ import {
   setAllLists,
   setLists
 } from '@/state/list/actions'
+import { resolveVisibleTodos } from '@/state/todo/resolvers'
 
 //-----------------------------------------------------------------------------
 // Action
@@ -34,7 +35,9 @@ export const createList = () => {
     
     const newList: IList = {
       id: createUuid(),
-      name: null
+      name: null,
+      todos: [],
+      visibleTodos: resolveVisibleTodos([])
     }
 
     const actions = (isHistoryStep?: boolean) => {

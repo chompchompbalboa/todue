@@ -17,4 +17,9 @@ class TodoList extends Model
 
     protected $visible = [ 'id', 'name' ];
     protected $fillable = [ 'id', 'name' ];
+
+    public function todos()
+    {
+        return $this->hasMany('App\Models\Todo', 'listId')->orderBy('dateCurrent', 'asc');
+    }
 }

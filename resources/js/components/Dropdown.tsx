@@ -64,11 +64,10 @@ export interface IDropdown {
 //-----------------------------------------------------------------------------
 const StyledDropdown = styled.div`
   z-index: 10;
-  position: relative;
+  position: absolute;
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
-  top: 0;
-  right: 0;
-  width: 100%;
+  top: 100%;
+  left: 0;
   max-height: 50vh;
   overflow-y: scroll;
   background-color: rgb(250, 250, 250);
