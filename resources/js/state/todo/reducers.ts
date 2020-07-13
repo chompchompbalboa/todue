@@ -21,7 +21,7 @@ const initialListData = typeof initialData !== 'undefined' ? initialData.lists :
 const getInitialState = () => {
   let allTodos: ITodoState['allTodos'] = {}
   let todos: ITodoState['todos'] = []
-  initialListData[0].todos.forEach((todo: ITodo) => {
+  initialListData[0] && initialListData[0].todos.forEach((todo: ITodo) => {
     allTodos[todo.id] = todo
     todos.push(todo.id)
   })

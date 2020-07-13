@@ -11,9 +11,12 @@ import styled from 'styled-components'
 export const TodosTodoDate = ({
   dateString
 }: ITodosTodoDate) => {
+  
+  const date = moment(dateString)
+  
   return (
       <Container>
-        {moment(dateString).format('dddd MMMM Do')}
+        {date.format('dddd MMMM Do')}{date.isSame(moment(), 'day') ? ' (Today)' : ''}
       </Container>
   )
 }

@@ -14,13 +14,13 @@ import { ITodo } from '@/state/todo/types'
 import { createHistoryStep } from '@/state/history/actions'
 import { updateList } from '@/state/list/actions'
 import { setAllTodos } from '@/state/todo/actions'
-import { resolveVisibleTodos } from '../resolvers'
 
 //-----------------------------------------------------------------------------
 // Action
 //-----------------------------------------------------------------------------
 export const createTodo = (
-  listId: IList['id']
+  listId: IList['id'],
+  insertAfterTodoId?: ITodo['id']
 ) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
@@ -38,12 +38,20 @@ export const createTodo = (
       }
     } = getState()
     
+    const insertIndex = insertAfterTodoId
+      ? listVisibleTodos.findIndex(currentTodoId => currentTodoId === insertAfterTodoId) + 1
+      : listVisibleTodos.length
+    const newTodoDateCurrent = insertAfterTodoId
+      ? allTodos[insertAfterTodoId].dateCurrent
+      : allTodos[listVisibleTodos[listVisibleTodos.length - 1]].dateCurrent
+          
+    
     const newTodo: ITodo = {
       id: createUuid(),
       listId: listId,
       text: null,
       dateCreated: moment().format('YYYY-MM-DD HH:mm:ss'),
-      dateCurrent: moment().format('YYYY-MM-DD HH:mm:ss'),
+      dateCurrent: moment(newTodoDateCurrent).format('YYYY-MM-DD HH:mm:ss'),
       dateCompleted: null,
     }
 
@@ -53,7 +61,11 @@ export const createTodo = (
     }
 
     const nextListTodos = [ ...listTodos, newTodo.id ]
-    const nextListVisibleTodos = resolveVisibleTodos(nextListTodos.map(todoId => nextAllTodos[todoId]))
+    const nextListVisibleTodos = [
+      ...listVisibleTodos.slice(0, insertIndex),
+      newTodo.id,
+      ...listVisibleTodos.slice(insertIndex)
+    ]
 
     const actions = (isHistoryStep?: boolean) => {
       dispatch(setAllTodos(nextAllTodos))

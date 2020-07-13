@@ -38,7 +38,13 @@ export const Todos = () => {
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+	overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
 `
 
 export default Todos

@@ -56,7 +56,7 @@ export const TodosTodosTodoCheckbox = ({
     if(e.key === 'Enter' && localTodoText && localTodoText.length > 0) {
       e.preventDefault()
       completeEditing()
-      dispatch(createTodo(todoListId))
+      dispatch(createTodo(todoListId, todoId))
     }
     if([ 'Backspace', 'Delete' ].includes(e.key) && !localTodoText) {
       dispatch(deleteTodo(todoId))
