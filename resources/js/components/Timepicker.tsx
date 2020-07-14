@@ -20,7 +20,7 @@ export const Timepicker = ({
     options.push(
       <option 
         key={label}
-        value={label}>
+        value="">
         {label}
       </option>
     )
@@ -52,7 +52,7 @@ export const Timepicker = ({
         </label>
         <select 
           name="timepicker"
-          onChange={(e: ChangeEvent<HTMLSelectElement>) => onTimeChange(e.target.value)}
+          onChange={(e: ChangeEvent<HTMLSelectElement>) => onTimeChange(e.target.value === '' ? null : e.target.value)}
           value={value || ''}>
           {selectOptions()}
         </select>

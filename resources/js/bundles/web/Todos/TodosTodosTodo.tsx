@@ -9,6 +9,8 @@ import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
 import TodosTodosTodoCheckbox from '@web/Todos/TodosTodosTodoCheckbox'
+import TodosTodosTodoPriority from '@web/Todos/TodosTodosTodoPriority'
+import TodosTodosTodoTime from '@web/Todos/TodosTodosTodoTime'
 import TodosTodosTodoText from '@web/Todos/TodosTodosTodoText'
 
 //-----------------------------------------------------------------------------
@@ -25,6 +27,10 @@ export const TodosTodosTodo = ({
       <Container
         isActiveTodo={isActiveTodo}>
         <TodosTodosTodoCheckbox
+          todoId={todoId}/>
+        <TodosTodosTodoPriority
+          todoId={todoId}/>
+        <TodosTodosTodoTime
           todoId={todoId}/>
         <TodosTodosTodoText
           todoId={todoId}/>
