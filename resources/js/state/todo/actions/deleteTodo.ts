@@ -34,12 +34,13 @@ export const deleteTodo = (
     } = getState()
 
     const listId = allTodos[todoId].listId
-    const listTodos = allLists[listId].todos
-    const listVisibleTodos = allLists[listId].visibleTodos
+    const list = allLists[listId]
+    const listTodos = list.todos
+    const listVisibleTodos = list.visibleTodos
 
     const nextActiveTodoId = activeTodoId === todoId ? null : activeTodoId
     const nextListTodos = listTodos.filter(currentTodoId => currentTodoId !== todoId)
-    const nextListVisibleTodos = resolveVisibleTodos(nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextListVisibleTodos = resolveVisibleTodos(list, nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
 
     const actions = () => {
       dispatch(updateActiveTodoId(nextActiveTodoId))

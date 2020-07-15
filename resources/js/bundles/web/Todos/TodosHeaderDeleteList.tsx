@@ -42,6 +42,7 @@ interface ITodosHeaderDeleteList {
 const Container = styled.div`
   cursor: pointer;
   padding: 0.3rem 0.6rem;
+  white-space: nowrap;
   &:hover {
     background-color: rgb(200, 0, 0);
     color: white;

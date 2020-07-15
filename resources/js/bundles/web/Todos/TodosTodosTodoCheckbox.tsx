@@ -26,8 +26,8 @@ export const TodosTodosTodoCheckbox = ({
     <Container
       onClick={() => 
         todoDateCompleted !== null 
-          ? dispatch(updateTodo(todoId, { dateCompleted: null }, { dateCompleted: todoDateCompleted }))
-          : dispatch(updateTodo(todoId, { dateCompleted: moment().format('YYYY-MM-DD HH:ss') }, { dateCompleted: null }))
+          ? dispatch(updateTodo(todoId, { dateCompleted: null }, { dateCompleted: todoDateCompleted }, true))
+          : dispatch(updateTodo(todoId, { dateCompleted: moment().format('YYYY-MM-DD HH:ss') }, { dateCompleted: null }, true))
       }
       isChecked={todoDateCompleted !== null}/>
   )

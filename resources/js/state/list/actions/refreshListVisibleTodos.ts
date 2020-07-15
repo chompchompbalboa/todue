@@ -20,9 +20,7 @@ export const refreshListVisibleTodos = (
     const {
       list: {
         allLists: {
-          [listId]: {
-            todos: listTodos
-          }
+          [listId]: list
         }
       },
       todo: {
@@ -30,7 +28,7 @@ export const refreshListVisibleTodos = (
       }
     } = getState()
 
-    const nextListVisibleTodos = resolveVisibleTodos(listTodos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextListVisibleTodos = resolveVisibleTodos(list, list.todos.map(currentTodoId => allTodos[currentTodoId]))
 
     dispatch(updateList(listId, { visibleTodos: nextListVisibleTodos }, null, true))
 	}

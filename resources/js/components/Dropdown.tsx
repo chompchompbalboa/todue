@@ -69,10 +69,16 @@ const StyledDropdown = styled.div`
   top: 100%;
   left: 0;
   max-height: 50vh;
-  overflow-y: scroll;
   background-color: rgb(250, 250, 250);
   border-radius: 5px;
   border: 1px solid rgb(180, 180, 180);
+  overflow-y: scroll;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
 `
 interface IStyledDropdown {
   isDropdownVisible: boolean

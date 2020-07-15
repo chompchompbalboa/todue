@@ -6,7 +6,8 @@ import styled from 'styled-components'
 
 import { IList } from '@/state/list/types'
 
-import TodosHeaderListActions from '@web/Todos/TodosHeaderListActions'
+import TodosHeaderListCompletedTodosToggle from '@web/Todos/TodosHeaderListCompletedTodosToggle'
+import TodosHeaderListSettings from '@web/Todos/TodosHeaderListSettings'
 import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
 
 //-----------------------------------------------------------------------------
@@ -17,10 +18,16 @@ export const TodosHeader = ({
 }: ITodosHeader) => {
   return (
       <Container>
-        <TodosHeaderListName
-          listId={listId}/>
-        <TodosHeaderListActions
-          listId={listId}/>
+        <NameAndSettings>
+          <TodosHeaderListName
+            listId={listId}/>
+          <TodosHeaderListSettings
+            listId={listId}/>
+        </NameAndSettings>
+        <Actions>
+          <TodosHeaderListCompletedTodosToggle
+            listId={listId}/>
+        </Actions>
       </Container>
   )
 }
@@ -43,8 +50,15 @@ const Container = styled.div`
   padding: 1rem;
   padding-bottom: 0.5rem;
   display: flex;
-  align-items: flex-end;
+  justify-content: space-between;
   background-color: rgb(235, 235, 235);
 `
+
+const NameAndSettings = styled.div`
+  display: flex;
+  align-items: flex-end;
+`
+
+const Actions = styled.div``
 
 export default TodosHeader

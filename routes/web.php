@@ -29,13 +29,15 @@ Route::group([
                 array_push($lists, [
                     'id' => $userList->id,
                     'name' => $userList->name,
-                    'todos' => $userList->todos()->orderBy('dateCurrent', 'desc')->get()
+                    'isCompletedTodosVisible' => $userList->isCompletedTodosVisible,
+                    'todos' => $userList->todos()->orderBy('dateCurrent', 'desc')->get(),
                 ]);
             }
             else {
                 array_push($lists, [
                     'id' => $userList->id,
-                    'name' => $userList->name
+                    'name' => $userList->name,
+                    'isCompletedTodosVisible' => $userList->isCompletedTodosVisible
                 ]);
             }
         }

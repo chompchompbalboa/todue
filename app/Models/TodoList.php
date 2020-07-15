@@ -15,8 +15,8 @@ class TodoList extends Model
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
-    protected $visible = [ 'id', 'name' ];
-    protected $fillable = [ 'id', 'name' ];
+    protected $visible = [ 'id', 'name', 'isCompletedTodosVisible' ];
+    protected $fillable = [ 'id', 'name', 'isCompletedTodosVisible' ];
 
     public function todos()
     {

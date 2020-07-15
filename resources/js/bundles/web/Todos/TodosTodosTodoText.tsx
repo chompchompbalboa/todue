@@ -70,7 +70,8 @@ export const TodosTodosTodoCheckbox = ({
       onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setLocalTodoText(e.target.value)}
       onKeyDown={handleKeyDown}
       onBlur={completeEditing}
-      onFocus={() => dispatch(updateActiveTodoId(todoId))}/>
+      onFocus={() => dispatch(updateActiveTodoId(todoId))}
+      spellCheck={false}/>
   )
 }
 

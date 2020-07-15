@@ -4,22 +4,31 @@
 import { groupBy, orderBy } from 'lodash'
 import moment from 'moment'
 
+import { IList } from '@/state/list/types'
 import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
 // Resolve Visible Todos
 //-----------------------------------------------------------------------------
 export const resolveVisibleTodos = (
+  list: IList,
   todos: ITodo[]
 ) => {
   // If there are no todos, return a header with the current date
   if(todos.length === 0) {
     return [ moment().format('YYYY-MM-DD') ]
   }
+  
   // Otherwise, initialize the return array
   let visibleTodos: ITodo['id'][] = []
+  
+  // Filter out completed todos if needed (per the list's setting)
+  const filteredTodos = list.isCompletedTodosVisible
+    ? todos
+    : todos.filter(todo => todo.dateCompleted === null)
+  
   // Group the todos by date - dateCompleted is checked first, then dateCurrent
-  const todosGroupedByDate = groupBy(todos, todo => {
+  const todosGroupedByDate = groupBy(filteredTodos, todo => {
     return todo.dateCompleted 
       ? moment(todo.dateCompleted).format('YYYY-MM-DD')
       : moment(todo.dateCurrent).date() < moment().date()

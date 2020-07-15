@@ -37,13 +37,17 @@ export const createList = () => {
       id: createUuid(),
       name: null,
       todos: [],
-      visibleTodos: resolveVisibleTodos([])
+      visibleTodos: [],
+      isCompletedTodosVisible: true
     }
 
     const actions = (isHistoryStep?: boolean) => {
       dispatch(setAllLists({
         ...allLists,
-        [newList.id]: newList
+        [newList.id]: {
+          ...newList,
+          visibleTodos: resolveVisibleTodos(newList, [])
+        }
       }))
       dispatch(setLists([
         newList.id,

@@ -25,10 +25,14 @@ const getInitialState = () => {
   let allLists: IListState['allLists'] = {}
   let lists: IListState['lists'] = []
   initialListData.map((list, index) => {
-    allLists[list.id] = {
+    const currentList = {
       ...list,
       todos: index === 0 ? list.todos.map(todo => todo.id) : [],
-      visibleTodos: index === 0 ? resolveVisibleTodos(list.todos) : []
+      visibleTodos: [] as IList['visibleTodos']
+    }
+    allLists[list.id] = {
+      ...currentList,
+      visibleTodos: index === 0 ? resolveVisibleTodos(currentList, list.todos) : [],
     }
     lists.push(list.id)
   })
