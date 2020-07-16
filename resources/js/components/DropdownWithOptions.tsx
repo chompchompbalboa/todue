@@ -22,15 +22,15 @@ export const DropdownWithOptions = ({
   // Add event listeners when the dropdown is visible
   useEffect(() => {
     if(isDropdownVisible) {
-      addEventListener('click', closeDropdownOnClickOutside)
+      addEventListener('mousedown', closeDropdownOnClickOutside)
       addEventListener('keydown', handleDropdownKeydown)
     }
     else {
-      removeEventListener('click', closeDropdownOnClickOutside)
+      removeEventListener('mousedown', closeDropdownOnClickOutside)
       removeEventListener('keydown', handleDropdownKeydown)
     }
     return () => {
-      removeEventListener('click', closeDropdownOnClickOutside)
+      removeEventListener('mousedown', closeDropdownOnClickOutside)
       removeEventListener('keydown', handleDropdownKeydown)
     }
   }, [ 
@@ -108,9 +108,9 @@ export interface IDropdownWithOptions {
 //-----------------------------------------------------------------------------
 const StyledDropdown = styled.div`
   z-index: 10;
-  position: relative;
+  position: absolute;
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
-  top: 0;
+  top: 100%;
   left: 0;
   width: 100%;
   max-height: 50vh;

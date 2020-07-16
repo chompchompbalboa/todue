@@ -24,7 +24,8 @@ class Todo extends Model
       'dateCompleted',
       'timeStart',
       'timeEnd',
-      'priority'
+      'priority',
+      'tags'
     ];
 
     protected $fillable = [ 
@@ -38,4 +39,10 @@ class Todo extends Model
       'timeEnd',
       'priority'
     ];
+    protected $with = [ 'tags' ];
+
+    public function tags()
+    {
+        return $this->hasMany('App\Models\TodoTag', 'todoId');
+    }
 }

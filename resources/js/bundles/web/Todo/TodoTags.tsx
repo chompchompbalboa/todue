@@ -9,6 +9,7 @@ import { ITodo } from '@/state/todo/types'
 
 import TodoSection from '@web/Todo/TodoSection'
 import TodoTagsCreateTodoTag from '@web/Todo/TodoTagsCreateTodoTag'
+import TodoTagsTags from '@web/Todo/TodoTagsTags'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -16,13 +17,13 @@ import TodoTagsCreateTodoTag from '@web/Todo/TodoTagsCreateTodoTag'
 export const TodoTags = ({
   todoId
 }: ITodoTags) => {
-  
-  // Redux
 
   return (
       <TodoSection
         header="Tags">
         <TodoTagsCreateTodoTag
+          todoId={todoId}/>
+        <TodoTagsTags 
           todoId={todoId}/>
       </TodoSection>
   )

@@ -15,7 +15,7 @@ import {
   updateTodo 
 } from '@/state/todo/actions'
 
-import ReactTextareaAutosize from 'react-textarea-autosize'
+import ReactTextareaAutosize from 'react-autosize-textarea'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -65,6 +65,7 @@ export const TodosTodosTodoCheckbox = ({
 
   return (
     <StyledTextarea
+      async // Required for styled-components
       autoFocus={todoText === null}
       value={localTodoText || ''}
       onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setLocalTodoText(e.target.value)}
