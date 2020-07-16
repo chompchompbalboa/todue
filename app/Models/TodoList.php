@@ -22,4 +22,9 @@ class TodoList extends Model
     {
         return $this->hasMany('App\Models\Todo', 'listId')->orderBy('dateCurrent', 'asc');
     }
+
+    public function tags()
+    {
+        return $this->hasMany('App\Models\TodoListTag', 'listId')->orderBy('text', 'asc');
+    }
 }

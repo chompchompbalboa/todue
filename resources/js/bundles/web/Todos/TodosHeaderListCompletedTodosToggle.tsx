@@ -77,7 +77,7 @@ const ToggleBackground = styled.div`
   height: 100%;
   width: 100%;
   background-color: ${ ({ isCompletedTodosVisible }: IToggle ) => isCompletedTodosVisible ? 'rgb(0, 150, 0)' : 'rgb(200, 200, 200)' };
-  transition: background-color 0.25s;
+  transition: background-color 0.15s;
 `
 
 const ToggleForeground = styled.div`
@@ -88,7 +88,7 @@ const ToggleForeground = styled.div`
   width: 1rem;
   border-radius: 0.5rem;
   background-color: rgb(225, 225, 225);
-  transition: left 0.25s;
+  transition: left 0.15s;
 `
 
 interface IToggle {

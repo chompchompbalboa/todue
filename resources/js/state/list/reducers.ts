@@ -27,7 +27,8 @@ const getInitialState = () => {
   initialListData.map((list, index) => {
     const currentList = {
       ...list,
-      todos: index === 0 ? list.todos.map(todo => todo.id) : [],
+      todos: index === 0 && list.todos ? list.todos.map(todo => todo.id) : [],
+      tags: index === 0 && list.tags ? list.tags.map(todo => todo.id) : [],
       visibleTodos: [] as IList['visibleTodos']
     }
     allLists[list.id] = {

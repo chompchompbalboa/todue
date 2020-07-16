@@ -37,6 +37,7 @@ export const createList = () => {
       id: createUuid(),
       name: null,
       todos: [],
+      tags: [],
       visibleTodos: [],
       isCompletedTodosVisible: true
     }

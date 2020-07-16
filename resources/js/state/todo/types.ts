@@ -1,4 +1,5 @@
 import { IList } from '@/state/list/types'
+import { ITag } from '@/state/tag/types'
 
 export interface IAllTodos { [todoId: string]: ITodo }
 
@@ -12,6 +13,7 @@ export interface ITodo {
   timeStart: string
   timeEnd: string
   priority: number
+  tags: ITag['id'][]
 }
 
 export interface ITodoUpdates {
@@ -21,4 +23,5 @@ export interface ITodoUpdates {
   timeStart?: ITodo['timeStart']
   timeEnd?: ITodo['timeEnd']
   priority?: ITodo['priority']
+  tags?: ITodo['tags']
 }
