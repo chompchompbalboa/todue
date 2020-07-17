@@ -1,8 +1,10 @@
 //-----------------------------------------------------------------------------
 // Initial
 //-----------------------------------------------------------------------------
+import defaultInitialData from '@/state/initialData'
 import { 
-  IAllTags
+  IAllTags,
+  ITag
 } from '@/state/tag/types'
 
 import { 
@@ -13,12 +15,22 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
+const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
+const getInitialState = () => {
+  let allTags: ITagState['allTags'] = {}
+  initialListData[0] && initialListData[0].tags.forEach((tag: ITag) => {
+    allTags[tag.id] = tag
+  })
+  return { allTags }
+}
+const { allTags } = getInitialState()
+
 export type ITagState = {
   allTags: IAllTags
 }
 
 export const initialState: ITagState = {
-  allTags: {},
+  allTags: allTags,
 }
 
 //-----------------------------------------------------------------------------

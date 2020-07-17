@@ -25,7 +25,8 @@ export const TodoTagsTags = ({
         {todoTags && todoTags.map(tagId => (
           <TodoTagsTagsTag
             key={tagId}
-            tagId={tagId}/>
+            tagId={tagId}
+            todoId={todoId}/>
         ))}
       </Container>
   )
@@ -43,6 +44,7 @@ interface ITodoTagsTags {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   display: flex;
+  flex-flow: row wrap;
 `
 
 export default TodoTagsTags

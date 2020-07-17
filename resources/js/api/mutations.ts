@@ -4,6 +4,11 @@
 import axios from '@/api/axios'
 
 import { 
+	ITag,
+	ITagUpdates,
+	ITodoTag
+} from '@/state/tag/types'
+import { 
 	IList,
 	IListUpdates 
 } from '@/state/list/types'
@@ -16,11 +21,11 @@ import {
 // Lists
 //-----------------------------------------------------------------------------
 export const createList = async (list: IList) => {
-	return axios.post('api/list', list)
+	return axios.post('/api/list', list)
 }
 
 export const deleteList = async (listId: IList['id']) => {
-	return axios.delete('api/list/' + listId)
+	return axios.delete('/api/list/' + listId)
 }
 
 export const restoreList = async (listId: string) => {
@@ -28,18 +33,37 @@ export const restoreList = async (listId: string) => {
 }
 
 export const updateList = async (listId: IList['id'], updates: IListUpdates) => {
-	return axios.patch('api/list/' + listId, updates)
+	return axios.patch('/api/list/' + listId, updates)
+}
+
+//-----------------------------------------------------------------------------
+// List Tags
+//-----------------------------------------------------------------------------
+export const createListTag = async (tag: ITag) => {
+	return axios.post('/api/list/tag', tag)
+}
+
+export const deleteListTag = async (tagId: ITag['id']) => {
+	return axios.delete('/api/list/tag' + tagId)
+}
+
+export const restoreListTag = async (tagId: string) => {
+	return axios.post('/api/list/tag/restore/' + tagId)
+}
+
+export const updateListTag = async (tagId: ITag['id'], updates: ITagUpdates) => {
+	return axios.patch('/api/list/tag/' + tagId, updates)
 }
 
 //-----------------------------------------------------------------------------
 // Todos
 //-----------------------------------------------------------------------------
 export const createTodo = async (todo: ITodo) => {
-	return axios.post('api/todo', todo)
+	return axios.post('/api/todo', todo)
 }
 
 export const deleteTodo = async (todoId: ITodo['id']) => {
-	return axios.delete('api/todo/' + todoId)
+	return axios.delete('/api/todo/' + todoId)
 }
 
 export const restoreTodo = async (todoId: string) => {
@@ -47,5 +71,20 @@ export const restoreTodo = async (todoId: string) => {
 }
 
 export const updateTodo = async (todoId: ITodo['id'], updates: ITodoUpdates) => {
-	return axios.patch('api/todo/' + todoId, updates)
+	return axios.patch('/api/todo/' + todoId, updates)
+}
+
+//-----------------------------------------------------------------------------
+// Todo Tags
+//-----------------------------------------------------------------------------
+export const createTodoTag = async (todoTag: ITodoTag) => {
+	return axios.post('/api/todo/tag', todoTag)
+}
+
+export const deleteTodoTag = async (todoId: ITodo['id'], tagId: ITag['id']) => {
+	return axios.post('/api/todo/tag/delete', { todoId, tagId })
+}
+
+export const restoreTodoTag = async (listId: IList['id'], todoId: ITodo['id']) => {
+	return axios.post('/api/todo/tag/restore', { listId, todoId })
 }

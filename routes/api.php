@@ -27,12 +27,20 @@ Route::group([
   
     // Restore soft deleted models
     Route::post('/list/restore/{list}', 'TodoListController@restore');
+    Route::post('/list/tag/restore/{tag}', 'TodoListTagController@restore');
     Route::post('/todo/restore/{todo}', 'TodoController@restore');
+    Route::post('/todo/tag/restore/{tag}', 'TodoTagController@restore');
+
+    // Delete Todo Tags (we can't use the resource controller to delete these
+    // because we don't pass the id to the front end)
+    Route::post('/todo/tag/delete', 'TodoTagController@destroy');
 
     // Resource Controllers
     Route::resources([
       'list' => 'TodoListController',
+      'list/tag' => 'TodoListTagController',
       'todo' => 'TodoController',
+      'todo/tag' => 'TodoTagController',
     ]);
 
 });

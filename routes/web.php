@@ -30,7 +30,8 @@ Route::group([
                     'id' => $userList->id,
                     'name' => $userList->name,
                     'isCompletedTodosVisible' => $userList->isCompletedTodosVisible,
-                    'todos' => $userList->todos()->orderBy('dateCurrent', 'desc')->get(),
+                    'todos' => $userList->todos()->get(),
+                    'tags' => $userList->tags()->get(),
                 ]);
             }
             else {

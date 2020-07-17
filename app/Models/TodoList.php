@@ -17,6 +17,7 @@ class TodoList extends Model
 
     protected $visible = [ 'id', 'name', 'isCompletedTodosVisible' ];
     protected $fillable = [ 'id', 'name', 'isCompletedTodosVisible' ];
+    protected $with = [ 'tags' ];
 
     public function todos()
     {

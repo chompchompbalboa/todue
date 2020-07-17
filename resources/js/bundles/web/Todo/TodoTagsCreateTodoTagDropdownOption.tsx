@@ -12,7 +12,11 @@ import { ITag } from '@/state/tag/types'
 // Component
 //-----------------------------------------------------------------------------
 export const TodoTagsCreateTodoTagDropdownOption = ({
-  tagId
+  tagId,
+  index,
+  isActiveDropdownOption,
+  handleCreateTodoTag,
+  setActiveDropdownOptionIndex
 }: ITodoTagsCreateTodoTagDropdownOption) => {
   
   // Redux
@@ -21,8 +25,12 @@ export const TodoTagsCreateTodoTagDropdownOption = ({
 
   return (
       <Container
-        backgroundColor={tagBackgroundColor}>
-        {tagText}
+        isActiveDropdownOption={isActiveDropdownOption}
+        onClick={handleCreateTodoTag}
+        onMouseEnter={() => setActiveDropdownOptionIndex(index)}>
+        <Text>{tagText}</Text>
+        <BackgroundColor
+          backgroundColor={tagBackgroundColor}/>
       </Container>
   )
 }
@@ -32,15 +40,40 @@ export const TodoTagsCreateTodoTagDropdownOption = ({
 //-----------------------------------------------------------------------------
 interface ITodoTagsCreateTodoTagDropdownOption {
   tagId: ITag['id']
+  index: number
+  isActiveDropdownOption: boolean
+  handleCreateTodoTag(): void
+  setActiveDropdownOptionIndex(nextActiveDropdownOptionIndex: number): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  background-color: ${ ({ backgroundColor }: IContainer ) => backgroundColor };
+  cursor: pointer;
+  padding: 0.125rem 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: ${ ({ isActiveDropdownOption }: IContainer ) => isActiveDropdownOption ? 'rgb(240, 240, 240)' : 'auto' };
+  &:hover {
+    background-color: rgb(240, 240, 240);
+  }
 `
 interface IContainer {
+  isActiveDropdownOption: boolean
+}
+
+const Text = styled.div``
+
+const BackgroundColor = styled.div`
+  margin-right: 0.375rem;
+  height: 0.75rem;
+  width: 0.75rem;
+  border-radius: 0.375rem;
+  background-color: ${ ({ backgroundColor }: IBackgroundColor ) => backgroundColor };
+`
+interface IBackgroundColor {
   backgroundColor: string
 }
 

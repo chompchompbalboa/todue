@@ -2,13 +2,17 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React, { ChangeEvent,  useEffect, useRef, useState } from 'react'
+import randomColor from 'randomcolor'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
-import { createListTag } from '@/state/tag/actions'
+import { 
+  createListTag,
+  createTodoTag
+} from '@/state/tag/actions'
 
 import DropdownWithOptions from '@/components/DropdownWithOptions'
 import DropdownOption from '@web/Todo/TodoTagsCreateTodoTagDropdownOption'
@@ -28,6 +32,7 @@ export const TodoTagsCreateTodoTag = ({
   const allTags = useSelector((state: IAppState) => state.tag.allTags)
   const listId = useSelector((state: IAppState) => state.active.listId)
   const listTags = useSelector((state: IAppState) => state.list.allLists[listId].tags)
+  const todoTags = useSelector((state: IAppState) => state.todo.allTodos[todoId].tags)
   
   // State
   const [ activeDropdownOptionIndex, setActiveDropdownOptionIndex ] = useState(0)
@@ -40,24 +45,38 @@ export const TodoTagsCreateTodoTag = ({
     setIsDropdownVisible(false)
     setActiveDropdownOptionIndex(0)
   }, [ todoId ])
+
+  // Ensure the dropdown is open when the user is typing
+  useEffect(() => {
+    if(!isDropdownVisible && inputValue !== '') {
+      setIsDropdownVisible(true)
+    }
+  }, [ inputValue ])
   
   // Create List Tag
   const handleCreateListTag = () => {
-    dispatch(createListTag(listId, todoId, inputValue, 'red'))
+    dispatch(createListTag(listId, todoId, inputValue, randomColor() ))
     setInputValue('')
+    setIsDropdownVisible(false)
+    setActiveDropdownOptionIndex(0)
   }
   
   // Create Todo Tag
   const handleCreateTodoTag = () => {
-    console.log(inputValue)
+    const filteredListTags = getFilteredListTags()
+    const tagId = filteredListTags[activeDropdownOptionIndex]
+    dispatch(createTodoTag(listId, todoId, tagId))
+    setInputValue('')
+    setIsDropdownVisible(false)
+    setActiveDropdownOptionIndex(0)
   }
   
   // Get Filtered List Tags
   const getFilteredListTags = () => {
     if(inputValue.length === 0) {
-      return listTags
+      return listTags.filter(tagId => !todoTags.includes(tagId))
     }
-    return listTags.filter(tagId => {
+    return listTags.filter(tagId => !todoTags.includes(tagId)).filter(tagId => {
       const currentTag = allTags[tagId]
       if(currentTag) {
         return currentTag.text.toLowerCase().includes(inputValue.toLowerCase())
@@ -83,10 +102,14 @@ export const TodoTagsCreateTodoTag = ({
           isDropdownVisible={isDropdownVisible}
           selectDropdownOption={filteredListTags.length > 0 ? handleCreateTodoTag : handleCreateListTag}
           setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}>
-          {filteredListTags && filteredListTags.map(tagId => (
+          {filteredListTags && filteredListTags.map((tagId, index) => (
             <DropdownOption
               key={tagId}
-              tagId={tagId}/>
+              tagId={tagId}
+              index={index}
+              isActiveDropdownOption={index === activeDropdownOptionIndex}
+              handleCreateTodoTag={handleCreateTodoTag}
+              setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}/>
           ))}
           {filteredListTags.length === 0 && inputValue.length > 0 &&
             <CreateTodoDropdownOption
