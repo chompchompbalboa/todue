@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { IList } from '@/state/list/types'
 
+import ListsListCreateSublist from '@web/Lists/ListsListCreateSublist'
 import ListsListName from '@web/Lists/ListsListName'
 
 //-----------------------------------------------------------------------------
@@ -18,6 +19,8 @@ export const ListsList = ({
   return (
     <Container>
       <ListsListName
+        listId={listId}/>
+      <ListsListCreateSublist
         listId={listId}/>
     </Container>
   )
