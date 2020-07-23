@@ -23,6 +23,7 @@ export const deleteTodo = (
     
     const {
       active: {
+        isCompletedTodosVisible,
         todoId: activeTodoId
       },
       list: {
@@ -40,7 +41,7 @@ export const deleteTodo = (
 
     const nextActiveTodoId = activeTodoId === todoId ? null : activeTodoId
     const nextListTodos = listTodos.filter(currentTodoId => currentTodoId !== todoId)
-    const nextListVisibleTodos = resolveVisibleTodos(list, nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextListVisibleTodos = resolveVisibleTodos(isCompletedTodosVisible, nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
 
     const actions = () => {
       dispatch(updateActiveTodoId(nextActiveTodoId))

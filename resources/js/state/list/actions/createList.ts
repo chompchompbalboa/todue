@@ -15,12 +15,13 @@ import {
   setAllLists,
   setLists
 } from '@/state/list/actions'
-import { resolveVisibleTodos } from '@/state/todo/resolvers'
 
 //-----------------------------------------------------------------------------
 // Action
 //-----------------------------------------------------------------------------
-export const createList = () => {
+export const createList = (
+  listId: IList['id'] = null
+) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
     const {
@@ -35,20 +36,17 @@ export const createList = () => {
     
     const newList: IList = {
       id: createUuid(),
+      listId: null,
       name: null,
       todos: [],
-      tags: [],
       visibleTodos: [],
-      isCompletedTodosVisible: true
+      sublists: []
     }
 
     const actions = (isHistoryStep?: boolean) => {
       dispatch(setAllLists({
         ...allLists,
-        [newList.id]: {
-          ...newList,
-          visibleTodos: resolveVisibleTodos(newList, [])
-        }
+        [newList.id]: newList
       }))
       dispatch(setLists([
         newList.id,

@@ -9,8 +9,10 @@ import { IList } from '@/state/list/types'
 import { ITag, ITodoTag } from '@/state/tag/types'
 import { ITodo } from '@/state/todo/types'
 
-import { updateListReducer } from '@/state/list/actions'
-import { setAllTags } from '@/state/tag/actions'
+import { 
+  setAllTags,
+  setTagsByListId
+} from '@/state/tag/actions'
 import { updateTodoReducer } from '@/state/todo/actions'
 import { mutation } from '@/api'
 //-----------------------------------------------------------------------------
@@ -25,15 +27,9 @@ export const createListTag = (
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
     const {
-      list: {
-        allLists: {
-          [listId]: {
-            tags: listTags
-          }
-        }
-      },
       tag: {
-        allTags
+        allTags,
+        tagsByListId
       },
       todo: {
         allTodos: {
@@ -58,14 +54,20 @@ export const createListTag = (
     }
     
     const nextTodoTags = [ ...todoTags, newTag.id ]
-    const nextListTags = [ ...listTags, newTag.id ]
     
     dispatch(setAllTags({
       ...allTags,
       [newTag.id]: newTag
     }))
+    
+    dispatch(setTagsByListId({
+      ...tagsByListId,
+      [listId]: [
+        ...(tagsByListId[listId] || []),
+       newTag.id 
+      ]
+    }))
     dispatch(updateTodoReducer(todoId, { tags: nextTodoTags }))
-    dispatch(updateListReducer(listId, { tags: nextListTags }))
 
     mutation.createListTag(newTag).then(() => mutation.createTodoTag(newTodoTag))
 	}

@@ -9,8 +9,10 @@ import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
 import { 
-  refreshListVisibleTodos,
-  updateList 
+  updateActiveIsCompletedTodosVisible
+} from '@/state/active/actions'
+import { 
+  refreshListVisibleTodos
 } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
@@ -22,7 +24,7 @@ export const TodosHeaderListCompletedTodosToggle = ({
   
   // Redux
   const dispatch = useDispatch()
-  const listIsCompletedTodosVisible = useSelector((state: IAppState) => state.list.allLists[listId].isCompletedTodosVisible)
+  const activeIsCompletedTodosVisible = useSelector((state: IAppState) => state.active.isCompletedTodosVisible)
 
   return (
     <Container>
@@ -31,13 +33,13 @@ export const TodosHeaderListCompletedTodosToggle = ({
       </Label>
       <Toggle
         onClick={() => {
-          dispatch(updateList(listId, { isCompletedTodosVisible: !listIsCompletedTodosVisible }))
+          dispatch(updateActiveIsCompletedTodosVisible(!activeIsCompletedTodosVisible))
           dispatch(refreshListVisibleTodos(listId))
         }}>
         <ToggleBackground
-          isCompletedTodosVisible={listIsCompletedTodosVisible}/>
+          isCompletedTodosVisible={activeIsCompletedTodosVisible}/>
         <ToggleForeground
-          isCompletedTodosVisible={listIsCompletedTodosVisible}/>
+          isCompletedTodosVisible={activeIsCompletedTodosVisible}/>
       </Toggle>
     </Container>
   )

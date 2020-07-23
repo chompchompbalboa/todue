@@ -4,14 +4,13 @@
 import { groupBy, orderBy } from 'lodash'
 import moment from 'moment'
 
-import { IList } from '@/state/list/types'
 import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
 // Resolve Visible Todos
 //-----------------------------------------------------------------------------
 export const resolveVisibleTodos = (
-  list: IList,
+  isCompletedTodosVisible: boolean,
   todos: ITodo[]
 ) => {
   // If there are no todos, return a header with the current date
@@ -23,7 +22,7 @@ export const resolveVisibleTodos = (
   let visibleTodos: ITodo['id'][] = []
   
   // Filter out completed todos if needed (per the list's setting)
-  const filteredTodos = list.isCompletedTodosVisible
+  const filteredTodos = isCompletedTodosVisible
     ? todos
     : todos.filter(todo => todo.dateCompleted === null)
   

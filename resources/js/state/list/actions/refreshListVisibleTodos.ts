@@ -18,6 +18,9 @@ export const refreshListVisibleTodos = (
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
 
     const {
+      active: {
+        isCompletedTodosVisible
+      },
       list: {
         allLists: {
           [listId]: list
@@ -28,7 +31,7 @@ export const refreshListVisibleTodos = (
       }
     } = getState()
 
-    const nextListVisibleTodos = resolveVisibleTodos(list, list.todos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextListVisibleTodos = resolveVisibleTodos(isCompletedTodosVisible, list.todos.map(currentTodoId => allTodos[currentTodoId]))
 
     dispatch(updateList(listId, { visibleTodos: nextListVisibleTodos }, null, true))
 	}

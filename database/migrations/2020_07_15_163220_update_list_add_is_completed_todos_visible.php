@@ -14,7 +14,7 @@ class UpdateListAddIsCompletedTodosVisible extends Migration
     public function up()
     {
       Schema::table('todoLists', function (Blueprint $table) {
-        $table->boolean('isCompletedTodosVisible', 5)->default(true);
+        $table->boolean('isCompletedTodosVisible')->default(true);
       });
     }
 

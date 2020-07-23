@@ -11,25 +11,26 @@ export interface IAllLists { [listId: string]: IList }
 
 export interface IList {
   id: string
+  listId: IList['id']
   name: string
   todos: ITodo['id'][]
-  tags: ITag['id'][]
+  sublists: ISublist['id'][]
   visibleTodos: ITodo['id'][]
-  isCompletedTodosVisible: boolean
 }
 
 export interface IListUpdates {
   name?: IList['name']
   todos?: IList['todos']
-  tags?: IList['tags']
   visibleTodos?: IList['visibleTodos']
-  isCompletedTodosVisible?: IList['isCompletedTodosVisible']
 }
 
 export interface IListFromDatabase {
   id: IList['id']
+  listId: IList['listId']
   name: IList['name']
+  sublists: ISublist[]
   todos?: ITodo[] // Only the initially active list sends this
   tags?: ITag[] // Only the initially active list sends this
-  isCompletedTodosVisible: boolean
 }
+
+export type ISublist = Pick<IList, 'id' | 'listId' | 'name'>

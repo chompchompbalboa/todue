@@ -7,7 +7,27 @@ import { ITodo } from '@/state/todo/types'
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type IActiveActions = IUpdateActiveListId | IUpdateActiveTodoId
+export type IActiveActions = 
+  IUpdateActiveIsCompletedTodosVisible |
+  IUpdateActiveListId | 
+  IUpdateActiveTodoId
+
+//-----------------------------------------------------------------------------
+// Update Active Is Completed Todos Visible
+//-----------------------------------------------------------------------------
+export const UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE = 'UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE'
+interface IUpdateActiveIsCompletedTodosVisible {
+  type: typeof UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE
+  nextActiveIsCompletedTodosVisible: boolean
+}
+
+export const updateActiveIsCompletedTodosVisible = (nextActiveIsCompletedTodosVisible: boolean): IActiveActions => {
+	return {
+		type: UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE,
+		nextActiveIsCompletedTodosVisible
+	}
+}
+
 
 //-----------------------------------------------------------------------------
 // Update Active List Id

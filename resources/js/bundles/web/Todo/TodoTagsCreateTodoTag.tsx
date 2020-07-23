@@ -31,7 +31,7 @@ export const TodoTagsCreateTodoTag = ({
   const dispatch = useDispatch()
   const allTags = useSelector((state: IAppState) => state.tag.allTags)
   const listId = useSelector((state: IAppState) => state.active.listId)
-  const listTags = useSelector((state: IAppState) => state.list.allLists[listId].tags)
+  const listTags = useSelector((state: IAppState) => state.tag.tagsByListId[listId])
   const todoTags = useSelector((state: IAppState) => state.todo.allTodos[todoId].tags)
   
   // State

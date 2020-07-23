@@ -14,14 +14,14 @@ import { createList } from '@/state/list/actions'
 //-----------------------------------------------------------------------------
 export const ListsCreateSublist = ({
   listId
-}: IListsListCreateSublist) => {false && console.log(listId)
+}: IListsListCreateSublist) => {
   
   // Redux
   const dispatch = useDispatch()
   
   return (
     <Container
-      onClick={() => dispatch(createList())}>
+      onClick={() => dispatch(createList(listId))}>
       New Sublist +
     </Container>
   )
