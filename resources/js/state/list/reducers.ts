@@ -15,8 +15,6 @@ import {
   UPDATE_LIST
 } from '@/state/list/actions'
 
-import { resolveVisibleTodos } from '@/state/todo/resolvers'
-
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
@@ -25,16 +23,10 @@ const getInitialState = () => {
   let allLists: IListState['allLists'] = {}
   let lists: IListState['lists'] = []
   initialListData.map((list, index) => {
-    const currentList = {
-      ...list,
-      sublists: index === 0 && list.sublists ? list.sublists.map(sublist => sublist.id) : [],
-      todos: index === 0 && list.todos ? list.todos.map(todo => todo.id) : [],
-      tags: index === 0 && list.tags ? list.tags.map(todo => todo.id) : [],
-      visibleTodos: [] as IList['visibleTodos']
-    }
     allLists[list.id] = {
-      ...currentList,
-      visibleTodos: index === 0 ? resolveVisibleTodos(false, list.todos) : [],
+      id: list.id,
+      listId: list.listId,
+      name: list.name
     }
     lists.push(list.id)
   })

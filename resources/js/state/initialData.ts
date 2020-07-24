@@ -1,5 +1,7 @@
 export const initialData: IInitialData = {
-  lists: []
+  lists: [],
+  tags: [],
+  todos: []
 }
 
 export default initialData

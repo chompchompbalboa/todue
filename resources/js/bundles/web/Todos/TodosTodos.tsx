@@ -20,7 +20,7 @@ export const TodosTodos = ({
 }: ITodosTodos) => {
 
   // Redux
-  const visibleTodos = useSelector((state: IAppState) => state.list.allLists[listId].visibleTodos)
+  const visibleTodos = useSelector((state: IAppState) => state.todo.visibleTodosByListId[listId])
 
   return (
       <Container>

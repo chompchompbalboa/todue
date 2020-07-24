@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
+import { ITodoState } from '@/state/todo/reducers'
 import {
   IAllTodos,
   ITodo,
@@ -10,7 +11,12 @@ import {
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type ITodoActions = ISetAllTodos | ISetTodos | IUpdateTodo
+export type ITodoActions = 
+ISetAllTodos | 
+ISetTodos | 
+ISetTodosByListId |
+ISetVisibleTodosByListId |
+IUpdateTodo
 
 export { createTodo } from '@/state/todo/actions/createTodo'
 export { deleteTodo } from '@/state/todo/actions/deleteTodo'
@@ -45,6 +51,38 @@ export const setTodos = (nextTodos: ITodo['id'][]): ITodoActions => {
 	return {
 		type: SET_TODOS,
 		nextTodos
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Set Todos
+//-----------------------------------------------------------------------------
+export const SET_TODOS_BY_LIST_ID = 'SET_TODOS_BY_LIST_ID'
+interface ISetTodosByListId {
+  type: typeof SET_TODOS_BY_LIST_ID
+  nextTodosByListId: ITodoState['todosByListId']
+}
+
+export const setTodosByListId = (nextTodosByListId: ITodoState['todosByListId']): ITodoActions => {
+	return {
+		type: SET_TODOS_BY_LIST_ID,
+		nextTodosByListId
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Set Todos
+//-----------------------------------------------------------------------------
+export const SET_VISIBLE_TODOS_BY_LIST_ID = 'SET_VISIBLE_TODOS_BY_LIST_ID'
+interface ISetVisibleTodosByListId {
+  type: typeof SET_VISIBLE_TODOS_BY_LIST_ID
+  nextVisibleTodosByListId: ITodoState['visibleTodosByListId']
+}
+
+export const setVisibleTodosByListId = (nextVisibleTodosByListId: ITodoState['visibleTodosByListId']): ITodoActions => {
+	return {
+		type: SET_VISIBLE_TODOS_BY_LIST_ID,
+		nextVisibleTodosByListId
 	}
 }
 

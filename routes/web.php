@@ -23,29 +23,13 @@ Route::group([
         $accessToken = $user->createToken('authToken')->accessToken;
         // Build the initial data
         $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
-        $lists = [];
-        foreach($userLists as $index => $userList) {
-            if($index === 0) { // If this is the initial active list, load its todos
-                array_push($lists, [
-                    'id' => $userList->id,
-                    'name' => $userList->name,
-                    'isCompletedTodosVisible' => $userList->isCompletedTodosVisible,
-                    'todos' => $userList->todos()->get(),
-                    'tags' => $userList->tags()->get(),
-                ]);
-            }
-            else {
-                array_push($lists, [
-                    'id' => $userList->id,
-                    'name' => $userList->name,
-                    'isCompletedTodosVisible' => $userList->isCompletedTodosVisible
-                ]);
-            }
-        }
+        $initialList = $user->lists()->first();
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
-            'lists' => $lists
+            'lists' => $userLists,
+            'todos' => $initialList->todos()->get(),
+            'tags' => $initialList->tags()->get(),
         ]);
     })->name('app');
 });

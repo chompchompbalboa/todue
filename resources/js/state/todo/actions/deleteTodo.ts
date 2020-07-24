@@ -9,7 +9,10 @@ import { ITodo } from '@/state/todo/types'
 
 import { updateActiveTodoId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
-import { updateList } from '@/state/list/actions'
+import { 
+  setTodosByListId,
+  setVisibleTodosByListId
+} from '@/state/todo/actions'
 import { resolveVisibleTodos } from '../resolvers'
 
 //-----------------------------------------------------------------------------
@@ -26,38 +29,38 @@ export const deleteTodo = (
         isCompletedTodosVisible,
         todoId: activeTodoId
       },
-      list: {
-        allLists
-      },
       todo: {
-        allTodos
+        allTodos,
+        todosByListId,
+        visibleTodosByListId
       }
     } = getState()
 
     const listId = allTodos[todoId].listId
-    const list = allLists[listId]
-    const listTodos = list.todos
-    const listVisibleTodos = list.visibleTodos
 
     const nextActiveTodoId = activeTodoId === todoId ? null : activeTodoId
-    const nextListTodos = listTodos.filter(currentTodoId => currentTodoId !== todoId)
+    const nextListTodos = (todosByListId[listId] || []).filter(currentTodoId => currentTodoId !== todoId)
     const nextListVisibleTodos = resolveVisibleTodos(isCompletedTodosVisible, nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextTodosByListId = {
+      ...todosByListId,
+      [listId]: nextListTodos
+    }
+    const nextVisibleTodosByListId = {
+      ...visibleTodosByListId,
+      [listId]: nextListVisibleTodos
+    }
 
     const actions = () => {
+      dispatch(setTodosByListId(nextTodosByListId))
+      dispatch(setVisibleTodosByListId(nextVisibleTodosByListId))
       dispatch(updateActiveTodoId(nextActiveTodoId))
-      dispatch(updateList(listId, { 
-        todos: nextListTodos, 
-        visibleTodos: nextListVisibleTodos
-      }, null, true))
       mutation.deleteTodo(todoId)
     }
 
     const undoActions = () => {
+      dispatch(setTodosByListId(todosByListId))
+      dispatch(setVisibleTodosByListId(visibleTodosByListId))
       dispatch(updateActiveTodoId(activeTodoId))
-      dispatch(updateList(listId, { 
-        todos: listTodos, 
-        visibleTodos: listVisibleTodos 
-      }, null, true))
       mutation.restoreTodo(todoId)
     }
 

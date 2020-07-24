@@ -7,7 +7,9 @@
 @section('data')
   <script>
     const initialData = {
-      lists: @json($lists)
+      lists: @json($lists),
+      todos: @json($todos),
+      tags: @json($tags)
     }
   </script>
 @endsection

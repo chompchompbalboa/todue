@@ -37,10 +37,7 @@ export const createList = (
     const newList: IList = {
       id: createUuid(),
       listId: null,
-      name: null,
-      todos: [],
-      visibleTodos: [],
-      sublists: []
+      name: null
     }
 
     const actions = (isHistoryStep?: boolean) => {

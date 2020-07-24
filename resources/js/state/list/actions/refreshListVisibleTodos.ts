@@ -5,7 +5,7 @@ import { IAppState } from '@/state'
 import { IThunkDispatch } from '@/state/types'
 import { IList } from '@/state/list/types'
 
-import { updateList } from '@/state/list/actions'
+import { setVisibleTodosByListId } from '@/state/todo/actions'
 
 import { resolveVisibleTodos } from '@/state/todo/resolvers'
 
@@ -21,18 +21,16 @@ export const refreshListVisibleTodos = (
       active: {
         isCompletedTodosVisible
       },
-      list: {
-        allLists: {
-          [listId]: list
-        }
-      },
       todo: {
-        allTodos
+        allTodos,
+        todosByListId,
+        visibleTodosByListId
       }
     } = getState()
 
-    const nextListVisibleTodos = resolveVisibleTodos(isCompletedTodosVisible, list.todos.map(currentTodoId => allTodos[currentTodoId]))
-
-    dispatch(updateList(listId, { visibleTodos: nextListVisibleTodos }, null, true))
+    dispatch(setVisibleTodosByListId({
+      ...visibleTodosByListId,
+      [listId]: resolveVisibleTodos(isCompletedTodosVisible, (todosByListId[listId] || []).map(currentTodoId => allTodos[currentTodoId]))
+    }))
 	}
 }
