@@ -13,7 +13,8 @@ import { updateActiveListId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
 import {
   setAllLists,
-  setLists
+  setLists,
+  setSublistsByListId
 } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
@@ -30,13 +31,21 @@ export const createList = (
       },
       list: {
         allLists,
-        lists
+        lists,
+        sublistsByListId
       }
     } = getState()
     
+    const newListRootListId = listId
+      ? allLists[listId].rootListId
+        ? allLists[listId].rootListId
+        : allLists[listId].id
+      : null
+    
     const newList: IList = {
       id: createUuid(),
-      listId: null,
+      listId: listId,
+      rootListId: newListRootListId,
       name: null
     }
 
@@ -45,10 +54,21 @@ export const createList = (
         ...allLists,
         [newList.id]: newList
       }))
-      dispatch(setLists([
-        newList.id,
-        ...lists
-      ]))
+      if(listId) {
+        dispatch(setSublistsByListId({
+          ...sublistsByListId,
+          [listId]: [
+            ...(sublistsByListId[listId] || []),
+            newList.id
+          ]
+        }))
+      }
+      else {
+        dispatch(setLists([
+          newList.id,
+          ...lists
+        ]))
+      }
       dispatch(updateActiveListId(newList.id))
       if(isHistoryStep) {
         mutation.restoreList(newList.id)
@@ -61,6 +81,7 @@ export const createList = (
     const undoActions = () => {
       dispatch(setAllLists(allLists))
       dispatch(setLists(lists))
+      dispatch(setSublistsByListId(sublistsByListId))
       dispatch(updateActiveListId(activeListId))
       mutation.deleteList(newList.id)
     }

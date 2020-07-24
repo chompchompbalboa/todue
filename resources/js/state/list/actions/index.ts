@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
+import { IListState } from '@/state/list/reducers'
 import {
   IAllLists,
   IList,
@@ -10,7 +11,11 @@ import {
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type IListActions = ISetAllLists | ISetLists | IUpdateList
+export type IListActions = 
+  ISetAllLists | 
+  ISetLists | 
+  ISetSublistsByListId |
+  IUpdateList
 
 export { createList } from '@/state/list/actions/createList'
 export { deleteList } from '@/state/list/actions/deleteList'
@@ -47,6 +52,22 @@ export const setLists = (nextLists: IList['id'][]): IListActions => {
 	return {
 		type: SET_LISTS,
 		nextLists
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Set Sublists By List Id
+//-----------------------------------------------------------------------------
+export const SET_SUBLISTS_BY_LIST_ID = 'SET_SUBLISTS_BY_LIST_ID'
+interface ISetSublistsByListId {
+  type: typeof SET_SUBLISTS_BY_LIST_ID
+  nextSublistsByListId: IListState['sublistsByListId']
+}
+
+export const setSublistsByListId = (nextSublistsByListId: IListState['sublistsByListId']): IListActions => {
+	return {
+		type: SET_SUBLISTS_BY_LIST_ID,
+		nextSublistsByListId
 	}
 }
 

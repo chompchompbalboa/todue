@@ -43,7 +43,7 @@ const getInitialState = () => {
       ]
     }
   })
-  visibleTodosByListId[initialList.id] = resolveVisibleTodos(false, todosByListId[initialList.id].map(todoId => allTodos[todoId]))
+  visibleTodosByListId[initialList.id] = resolveVisibleTodos(false, (todosByListId[initialList.id] || []).map(todoId => allTodos[todoId]))
   return { allTodos, todos, todosByListId, visibleTodosByListId }
 }
 const { allTodos, todos, todosByListId, visibleTodosByListId } = getInitialState()

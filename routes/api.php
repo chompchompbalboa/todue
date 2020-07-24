@@ -42,5 +42,4 @@ Route::group([
       'todo' => 'TodoController',
       'todo/tag' => 'TodoTagController',
     ]);
-
 });

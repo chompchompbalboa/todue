@@ -21,6 +21,7 @@ class TodoListController extends Controller
             'userId' => Auth::user()->id,
             'listId' => $todoList->id
         ]);
+        dd($todoList);
         return response(null, 200);
     }
 
