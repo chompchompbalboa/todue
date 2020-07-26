@@ -13,14 +13,15 @@ import {
 //-----------------------------------------------------------------------------
 export type ITodoActions = 
 ISetAllTodos | 
-ISetTodos | 
 ISetTodosByListId |
-ISetVisibleTodosByListId |
+ISetVisibleTodos |
 IUpdateTodo
 
 export { createTodo } from '@/state/todo/actions/createTodo'
 export { deleteTodo } from '@/state/todo/actions/deleteTodo'
 export { updateTodo } from '@/state/todo/actions/updateTodo'
+
+export { refreshVisibleTodos } from '@/state/todo/actions/refreshVisibleTodos'
 
 //-----------------------------------------------------------------------------
 // Set All Todos
@@ -35,22 +36,6 @@ export const setAllTodos = (nextAllTodos: IAllTodos): ITodoActions => {
 	return {
 		type: SET_ALL_TODOS,
 		nextAllTodos
-	}
-}
-
-//-----------------------------------------------------------------------------
-// Set Todos
-//-----------------------------------------------------------------------------
-export const SET_TODOS = 'SET_TODOS'
-interface ISetTodos {
-  type: typeof SET_TODOS
-  nextTodos: ITodo['id'][]
-}
-
-export const setTodos = (nextTodos: ITodo['id'][]): ITodoActions => {
-	return {
-		type: SET_TODOS,
-		nextTodos
 	}
 }
 
@@ -73,16 +58,16 @@ export const setTodosByListId = (nextTodosByListId: ITodoState['todosByListId'])
 //-----------------------------------------------------------------------------
 // Set Todos
 //-----------------------------------------------------------------------------
-export const SET_VISIBLE_TODOS_BY_LIST_ID = 'SET_VISIBLE_TODOS_BY_LIST_ID'
-interface ISetVisibleTodosByListId {
-  type: typeof SET_VISIBLE_TODOS_BY_LIST_ID
-  nextVisibleTodosByListId: ITodoState['visibleTodosByListId']
+export const SET_VISIBLE_TODOS = 'SET_VISIBLE_TODOS'
+interface ISetVisibleTodos {
+  type: typeof SET_VISIBLE_TODOS
+  nextVisibleTodos: ITodoState['visibleTodos']
 }
 
-export const setVisibleTodosByListId = (nextVisibleTodosByListId: ITodoState['visibleTodosByListId']): ITodoActions => {
+export const setVisibleTodos = (nextVisibleTodos: ITodoState['visibleTodos']): ITodoActions => {
 	return {
-		type: SET_VISIBLE_TODOS_BY_LIST_ID,
-		nextVisibleTodosByListId
+		type: SET_VISIBLE_TODOS,
+		nextVisibleTodos
 	}
 }
 

@@ -2,6 +2,7 @@
 // Imports
 //-----------------------------------------------------------------------------
 import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
 import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
@@ -9,7 +10,8 @@ import { ITodo } from '@/state/todo/types'
 //-----------------------------------------------------------------------------
 export type IActiveActions = 
   IUpdateActiveIsCompletedTodosVisible |
-  IUpdateActiveListId | 
+	IUpdateActiveListId | 
+	IUpdateActiveSublistId |
   IUpdateActiveTodoId
 
 //-----------------------------------------------------------------------------
@@ -42,6 +44,23 @@ export const updateActiveListId = (nextActiveListId: IList['id']): IActiveAction
 	return {
 		type: UPDATE_ACTIVE_LIST_ID,
 		nextActiveListId
+	}
+}
+
+
+//-----------------------------------------------------------------------------
+// Update Active Sublist Id
+//-----------------------------------------------------------------------------
+export const UPDATE_ACTIVE_SUBLIST_ID = 'UPDATE_ACTIVE_SUBLIST_ID'
+interface IUpdateActiveSublistId {
+  type: typeof UPDATE_ACTIVE_SUBLIST_ID
+  nextActiveSublistId: ISublist['id']
+}
+
+export const updateActiveSublistId = (nextActiveSublistId: ISublist['id']): IActiveActions => {
+	return {
+		type: UPDATE_ACTIVE_SUBLIST_ID,
+		nextActiveSublistId
 	}
 }
 

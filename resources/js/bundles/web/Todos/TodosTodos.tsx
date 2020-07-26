@@ -1,12 +1,15 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
+
+import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import TodosTodosCreateTodo from '@web/Todos/TodosTodosCreateTodo'
 import TodosTodosDate from '@web/Todos/TodosTodosDate'
@@ -16,11 +19,18 @@ import TodosTodosTodo from '@web/Todos/TodosTodosTodo'
 // Component
 //-----------------------------------------------------------------------------
 export const TodosTodos = ({
-  listId
+  listId,
+  sublistId
 }: ITodosTodos) => {
 
   // Redux
-  const visibleTodos = useSelector((state: IAppState) => state.todo.visibleTodosByListId[listId])
+  const dispatch = useDispatch()
+  const visibleTodos = useSelector((state: IAppState) => state.todo.visibleTodos)
+
+  // Update the visible todos as needed
+  useEffect(() => {
+    dispatch(refreshVisibleTodos())
+  }, [ listId, sublistId ])
 
   return (
       <Container>
@@ -51,6 +61,7 @@ export const TodosTodos = ({
 //-----------------------------------------------------------------------------
 interface ITodosTodos {
   listId: IList['id']
+  sublistId: ISublist['id']
 }
 
 //-----------------------------------------------------------------------------

@@ -17,6 +17,7 @@ export const Todos = () => {
   
   // Redux
   const activeListId = useSelector((state: IAppState) => state.active.listId)
+  const activeSublistId = useSelector((state: IAppState) => state.active.sublistId)
                                      
   return (
       <Container>
@@ -25,7 +26,8 @@ export const Todos = () => {
             <TodosHeader
               listId={activeListId}/>
             <TodosTodos
-              listId={activeListId}/>
+              listId={activeListId}
+              sublistId={activeSublistId}/>
           </>
         }
       </Container>

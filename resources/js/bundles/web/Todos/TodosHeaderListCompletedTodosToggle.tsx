@@ -12,8 +12,8 @@ import {
   updateActiveIsCompletedTodosVisible
 } from '@/state/active/actions'
 import { 
-  refreshListVisibleTodos
-} from '@/state/list/actions'
+  refreshVisibleTodos
+} from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -34,7 +34,7 @@ export const TodosHeaderListCompletedTodosToggle = ({
       <Toggle
         onClick={() => {
           dispatch(updateActiveIsCompletedTodosVisible(!activeIsCompletedTodosVisible))
-          dispatch(refreshListVisibleTodos(listId))
+          dispatch(refreshVisibleTodos())
         }}>
         <ToggleBackground
           isCompletedTodosVisible={activeIsCompletedTodosVisible}/>

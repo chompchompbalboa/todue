@@ -15,7 +15,7 @@ import { createHistoryStep } from '@/state/history/actions'
 import { 
   setAllTodos,
   setTodosByListId,
-  setVisibleTodosByListId
+  setVisibleTodos
 } from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
@@ -31,17 +31,18 @@ export const createTodo = (
       todo: {
         allTodos,
         todosByListId,
-        visibleTodosByListId
+        visibleTodos
       }
     } = getState()
     
-    const listVisibleTodos = visibleTodosByListId[listId]
     const insertIndex = insertAfterTodoId
-      ? listVisibleTodos.findIndex(currentTodoId => currentTodoId === insertAfterTodoId) + 1
-      : listVisibleTodos.length
+      ? visibleTodos.findIndex(currentTodoId => currentTodoId === insertAfterTodoId) + 1
+      : visibleTodos.length
     const newTodoDateCurrent = insertAfterTodoId
       ? allTodos[insertAfterTodoId].dateCurrent
-      : allTodos[listVisibleTodos[listVisibleTodos.length - 1]].dateCurrent
+      : allTodos[visibleTodos[visibleTodos.length - 1]]
+        ? allTodos[visibleTodos[visibleTodos.length - 1]].dateCurrent
+        : moment().format('YYYY-MM-DD HH:mm:ss')
           
     
     const newTodo: ITodo = {
@@ -68,19 +69,16 @@ export const createTodo = (
         newTodo.id
       ]
     }
-    const nextVisibleTodosByListId = {
-      ...visibleTodosByListId,
-      [listId]: [
-        ...listVisibleTodos.slice(0, insertIndex),
-        newTodo.id,
-        ...listVisibleTodos.slice(insertIndex)
-      ]
-    }
+    const nextVisibleTodos = [
+      ...visibleTodos.slice(0, insertIndex),
+      newTodo.id,
+      ...visibleTodos.slice(insertIndex)
+    ]
 
     const actions = (isHistoryStep?: boolean) => {
       dispatch(setAllTodos(nextAllTodos))
       dispatch(setTodosByListId(nextTodosByListId))
-      dispatch(setVisibleTodosByListId(nextVisibleTodosByListId))
+      dispatch(setVisibleTodos(nextVisibleTodos))
       if(!isHistoryStep) {
         mutation.createTodo(newTodo)
       }
@@ -92,7 +90,7 @@ export const createTodo = (
     const undoActions = () => {
       dispatch(setAllTodos(allTodos))
       dispatch(setTodosByListId(todosByListId))
-      dispatch(setVisibleTodosByListId(visibleTodosByListId))
+      dispatch(setVisibleTodos(visibleTodos))
       mutation.deleteTodo(newTodo.id)
     }
 

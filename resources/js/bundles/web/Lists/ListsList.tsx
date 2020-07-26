@@ -10,6 +10,7 @@ import { IList } from '@/state/list/types'
 
 import ListsListCreateSublist from '@web/Lists/ListsListCreateSublist'
 import ListsListName from '@web/Lists/ListsListName'
+import ListsListSublist from '@web/Lists/ListsListSublist'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -19,23 +20,21 @@ export const ListsList = ({
 }: IListsList) => {
   
   // Redux
-  const listSublists = useSelector((state: IAppState) => state.list.sublistsByListId[listId])
+  const listSublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId])
   
   return (
     <Container>
       <ListsListName
         listId={listId}/>
-      <ListsListCreateSublist
-        listId={listId}/>
-      {listSublists &&
-        <SublistContainer>
-          {listSublists.map(sublistId => (
-            <ListsList
-              key={sublistId}
-              listId={sublistId}/>
-          ))}
-        </SublistContainer>
-      }
+      <SublistContainer>
+        {listSublists && listSublists.map(sublistId => (
+          <ListsListSublist
+            key={sublistId}
+            sublistId={sublistId}/>
+        ))}
+        <ListsListCreateSublist
+          listId={listId}/>
+      </SublistContainer>
     </Container>
   )
 }
@@ -50,11 +49,7 @@ interface IListsList {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div`
-  &:hover {
-    font-weight: bold;
-  }
-`
+const Container = styled.div``
 
 const SublistContainer = styled.div`
   margin-left: 1rem;

@@ -73,16 +73,19 @@ export const TodoTagsCreateTodoTag = ({
   
   // Get Filtered List Tags
   const getFilteredListTags = () => {
-    if(inputValue.length === 0) {
-      return listTags.filter(tagId => !todoTags.includes(tagId))
-    }
-    return listTags.filter(tagId => !todoTags.includes(tagId)).filter(tagId => {
-      const currentTag = allTags[tagId]
-      if(currentTag) {
-        return currentTag.text.toLowerCase().includes(inputValue.toLowerCase())
+    if(listTags) {
+      if(inputValue.length === 0) {
+        return listTags.filter(tagId => !todoTags.includes(tagId))
       }
-      return false
-    })
+      return listTags.filter(tagId => !todoTags.includes(tagId)).filter(tagId => {
+        const currentTag = allTags[tagId]
+        if(currentTag) {
+          return currentTag.text.toLowerCase().includes(inputValue.toLowerCase())
+        }
+        return false
+      })
+    }
+    return []
   }
   
   const filteredListTags = getFilteredListTags()
@@ -102,7 +105,7 @@ export const TodoTagsCreateTodoTag = ({
           isDropdownVisible={isDropdownVisible}
           selectDropdownOption={filteredListTags.length > 0 ? handleCreateTodoTag : handleCreateListTag}
           setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}>
-          {filteredListTags && filteredListTags.map((tagId, index) => (
+          {filteredListTags.map((tagId, index) => (
             <DropdownOption
               key={tagId}
               tagId={tagId}

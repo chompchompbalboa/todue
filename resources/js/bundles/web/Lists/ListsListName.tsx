@@ -21,7 +21,7 @@ export const ListsListName = ({
   
   // Redux
   const dispatch = useDispatch()
-  const isActiveList = useSelector((state: IAppState) => state.active.listId === listId)
+  const isActiveList = useSelector((state: IAppState) => state.active.listId === listId && state.active.sublistId === null)
   const listName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
   
   return (
@@ -56,6 +56,9 @@ const Container = styled.div`
 const Name = styled.div`
   font-size: 1.25rem;
   font-weight: ${ ({ isActiveList }: IName ) => isActiveList ? 'bold' : 'inherit' };
+  &:hover {
+    font-weight: bold;
+  }
 `
 interface IName {
   isActiveList: boolean

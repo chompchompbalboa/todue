@@ -19,8 +19,7 @@ export const TodosHeader = ({
   return (
       <Container>
         <NameAndSettings>
-          <TodosHeaderListName
-            listId={listId}/>
+          <TodosHeaderListName />
           <TodosHeaderListSettings
             listId={listId}/>
         </NameAndSettings>

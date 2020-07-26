@@ -11,9 +11,8 @@ import { updateActiveTodoId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
 import { 
   setTodosByListId,
-  setVisibleTodosByListId
+  setVisibleTodos
 } from '@/state/todo/actions'
-import { resolveVisibleTodos } from '../resolvers'
 
 //-----------------------------------------------------------------------------
 // Action
@@ -26,13 +25,12 @@ export const deleteTodo = (
     
     const {
       active: {
-        isCompletedTodosVisible,
         todoId: activeTodoId
       },
       todo: {
         allTodos,
         todosByListId,
-        visibleTodosByListId
+        visibleTodos
       }
     } = getState()
 
@@ -40,26 +38,22 @@ export const deleteTodo = (
 
     const nextActiveTodoId = activeTodoId === todoId ? null : activeTodoId
     const nextListTodos = (todosByListId[listId] || []).filter(currentTodoId => currentTodoId !== todoId)
-    const nextListVisibleTodos = resolveVisibleTodos(isCompletedTodosVisible, nextListTodos.map(currentTodoId => allTodos[currentTodoId]))
+    const nextVisibleTodos = visibleTodos.filter(currentTodoId => currentTodoId !== todoId)
     const nextTodosByListId = {
       ...todosByListId,
       [listId]: nextListTodos
     }
-    const nextVisibleTodosByListId = {
-      ...visibleTodosByListId,
-      [listId]: nextListVisibleTodos
-    }
 
     const actions = () => {
       dispatch(setTodosByListId(nextTodosByListId))
-      dispatch(setVisibleTodosByListId(nextVisibleTodosByListId))
+      dispatch(setVisibleTodos(nextVisibleTodos))
       dispatch(updateActiveTodoId(nextActiveTodoId))
       mutation.deleteTodo(todoId)
     }
 
     const undoActions = () => {
       dispatch(setTodosByListId(todosByListId))
-      dispatch(setVisibleTodosByListId(visibleTodosByListId))
+      dispatch(setVisibleTodos(visibleTodos))
       dispatch(updateActiveTodoId(activeTodoId))
       mutation.restoreTodo(todoId)
     }

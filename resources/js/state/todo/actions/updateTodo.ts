@@ -8,8 +8,10 @@ import { IThunkDispatch } from '@/state/types'
 import { ITodo, ITodoUpdates } from '@/state/todo/types'
 
 import { createHistoryStep } from '@/state/history/actions'
-import { refreshListVisibleTodos } from '@/state/list/actions'
-import { updateTodoReducer } from '@/state/todo/actions'
+import { 
+  refreshVisibleTodos,
+  updateTodoReducer 
+} from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Action
@@ -18,29 +20,19 @@ export const updateTodo = (
   todoId: ITodo['id'], 
   updates: ITodoUpdates,
   undoUpdates?: ITodoUpdates,
-  updateListVisibleTodos: boolean = false
+  updateVisibleTodos: boolean = false
 ) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
 
-    const {
-      todo: {
-        allTodos: {
-          [todoId]: {
-            listId
-          }
-        }
-      }
-    } = getState()
-
     const actions = () => {
       dispatch(updateTodoReducer(todoId, updates))
-      updateListVisibleTodos && dispatch(refreshListVisibleTodos(listId))
+      updateVisibleTodos && dispatch(refreshVisibleTodos())
       mutation.updateTodo(todoId, updates)
     }
 
     const undoActions = () => {
       dispatch(updateTodoReducer(todoId, undoUpdates))
-      updateListVisibleTodos && dispatch(refreshListVisibleTodos(listId))
+      updateVisibleTodos && dispatch(refreshVisibleTodos())
       mutation.updateTodo(todoId, undoUpdates)
     }
 

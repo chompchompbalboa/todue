@@ -7,6 +7,8 @@
 @section('data')
   <script>
     const initialData = {
+      active: @json($active),
+      sublists: @json($sublists),
       lists: @json($lists),
       todos: @json($todos),
       tags: @json($tags)

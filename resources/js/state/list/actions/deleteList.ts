@@ -9,7 +9,9 @@ import { IList } from '@/state/list/types'
 
 import { updateActiveListId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
-import { setLists } from '@/state/list/actions'
+import { 
+  setLists
+} from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
 // Action
@@ -26,9 +28,10 @@ export const deleteList = (listId: IList['id']) => {
       }
     } = getState()
 
+    const listIndex = lists.findIndex(currentListId => currentListId === listId)
+
     const nextLists = lists.filter(currentListId => currentListId !== listId)
 
-    const listIndex = lists.findIndex(currentListId => currentListId === listId)
     const nextActiveListId = listId === activeListId
       ? listIndex === lists.length - 1
         ? nextLists[nextLists.length - 1]

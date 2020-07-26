@@ -4,12 +4,14 @@
 import defaultInitialData from '@/state/initialData'
 
 import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
 import { ITodo } from '@/state/todo/types'
 
 import { 
   IActiveActions,
   UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE,
   UPDATE_ACTIVE_LIST_ID,
+  UPDATE_ACTIVE_SUBLIST_ID,
   UPDATE_ACTIVE_TODO_ID
 } from '@/state/active/actions'
 
@@ -19,12 +21,14 @@ import {
 const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
 export type IActiveState = {
   listId: IList['id']
+  sublistId: ISublist['id']
   todoId: ITodo['id']
   isCompletedTodosVisible: boolean
 }
 
 export const initialState: IActiveState = {
   listId: initialListData.length > 0 ? initialListData[0].id : null,
+  sublistId: null,
   todoId: null,
   isCompletedTodosVisible: false
 }
@@ -47,7 +51,16 @@ export const active = (state = initialState, action: IActiveActions): IActiveSta
       const { nextActiveListId } = action
       return {
         ...state,
-        listId: nextActiveListId
+        listId: nextActiveListId,
+        sublistId: null
+      }
+    }
+
+    case UPDATE_ACTIVE_SUBLIST_ID: {
+      const { nextActiveSublistId } = action
+      return {
+        ...state,
+        sublistId: nextActiveSublistId
       }
     }
 

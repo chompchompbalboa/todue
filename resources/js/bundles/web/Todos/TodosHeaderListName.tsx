@@ -5,22 +5,26 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { IAppState } from '@/state'
-import { IList } from '@/state/list/types'
 
 import { updateList } from '@/state/list/actions'
+import { updateSublist } from '@/state/sublist/actions'
 
 import ReactInputAutosize from 'react-input-autosize'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeaderListName = ({
-  listId
-}: ITodosHeaderListName) => {
+export const TodosHeaderListName = () => {
   
   // Redux
   const dispatch = useDispatch()
-  const activeListName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
+  const activeListId = useSelector((state: IAppState) => state.active.listId)
+  const activeSublistId = useSelector((state: IAppState) => state.active.sublistId)
+  const isListOrSublist = activeSublistId === null ? 'LIST' : 'SUBLIST'
+  const activeListName = useSelector((state: IAppState) => isListOrSublist === 'LIST'
+    ? state.list.allLists[state.active.listId]?.name
+    : state.sublist.allSublists[state.active.sublistId]?.name
+  )
  
   // State
   const [ localActiveListName, setLocalActiveListName ] = useState(activeListName)
@@ -35,7 +39,9 @@ export const TodosHeaderListName = ({
   // Complete Editing
   const completeEditing = () => {
     if(activeListName !== localActiveListName) {
-      dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
+      isListOrSublist === 'LIST'
+        ? dispatch(updateList(activeListId, { name: localActiveListName }, { name: activeListName }))
+        : dispatch(updateSublist(activeSublistId, { name: localActiveListName }, { name: activeListName }))
     }
   }
   
@@ -53,13 +59,6 @@ export const TodosHeaderListName = ({
         marginRight: '0.25rem'
       }}/>
   )
-}
-
-//-----------------------------------------------------------------------------
-// Props
-//-----------------------------------------------------------------------------
-interface ITodosHeaderListName {
-  listId: IList['id']
 }
 
 export default TodosHeaderListName

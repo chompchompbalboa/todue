@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { IList } from '@/state/list/types'
 
-import { createList } from '@/state/list/actions'
+import { createSublist } from '@/state/sublist/actions'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -21,7 +21,7 @@ export const ListsCreateSublist = ({
   
   return (
     <Container
-      onClick={() => dispatch(createList(listId))}>
+      onClick={() => dispatch(createSublist(listId))}>
       New Sublist +
     </Container>
   )

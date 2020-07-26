@@ -11,30 +11,27 @@ import {
 import { 
   ITodoActions,
   SET_ALL_TODOS,
-  SET_TODOS,
   SET_TODOS_BY_LIST_ID,
-  SET_VISIBLE_TODOS_BY_LIST_ID,
+  SET_VISIBLE_TODOS,
   UPDATE_TODO
 } from '@/state/todo/actions'
-import { resolveVisibleTodos } from './resolvers'
 
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
 const initialTodoData = typeof initialData !== 'undefined' ? initialData.todos : defaultInitialData.todos
 const getInitialState = () => {
+  // Variables
   let allTodos: ITodoState['allTodos'] = {}
-  let todos: ITodoState['todos'] = []
   let todosByListId: ITodoState['todosByListId'] = {}
-  let visibleTodosByListId: ITodoState['visibleTodosByListId'] = {}
-  const initialList = initialListData[0]
+  // For each todo
   initialTodoData && initialTodoData.forEach((todo: ITodoFromDatabase) => {
+    // All Todos
     allTodos[todo.id] = {
       ...todo,
       tags: todo.tags.map(todoTag => todoTag.tagId)
     }
-    todos.push(todo.id)
+    // Todos By List Id
     todosByListId = {
       ...todosByListId,
       [todo.listId]: [
@@ -43,23 +40,19 @@ const getInitialState = () => {
       ]
     }
   })
-  visibleTodosByListId[initialList.id] = resolveVisibleTodos(false, (todosByListId[initialList.id] || []).map(todoId => allTodos[todoId]))
-  return { allTodos, todos, todosByListId, visibleTodosByListId }
+  return { allTodos, todosByListId }
 }
-const { allTodos, todos, todosByListId, visibleTodosByListId } = getInitialState()
-
+const { allTodos, todosByListId } = getInitialState()
 export type ITodoState = {
-  allTodos: IAllTodos,
-  todos: ITodo['id'][],
+  allTodos: IAllTodos
   todosByListId: { [listId: string]: ITodo['id'][] }
-  visibleTodosByListId: { [listId: string]: ITodo['id'][] }
+  visibleTodos: ITodo['id'][]
 }
 
 export const initialDraftState: ITodoState = {
   allTodos: allTodos,
-  todos: todos,
   todosByListId: todosByListId,
-  visibleTodosByListId: visibleTodosByListId
+  visibleTodos: []
 }
 
 //-----------------------------------------------------------------------------
@@ -76,14 +69,6 @@ export const example = (state = initialDraftState, action: ITodoActions): ITodoS
       }
     }
 
-    case SET_TODOS: {
-      const { nextTodos } = action
-      return {
-        ...state,
-        todos: nextTodos
-      }
-    }
-
     case SET_TODOS_BY_LIST_ID: {
       const { nextTodosByListId } = action
       return {
@@ -92,11 +77,11 @@ export const example = (state = initialDraftState, action: ITodoActions): ITodoS
       }
     }
 
-    case SET_VISIBLE_TODOS_BY_LIST_ID: {
-      const { nextVisibleTodosByListId } = action
+    case SET_VISIBLE_TODOS: {
+      const { nextVisibleTodos } = action
       return {
         ...state,
-        visibleTodosByListId: nextVisibleTodosByListId
+        visibleTodos: nextVisibleTodos
       }
     }
 

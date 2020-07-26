@@ -13,7 +13,6 @@ class TodoListTagController extends Controller
     // Store
     public function store(Request $request)
     {
-        // Create the tag
         return TodoListTag::create($request->all());
     }
 

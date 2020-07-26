@@ -4,58 +4,39 @@
 import defaultInitialData from '@/state/initialData'
 import {
   IAllLists,
-  IList,
-  IListFromDatabase
+  IList
 } from '@/state/list/types'
 
 import { 
   IListActions,
   SET_ALL_LISTS,
   SET_LISTS,
-  SET_SUBLISTS_BY_LIST_ID,
   UPDATE_LIST
 } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialListData: IListFromDatabase[] = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
+const initialListData: IList[] = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
 const getInitialState = () => {
   let allLists: IListState['allLists'] = {}
   let lists: IListState['lists'] = []
-  let sublistsByListId: IListState['sublistsByListId'] = {}
-  initialListData.map((list, index) => {
-    allLists[list.id] = {
-      id: list.id,
-      listId: list.listId,
-      rootListId: list.rootListId,
-      name: list.name
-    }
+  initialListData.map(list => {
+    allLists[list.id] = list
     lists.push(list.id)
-    if(list.listId) {
-      sublistsByListId = {
-        ...sublistsByListId,
-        [list.listId]: [
-          ...(sublistsByListId[list.listId] || []),
-          list.id
-        ]
-      }
-    }
   })
-  return { allLists, lists, sublistsByListId }
+  return { allLists, lists }
 }
-const { allLists, lists, sublistsByListId } = getInitialState()
+const { allLists, lists } = getInitialState()
 
 export type IListState = {
   allLists: IAllLists,
-  lists: IList['id'][],
-  sublistsByListId: { [listId: string]: IList['id'][] }
+  lists: IList['id'][]
 }
 
 export const initialDraftState: IListState = {
   allLists: allLists,
-  lists: lists,
-  sublistsByListId: sublistsByListId
+  lists: lists
 }
 
 //-----------------------------------------------------------------------------
@@ -77,14 +58,6 @@ export const example = (state = initialDraftState, action: IListActions): IListS
       return {
         ...state,
         lists: nextLists
-      }
-    }
-
-    case SET_SUBLISTS_BY_LIST_ID: {
-      const { nextSublistsByListId } = action
-      return {
-        ...state,
-        sublistsByListId: nextSublistsByListId
       }
     }
 

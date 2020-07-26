@@ -2,16 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\TodoList;
+
+//-----------------------------------------------------------------------------
+// App
+//-----------------------------------------------------------------------------
 Route::group([
     'prefix' => 'app',
     'middleware' => [ 'auth' ]
@@ -21,19 +16,28 @@ Route::group([
         $user = Auth::user();
         // Create an api access token for the user
         $accessToken = $user->createToken('authToken')->accessToken;
-        // Build the initial data
+        // Get the user's lists
         $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
-        $initialList = $user->lists()->first();
+        // Get the active list
+        $activeList = $user->lists()->first();
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
+            'active' => [
+                'listId' => $activeList->id,
+                'sublistId' => $activeList->sublists()->get()[0]->id
+            ],
             'lists' => $userLists,
-            'todos' => $initialList->todos()->get(),
-            'tags' => $initialList->tags()->get(),
+            'sublists' => $activeList->sublists()->get(),
+            'todos' => $activeList->todos()->get(),
+            'tags' => $activeList->tags()->get(),
         ]);
     })->name('app');
 });
 
+//-----------------------------------------------------------------------------
+// Site
+//-----------------------------------------------------------------------------
 Route::get('/', function () {
     return view('site');
 })->middleware('guest')->name('site');

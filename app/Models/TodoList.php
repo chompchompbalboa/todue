@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\Todo;
+
 class TodoList extends Model
 {
     use Traits\UsesUuid;
@@ -15,8 +17,13 @@ class TodoList extends Model
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
-    protected $visible = [ 'id', 'listId', 'rootListId', 'name' ];
-    protected $fillable = [ 'id', 'listId', 'rootListId', 'name' ];
+    protected $visible = [ 'id', 'name' ];
+    protected $fillable = [ 'id', 'name' ];
+
+    public function sublists()
+    {
+        return $this->hasMany('App\Models\TodoListSublist', 'listId')->orderBy('name', 'asc');
+    }
 
     public function todos()
     {

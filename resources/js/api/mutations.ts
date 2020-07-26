@@ -4,14 +4,18 @@
 import axios from '@/api/axios'
 
 import { 
+	IList,
+	IListUpdates 
+} from '@/state/list/types'
+import { 
+	ISublist,
+	ISublistUpdates 
+} from '@/state/sublist/types'
+import { 
 	ITag,
 	ITagUpdates,
 	ITodoTag
 } from '@/state/tag/types'
-import { 
-	IList,
-	IListUpdates 
-} from '@/state/list/types'
 import { 
 	ITodo,
 	ITodoUpdates 
@@ -37,6 +41,25 @@ export const updateList = async (listId: IList['id'], updates: IListUpdates) => 
 }
 
 //-----------------------------------------------------------------------------
+// List Sublists
+//-----------------------------------------------------------------------------
+export const createListSublist = async (sublist: ISublist) => {
+	return axios.post('/api/list/sublist', sublist)
+}
+
+export const deleteListSublist = async (sublistId: ISublist['id']) => {
+	return axios.delete('/api/list/sublist/' + sublistId)
+}
+
+export const restoreListSublist = async (sublistId: string) => {
+	return axios.post('/api/list/sublist/restore/' + sublistId)
+}
+
+export const updateListSublist = async (sublistId: ISublist['id'], updates: ISublistUpdates) => {
+	return axios.patch('/api/list/sublist/' + sublistId, updates)
+}
+
+//-----------------------------------------------------------------------------
 // List Tags
 //-----------------------------------------------------------------------------
 export const createListTag = async (tag: ITag) => {
@@ -44,7 +67,7 @@ export const createListTag = async (tag: ITag) => {
 }
 
 export const deleteListTag = async (tagId: ITag['id']) => {
-	return axios.delete('/api/list/tag' + tagId)
+	return axios.delete('/api/list/tag/' + tagId)
 }
 
 export const restoreListTag = async (tagId: string) => {

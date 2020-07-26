@@ -13,7 +13,6 @@ class TodoTagController extends Controller
     // Store
     public function store(Request $request)
     {
-        // Create the tag
         return TodoTag::create($request->all());
     }
 
@@ -27,9 +26,9 @@ class TodoTagController extends Controller
     public function destroy(Request $request)
     {
         return TodoTag::where([
-                            [ 'todoId', '=', $request->input('todoId') ],
-                            [ 'tagId', '=', $request->input('tagId') ]
-                        ])->delete();
+            [ 'todoId', '=', $request->input('todoId') ],
+            [ 'tagId', '=', $request->input('tagId') ]
+        ])->delete();
     }
 
     // Restore

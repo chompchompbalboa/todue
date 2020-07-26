@@ -4,17 +4,30 @@
 import { groupBy, orderBy } from 'lodash'
 import moment from 'moment'
 
+import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
 //-----------------------------------------------------------------------------
 // Resolve Visible Todos
 //-----------------------------------------------------------------------------
-export const resolveVisibleTodos = (
-  isCompletedTodosVisible: boolean,
-  todos: ITodo[]
-) => {
+export const resolveVisibleTodos = (getState: () => IAppState) => {
+
+  const {
+    active: {
+      isCompletedTodosVisible,
+      listId: activeListId,
+      sublistId: activeSublistId
+    },
+    todo: {
+      allTodos,
+      todosByListId
+    }
+  } = getState()
+
+  const todos = todosByListId[activeListId].map(currentTodoId => allTodos[currentTodoId])
+
   // If there are no todos, return a header with the current date
-  if(todos.length === 0) {
+  if(activeSublistId || todos.length === 0) {
     return [ moment().format('YYYY-MM-DD') ]
   }
   
