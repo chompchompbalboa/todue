@@ -13,6 +13,8 @@ export const Dropdown = ({
   containerRef,
   closeDropdown,
   isDropdownVisible,
+  minHeight = "auto",
+  minWidth = "auto",
 }: IDropdown) => {
 
   // Add event listeners when the dropdown is visible
@@ -42,7 +44,9 @@ export const Dropdown = ({
   return (
     <StyledDropdown
       className={className}
-      isDropdownVisible={isDropdownVisible}>
+      isDropdownVisible={isDropdownVisible}
+      minHeight={minHeight}
+      minWidth={minWidth}>
       {children}
     </StyledDropdown>
   )
@@ -57,6 +61,8 @@ export interface IDropdown {
   children?: any
   closeDropdown(): void
   isDropdownVisible: boolean
+  minHeight?: string
+  minWidth?: string
 }
 
 //-----------------------------------------------------------------------------
@@ -68,6 +74,8 @@ const StyledDropdown = styled.div`
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
   top: 100%;
   left: 0;
+  min-width: ${ ({ minWidth }: IStyledDropdown ) => minWidth };
+  min-height: ${ ({ minHeight }: IStyledDropdown ) => minHeight };
   max-height: 50vh;
   background-color: rgb(250, 250, 250);
   border-radius: 5px;
@@ -82,6 +90,8 @@ const StyledDropdown = styled.div`
 `
 interface IStyledDropdown {
   isDropdownVisible: boolean
+  minWidth: string
+  minHeight: string
 }
 
 export default Dropdown

@@ -18,15 +18,14 @@ export const TodoTagsTags = ({
 }: ITodoTagsTags) => {
   
   // Redux
-  const todoTags = useSelector((state: IAppState) => state.todo.allTodos[todoId].tags)
+  const todoTags = useSelector((state: IAppState) => state.todoTag.todoTagsByTodoId[todoId])
 
   return (
       <Container>
-        {todoTags && todoTags.map(tagId => (
+        {todoTags && todoTags.map(todoTagId => (
           <TodoTagsTagsTag
-            key={tagId}
-            tagId={tagId}
-            todoId={todoId}/>
+            key={todoTagId}
+            todoTagId={todoTagId}/>
         ))}
       </Container>
   )

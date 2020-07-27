@@ -4,8 +4,7 @@
 import defaultInitialData from '@/state/initialData'
 import {
   IAllTodos,
-  ITodo,
-  ITodoFromDatabase
+  ITodo
 } from '@/state/todo/types'
 
 import { 
@@ -25,12 +24,9 @@ const getInitialState = () => {
   let allTodos: ITodoState['allTodos'] = {}
   let todosByListId: ITodoState['todosByListId'] = {}
   // For each todo
-  initialTodoData && initialTodoData.forEach((todo: ITodoFromDatabase) => {
+  initialTodoData && initialTodoData.forEach((todo: ITodo) => {
     // All Todos
-    allTodos[todo.id] = {
-      ...todo,
-      tags: todo.tags.map(todoTag => todoTag.tagId)
-    }
+    allTodos[todo.id] = todo
     // Todos By List Id
     todosByListId = {
       ...todosByListId,

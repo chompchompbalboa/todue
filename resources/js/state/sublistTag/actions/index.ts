@@ -10,9 +10,8 @@ export type ISublistTagActions =
 ISetAllSublistTags |
 ISetSublistTagsBySublistId
 
-export { createListTag } from '@/state/tag/actions/createListTag'
-export { createTodoTag } from '@/state/tag/actions/createTodoTag'
-export { deleteTodoTag } from '@/state/tag/actions/deleteTodoTag'
+export { createSublistTag } from '@/state/sublistTag/actions/createSublistTag'
+export { deleteSublistTag } from '@/state/sublistTag/actions/deleteSublistTag'
 
 //-----------------------------------------------------------------------------
 // Set All Sublist Tags

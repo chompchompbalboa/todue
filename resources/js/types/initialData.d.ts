@@ -6,7 +6,8 @@ import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ISublistTag } from '@/state/sublistTag/types'
 import { ITag } from '@/state/tag/types'
-import { ITodoFromDatabase } from '@/state/todo/types'
+import { ITodo } from '@/state/todo/types'
+import { ITodoTag } from '@/state/todoTag/types'
 
 //-----------------------------------------------------------------------------
 // Initial Data
@@ -18,10 +19,11 @@ declare global {
 			listId: IActiveState['listId']
 		}
 		lists: IList[]
-		sublists: ISublist[]
-		sublistTags: ISublistTag[]
-		todos: ITodoFromDatabase[] // Only the initially active list sends this
+		sublists: ISublist[] // Only the initially active list sends this
+		sublistTags: ISublistTag[] // Only the initially active list sends this
+		todos: ITodo[] // Only the initially active list sends this
 		tags: ITag[] // Only the initially active list sends this
+		todoTags: ITodoTag[] // Only the initially active list sends this
 	}
 }
 export {} // Typescript needs this file to be a module

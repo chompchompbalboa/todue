@@ -54,8 +54,7 @@ export const createTodo = (
       dateCompleted: null,
       timeStart: null,
       timeEnd: null,
-      priority: null,
-      tags: []
+      priority: null
     }
 
     const nextAllTodos = {

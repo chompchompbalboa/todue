@@ -8,10 +8,9 @@ import styled from 'styled-components'
 import { DELETE } from '@/assets/icons'
 
 import { IAppState } from '@/state'
-import { ITag } from '@/state/tag/types'
-import { ITodo } from '@/state/todo/types'
+import { ITodoTag } from '@/state/todoTag/types'
 
-import { deleteTodoTag } from '@/state/tag/actions'
+import { deleteTodoTag } from '@/state/todoTag/actions'
 
 import Icon from '@/components/Icon'
 
@@ -19,12 +18,12 @@ import Icon from '@/components/Icon'
 // Component
 //-----------------------------------------------------------------------------
 export const TodoTagsTagsTag = ({
-  tagId,
-  todoId
+  todoTagId
 }: ITodoTagsTagsTag) => {
   
   // Redux
   const dispatch = useDispatch()
+  const tagId = useSelector((state: IAppState) => state.todoTag.allTodoTags[todoTagId].tagId)
   const tagBackgroundColor = useSelector((state: IAppState) => state.tag.allTags[tagId].backgroundColor)
   const tagText = useSelector((state: IAppState) => state.tag.allTags[tagId].text)
 
@@ -33,7 +32,7 @@ export const TodoTagsTagsTag = ({
         backgroundColor={tagBackgroundColor}>
         <Text>{tagText}</Text>
         <DeleteContainer
-          onClick={() => dispatch(deleteTodoTag(todoId, tagId))}>
+          onClick={() => dispatch(deleteTodoTag(todoTagId))}>
           <Icon
             icon={DELETE}/>
         </DeleteContainer>
@@ -45,8 +44,7 @@ export const TodoTagsTagsTag = ({
 // Props
 //-----------------------------------------------------------------------------
 interface ITodoTagsTagsTag {
-  tagId: ITag['id']
-  todoId: ITodo['id']
+  todoTagId: ITodoTag['id']
 }
 
 //-----------------------------------------------------------------------------

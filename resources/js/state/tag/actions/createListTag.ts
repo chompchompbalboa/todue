@@ -3,18 +3,24 @@
 //-----------------------------------------------------------------------------
 import { v4 as createUuid } from 'uuid'
 
+import { mutation } from '@/api'
+
 import { IAppState } from '@/state'
 import { IThunkDispatch } from '@/state/types'
 import { IList } from '@/state/list/types'
-import { ITag, ITodoTag } from '@/state/tag/types'
+import { ITag } from '@/state/tag/types'
 import { ITodo } from '@/state/todo/types'
+import { ITodoTag } from '@/state/todoTag/types'
 
 import { 
   setAllTags,
   setTagsByListId
 } from '@/state/tag/actions'
-import { updateTodoReducer } from '@/state/todo/actions'
-import { mutation } from '@/api'
+import {
+  setAllTodoTags,
+  setTodoTagsByTodoId
+} from '@/state/todoTag/actions'
+
 //-----------------------------------------------------------------------------
 // Action
 //-----------------------------------------------------------------------------
@@ -31,12 +37,9 @@ export const createListTag = (
         allTags,
         tagsByListId
       },
-      todo: {
-        allTodos: {
-          [todoId]: {
-            tags: todoTags
-          }
-        }
+      todoTag: {
+        allTodoTags,
+        todoTagsByTodoId
       }
     } = getState()
     
@@ -53,11 +56,14 @@ export const createListTag = (
       tagId: newTag.id
     }
     
-    const nextTodoTags = [ ...todoTags, newTag.id ]
-    
     dispatch(setAllTags({
       ...allTags,
       [newTag.id]: newTag
+    }))
+    
+    dispatch(setAllTodoTags({
+      ...allTodoTags,
+      [newTodoTag.id]: newTodoTag
     }))
     
     dispatch(setTagsByListId({
@@ -67,7 +73,14 @@ export const createListTag = (
        newTag.id 
       ]
     }))
-    dispatch(updateTodoReducer(todoId, { tags: nextTodoTags }))
+    
+    dispatch(setTodoTagsByTodoId({
+      ...todoTagsByTodoId,
+      [todoId]: [ 
+        ...(todoTagsByTodoId[todoId] || []),
+        newTodoTag.id 
+      ]
+    }))
 
     mutation.createListTag(newTag).then(() => mutation.createTodoTag(newTodoTag))
 	}

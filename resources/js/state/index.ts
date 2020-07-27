@@ -9,6 +9,7 @@ import sublistTagReducer from '@/state/sublistTag/reducers'
 import listReducer from '@/state/list/reducers'
 import tagReducer from '@/state/tag/reducers'
 import todoReducer from '@/state/todo/reducers'
+import todoTagReducer from '@/state/todoTag/reducers'
 
 //-----------------------------------------------------------------------------
 // Combine Reducers
@@ -21,6 +22,7 @@ export const appReducer = combineReducers({
   sublistTag: sublistTagReducer,
   tag: tagReducer,
   todo: todoReducer,
+  todoTag: todoTagReducer,
 })
 
 export type IAppState = ReturnType<typeof appReducer>

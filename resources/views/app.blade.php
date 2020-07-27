@@ -9,9 +9,11 @@
     const initialData = {
       active: @json($active),
       sublists: @json($sublists),
+      sublistTags: @json($sublistTags),
       lists: @json($lists),
       todos: @json($todos),
-      tags: @json($tags)
+      tags: @json($tags),
+      todoTags: @json($todoTags),
     }
   </script>
 @endsection

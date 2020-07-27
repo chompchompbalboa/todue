@@ -10,9 +10,6 @@ import { IAllTags } from '@/state/tag/types'
 export type ITagActions = ISetAllTags | ISetTagsByListId
 
 export { createListTag } from '@/state/tag/actions/createListTag'
-export { createTodoTag } from '@/state/tag/actions/createTodoTag'
-export { deleteTodoTag } from '@/state/tag/actions/deleteTodoTag'
-
 
 //-----------------------------------------------------------------------------
 // Tag Action

@@ -25,12 +25,14 @@ Route::group([
             'accessToken' => $accessToken,
             'active' => [
                 'listId' => $activeList->id,
-                'sublistId' => $activeList->sublists()->get()[0]->id
+                'sublistId' => null
             ],
             'lists' => $userLists,
             'sublists' => $activeList->sublists()->get(),
+            'sublistTags' => $activeList->sublistTags()->get(),
             'todos' => $activeList->todos()->get(),
             'tags' => $activeList->tags()->get(),
+            'todoTags' => $activeList->todoTags()->get(),
         ]);
     })->name('app');
 });

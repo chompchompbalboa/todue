@@ -23,12 +23,9 @@ class TodoTagController extends Controller
     }
 
     // Delete
-    public function destroy(Request $request)
+    public function destroy($id)
     {
-        return TodoTag::where([
-            [ 'todoId', '=', $request->input('todoId') ],
-            [ 'tagId', '=', $request->input('tagId') ]
-        ])->delete();
+        return TodoTag::destroy($id);
     }
 
     // Restore

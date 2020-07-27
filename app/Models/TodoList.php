@@ -27,7 +27,7 @@ class TodoList extends Model
 
     public function sublistTags()
     {
-        return $this->hasMany('App\Models\TodoListSublistTag', 'listId')->orderBy('dateCreated', 'asc');
+        return $this->hasMany('App\Models\TodoListSublistTag', 'listId')->orderBy('createdAt', 'asc');
     }
 
     public function todos()
@@ -38,5 +38,10 @@ class TodoList extends Model
     public function tags()
     {
         return $this->hasMany('App\Models\TodoListTag', 'listId')->orderBy('text', 'asc');
+    }
+
+    public function todoTags()
+    {
+        return $this->hasMany('App\Models\TodoTag', 'listId')->orderBy('createdAt', 'asc');
     }
 }

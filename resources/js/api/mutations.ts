@@ -11,16 +11,16 @@ import {
 	ISublist,
 	ISublistUpdates 
 } from '@/state/sublist/types'
+import { ISublistTag } from '@/state/sublistTag/types'
 import { 
 	ITag,
-	ITagUpdates,
-	ISublistTag,
-	ITodoTag
+	ITagUpdates
 } from '@/state/tag/types'
 import { 
 	ITodo,
 	ITodoUpdates 
 } from '@/state/todo/types'
+import { ITodoTag } from '@/state/todoTag/types'
 
 //-----------------------------------------------------------------------------
 // Lists
@@ -120,10 +120,10 @@ export const createTodoTag = async (todoTag: ITodoTag) => {
 	return axios.post('/api/todo/tag', todoTag)
 }
 
-export const deleteTodoTag = async (todoId: ITodo['id'], tagId: ITag['id']) => {
-	return axios.post('/api/todo/tag/delete', { todoId, tagId })
+export const deleteTodoTag = async (todoTagId: ITodoTag['id']) => {
+	return axios.delete('/api/todo/tag/'+ todoTagId)
 }
 
-export const restoreTodoTag = async (listId: IList['id'], todoId: ITodo['id']) => {
-	return axios.post('/api/todo/tag/restore', { listId, todoId })
+export const restoreTodoTag = async (todoTagId: ITodoTag['id']) => {
+	return axios.post('/api/todo/tag/restore/' + todoTagId)
 }

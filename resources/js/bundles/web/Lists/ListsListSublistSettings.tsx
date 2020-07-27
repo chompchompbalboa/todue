@@ -6,10 +6,12 @@ import styled from 'styled-components'
 
 import { SETTINGS } from '@/assets/icons'
 
-import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
 
 import Dropdown from '@/components/Dropdown'
 import Icon from '@/components/Icon'
+
+import ListsListSublistSettingsCreateSublistTag from '@web/Lists/ListsListSublistSettingsCreateSublistTag'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -37,8 +39,11 @@ export const ListsListSublistSettings = ({
       <Dropdown
         containerRef={container}
         closeDropdown={() => setIsDropdownVisible(false)}
-        isDropdownVisible={isDropdownVisible}>
-        Sublist
+        isDropdownVisible={isDropdownVisible}
+        minHeight="40vh"
+        minWidth="40vw">
+        <ListsListSublistSettingsCreateSublistTag
+          sublistId={sublistId}/>
       </Dropdown>
     </Container>
   )
@@ -48,7 +53,7 @@ export const ListsListSublistSettings = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListSublistSettings {
-  sublistId: IList['id']
+  sublistId: ISublist['id']
 }
 
 //-----------------------------------------------------------------------------
