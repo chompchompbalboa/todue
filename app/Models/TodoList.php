@@ -25,6 +25,11 @@ class TodoList extends Model
         return $this->hasMany('App\Models\TodoListSublist', 'listId')->orderBy('name', 'asc');
     }
 
+    public function sublistTags()
+    {
+        return $this->hasMany('App\Models\TodoListSublistTag', 'listId')->orderBy('dateCreated', 'asc');
+    }
+
     public function todos()
     {
         return $this->hasMany('App\Models\Todo', 'listId')->orderBy('dateCurrent', 'asc');

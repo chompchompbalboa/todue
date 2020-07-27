@@ -9,7 +9,8 @@ import {
 
 import { 
   ITagActions,
-  SET_ALL_TAGS
+  SET_ALL_TAGS,
+  SET_TAGS_BY_LIST_ID
 } from '@/state/tag/actions'
 
 //-----------------------------------------------------------------------------
@@ -51,6 +52,14 @@ export const tag = (state = initialState, action: ITagActions): ITagState => {
       return {
         ...state,
         allTags: nextAllTags
+      }
+    }
+
+    case SET_TAGS_BY_LIST_ID: {
+      const { nextTagsByListId } = action
+      return {
+        ...state,
+        tagsByListId: nextTagsByListId
       }
     }
 

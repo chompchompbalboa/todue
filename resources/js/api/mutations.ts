@@ -14,6 +14,7 @@ import {
 import { 
 	ITag,
 	ITagUpdates,
+	ISublistTag,
 	ITodoTag
 } from '@/state/tag/types'
 import { 
@@ -57,6 +58,21 @@ export const restoreListSublist = async (sublistId: string) => {
 
 export const updateListSublist = async (sublistId: ISublist['id'], updates: ISublistUpdates) => {
 	return axios.patch('/api/list/sublist/' + sublistId, updates)
+}
+
+//-----------------------------------------------------------------------------
+// List Sublist Tags
+//-----------------------------------------------------------------------------
+export const createListSublistTag = async (sublistTag: ISublistTag) => {
+	return axios.post('/api/list/sublist/tag', sublistTag)
+}
+
+export const deleteListSublistTag = async (sublistTagId: ISublistTag['id']) => {
+	return axios.delete('/api/list/sublist/tag/'+ sublistTagId)
+}
+
+export const restoreListSublistTag = async (sublistTagId: ISublistTag['id']) => {
+	return axios.post('/api/list/sublist/tag/restore/' + sublistTagId)
 }
 
 //-----------------------------------------------------------------------------

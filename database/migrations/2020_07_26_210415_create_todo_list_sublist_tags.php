@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTodoTags extends Migration
+class CreateTodoListSublistTags extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreateTodoTags extends Migration
      */
     public function up()
     {
-        Schema::create('todoTags', function (Blueprint $table) {
+        Schema::create('todoListSublistTags', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('listId');
-            $table->uuid('todoId');
+            $table->uuid('sublistId');
             $table->uuid('tagId');
+            $table->string('type');
             $table->softDeletes();
             $table->timestamp('createdAt')->nullable();
             $table->timestamp('updatedAt')->nullable();
             
-            $table->foreign('tagId')->references('id')->on('todoListTags');
             $table->foreign('listId')->references('id')->on('todoLists');
-            $table->foreign('todoId')->references('id')->on('todos');
+            $table->foreign('sublistId')->references('id')->on('todoListSublists');
+            $table->foreign('tagId')->references('id')->on('todoListTags');
         });
     }
 
@@ -35,6 +36,6 @@ class CreateTodoTags extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todoTags');
+        Schema::dropIfExists('todoListSublistTags');
     }
 }

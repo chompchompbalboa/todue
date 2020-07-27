@@ -4,6 +4,7 @@
 import { IActiveState } from '@/state/active/reducers'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
+import { ISublistTag } from '@/state/sublistTag/types'
 import { ITag } from '@/state/tag/types'
 import { ITodoFromDatabase } from '@/state/todo/types'
 
@@ -18,6 +19,7 @@ declare global {
 		}
 		lists: IList[]
 		sublists: ISublist[]
+		sublistTags: ISublistTag[]
 		todos: ITodoFromDatabase[] // Only the initially active list sends this
 		tags: ITag[] // Only the initially active list sends this
 	}

@@ -4,6 +4,7 @@ export const initialData: IInitialData = {
   },
   lists: [],
   sublists: [],
+  sublistTags: [],
   tags: [],
   todos: []
 }
