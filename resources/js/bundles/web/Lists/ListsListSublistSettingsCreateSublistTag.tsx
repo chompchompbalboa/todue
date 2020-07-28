@@ -2,11 +2,15 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { useDispatch } from 'react-redux'
 
-import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
+import { ITag } from '@/state/tag/types'
+
+import {
+  createSublistTag
+} from '@/state/sublistTag/actions'
 
 import ListTagsDropdown from '@web/Tags/ListTagsDropdown'
 
@@ -14,30 +18,22 @@ import ListTagsDropdown from '@web/Tags/ListTagsDropdown'
 // Component
 //-----------------------------------------------------------------------------
 export const ListsListSublistSettingsCreateSublistTag = ({
+  listId,
   sublistId
 }: IListsListSublistSettingsCreateSublistTag) => {
   
   // Redux
-  const listId = useSelector((state: IAppState) => state.active.listId)
-  
-  const handleTagCreate = () => {
-    console.log('handleTagCreate')
-  }
-  
-  const handleTagSelect = () => {
-    console.log('handleTagSelect')
+  const dispatch = useDispatch()
+
+  // Handle Tag Select
+  const handleTagSelect = (tagId: ITag['id']) => {
+    dispatch(createSublistTag(listId, sublistId, tagId))
   }
   
   return (
-    <Container>
-      <Header>
-        Tags
-      </Header>
-      <ListTagsDropdown
-        listId={listId}
-        handleTagCreate={handleTagCreate}
-        handleTagSelect={handleTagSelect}/>
-    </Container>
+    <ListTagsDropdown
+      listId={listId}
+      handleTagSelect={handleTagSelect}/>
   )
 }
 
@@ -45,17 +41,8 @@ export const ListsListSublistSettingsCreateSublistTag = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListSublistSettingsCreateSublistTag {
+  listId: IList['id']
   sublistId: ISublist['id']
 }
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const Container = styled.div`
-  position: relative;
-  padding: 1rem;
-`
-
-const Header = styled.div``
 
 export default ListsListSublistSettingsCreateSublistTag

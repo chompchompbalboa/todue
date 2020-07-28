@@ -5,35 +5,42 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { IAppState } from '@/state'
-import { ITodoTag } from '@/state/todoTag/types'
+import { ISublist } from '@/state/sublist/types'
+import { ISublistTag } from '@/state/sublistTag/types'
 
-import { deleteTodoTag } from '@/state/todoTag/actions'
+import { deleteSublistTag } from '@/state/sublistTag/actions'
 
 import Tag from '@/components/Tag'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoTagsTagsTag = ({
-  todoTagId
-}: ITodoTagsTagsTag) => {
+export const ListsListSublistSettingsTagsTag = ({
+  sublistId,
+  sublistTagId
+}: IListsListSublistSettingsTagsTag) => {
   
   // Redux
   const dispatch = useDispatch()
-  const tagId = useSelector((state: IAppState) => state.todoTag.allTodoTags[todoTagId].tagId)
+  const tagId = useSelector((state: IAppState) => state.sublistTag.allSublistTags[sublistTagId]?.tagId)
 
+  const handleDelete = () => {
+    setTimeout(() => dispatch(deleteSublistTag(sublistId, sublistTagId)), 0)
+  }
+  
   return (
     <Tag
       tagId={tagId}
-      handleDelete={() => dispatch(deleteTodoTag(todoTagId))}/>
+      handleDelete={handleDelete}/>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoTagsTagsTag {
-  todoTagId: ITodoTag['id']
+interface IListsListSublistSettingsTagsTag {
+  sublistId: ISublist['id']
+  sublistTagId: ISublistTag['id']
 }
 
-export default TodoTagsTagsTag
+export default ListsListSublistSettingsTagsTag

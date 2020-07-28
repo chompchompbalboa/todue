@@ -17,7 +17,7 @@ import DropdownOption from '@web/Tags/ListTagsDropdownOption'
 //-----------------------------------------------------------------------------
 export const ListTagsDropdown = ({
   listId,
-  handleTagCreate,
+  handleTagCreate = null,
   handleTagSelect,
 }: IListTagsDropdown) => {
   
@@ -101,7 +101,7 @@ export const ListTagsDropdown = ({
               handleTagClick={onTagSelect}
               setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}/>
           ))}
-          {filteredListTags.length === 0 && inputValue.length > 0 &&
+          {handleTagCreate && filteredListTags.length === 0 && inputValue.length > 0 &&
             <CreateTodoDropdownOption
               onClick={onTagCreate}>
               Create "{inputValue}" Tag
@@ -117,7 +117,7 @@ export const ListTagsDropdown = ({
 //-----------------------------------------------------------------------------
 interface IListTagsDropdown {
   listId: IList['id']
-  handleTagCreate(tagText: string): void
+  handleTagCreate?(tagText: string): void
   handleTagSelect(tagId: ITag['id']): void
 }
 

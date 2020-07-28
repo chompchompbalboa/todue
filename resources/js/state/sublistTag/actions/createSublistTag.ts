@@ -37,7 +37,8 @@ export const createSublistTag = (
       id: createUuid(),
       listId: listId,
       sublistId: sublistId,
-      tagId: tagId
+      tagId: tagId,
+      type: 'INCLUDE'
     }
     
     const nextSublistTags = [ ...(sublistTagsBySublistId[sublistId] || []), newSublistTag.id ]

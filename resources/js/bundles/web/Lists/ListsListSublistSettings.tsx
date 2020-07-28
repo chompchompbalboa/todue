@@ -11,7 +11,7 @@ import { ISublist } from '@/state/sublist/types'
 import Dropdown from '@/components/Dropdown'
 import Icon from '@/components/Icon'
 
-import ListsListSublistSettingsCreateSublistTag from '@web/Lists/ListsListSublistSettingsCreateSublistTag'
+import ListsListSublistSettingsTags from '@web/Lists/ListsListSublistSettingsTags'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -42,7 +42,7 @@ export const ListsListSublistSettings = ({
         isDropdownVisible={isDropdownVisible}
         minHeight="40vh"
         minWidth="40vw">
-        <ListsListSublistSettingsCreateSublistTag
+        <ListsListSublistSettingsTags
           sublistId={sublistId}/>
       </Dropdown>
     </Container>

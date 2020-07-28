@@ -9,4 +9,5 @@ export interface ISublistTag {
   listId: IList['id']
   sublistId: ISublist['id']
   tagId: ITag['id']
+  type: 'INCLUDE' | 'EXCLUDE'
 }

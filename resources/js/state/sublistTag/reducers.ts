@@ -24,7 +24,7 @@ const getInitialState = () => {
     allSublistTags[sublistTag.id] = sublistTag
     sublistTagsBySublistId = {
       ...sublistTagsBySublistId,
-      [sublistTag.listId]: [ ...sublistTagsBySublistId[sublistTag.listId] || [], sublistTag.id ]
+      [sublistTag.sublistId]: [ ...sublistTagsBySublistId[sublistTag.sublistId] || [], sublistTag.id ]
     }
   })
   return { allSublistTags, sublistTagsBySublistId }
