@@ -39,10 +39,4 @@ class Todo extends Model
       'timeEnd',
       'priority'
     ];
-    protected $with = [ 'tags' ];
-
-    public function tags()
-    {
-        return $this->hasMany('App\Models\TodoTag', 'todoId');
-    }
 }

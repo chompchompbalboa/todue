@@ -59,11 +59,11 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
   const todosGroupedByDate = groupBy(filteredTodos, todo => {
     return todo.dateCompleted 
       ? moment(todo.dateCompleted).format('YYYY-MM-DD')
-      : moment(todo.dateCurrent).date() < moment().date()
+      : moment(todo.dateCurrent) < moment()
         ? moment().format('YYYY-MM-DD')
         : moment(todo.dateCurrent).format('YYYY-MM-DD')
   })
-  
+
   // The grouped dates aren't in the correct order, so we sort them here
   const orderedDates = Object.keys(todosGroupedByDate).sort()
   
