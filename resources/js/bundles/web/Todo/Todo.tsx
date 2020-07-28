@@ -18,22 +18,23 @@ import TodoText from '@web/Todo/TodoText'
 //-----------------------------------------------------------------------------
 export const Todo = () => {
 
-  const todoId = useSelector((state: IAppState) => state.active.todoId)
+  // Redux
+  const todo = useSelector((state: IAppState) => state.todo.allTodos[state.active.todoId])
 
   return (
       <Container>
-        {todoId &&
+        {todo &&
           <TodoContainer>
             <TodoText
-              todoId={todoId}/>
+              todoId={todo.id}/>
             <TodoDateTime
-              todoId={todoId}/>
+              todoId={todo.id}/>
             <TodoPriority
-              todoId={todoId}/>
+              todoId={todo.id}/>
             <TodoTags
-              todoId={todoId}/>
+              todoId={todo.id}/>
             <TodoNotes
-              todoId={todoId}/>
+              todoId={todo.id}/>
           </TodoContainer>
         }
       </Container>

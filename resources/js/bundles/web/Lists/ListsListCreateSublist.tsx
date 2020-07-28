@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import { IList } from '@/state/list/types'
 
 import { createSublist } from '@/state/sublist/actions'
+import { refreshVisibleTodos } from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -21,7 +22,10 @@ export const ListsCreateSublist = ({
   
   return (
     <Container
-      onClick={() => dispatch(createSublist(listId))}>
+      onClick={() => {
+        dispatch(createSublist(listId))
+        dispatch(refreshVisibleTodos())
+      }}>
       New Sublist +
     </Container>
   )

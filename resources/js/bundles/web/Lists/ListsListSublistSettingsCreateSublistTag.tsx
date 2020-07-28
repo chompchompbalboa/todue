@@ -8,9 +8,8 @@ import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ITag } from '@/state/tag/types'
 
-import {
-  createSublistTag
-} from '@/state/sublistTag/actions'
+import { createSublistTag } from '@/state/sublistTag/actions'
+import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import ListTagsDropdown from '@web/Tags/ListTagsDropdown'
 
@@ -28,6 +27,7 @@ export const ListsListSublistSettingsCreateSublistTag = ({
   // Handle Tag Select
   const handleTagSelect = (tagId: ITag['id']) => {
     dispatch(createSublistTag(listId, sublistId, tagId))
+    dispatch(refreshVisibleTodos())
   }
   
   return (

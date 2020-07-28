@@ -9,6 +9,7 @@ import { ISublist } from '@/state/sublist/types'
 import { ISublistTag } from '@/state/sublistTag/types'
 
 import { deleteSublistTag } from '@/state/sublistTag/actions'
+import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import Tag from '@/components/Tag'
 
@@ -25,7 +26,10 @@ export const ListsListSublistSettingsTagsTag = ({
   const tagId = useSelector((state: IAppState) => state.sublistTag.allSublistTags[sublistTagId]?.tagId)
 
   const handleDelete = () => {
-    setTimeout(() => dispatch(deleteSublistTag(sublistId, sublistTagId)), 0)
+    setTimeout(() => {
+      dispatch(deleteSublistTag(sublistId, sublistTagId))
+      dispatch(refreshVisibleTodos())
+    }, 0)
   }
   
   return (
