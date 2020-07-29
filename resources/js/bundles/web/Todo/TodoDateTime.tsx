@@ -4,6 +4,7 @@
 import React from 'react'
 import moment from 'moment'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
@@ -59,6 +60,17 @@ export const TodoDateTime = ({
             ))
           }}
           value={todoTimeEnd}/>
+        <BacklogButton
+          isBacklogged={todoDateCurrent === null}
+          onClick={() => {
+            dispatch(updateTodo(todoId, 
+              { dateCurrent: null },
+              { dateCurrent: todoDateCurrent },
+              true
+            ))
+          }}>
+          Backlog
+        </BacklogButton>
       </TodoSection>
   )
 }
@@ -68,6 +80,24 @@ export const TodoDateTime = ({
 //-----------------------------------------------------------------------------
 interface ITodoDateTime {
   todoId: ITodo['id']
+}
+
+//-----------------------------------------------------------------------------
+// Styled Components
+//-----------------------------------------------------------------------------
+const BacklogButton = styled.div`
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: ${ ({ isBacklogged }: IBacklogButton) => isBacklogged ? 'rgb(0, 150, 0)' : 'transparent' };
+  color: ${ ({ isBacklogged }: IBacklogButton) => isBacklogged ? 'white' : 'black' };
+  &:hover {
+      background-color: rgb(0, 150, 0);
+      color: white;
+  }
+`
+interface IBacklogButton {
+  isBacklogged: boolean
 }
 
 export default TodoDateTime

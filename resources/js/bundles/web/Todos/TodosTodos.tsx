@@ -13,6 +13,7 @@ import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import TodosTodosCreateTodo from '@web/Todos/TodosTodosCreateTodo'
 import TodosTodosDate from '@web/Todos/TodosTodosDate'
+import TodosTodosHeader from '@web/Todos/TodosTodosHeader'
 import TodosTodosTodo from '@web/Todos/TodosTodosTodo'
 
 //-----------------------------------------------------------------------------
@@ -35,7 +36,14 @@ export const TodosTodos = ({
   return (
       <Container>
         {visibleTodos && visibleTodos.map(todoId => {
-          if(todoId.length === 10) {
+          if(todoId === 'BACKLOG') {
+            return (
+              <TodosTodosHeader
+                key="BACKLOG"
+                text="Backlog"/>
+            )
+          }
+          else if(todoId.length === 10) {
             return (
               <TodosTodosDate 
                 key={todoId}
