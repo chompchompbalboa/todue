@@ -4,6 +4,10 @@
 import axios from '@/api/axios'
 
 import { 
+	IUserActive,
+	IUserActiveUpdates 
+} from '@/state/active/types'
+import { 
 	IList,
 	IListUpdates 
 } from '@/state/list/types'
@@ -126,4 +130,11 @@ export const deleteTodoTag = async (todoTagId: ITodoTag['id']) => {
 
 export const restoreTodoTag = async (todoTagId: ITodoTag['id']) => {
 	return axios.post('/api/todo/tag/restore/' + todoTagId)
+}
+
+//-----------------------------------------------------------------------------
+// User Active
+//-----------------------------------------------------------------------------
+export const updateUserActive = async (userActiveId: IUserActive['id'], updates: IUserActiveUpdates) => {
+	return axios.patch('/api/user/active/' + userActiveId, updates)
 }

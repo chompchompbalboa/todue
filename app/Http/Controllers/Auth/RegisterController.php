@@ -73,6 +73,15 @@ class RegisterController extends Controller
           'email' => $newUserInfo['email'],
           'password' => Hash::make($newUserInfo['password'])
         ]);
+        
+        // Create the new UserActive
+        $newUser->active()->create([
+          'id' => Str::uuid()->toString(),
+          'listId' => null,
+          'sublistId' => null,
+          'todoId' => null,
+          'isCompletedTodosVisible' => false
+        ]);
 
         // Log the user in
         Auth::loginUsingId($newUser->id, true);

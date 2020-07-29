@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import { IActiveState } from '@/state/active/reducers'
+import { IUserActive } from '@/state/active/types'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ISublistTag } from '@/state/sublistTag/types'
@@ -15,9 +15,7 @@ import { ITodoTag } from '@/state/todoTag/types'
 declare global {
 	const initialData: IInitialData
 	interface IInitialData {
-		active: {
-			listId: IActiveState['listId']
-		}
+		active: IUserActive
 		lists: IList[]
 		sublists: ISublist[] // Only the initially active list sends this
 		sublistTags: ISublistTag[] // Only the initially active list sends this

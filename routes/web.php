@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 use App\Models\TodoList;
 
@@ -14,6 +15,17 @@ Route::group([
     Route::get('/', function () {
         // Get the user
         $user = Auth::user();
+        if(is_null($user->active)) {
+          dd('null');
+          $user->active()->create([
+            'id' => Str::uuid()->toString(),
+            'userId' => $user->id,
+            'listId' => null,
+            'sublistId' => null,
+            'todoId' => null,
+            'isCompletedTodosVisible' => false
+          ]);
+        }
         // Create an api access token for the user
         $accessToken = $user->createToken('authToken')->accessToken;
         // Get the user's lists
@@ -23,16 +35,13 @@ Route::group([
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
-            'active' => [
-                'listId' => $activeList->id,
-                'sublistId' => null
-            ],
+            'active' => $user->active,
             'lists' => $userLists,
-            'sublists' => $activeList->sublists()->get(),
-            'sublistTags' => $activeList->sublistTags()->get(),
-            'todos' => $activeList->todos()->get(),
-            'tags' => $activeList->tags()->get(),
-            'todoTags' => $activeList->todoTags()->get(),
+            'sublists' => $activeList ? $activeList->sublists()->get() : [],
+            'sublistTags' => $activeList ? $activeList->sublistTags()->get() : [],
+            'todos' => $activeList ? $activeList->todos()->get() : [],
+            'tags' => $activeList ? $activeList->tags()->get() : [],
+            'todoTags' => $activeList ? $activeList->todoTags()->get() : [],
         ]);
     })->name('app');
 });

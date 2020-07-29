@@ -41,5 +41,6 @@ Route::group([
       'list/tag' => 'TodoListTagController',
       'todo' => 'TodoController',
       'todo/tag' => 'TodoTagController',
+      'user/active' => 'UserActiveController',
     ]);
 });

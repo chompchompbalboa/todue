@@ -1,6 +1,10 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
+import { mutation } from '@/api'
+
+import { IAppState } from '@/state'
+import { IThunkDispatch } from '@/state/types'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ITodo } from '@/state/todo/types'
@@ -23,7 +27,19 @@ interface IUpdateActiveIsCompletedTodosVisible {
   nextActiveIsCompletedTodosVisible: boolean
 }
 
-export const updateActiveIsCompletedTodosVisible = (nextActiveIsCompletedTodosVisible: boolean): IActiveActions => {
+export const updateActiveIsCompletedTodosVisible = (nextActiveIsCompletedTodosVisible: boolean) => {
+	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
+    const {
+      active: {
+        id: userActiveId
+      }
+    } = getState()
+    dispatch(updateActiveIsCompletedTodosVisibleReducer(nextActiveIsCompletedTodosVisible))
+    mutation.updateUserActive(userActiveId, { isCompletedTodosVisible: nextActiveIsCompletedTodosVisible })
+	}
+}
+
+export const updateActiveIsCompletedTodosVisibleReducer = (nextActiveIsCompletedTodosVisible: boolean): IActiveActions => {
 	return {
 		type: UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE,
 		nextActiveIsCompletedTodosVisible
@@ -40,7 +56,19 @@ interface IUpdateActiveListId {
   nextActiveListId: IList['id']
 }
 
-export const updateActiveListId = (nextActiveListId: IList['id']): IActiveActions => {
+export const updateActiveListId = (nextActiveListId: IList['id']) => {
+	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
+    const {
+      active: {
+        id: userActiveId
+      }
+    } = getState()
+    dispatch(updateActiveListIdReducer(nextActiveListId))
+    mutation.updateUserActive(userActiveId, { listId: nextActiveListId })
+	}
+}
+
+export const updateActiveListIdReducer = (nextActiveListId: IList['id']): IActiveActions => {
 	return {
 		type: UPDATE_ACTIVE_LIST_ID,
 		nextActiveListId
@@ -57,7 +85,19 @@ interface IUpdateActiveSublistId {
   nextActiveSublistId: ISublist['id']
 }
 
-export const updateActiveSublistId = (nextActiveSublistId: ISublist['id']): IActiveActions => {
+export const updateActiveSublistId = (nextActiveSublistId: ISublist['id']) => {
+	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
+    const {
+      active: {
+        id: userActiveId
+      }
+    } = getState()
+    dispatch(updateActiveSublistIdReducer(nextActiveSublistId))
+    mutation.updateUserActive(userActiveId, { sublistId: nextActiveSublistId })
+	}
+}
+
+export const updateActiveSublistIdReducer = (nextActiveSublistId: ISublist['id']): IActiveActions => {
 	return {
 		type: UPDATE_ACTIVE_SUBLIST_ID,
 		nextActiveSublistId

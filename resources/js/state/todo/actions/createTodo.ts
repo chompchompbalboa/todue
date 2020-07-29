@@ -69,7 +69,7 @@ export const createTodo = (
       listId: listId,
       text: null,
       dateCreated: moment().format('YYYY-MM-DD HH:mm:ss'),
-      dateCurrent: moment(newTodoDateCurrent).format('YYYY-MM-DD HH:mm:ss'),
+      dateCurrent: newTodoDateCurrent ? moment(newTodoDateCurrent).format('YYYY-MM-DD HH:mm:ss') : null,
       dateCompleted: null,
       timeStart: null,
       timeEnd: null,

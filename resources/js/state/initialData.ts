@@ -1,6 +1,9 @@
 export const initialData: IInitialData = {
   active: {
-    listId: null
+    id: null,
+    listId: null,
+    sublistId: null,
+    isCompletedTodosVisible: false
   },
   lists: [],
   sublists: [],

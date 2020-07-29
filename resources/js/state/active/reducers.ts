@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 import defaultInitialData from '@/state/initialData'
 
+import { IUserActive } from '@/state/active/types'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ITodo } from '@/state/todo/types'
@@ -18,8 +19,9 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialListData = typeof initialData !== 'undefined' ? initialData.lists : defaultInitialData.lists
+const initialActiveData = typeof initialData !== 'undefined' ? initialData.active : defaultInitialData.active
 export type IActiveState = {
+  id: IUserActive['id']
   listId: IList['id']
   sublistId: ISublist['id']
   todoId: ITodo['id']
@@ -27,10 +29,11 @@ export type IActiveState = {
 }
 
 export const initialState: IActiveState = {
-  listId: initialListData.length > 0 ? initialListData[0].id : null,
-  sublistId: null,
+  id: initialActiveData.id,
+  listId: initialActiveData.listId,
+  sublistId: initialActiveData.sublistId,
   todoId: null,
-  isCompletedTodosVisible: false
+  isCompletedTodosVisible: initialActiveData.isCompletedTodosVisible
 }
 
 //-----------------------------------------------------------------------------
