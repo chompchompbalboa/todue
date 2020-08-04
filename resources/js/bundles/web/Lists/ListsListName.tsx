@@ -50,14 +50,18 @@ interface IListsListName {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   cursor: pointer;
-  font-weight: inherit;
 `
                                
 const Name = styled.div`
+  padding: 0.125rem;
+  padding-left: 0.75rem;
   font-size: 1.25rem;
-  font-weight: ${ ({ isActiveList }: IName ) => isActiveList ? 'bold' : 'inherit' };
+  font-weight: bold;
+  background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(235, 235, 235)' : 'transparent' };
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   &:hover {
-    font-weight: bold;
+    background-color: rgb(235, 235, 235);
   }
 `
 interface IName {

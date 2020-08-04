@@ -30,7 +30,6 @@ export const ListsListSublistSettings = ({
     <Container
       ref={container}>
       <IconContainer
-        isDropdownVisible={isDropdownVisible}
         onClick={() => setIsDropdownVisible(true)}>
         <Icon
           icon={SETTINGS}
@@ -65,11 +64,6 @@ const Container = styled.div`
 const IconContainer = styled.div`
   position: relative;
   cursor: pointer;
-  font-weight: ${ ({ isDropdownVisible }: IIconContainer) => isDropdownVisible ? 'bold' : 'inherit' };
-  color: rgb(50, 50, 50);
 `
-interface IIconContainer {
-  isDropdownVisible: boolean
-}
 
 export default ListsListSublistSettings

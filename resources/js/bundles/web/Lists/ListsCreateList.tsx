@@ -27,10 +27,11 @@ export const ListsCreateList = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  padding-bottom: 1rem;
-  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: bold;
   cursor: pointer;
-  text-align: right;
 `
 
 export default ListsCreateList

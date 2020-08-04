@@ -34,8 +34,8 @@ export const Lists = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  padding-top: 2rem;
   width: 100%;
-  padding: 1rem;
 `
 
 export default Lists

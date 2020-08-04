@@ -49,10 +49,12 @@ interface IListsList {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
+const Container = styled.div`
+  margin-left: 0.25rem;
+`
 
 const SublistContainer = styled.div`
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 `
 
 export default ListsList
