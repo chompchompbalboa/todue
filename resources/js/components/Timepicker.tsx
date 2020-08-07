@@ -1,8 +1,13 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, useRef, useState } from 'react'
 import styled from 'styled-components'
+
+import datetime from '@/utils/datetime'
+
+import DropdownWithOptions from '@/components/DropdownWithOptions'
+import TimepickerTime from '@/components/TimepickerTime'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -13,26 +18,39 @@ export const Timepicker = ({
   value = 'Timepicker'
 }: ITimepicker) => {
   
-  const selectOptions = () => {
-    let options = []
+  // Refs
+  const container = useRef(null)
+  
+  // State
+  const [ activeDropdownOptionIndex, setActiveDropdownOptionIndex ] = useState(0)
+  const [ inputValue, setInputValue ] = useState('')
+  const [ isDropdownVisible, setIsDropdownVisible ] = useState(false)
+  
+  // Handle Input Blur
+  const handleInputBlur = () => {
+    onTimeChange(inputValue === '' ? null : datetime.twelveHourToTwentyFourHour(inputValue))
+  }
+  
+  // Handle Time Change
+  const handleTimeChange = () => {
+    const nextTime = getTimes()[activeDropdownOptionIndex]
+    onTimeChange(datetime.twelveHourToTwentyFourHour(nextTime))
+  }
+  
+  // Get Times
+  const getTimes = () => {
+    let times = []
     let currentHour = 0
     let currentMinute = 0
-    options.push(
-      <option 
-        key={label}
-        value="">
-        {label}
-      </option>
-    )
     while(currentHour <= 23 && currentMinute <= 45) {
-      const currentTime = (currentHour + '').padStart(2, '0') + ':' + (currentMinute + '').padStart(2, '0')
-      options.push(
-        <option 
-          key={currentTime}
-          value={currentTime}>
-          {currentTime}
-        </option>
-      )
+      const twentyFourHourTime = (currentHour + '').padStart(2, '0') + ':' + (currentMinute + '').padStart(2, '0')
+      const twelveHourTime = datetime.twentyFourHourToTwelveHour(twentyFourHourTime)
+      if(
+        ['', null].includes(inputValue) || 
+        twelveHourTime.split(' ').join().trim().toLowerCase().includes(inputValue.split(' ').join().trim().toLowerCase())
+      ) {
+        times.push(twelveHourTime)
+      }
       if(currentMinute === 45) {
         currentHour++
         currentMinute = 0
@@ -41,21 +59,38 @@ export const Timepicker = ({
         currentMinute += 15
       }
     }
-    return options
+    return times
   }
+  
+  const times = getTimes()
 
   return (
-      <Container>
-        <label 
-          htmlFor="timepicker">
-          {label}
-        </label>
-        <select 
-          name="timepicker"
-          onChange={(e: ChangeEvent<HTMLSelectElement>) => onTimeChange(e.target.value === '' ? null : e.target.value)}
-          value={value || ''}>
-          {selectOptions()}
-        </select>
+      <Container
+        ref={container}>
+        <StyledInput
+          onBlur={handleInputBlur}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+          onFocus={() => setIsDropdownVisible(true)}
+          placeholder={label}
+          value={inputValue || ''}/>
+        <DropdownWithOptions
+          activeDropdownOptionIndex={activeDropdownOptionIndex}
+          closeDropdown={() => setIsDropdownVisible(false)}
+          containerRef={container}
+          dropdownOptions={times}
+          isDropdownVisible={isDropdownVisible}
+          selectDropdownOption={handleTimeChange}
+          setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}>
+          {times.map((time, index) => (
+            <TimepickerTime
+              key={time}
+              handleTimeClick={handleTimeChange}
+              index={index}
+              isActiveDropdownOption={activeDropdownOptionIndex === index}
+              setActiveDropdownOptionIndex={setActiveDropdownOptionIndex}
+              time={time}/>
+          ))}
+        </DropdownWithOptions>
       </Container>
   )
 }
@@ -73,10 +108,17 @@ interface ITimepicker {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  position: relative;
   padding: 0.75rem;
   padding-left: 0;
+`
+
+const StyledInput = styled.input`
+  border: none;
+  outline: none;
+  width: 5rem;
+  font-size: 1rem;
+  background-color: transparent;
 `
 
 export default Timepicker

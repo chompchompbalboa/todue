@@ -9,13 +9,19 @@ import styled from 'styled-components'
 //-----------------------------------------------------------------------------
 export const TodoSection = ({
   children,
+  flexDirection = 'row',
   header
 }: ITodoSection) => {
 
   return (
       <Container>
-        <Header>{header}</Header>
-        <Content>{children}</Content>
+        <Header>
+          {header}
+        </Header>
+        <Content
+          flexDirection={flexDirection}>
+          {children}
+        </Content>
       </Container>
   )
 }
@@ -25,6 +31,7 @@ export const TodoSection = ({
 //-----------------------------------------------------------------------------
 interface ITodoSection {
   children?: any
+  flexDirection?: string
   header: string
 }
 
@@ -43,7 +50,11 @@ const Header = styled.div`
 
 const Content = styled.div`
   display: flex;
+  flex-direction: ${ ({ flexDirection }: IContent) => flexDirection };
   align-items: center;
 `
+interface IContent {
+  flexDirection: string
+}
 
 export default TodoSection

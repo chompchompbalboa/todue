@@ -30,7 +30,7 @@ export const TodoDateTime = ({
 
   return (
       <TodoSection
-        header="Date / Time">
+        header="">
         <Datepicker
           value={todoDateCurrent}
           onDateChange={nextDate => {

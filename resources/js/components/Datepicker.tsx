@@ -23,6 +23,8 @@ export const Datepicker = ({
   // Build the array to display the dates
   let currentMonthDatesArray = []
   const isValueInCurrentMonth = currentMonth.year() === moment(value).year() && currentMonth.month() === moment(value).month()
+  const isCurrentMonthTodaysMonth = currentMonth.year() === moment().year() && currentMonth.month() === moment().month()
+  const todaysDate = moment().date()
   const valueDate = moment(value).date()
   let daysInCurrentMonth = currentMonth.daysInMonth()
   const firstDayOfCurrentMonth = currentMonth.startOf('month').day()
@@ -57,7 +59,8 @@ export const Datepicker = ({
           <DatepickerDate
             key={index}
             isEmpty={currentDate === null}
-            isSelected={isValueInCurrentMonth && valueDate === currentDate}
+            isSelected={isValueInCurrentMonth && currentDate === valueDate}
+            isTodaysDate={isCurrentMonthTodaysMonth && currentDate === todaysDate}
             onClick={() => onDateChange(moment(currentMonth).date(currentDate).format())}>
             {currentDate}
           </DatepickerDate>
@@ -96,7 +99,7 @@ const ChangeCurrentMonth = styled.div`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: rgb(240, 240, 240);
+    background-color: rgb(238, 238, 238);
   }
 `
 
@@ -105,6 +108,7 @@ const CurrentMonth = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-weight: bold;
 `
 
 const DatepickerDates = styled.div`
@@ -121,16 +125,18 @@ const DatepickerDate = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 2px;
-  background-color: ${ ({ isSelected }: IDatePickerDate) => isSelected ? 'rgb(0, 100, 0)' : 'transparent'};
+  border-radius: 10px;
+  background-color: ${ ({ isSelected, isTodaysDate }: IDatePickerDate) => isSelected ? 'rgb(0, 140, 25)' : (isTodaysDate ? 'rgb(238, 238, 238)' : 'transparent')};
   color: ${ ({ isSelected }: IDatePickerDate) => isSelected ? 'white' : 'inherit'};
+  font-weight: ${ ({ isSelected, isTodaysDate }: IDatePickerDate) => isTodaysDate || isSelected ? 'bold' : 'inherit'};
   &:hover {
-    background-color: ${ ({ isEmpty, isSelected }: IDatePickerDate) => isSelected ? 'rgb(0, 100, 0)' : (isEmpty ? 'transparent' : 'rgb(240, 240, 240)')};
+    background-color: ${ ({ isEmpty, isSelected }: IDatePickerDate) => isSelected ? 'rgb(0, 140, 25)' : (isEmpty ? 'transparent' : 'rgb(238, 238, 238)')};
   }
 `
 interface IDatePickerDate {
   isEmpty: boolean
   isSelected: boolean
+  isTodaysDate: boolean
 }
 
 //-----------------------------------------------------------------------------
