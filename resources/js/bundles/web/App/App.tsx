@@ -49,6 +49,7 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   background-color: rgb(235, 235, 235);
+  overflow: hidden;
 `
 
 const Column = styled.div`

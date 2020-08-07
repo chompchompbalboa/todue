@@ -5,6 +5,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import datetime from '@/utils/datetime'
+
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
@@ -22,7 +24,7 @@ export const TodosTodosTodoTime = ({
   if(todoTimeStart) {
     return (
       <Container>
-        ({todoTimeStart}{todoTimeEnd ? ' - ' + todoTimeEnd + ')' : ')'}
+        ({datetime.twentyFourHourToTwelveHour(todoTimeStart)}{todoTimeEnd ? ' - ' + datetime.twentyFourHourToTwelveHour(todoTimeEnd) + ')' : ')'}
       </Container>
     )
   }

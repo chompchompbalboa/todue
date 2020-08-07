@@ -12,7 +12,7 @@ export const twelveHourToTwentyFourHour = (twelveHourTime: string) => {
       const currentTwelveHourHour = Number(twelveHourTimeSplit[0])
       const currentHour = amOrPm === 'PM' && currentTwelveHourHour !== 12 
         ? currentTwelveHourHour + 12 
-        : currentTwelveHourHour === 12
+        : amOrPm === 'AM' && currentTwelveHourHour === 12
           ? 0
           : currentTwelveHourHour
       const currentMinute = Number(twelveHourTimeSplit[1].toLowerCase().replace('a', '').replace('p', '').replace('m', ''))

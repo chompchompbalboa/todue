@@ -40,12 +40,13 @@ interface ITodoSection {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   padding: 0 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `
 
 const Header = styled.div`
   font-weight: bold;
   text-decoration: underline;
+  margin-bottom: 0.5rem;
 `
 
 const Content = styled.div`

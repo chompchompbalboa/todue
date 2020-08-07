@@ -44,7 +44,7 @@ export const Timepicker = ({
     setIsDropdownVisible(false)
     const nextTime = datetime.twelveHourToTwentyFourHour(getTimes()[activeDropdownOptionIndex])
     if(nextTime !== value) {
-      onTimeChange(datetime.twelveHourToTwentyFourHour(nextTime))
+      onTimeChange(nextTime)
     }
   }
   

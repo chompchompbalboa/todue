@@ -15,6 +15,7 @@ export const DropdownWithOptions = ({
   closeDropdown,
   dropdownOptions,
   isDropdownVisible,
+  maxHeight = '50vh',
   selectDropdownOption,
   setActiveDropdownOptionIndex
 }: IDropdownWithOptions) => {
@@ -82,7 +83,8 @@ export const DropdownWithOptions = ({
   return (
     <StyledDropdown
       className={className}
-      isDropdownVisible={isDropdownVisible}>
+      isDropdownVisible={isDropdownVisible}
+      maxHeight={maxHeight}>
       {children}
     </StyledDropdown>
   )
@@ -99,6 +101,7 @@ export interface IDropdownWithOptions {
   closeDropdown(): void
   dropdownOptions: any[]
   isDropdownVisible: boolean
+  maxHeight?: string
   selectDropdownOption?(): void 
   setActiveDropdownOptionIndex?(nextActiveDropdownOptionIndex: number): void
 }
@@ -114,6 +117,7 @@ const StyledDropdown = styled.div`
   left: 0;
   width: 100%;
   max-height: 50vh;
+  max-height: ${ ({ maxHeight }: IStyledDropdown ) => maxHeight };
   background-color: white;
   border: 1px solid rgb(200, 200, 200);
   overflow-y: scroll;
@@ -128,6 +132,7 @@ const StyledDropdown = styled.div`
 `
 interface IStyledDropdown {
   isDropdownVisible: boolean
+  maxHeight: string
 }
 
 export default DropdownWithOptions

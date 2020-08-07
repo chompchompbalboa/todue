@@ -47,8 +47,8 @@ export const TodoDateTime = ({
                 label="Start Time"
                 onTimeChange={nextTime => {
                   dispatch(updateTodo(todoId, 
-                    { timeStart: nextTime },
-                    { timeStart: todoTimeStart },
+                    { timeStart: nextTime, timeEnd: nextTime === null ? null : todoTimeEnd },
+                    { timeStart: todoTimeStart, timeEnd: todoTimeEnd },
                     true
                   ))
                 }}

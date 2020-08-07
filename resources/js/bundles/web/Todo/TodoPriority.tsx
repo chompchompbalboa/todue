@@ -64,10 +64,10 @@ interface ITodoDateTime {
 //-----------------------------------------------------------------------------
 const Priority = styled.div`
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   background-color: ${ ({ backgroundColor, isSelected }: IPriority ) => isSelected ? backgroundColor : 'transparent' };
   color: ${ ({ isSelected }: IPriority ) => isSelected ? 'white' : 'black' };
-  border-radius: 5px;
+  border-radius: 10px;
 `
 interface IPriority {
   backgroundColor: string

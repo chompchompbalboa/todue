@@ -81,6 +81,7 @@ export const ListTagsDropdown = ({
       <Container
         ref={container}>
         <StyledInput
+          placeholder="Choose or Create Tag"
           value={inputValue}
           onFocus={() => setIsDropdownVisible(true)}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}/>
@@ -128,7 +129,14 @@ const Container = styled.div`
   position: relative;
 `
 
-const StyledInput = styled.input``
+const StyledInput = styled.input`
+  padding: 0.25rem 0;
+  margin-bottom: 0.35rem;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-size: 1rem;
+`
 
 const CreateTodoDropdownOption = styled.div`
   cursor: pointer;
