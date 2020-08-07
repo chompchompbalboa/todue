@@ -18,8 +18,9 @@ export const TimepickerTime = ({
       <Container
         isActiveDropdownOption={isActiveDropdownOption}
         onClick={() => handleTimeClick()}
-        onMouseEnter={() => setActiveDropdownOptionIndex(index)}>
-        {time}
+        onMouseEnter={() => setActiveDropdownOptionIndex(index)}
+        time={time}>
+        {time || 'Clear'}
       </Container>
   )
 }
@@ -45,12 +46,14 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: ${ ({ isActiveDropdownOption }: IContainer ) => isActiveDropdownOption ? 'rgb(240, 240, 240)' : 'auto' };
+  color: ${ ({ time }: IContainer ) => time ? 'black' : 'rgb(100, 100, 100)' };
   &:hover {
     background-color: rgb(240, 240, 240);
   }
 `
 interface IContainer {
   isActiveDropdownOption: boolean
+  time: string
 }
 
 export default TimepickerTime

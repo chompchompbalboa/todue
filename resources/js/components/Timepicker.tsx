@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { ChangeEvent, useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import datetime from '@/utils/datetime'
@@ -15,7 +15,7 @@ import TimepickerTime from '@/components/TimepickerTime'
 export const Timepicker = ({
   label = '',
   onTimeChange = () => null,
-  value = 'Timepicker'
+  value = ''
 }: ITimepicker) => {
   
   // Refs
@@ -23,34 +23,40 @@ export const Timepicker = ({
   
   // State
   const [ activeDropdownOptionIndex, setActiveDropdownOptionIndex ] = useState(0)
-  const [ inputValue, setInputValue ] = useState('')
+  const [ inputValue, setInputValue ] = useState(value ? datetime.twentyFourHourToTwelveHour(value) : '')
   const [ isDropdownVisible, setIsDropdownVisible ] = useState(false)
-  
-  // Handle Input Blur
-  const handleInputBlur = () => {
-    onTimeChange(inputValue === '' ? null : datetime.twelveHourToTwentyFourHour(inputValue))
-  }
+
+  // Update the input value when the time changes
+  useEffect(() => {
+    if(value) {
+      const twelveHourValue = datetime.twentyFourHourToTwelveHour(value)
+      if(twelveHourValue !== inputValue) {
+        setInputValue(twelveHourValue)
+      }
+    }
+    else {
+      setInputValue('')
+    }
+  }, [ value ])
   
   // Handle Time Change
   const handleTimeChange = () => {
-    const nextTime = getTimes()[activeDropdownOptionIndex]
-    onTimeChange(datetime.twelveHourToTwentyFourHour(nextTime))
+    setIsDropdownVisible(false)
+    const nextTime = datetime.twelveHourToTwentyFourHour(getTimes()[activeDropdownOptionIndex])
+    if(nextTime !== value) {
+      onTimeChange(datetime.twelveHourToTwentyFourHour(nextTime))
+    }
   }
   
   // Get Times
   const getTimes = () => {
-    let times = []
+    let times: string[] = [ null ]
     let currentHour = 0
     let currentMinute = 0
     while(currentHour <= 23 && currentMinute <= 45) {
       const twentyFourHourTime = (currentHour + '').padStart(2, '0') + ':' + (currentMinute + '').padStart(2, '0')
       const twelveHourTime = datetime.twentyFourHourToTwelveHour(twentyFourHourTime)
-      if(
-        ['', null].includes(inputValue) || 
-        twelveHourTime.split(' ').join().trim().toLowerCase().includes(inputValue.split(' ').join().trim().toLowerCase())
-      ) {
-        times.push(twelveHourTime)
-      }
+      times.push(twelveHourTime)
       if(currentMinute === 45) {
         currentHour++
         currentMinute = 0
@@ -67,12 +73,11 @@ export const Timepicker = ({
   return (
       <Container
         ref={container}>
-        <StyledInput
-          onBlur={handleInputBlur}
-          onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
-          onFocus={() => setIsDropdownVisible(true)}
-          placeholder={label}
-          value={inputValue || ''}/>
+        <Time
+          onClick={() => setIsDropdownVisible(true)}
+          value={value}>
+          {value ? datetime.twentyFourHourToTwelveHour(value) : label}
+        </Time>
         <DropdownWithOptions
           activeDropdownOptionIndex={activeDropdownOptionIndex}
           closeDropdown={() => setIsDropdownVisible(false)}
@@ -109,16 +114,17 @@ interface ITimepicker {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   position: relative;
-  padding: 0.75rem;
-  padding-left: 0;
 `
 
-const StyledInput = styled.input`
-  border: none;
-  outline: none;
-  width: 5rem;
+const Time = styled.div`
+  cursor: pointer;
   font-size: 1rem;
-  background-color: transparent;
+  width: 5rem;
+  text-align: center;
+  color: ${ ({ value }: ITime) => value ? 'black' : 'rgb(100, 100, 100)' };
 `
+interface ITime {
+  value: string
+}
 
 export default Timepicker

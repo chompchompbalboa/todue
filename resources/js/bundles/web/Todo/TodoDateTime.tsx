@@ -30,47 +30,57 @@ export const TodoDateTime = ({
 
   return (
       <TodoSection
+        flexDirection="column"
         header="">
-        <Datepicker
-          value={todoDateCurrent}
-          onDateChange={nextDate => {
-            dispatch(updateTodo(todoId, 
-              { dateCurrent: moment(nextDate).format('YYYY-MM-DD HH:mm:ss') },
-              { dateCurrent: todoDateCurrent },
-              true
-            ))
-        }}/>
-        <Timepicker
-          label="Start Time"
-          onTimeChange={nextTime => {
-            dispatch(updateTodo(todoId, 
-              { timeStart: nextTime },
-              { timeStart: todoTimeStart },
-              true
-            ))
-          }}
-          value={todoTimeStart}/>
-        <Timepicker
-          label="End Time"
-          onTimeChange={nextTime => {
-            dispatch(updateTodo(todoId, 
-              { timeEnd: nextTime },
-              { timeEnd: todoTimeEnd },
-              true
-            ))
-          }}
-          value={todoTimeEnd}/>
-        <BacklogButton
-          isBacklogged={todoDateCurrent === null}
-          onClick={() => {
-            dispatch(updateTodo(todoId, 
-              { dateCurrent: null },
-              { dateCurrent: todoDateCurrent },
-              true
-            ))
-          }}>
-          Backlog
-        </BacklogButton>
+          <Datepicker
+            value={todoDateCurrent}
+            onDateChange={nextDate => {
+              dispatch(updateTodo(todoId, 
+                { dateCurrent: moment(nextDate).format('YYYY-MM-DD HH:mm:ss') },
+                { dateCurrent: todoDateCurrent },
+                true
+              ))
+          }}/>
+          <BottomRow>
+            <Time>
+              <Timepicker
+                label="Start Time"
+                onTimeChange={nextTime => {
+                  dispatch(updateTodo(todoId, 
+                    { timeStart: nextTime },
+                    { timeStart: todoTimeStart },
+                    true
+                  ))
+                }}
+                value={todoTimeStart}/>
+              <TimeSeparator>-</TimeSeparator>
+              <Timepicker
+                label="End Time"
+                onTimeChange={nextTime => {
+                  dispatch(updateTodo(todoId, 
+                    { timeEnd: nextTime },
+                    { timeEnd: todoTimeEnd },
+                    true
+                  ))
+                }}
+                value={todoTimeEnd}/>
+            </Time>
+            <BacklogButton
+              isBacklogged={todoDateCurrent === null}
+              onClick={() => {
+                dispatch(updateTodo(todoId, 
+                  { dateCurrent: null, timeStart: null, timeEnd: null },
+                  { dateCurrent: todoDateCurrent, timeStart: todoTimeStart, timeEnd: todoTimeEnd },
+                  true
+                ))
+              }}>
+              <BacklogCheckbox
+                readOnly
+                type="checkbox"
+                checked={todoDateCurrent === null}/>
+                Backlog
+            </BacklogButton>
+          </BottomRow>
       </TodoSection>
   )
 }
@@ -85,9 +95,29 @@ interface ITodoDateTime {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
+const BottomRow = styled.div`
+  width: 20rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+
+const Time = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const TimeSeparator = styled.div`
+  padding: 0 0.5rem;
+`
+
 const BacklogButton = styled.div`
   cursor: pointer;
   padding: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   border-radius: 10px;
   background-color: ${ ({ isBacklogged }: IBacklogButton) => isBacklogged ? 'rgb(0, 150, 0)' : 'transparent' };
   color: ${ ({ isBacklogged }: IBacklogButton) => isBacklogged ? 'white' : 'black' };
@@ -99,5 +129,9 @@ const BacklogButton = styled.div`
 interface IBacklogButton {
   isBacklogged: boolean
 }
+
+const BacklogCheckbox = styled.input`
+  margin-right: 0.5rem;
+`
 
 export default TodoDateTime

@@ -16,7 +16,6 @@ Route::group([
         // Get the user
         $user = Auth::user();
         if(is_null($user->active)) {
-          dd('null');
           $user->active()->create([
             'id' => Str::uuid()->toString(),
             'userId' => $user->id,

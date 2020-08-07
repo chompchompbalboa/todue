@@ -115,10 +115,12 @@ const StyledDropdown = styled.div`
   width: 100%;
   max-height: 50vh;
   background-color: white;
-  box-shadow: 0px 4px 7px 0px rgba(0,0,0,0.25);
+  border: 1px solid rgb(200, 200, 200);
   overflow-y: scroll;
 	scrollbar-width: none;
-	-ms-overflow-style: none;
+  -ms-overflow-style: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 	&::-webkit-scrollbar {
 		width: 0;
 		height: 0;

@@ -64,7 +64,7 @@ export const updateActiveListId = (nextActiveListId: IList['id']) => {
       }
     } = getState()
     dispatch(updateActiveListIdReducer(nextActiveListId))
-    mutation.updateUserActive(userActiveId, { listId: nextActiveListId })
+    mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: null })
 	}
 }
 
