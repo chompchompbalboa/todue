@@ -11,6 +11,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .htaccess
+public/mix-manifest.json
 /public/mix-manifest.json
 /public/js/site.js
 /public/js/site.js
