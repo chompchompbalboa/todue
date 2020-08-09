@@ -14,3 +14,6 @@ yarn-error.log
 /public/mix-manifest.json
 /public/js/site.js
 /public/js/site.js
+.vapor/
+.env.production
+.env.staging
