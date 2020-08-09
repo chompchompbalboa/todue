@@ -24,6 +24,10 @@ import {
 	ITodo,
 	ITodoUpdates 
 } from '@/state/todo/types'
+import { 
+	ITodoNote,
+	ITodoNoteUpdates 
+} from '@/state/todoNote/types'
 import { ITodoTag } from '@/state/todoTag/types'
 
 //-----------------------------------------------------------------------------
@@ -115,6 +119,25 @@ export const restoreTodo = async (todoId: string) => {
 
 export const updateTodo = async (todoId: ITodo['id'], updates: ITodoUpdates) => {
 	return axios.patch('/api/todo/' + todoId, updates)
+}
+
+//-----------------------------------------------------------------------------
+// Todo Notes
+//-----------------------------------------------------------------------------
+export const createTodoNote = async (todoNote: ITodoNote) => {
+	return axios.post('/api/todo/note', todoNote)
+}
+
+export const deleteTodoNote = async (todoNoteId: ITodoNote['id']) => {
+	return axios.delete('/api/todo/note/'+ todoNoteId)
+}
+
+export const restoreTodoNote = async (todoNoteId: ITodoNote['id']) => {
+	return axios.post('/api/todo/note/restore/' + todoNoteId)
+}
+
+export const updateTodoNote = async (todoNoteId: ITodoNote['id'], updates: ITodoNoteUpdates) => {
+	return axios.patch('/api/todo/note/' + todoNoteId, updates)
 }
 
 //-----------------------------------------------------------------------------

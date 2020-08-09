@@ -13,6 +13,7 @@
       lists: @json($lists),
       todos: @json($todos),
       tags: @json($tags),
+      todoNotes: @json($todoNotes),
       todoTags: @json($todoTags),
     }
   </script>

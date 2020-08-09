@@ -82,7 +82,7 @@ export interface IDatepickerProps {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 20rem;
+  width: 17.5rem;
 `
 
 const DatepickerHeader = styled.div`
@@ -114,15 +114,15 @@ const CurrentMonth = styled.div`
 
 const DatepickerDates = styled.div`
   margin: 0.25rem;
-  width: 20rem;
+  width: 17.5rem;
   display: flex;
   flex-flow: row wrap;
 `
 
 const DatepickerDate = styled.div`
   cursor: pointer;
-  width: calc(20rem / 7);
-  height: calc(20rem / 7);
+  width: calc(17.5rem / 7);
+  height: calc(17.5rem / 7);
   display: flex;
   justify-content: center;
   align-items: center;

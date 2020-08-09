@@ -28,9 +28,10 @@ Route::group([
     // Restore soft deleted models
     Route::post('/list/restore/{list}', 'TodoListController@restore');
     Route::post('/list/sublist/restore/{sublist}', 'TodoListSublistController@restore');
-    Route::post('/list/sublist//tag/restore/{tag}', 'TodoListSublistTagController@restore');
+    Route::post('/list/sublist/tag/restore/{tag}', 'TodoListSublistTagController@restore');
     Route::post('/list/tag/restore/{tag}', 'TodoListTagController@restore');
     Route::post('/todo/restore/{todo}', 'TodoController@restore');
+    Route::post('/todo/note/restore/{note}', 'TodoNoteController@restore');
     Route::post('/todo/tag/restore/{tag}', 'TodoTagController@restore');
 
     // Resource Controllers
@@ -40,6 +41,7 @@ Route::group([
       'list/sublist/tag' => 'TodoListSublistTagController',
       'list/tag' => 'TodoListTagController',
       'todo' => 'TodoController',
+      'todo/note' => 'TodoNoteController',
       'todo/tag' => 'TodoTagController',
       'user/active' => 'UserActiveController',
     ]);

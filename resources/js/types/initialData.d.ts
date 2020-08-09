@@ -22,6 +22,7 @@ declare global {
 		todos: ITodo[] // Only the initially active list sends this
 		tags: ITag[] // Only the initially active list sends this
 		todoTags: ITodoTag[] // Only the initially active list sends this
+		todoNotes: ITodoNote[] // Only the initially active list sends this
 	}
 }
 export {} // Typescript needs this file to be a module

@@ -10,7 +10,8 @@ export const initialData: IInitialData = {
   sublistTags: [],
   tags: [],
   todos: [],
-  todoTags: []
+  todoTags: [],
+  todoNotes: []
 }
 
 export default initialData

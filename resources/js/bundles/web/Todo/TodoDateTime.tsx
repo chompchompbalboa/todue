@@ -13,6 +13,7 @@ import { updateTodo } from '@/state/todo/actions'
 
 import Datepicker from '@/components/Datepicker'
 import Timepicker from '@/components/Timepicker'
+import TodoPriority from '@web/Todo/TodoPriority'
 import TodoSection from '@web/Todo/TodoSection'
 
 //-----------------------------------------------------------------------------
@@ -30,7 +31,7 @@ export const TodoDateTime = ({
 
   return (
       <TodoSection
-        flexDirection="column"
+        justifyContent="space-between"
         header="">
           <Datepicker
             value={todoDateCurrent}
@@ -41,14 +42,31 @@ export const TodoDateTime = ({
                 true
               ))
           }}/>
-          <BottomRow>
+          <RightColumn>
+            <BacklogButton
+              isBacklogged={todoDateCurrent === null}
+              onClick={() => {
+                dispatch(updateTodo(todoId, 
+                  { dateCurrent: null, timeStart: null, timeEnd: null },
+                  { dateCurrent: todoDateCurrent, timeStart: todoTimeStart, timeEnd: todoTimeEnd },
+                  true
+                ))
+              }}>
+              <BacklogCheckbox
+                readOnly
+                type="checkbox"
+                checked={todoDateCurrent === null}/>
+                Backlog
+            </BacklogButton>
+            <TodoPriority
+              todoId={todoId}/>
             <Time>
               <Timepicker
                 label="Start Time"
                 onTimeChange={nextTime => {
                   dispatch(updateTodo(todoId, 
-                    { timeStart: nextTime, timeEnd: nextTime === null ? null : todoTimeEnd },
-                    { timeStart: todoTimeStart, timeEnd: todoTimeEnd },
+                    { timeStart: nextTime },
+                    { timeStart: todoTimeStart },
                     true
                   ))
                 }}
@@ -65,22 +83,7 @@ export const TodoDateTime = ({
                 }}
                 value={todoTimeEnd}/>
             </Time>
-            <BacklogButton
-              isBacklogged={todoDateCurrent === null}
-              onClick={() => {
-                dispatch(updateTodo(todoId, 
-                  { dateCurrent: null, timeStart: null, timeEnd: null },
-                  { dateCurrent: todoDateCurrent, timeStart: todoTimeStart, timeEnd: todoTimeEnd },
-                  true
-                ))
-              }}>
-              <BacklogCheckbox
-                readOnly
-                type="checkbox"
-                checked={todoDateCurrent === null}/>
-                Backlog
-            </BacklogButton>
-          </BottomRow>
+          </RightColumn>
       </TodoSection>
   )
 }
@@ -95,14 +98,15 @@ interface ITodoDateTime {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const BottomRow = styled.div`
-  width: 20rem;
+const RightColumn = styled.div`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `
 
 const Time = styled.div`
+  margin-top: 0.6rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -113,8 +117,9 @@ const TimeSeparator = styled.div`
 `
 
 const BacklogButton = styled.div`
+  margin-bottom: 0.35rem;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   display: flex;
   justify-content: space-around;
   align-items: center;

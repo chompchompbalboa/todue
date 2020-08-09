@@ -10,8 +10,6 @@ import { ITodo } from '@/state/todo/types'
 
 import { updateTodo } from '@/state/todo/actions'
 
-import TodoSection from '@web/Todo/TodoSection'
-
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
@@ -32,8 +30,7 @@ export const TodoDateTime = ({
   ]
 
   return (
-      <TodoSection
-        header="Priority">
+      <Container>
         {priorities.map(priority => (
           <Priority
             key={priority.text}
@@ -48,7 +45,7 @@ export const TodoDateTime = ({
             {priority.text}
           </Priority>
         ))}
-      </TodoSection>
+      </Container>
   )
 }
 
@@ -62,12 +59,23 @@ interface ITodoDateTime {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
+const Container = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+`
+
 const Priority = styled.div`
   cursor: pointer;
+  margin-right: 0.25rem;
   padding: 0.25rem 0.5rem;
   background-color: ${ ({ backgroundColor, isSelected }: IPriority ) => isSelected ? backgroundColor : 'transparent' };
   color: ${ ({ isSelected }: IPriority ) => isSelected ? 'white' : 'black' };
   border-radius: 10px;
+  &:hover {
+    background-color: ${ ({ backgroundColor }: IPriority ) => backgroundColor };
+    color: white;
+  }
 `
 interface IPriority {
   backgroundColor: string

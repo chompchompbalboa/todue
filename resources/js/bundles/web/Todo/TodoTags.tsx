@@ -2,9 +2,7 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-//import { useSelector } from 'react-redux'
 
-//import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
 import TodoSection from '@web/Todo/TodoSection'
@@ -20,7 +18,9 @@ export const TodoTags = ({
 
   return (
       <TodoSection
-        header="Tags">
+        header="Tags"
+        headerMarginBottom="0"
+        marginBottom="0">
         <TodoTagsCreateTodoTag
           todoId={todoId}/>
         <TodoTagsTags 

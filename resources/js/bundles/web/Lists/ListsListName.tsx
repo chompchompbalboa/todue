@@ -26,15 +26,14 @@ export const ListsListName = ({
   
   return (
     <Container>
-      {listName
-        ? <Name
-            isActiveList={isActiveList}
-            onClick={() => dispatch(updateActiveListId(listId))}>
-            {listName}
-          </Name>
-        : <ListsListNameInput
-            listId={listId}/>
-      }
+      <Name
+        isActiveList={isActiveList}
+        onClick={() => dispatch(updateActiveListId(listId))}>
+        {listName
+          ? listName
+          : <ListsListNameInput
+              listId={listId}/>}
+      </Name>
     </Container>
   )
 }
@@ -53,7 +52,7 @@ const Container = styled.div`
 `
                                
 const Name = styled.div`
-  padding: 0.125rem;
+  padding: 0.25rem;
   padding-left: 0.75rem;
   font-size: 1.25rem;
   font-weight: bold;

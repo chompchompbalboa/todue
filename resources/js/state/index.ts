@@ -9,6 +9,7 @@ import sublistTagReducer from '@/state/sublistTag/reducers'
 import listReducer from '@/state/list/reducers'
 import tagReducer from '@/state/tag/reducers'
 import todoReducer from '@/state/todo/reducers'
+import todoNoteReducer from '@/state/todoNote/reducers'
 import todoTagReducer from '@/state/todoTag/reducers'
 
 //-----------------------------------------------------------------------------
@@ -22,6 +23,7 @@ export const appReducer = combineReducers({
   sublistTag: sublistTagReducer,
   tag: tagReducer,
   todo: todoReducer,
+  todoNote: todoNoteReducer,
   todoTag: todoTagReducer,
 })
 

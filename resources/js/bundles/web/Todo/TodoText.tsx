@@ -36,9 +36,12 @@ interface ITodoText {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  position: sticky;
+  top: 0;
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
+  background-color: rgb(252, 252, 252);
 `
 
 export default TodoText

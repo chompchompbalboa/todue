@@ -51,6 +51,7 @@ interface IListsList {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   margin-left: 0.25rem;
+  margin-bottom: 1rem;
 `
 
 const SublistContainer = styled.div`
