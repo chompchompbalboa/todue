@@ -137,9 +137,10 @@ export const createTodo = (
       dispatch(setTodosByListId(nextTodosByListId))
       dispatch(setVisibleTodos(nextVisibleTodos))
       if(!isHistoryStep) {
-        mutation.createTodo(newTodo)
-        newTodoTags.forEach(newTodoTag => {
-          mutation.createTodoTag(newTodoTag)
+        mutation.createTodo(newTodo).then(() => {
+          newTodoTags.forEach(newTodoTag => {
+            mutation.createTodoTag(newTodoTag)
+          })
         })
       }
       else {
