@@ -45,7 +45,7 @@ export type ITodoState = {
   visibleTodos: ITodo['id'][]
 }
 
-export const initialDraftState: ITodoState = {
+export const initialState: ITodoState = {
   allTodos: allTodos,
   todosByListId: todosByListId,
   visibleTodos: []
@@ -54,7 +54,7 @@ export const initialDraftState: ITodoState = {
 //-----------------------------------------------------------------------------
 // Reducers
 //-----------------------------------------------------------------------------
-export const example = (state = initialDraftState, action: ITodoActions): ITodoState => {
+export const example = (state = initialState, action: ITodoActions): ITodoState => {
 	switch (action.type) {
 
     case SET_ALL_TODOS: {
