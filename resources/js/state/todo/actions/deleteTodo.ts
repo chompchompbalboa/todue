@@ -36,7 +36,11 @@ export const deleteTodo = (
 
     const listId = allTodos[todoId].listId
 
-    const nextActiveTodoId = activeTodoId === todoId ? null : activeTodoId
+    const nextActiveTodoId = activeTodoId === todoId 
+      ? visibleTodos[visibleTodos.indexOf(todoId) - 1]
+        ? visibleTodos[visibleTodos.indexOf(todoId) - 1]
+        : null
+      : activeTodoId
     const nextListTodos = (todosByListId[listId] || []).filter(currentTodoId => currentTodoId !== todoId)
     const nextVisibleTodos = visibleTodos.filter(currentTodoId => currentTodoId !== todoId)
     const nextTodosByListId = {
