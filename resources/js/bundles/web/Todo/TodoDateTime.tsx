@@ -31,7 +31,7 @@ export const TodoDateTime = ({
 
   return (
       <TodoSection
-        justifyContent="space-between"
+        justifyContent="space-around"
         header="">
           <Datepicker
             value={todoDateCurrent}
