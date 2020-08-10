@@ -47,7 +47,7 @@ export const TodoDateTime = ({
               isBacklogged={todoDateCurrent === null}
               onClick={() => {
                 dispatch(updateTodo(todoId, 
-                  { dateCurrent: null, timeStart: null, timeEnd: null },
+                  { dateCurrent: todoDateCurrent === null ? moment().format('YYYY-MM-DD HH:mm:ss') : null, timeStart: null, timeEnd: null },
                   { dateCurrent: todoDateCurrent, timeStart: todoTimeStart, timeEnd: todoTimeEnd },
                   true
                 ))
