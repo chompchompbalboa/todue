@@ -18,7 +18,7 @@ export const Datepicker = ({
 }: IDatepickerProps) => {
 
   // State
-  const [ currentMonth, setCurrentMonth ] = useState(moment(value))
+  const [ currentMonth, setCurrentMonth ] = useState(value ? moment(value) : moment())
 
   // Build the array to display the dates
   let currentMonthDatesArray = []
