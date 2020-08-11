@@ -24,7 +24,8 @@ export const Todos = () => {
         {activeListId && 
           <>
             <TodosHeader
-              listId={activeListId}/>
+              listId={activeListId}
+              sublistId={activeSublistId}/>
             <TodosTodos
               listId={activeListId}
               sublistId={activeSublistId}/>

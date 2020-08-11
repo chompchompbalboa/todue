@@ -11,7 +11,6 @@ import { ISublist } from '@/state/sublist/types'
 import { updateActiveSublistId } from '@/state/active/actions'
 
 import ListsListSublistName from '@web/Lists/ListsListSublistName'
-import ListsListSublistSettings from '@web/Lists/ListsListSublistSettings'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -29,8 +28,6 @@ export const ListsListSublist = ({
       isActiveSublist={isActiveSublist}
       onClick={() => dispatch(updateActiveSublistId(sublistId))}>
       <ListsListSublistName
-        sublistId={sublistId}/>
-      <ListsListSublistSettings
         sublistId={sublistId}/>
     </Container>
   )

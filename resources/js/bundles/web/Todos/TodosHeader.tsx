@@ -5,27 +5,37 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
 
-import TodosHeaderListCompletedTodosToggle from '@web/Todos/TodosHeaderListCompletedTodosToggle'
-import TodosHeaderListSettings from '@web/Todos/TodosHeaderListSettings'
-import TodosHeaderListName from '@web/Todos/TodosHeaderListName'
+import TodosHeaderCompletedTodosToggle from '@web/Todos/TodosHeaderCompletedTodosToggle'
+import TodosHeaderSettings from '@web/Todos/TodosHeaderSettings'
+import TodosHeaderName from '@web/Todos/TodosHeaderName'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 export const TodosHeader = ({
-  listId
+  listId,
+  sublistId
 }: ITodosHeader) => {
+  
+  // Is List or Sublist?
+  const isListOrSublist = sublistId === null ? 'LIST' : 'SUBLIST'
+  
   return (
       <Container>
         <NameAndSettings>
-          <TodosHeaderListName />
-          <TodosHeaderListSettings
-            listId={listId}/>
+          <TodosHeaderName
+            listId={listId}
+            sublistId={sublistId}
+            isListOrSublist={isListOrSublist}/>
+          <TodosHeaderSettings
+            listId={listId}
+            sublistId={sublistId}
+            isListOrSublist={isListOrSublist}/>
         </NameAndSettings>
         <Actions>
-          <TodosHeaderListCompletedTodosToggle
-            listId={listId}/>
+          <TodosHeaderCompletedTodosToggle />
         </Actions>
       </Container>
   )
@@ -36,6 +46,7 @@ export const TodosHeader = ({
 //-----------------------------------------------------------------------------
 interface ITodosHeader {
   listId: IList['id']
+  sublistId: ISublist['id']
 }
 
 //-----------------------------------------------------------------------------

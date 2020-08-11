@@ -127,6 +127,7 @@ interface IListTagsDropdown {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   position: relative;
+  z-index: 100;
 `
 
 const StyledInput = styled.input`
