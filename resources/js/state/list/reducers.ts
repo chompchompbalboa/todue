@@ -34,7 +34,7 @@ export type IListState = {
   lists: IList['id'][]
 }
 
-export const initialDraftState: IListState = {
+export const initialState: IListState = {
   allLists: allLists,
   lists: lists
 }
@@ -42,7 +42,7 @@ export const initialDraftState: IListState = {
 //-----------------------------------------------------------------------------
 // Reducers
 //-----------------------------------------------------------------------------
-export const example = (state = initialDraftState, action: IListActions): IListState => {
+export const example = (state = initialState, action: IListActions): IListState => {
 	switch (action.type) {
 
     case SET_ALL_LISTS: {

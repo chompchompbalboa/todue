@@ -20,7 +20,8 @@ export const App = () => {
   useHistory()
 
   return (
-      <Container>
+      <Container
+        data-testid="App">
         <Column 
           backgroundColor="rgb(255, 255, 255)"
           width="20rem">

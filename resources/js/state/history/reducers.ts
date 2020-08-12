@@ -10,7 +10,7 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-export const initialHistoryState: IHistoryState = {
+export const initialState: IHistoryState = {
   previousAction: null,
   currentStep: null,
   steps: []
@@ -24,7 +24,7 @@ export type IHistoryState = {
 //-----------------------------------------------------------------------------
 // Reducers
 //-----------------------------------------------------------------------------
-export const userReducer = (state = initialHistoryState, action: IHistoryActions): IHistoryState => {
+export const userReducer = (state = initialState, action: IHistoryActions): IHistoryState => {
 	switch (action.type) {
 
     case UPDATE_HISTORY: {
