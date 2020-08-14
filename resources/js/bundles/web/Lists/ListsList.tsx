@@ -23,7 +23,8 @@ export const ListsList = ({
   const listSublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId])
   
   return (
-    <Container>
+    <Container
+      data-testid="ListsList">
       <ListsListName
         listId={listId}/>
       <SublistContainer>
