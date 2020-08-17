@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "todue-native",
+    "slug": "todue-native",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./resources/js/bundles/native/assets/icon.png",
+    "splash": {
+      "image": "./resources/js/bundles/native/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./resources/js/bundles/native/assets/favicon.png"
+    }
+  }
+}

@@ -1,12 +1,10 @@
 @extends('layout')
 
-@section('access-token')
-  <meta name="access-token" content="{{ $accessToken }}" />
-@endsection
-
 @section('data')
   <script>
     const initialData = {
+      accessToken: @json($accessToken),
+      csrfToken: @json($csrfToken),
       active: @json($active),
       sublists: @json($sublists),
       sublistTags: @json($sublistTags),

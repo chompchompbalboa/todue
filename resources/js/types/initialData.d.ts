@@ -15,6 +15,8 @@ import { ITodoTag } from '@/state/todoTag/types'
 declare global {
 	const initialData: IInitialData
 	interface IInitialData {
+		accessToken: string
+		csrfToken: string
 		active: IUserActive
 		lists: IList[]
 		sublists: ISublist[] // Only the initially active list sends this

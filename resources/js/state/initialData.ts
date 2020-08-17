@@ -1,4 +1,6 @@
 export const initialData: IInitialData = {
+  accessToken: null,
+  csrfToken: null,
   active: {
     id: null,
     listId: null,
