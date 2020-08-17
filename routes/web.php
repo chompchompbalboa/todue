@@ -51,7 +51,9 @@ Route::group([
 // Site
 //-----------------------------------------------------------------------------
 Route::get('/', function () {
-    return view('site');
+    return view('site')->with([
+        'csrfToken' => csrf_token()
+    ]);
 })->middleware('guest')->name('site');
 
 //-----------------------------------------------------------------------------
