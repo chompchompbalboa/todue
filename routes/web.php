@@ -34,6 +34,7 @@ Route::group([
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
+            'csrfToken' => csrf_token(),
             'active' => $user->active,
             'lists' => $userLists,
             'sublists' => $activeList ? $activeList->sublists()->get() : [],
