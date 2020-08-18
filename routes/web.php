@@ -43,6 +43,7 @@ Route::group([
             'tags' => $activeList ? $activeList->tags()->get() : [],
             'todoNotes' => $activeList ? $activeList->todoNotes()->get() : [],
             'todoTags' => $activeList ? $activeList->todoTags()->get() : [],
+            'user' => $user
         ]);
     })->name('app');
 });

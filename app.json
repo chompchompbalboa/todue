@@ -4,9 +4,9 @@
     "slug": "todue-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./resources/js/bundles/native/assets/icon.png",
+    "icon": "./public/assets/native/icon.png",
     "splash": {
-      "image": "./resources/js/bundles/native/assets/splash.png",
+      "image": "./public/assets/native/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./resources/js/bundles/native/assets/favicon.png"
+      "favicon": "./public/assets/native/favicon.png"
     }
   }
 }

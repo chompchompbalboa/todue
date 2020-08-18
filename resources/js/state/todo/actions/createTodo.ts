@@ -100,7 +100,7 @@ export const createTodo = (
     
     // Get the active sublist's tags
     const sublistTags = activeSublistId
-      ? sublistTagsBySublistId[activeSublistId]
+      ? sublistTagsBySublistId[activeSublistId] || []
       : []
     
     // Get the new todo tags

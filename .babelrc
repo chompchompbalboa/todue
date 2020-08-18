@@ -6,7 +6,9 @@
       "module-resolver",
       {
         "alias": {
-          "@": "./resources/js/"
+          "@": "./resources/js/",
+          "@native": "./resources/js/bundles/native",
+          "@web": "./resources/js/bundles/web"
         }
       }
     ]

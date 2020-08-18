@@ -1,7 +1,7 @@
 {
     "name": "dodate",
     "private": true,
-    "main": "resources/js/bundles/native/AppEntry.js",
+    "main": "resources/js/bundles/native/ExpoEntry.js",
     "scripts": {
         "dev": "npm run development",
         "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",

@@ -13,7 +13,8 @@ export const initialData: IInitialData = {
   tags: [],
   todos: [],
   todoTags: [],
-  todoNotes: []
+  todoNotes: [],
+  user: null
 }
 
 export default initialData

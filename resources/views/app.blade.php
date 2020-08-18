@@ -13,6 +13,7 @@
       tags: @json($tags),
       todoNotes: @json($todoNotes),
       todoTags: @json($todoTags),
+      user: @json($user),
     }
   </script>
 @endsection
