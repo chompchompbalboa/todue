@@ -8,7 +8,7 @@ import thunkMiddleware, { ThunkMiddleware } from 'redux-thunk'
 
 import { appReducer, IAppState } from '@/state'
 
-import App from '@native/App/App'
+import AppRoot from '@native/App/AppRoot'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -19,7 +19,7 @@ const Root = () => {
   
   return (
     <ReduxProvider store={store}>
-      <App />
+      <AppRoot />
     </ReduxProvider>
   )
 }

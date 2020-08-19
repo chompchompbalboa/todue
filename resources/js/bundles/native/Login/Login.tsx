@@ -12,7 +12,8 @@ import LoginSkip from '@native/Login/LoginSkip'
 const Login = () => {
   
   return (
-    <Container>
+    <Container
+      testID="Login">
       <LoginSkip />
     </Container>
   )

@@ -5,5 +5,6 @@ export interface IUser {
 }
 
 export interface IUserUpdates {
+	id?: IUser['id']
   name?: IUser['name']
 }
