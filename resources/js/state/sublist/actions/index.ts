@@ -18,6 +18,7 @@ export type ISublistActions =
 
 export { createSublist } from '@/state/sublist/actions/createSublist'
 export { deleteSublist } from '@/state/sublist/actions/deleteSublist'
+export { loadSublists } from '@/state/sublist/actions/loadSublists'
 export { updateSublist } from '@/state/sublist/actions/updateSublist'
 
 //-----------------------------------------------------------------------------

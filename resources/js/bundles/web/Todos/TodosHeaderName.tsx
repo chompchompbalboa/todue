@@ -44,7 +44,7 @@ export const TodosHeaderListName = ({
     if(activeListName !== localActiveListName) {
       isListOrSublist === 'LIST'
         ? dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
-        : dispatch(updateSublist(listId, { name: localActiveListName }, { name: activeListName }))
+        : dispatch(updateSublist(sublistId, { name: localActiveListName }, { name: activeListName }))
     }
   }
   

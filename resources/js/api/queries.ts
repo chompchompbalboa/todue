@@ -3,9 +3,11 @@
 //-----------------------------------------------------------------------------
 import axios from '@/api/axios'
 
+import { IList } from '@/state/list/types'
+
 //-----------------------------------------------------------------------------
 // Queries
 //-----------------------------------------------------------------------------
-export const exampleQuery = async () => {
-	return axios.get('')
+export const loadList = async (listId: IList['id']) => {
+	return axios.get('/api/list/' + listId)
 }

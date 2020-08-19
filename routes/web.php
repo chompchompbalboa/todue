@@ -30,7 +30,8 @@ Route::group([
         // Get the user's lists
         $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
         // Get the active list
-        $activeList = $user->lists()->first();
+        $activeListId = $user->active->listId ? $user->active->listId : $user->lists()->first()->id;
+        $activeList = TodoList::find($activeListId);
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,

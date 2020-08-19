@@ -60,9 +60,10 @@ export const active = (state = initialState, action: IActiveActions): IActiveSta
     }
 
     case UPDATE_ACTIVE_SUBLIST_ID: {
-      const { nextActiveSublistId } = action
+      const { nextActiveListId, nextActiveSublistId } = action
       return {
         ...state,
+        listId: nextActiveListId,
         sublistId: nextActiveSublistId
       }
     }

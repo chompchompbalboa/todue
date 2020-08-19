@@ -9,6 +9,7 @@ import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
+import { loadList } from '@/state/list/actions'
 import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import TodosTodosCreateTodo from '@web/Todos/TodosTodosCreateTodo'
@@ -26,14 +27,23 @@ export const TodosTodos = ({
 
   // Redux
   const dispatch = useDispatch()
+  const isTodosLoaded = useSelector((state: IAppState) => state.todo.todosLoadedListIds.has(listId))
   const visibleTodos = useSelector((state: IAppState) => state.todo.visibleTodos)
+
+  // Load a list's todos as needed
+  useEffect(() => {
+    if(!isTodosLoaded) {
+      dispatch(loadList(listId))
+    }
+  }, [ isTodosLoaded ])
 
   // Update the visible todos as needed
   useEffect(() => {
     dispatch(refreshVisibleTodos())
-  }, [ listId, sublistId ])
+  }, [ listId, sublistId, isTodosLoaded ])
 
-  return (
+  if(isTodosLoaded) {
+    return (
       <Container>
         {visibleTodos && visibleTodos.map(todoId => {
           if(todoId === 'BACKLOG') {
@@ -61,6 +71,12 @@ export const TodosTodos = ({
         <TodosTodosCreateTodo
           listId={listId}/>
       </Container>
+    )
+  }
+  return (
+    <Container>
+      Loading...
+    </Container>
   )
 }
 

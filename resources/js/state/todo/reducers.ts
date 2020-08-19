@@ -23,6 +23,7 @@ const getInitialState = () => {
   // Variables
   let allTodos: ITodoState['allTodos'] = {}
   let todosByListId: ITodoState['todosByListId'] = {}
+  let todosLoadedListIds: ITodoState['todosLoadedListIds'] = new Set() as Set<string>
   // For each todo
   initialTodoData && initialTodoData.forEach((todo: ITodo) => {
     // All Todos
@@ -35,20 +36,23 @@ const getInitialState = () => {
         todo.id
       ]
     }
+    todosLoadedListIds.add(todo.listId)
   })
-  return { allTodos, todosByListId }
+  return { allTodos, todosByListId, todosLoadedListIds }
 }
-const { allTodos, todosByListId } = getInitialState()
+const { allTodos, todosByListId, todosLoadedListIds } = getInitialState()
 export type ITodoState = {
   allTodos: IAllTodos
   todosByListId: { [listId: string]: ITodo['id'][] }
+  todosLoadedListIds: Set<string>
   visibleTodos: ITodo['id'][]
 }
 
 export const initialState: ITodoState = {
   allTodos: allTodos,
   todosByListId: todosByListId,
-  visibleTodos: []
+  visibleTodos: [],
+  todosLoadedListIds: todosLoadedListIds
 }
 
 //-----------------------------------------------------------------------------

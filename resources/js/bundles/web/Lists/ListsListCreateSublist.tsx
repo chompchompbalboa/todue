@@ -44,7 +44,6 @@ export interface IListsListCreateSublist {
 const Container = styled.div`
   padding-left: 0.75rem;
   font-size: 1.15rem;
-  font-weight: bold;
   cursor: pointer;
 `
 

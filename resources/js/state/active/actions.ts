@@ -82,24 +82,26 @@ export const updateActiveListIdReducer = (nextActiveListId: IList['id']): IActiv
 export const UPDATE_ACTIVE_SUBLIST_ID = 'UPDATE_ACTIVE_SUBLIST_ID'
 interface IUpdateActiveSublistId {
   type: typeof UPDATE_ACTIVE_SUBLIST_ID
+  nextActiveListId: IList['id']
   nextActiveSublistId: ISublist['id']
 }
 
-export const updateActiveSublistId = (nextActiveSublistId: ISublist['id']) => {
+export const updateActiveSublistId = (nextActiveListId: IList['id'], nextActiveSublistId: ISublist['id']) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     const {
       active: {
         id: userActiveId
       }
     } = getState()
-    dispatch(updateActiveSublistIdReducer(nextActiveSublistId))
-    mutation.updateUserActive(userActiveId, { sublistId: nextActiveSublistId })
+    dispatch(updateActiveSublistIdReducer(nextActiveListId, nextActiveSublistId))
+    mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: nextActiveSublistId })
 	}
 }
 
-export const updateActiveSublistIdReducer = (nextActiveSublistId: ISublist['id']): IActiveActions => {
+export const updateActiveSublistIdReducer = (nextActiveListId: IList['id'], nextActiveSublistId: ISublist['id']): IActiveActions => {
 	return {
 		type: UPDATE_ACTIVE_SUBLIST_ID,
+    nextActiveListId,
 		nextActiveSublistId
 	}
 }

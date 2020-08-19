@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
 import { updateActiveSublistId } from '@/state/active/actions'
@@ -16,6 +17,7 @@ import ListsListSublistName from '@web/Lists/ListsListSublistName'
 // Component
 //-----------------------------------------------------------------------------
 export const ListsListSublist = ({
+  listId,
   sublistId
 }: IListsListSublist) => {
   
@@ -26,7 +28,7 @@ export const ListsListSublist = ({
   return (
     <Container
       isActiveSublist={isActiveSublist}
-      onClick={() => dispatch(updateActiveSublistId(sublistId))}>
+      onClick={() => dispatch(updateActiveSublistId(listId, sublistId))}>
       <ListsListSublistName
         sublistId={sublistId}/>
     </Container>
@@ -37,6 +39,7 @@ export const ListsListSublist = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListSublist {
+  listId: IList['id']
   sublistId: ISublist['id']
 }
                                

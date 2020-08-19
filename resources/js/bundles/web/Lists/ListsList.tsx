@@ -31,6 +31,7 @@ export const ListsList = ({
         {listSublists && listSublists.map(sublistId => (
           <ListsListSublist
             key={sublistId}
+            listId={listId}
             sublistId={sublistId}/>
         ))}
         <ListsListCreateSublist

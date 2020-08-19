@@ -46,8 +46,6 @@ const Container = styled.div``
                                
 const Name = styled.div`
   font-size: 1.15rem;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
 `
 
 export default ListsListSublistName

@@ -27,6 +27,7 @@ export const createSublist = (
 
     const {
       active: {
+        listId: activeListId,
         sublistId: activeSublistId
       },
       sublist: {
@@ -57,7 +58,7 @@ export const createSublist = (
     const actions = (isHistoryStep?: boolean) => {
       dispatch(setAllSublists(nextAllSublists))
       dispatch(setSublistsByListId(nextSublistsByListId))
-      dispatch(updateActiveSublistId(newSublist.id))
+      dispatch(updateActiveSublistId(listId, newSublist.id))
       if(isHistoryStep) {
         mutation.restoreListSublist(newSublist.id)
       }
@@ -69,7 +70,7 @@ export const createSublist = (
     const undoActions = () => {
       dispatch(setAllSublists(allSublists))
       dispatch(setSublistsByListId(sublistsByListId))
-      dispatch(updateActiveSublistId(activeSublistId))
+      dispatch(updateActiveSublistId(activeListId, activeSublistId))
       mutation.deleteListSublist(newSublist.id)
     }
 
