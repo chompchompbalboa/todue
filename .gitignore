@@ -20,3 +20,4 @@ public/js/site.js
 .vapor/
 .env.production
 .env.staging
+.expo/packager-info.json

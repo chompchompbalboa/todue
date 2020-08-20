@@ -12,6 +12,7 @@ ISetTodoNotesByTodoId
 
 export { createTodoNote } from '@/state/todoNote/actions/createTodoNote'
 export { deleteTodoNote } from '@/state/todoNote/actions/deleteTodoNote'
+export { loadTodoNotes } from '@/state/todoNote/actions/loadTodoNotes'
 
 //-----------------------------------------------------------------------------
 // Set All Todo Notes

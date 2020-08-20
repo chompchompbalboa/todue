@@ -11,6 +11,7 @@ import {
   IListActions,
   SET_ALL_LISTS,
   SET_LISTS,
+  SET_LOADED_LISTS,
   UPDATE_LIST
 } from '@/state/list/actions'
 
@@ -21,22 +22,25 @@ const initialListData: IList[] = typeof initialData !== 'undefined' ? initialDat
 const getInitialState = () => {
   let allLists: IListState['allLists'] = {}
   let lists: IListState['lists'] = []
+  let loadedLists: IListState['loadedLists'] = new Set()
   initialListData.map(list => {
     allLists[list.id] = list
     lists.push(list.id)
   })
-  return { allLists, lists }
+  return { allLists, lists, loadedLists }
 }
-const { allLists, lists } = getInitialState()
+const { allLists, lists, loadedLists } = getInitialState()
 
 export type IListState = {
   allLists: IAllLists,
   lists: IList['id'][]
+  loadedLists: Set<string>
 }
 
 export const initialState: IListState = {
   allLists: allLists,
-  lists: lists
+  lists: lists,
+  loadedLists: loadedLists
 }
 
 //-----------------------------------------------------------------------------
@@ -58,6 +62,14 @@ export const example = (state = initialState, action: IListActions): IListState 
       return {
         ...state,
         lists: nextLists
+      }
+    }
+
+    case SET_LOADED_LISTS: {
+      const { nextLoadedLists } = action
+      return {
+        ...state,
+        loadedLists: nextLoadedLists
       }
     }
 

@@ -13,7 +13,8 @@ import { updateActiveListId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
 import {
   setAllLists,
-  setLists
+  setLists,
+  setLoadedLists
 } from '@/state/list/actions'
 
 //-----------------------------------------------------------------------------
@@ -28,7 +29,8 @@ export const createList = () => {
       },
       list: {
         allLists,
-        lists
+        lists,
+        loadedLists
       }
     } = getState()
     
@@ -47,6 +49,7 @@ export const createList = () => {
         ...lists
       ]))
       dispatch(updateActiveListId(newList.id))
+      dispatch(setLoadedLists(new Set([ ...loadedLists, newList.id ])))
       if(isHistoryStep) {
         mutation.restoreList(newList.id)
       }
@@ -58,6 +61,7 @@ export const createList = () => {
     const undoActions = () => {
       dispatch(setAllLists(allLists))
       dispatch(setLists(lists))
+      dispatch(setLoadedLists(loadedLists))
       dispatch(updateActiveListId(activeListId))
       mutation.deleteList(newList.id)
     }

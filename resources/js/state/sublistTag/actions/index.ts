@@ -12,6 +12,7 @@ ISetSublistTagsBySublistId
 
 export { createSublistTag } from '@/state/sublistTag/actions/createSublistTag'
 export { deleteSublistTag } from '@/state/sublistTag/actions/deleteSublistTag'
+export { loadSublistTags } from '@/state/sublistTag/actions/loadSublistTags'
 
 //-----------------------------------------------------------------------------
 // Set All Sublist Tags

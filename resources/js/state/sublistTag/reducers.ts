@@ -1,7 +1,6 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import defaultInitialData from '@/state/initialData'
 import { 
   IAllSublistTags,
   ISublistTag
@@ -16,29 +15,14 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialSublistTagData = typeof initialData !== 'undefined' ? initialData.sublistTags : defaultInitialData.sublistTags
-const getInitialState = () => {
-  let allSublistTags: ISublistTagState['allSublistTags'] = {}
-  let sublistTagsBySublistId: ISublistTagState['sublistTagsBySublistId'] = {}
-  initialSublistTagData && initialSublistTagData.forEach((sublistTag: ISublistTag) => {
-    allSublistTags[sublistTag.id] = sublistTag
-    sublistTagsBySublistId = {
-      ...sublistTagsBySublistId,
-      [sublistTag.sublistId]: [ ...sublistTagsBySublistId[sublistTag.sublistId] || [], sublistTag.id ]
-    }
-  })
-  return { allSublistTags, sublistTagsBySublistId }
-}
-const { allSublistTags, sublistTagsBySublistId } = getInitialState()
-
 export type ISublistTagState = {
   allSublistTags: IAllSublistTags
   sublistTagsBySublistId: { [listId: string]: ISublistTag['id'][] }
 }
 
 export const initialState: ISublistTagState = {
-  allSublistTags: allSublistTags,
-  sublistTagsBySublistId: sublistTagsBySublistId
+  allSublistTags: {},
+  sublistTagsBySublistId: {}
 }
 
 //-----------------------------------------------------------------------------

@@ -19,6 +19,7 @@ IUpdateTodo
 
 export { createTodo } from '@/state/todo/actions/createTodo'
 export { deleteTodo } from '@/state/todo/actions/deleteTodo'
+export { loadTodos } from '@/state/todo/actions/loadTodos'
 export { updateTodo } from '@/state/todo/actions/updateTodo'
 
 export { refreshVisibleTodos } from '@/state/todo/actions/refreshVisibleTodos'

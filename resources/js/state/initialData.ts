@@ -8,12 +8,6 @@ export const initialData: IInitialData = {
     isCompletedTodosVisible: false
   },
   lists: [],
-  sublists: [],
-  sublistTags: [],
-  tags: [],
-  todos: [],
-  todoTags: [],
-  todoNotes: [],
   user: null
 }
 

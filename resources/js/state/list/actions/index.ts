@@ -13,6 +13,7 @@ import {
 export type IListActions = 
   ISetAllLists | 
   ISetLists | 
+  ISetLoadedLists |
   IUpdateList
 
 export { createList } from '@/state/list/actions/createList'
@@ -53,7 +54,23 @@ export const setLists = (nextLists: IList['id'][]): IListActions => {
 }
 
 //-----------------------------------------------------------------------------
-// Set Lists
+// Set Loaded Lists
+//-----------------------------------------------------------------------------
+export const SET_LOADED_LISTS = 'SET_LOADED_LISTS'
+interface ISetLoadedLists {
+  type: typeof SET_LOADED_LISTS
+  nextLoadedLists: Set<string>
+}
+
+export const setLoadedLists = (nextLoadedLists: Set<string>): IListActions => {
+	return {
+		type: SET_LOADED_LISTS,
+		nextLoadedLists
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Update List
 //-----------------------------------------------------------------------------
 export const UPDATE_LIST = 'UPDATE_LIST'
 interface IUpdateList {

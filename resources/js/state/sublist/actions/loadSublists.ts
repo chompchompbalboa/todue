@@ -14,7 +14,7 @@ import {
 // Action
 //-----------------------------------------------------------------------------
 export const loadSublists = (
-  sublists: ISublist[]
+  sublists: ISublist[] = []
 ) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
@@ -27,18 +27,18 @@ export const loadSublists = (
     
     let nextAllSublists = { ...allSublists }
     let nextSublistsByListId = { ...sublistsByListId }
-    sublists.map(sublist => {
+    
+    sublists.forEach(sublist => {
       nextAllSublists[sublist.id] = sublist
       nextSublistsByListId = {
         ...nextSublistsByListId,
         [sublist.listId]: [
-          ...(sublistsByListId[sublist.listId] || []),
+          ...(nextSublistsByListId[sublist.listId] || []),
           sublist.id
         ]
       }
     })
-    console.log(nextAllSublists)
-    console.log(nextSublistsByListId)
+
     dispatch(setAllSublists(nextAllSublists))
     dispatch(setSublistsByListId(nextSublistsByListId))
 	}

@@ -1,7 +1,6 @@
 //-----------------------------------------------------------------------------
 // Initial
 //-----------------------------------------------------------------------------
-import defaultInitialData from '@/state/initialData'
 import {
   IAllTodos,
   ITodo
@@ -18,41 +17,16 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialTodoData = typeof initialData !== 'undefined' ? initialData.todos : defaultInitialData.todos
-const getInitialState = () => {
-  // Variables
-  let allTodos: ITodoState['allTodos'] = {}
-  let todosByListId: ITodoState['todosByListId'] = {}
-  let todosLoadedListIds: ITodoState['todosLoadedListIds'] = new Set() as Set<string>
-  // For each todo
-  initialTodoData && initialTodoData.forEach((todo: ITodo) => {
-    // All Todos
-    allTodos[todo.id] = todo
-    // Todos By List Id
-    todosByListId = {
-      ...todosByListId,
-      [todo.listId]: [
-        ...(todosByListId[todo.listId] || []),
-        todo.id
-      ]
-    }
-    todosLoadedListIds.add(todo.listId)
-  })
-  return { allTodos, todosByListId, todosLoadedListIds }
-}
-const { allTodos, todosByListId, todosLoadedListIds } = getInitialState()
 export type ITodoState = {
   allTodos: IAllTodos
   todosByListId: { [listId: string]: ITodo['id'][] }
-  todosLoadedListIds: Set<string>
   visibleTodos: ITodo['id'][]
 }
 
 export const initialState: ITodoState = {
-  allTodos: allTodos,
-  todosByListId: todosByListId,
-  visibleTodos: [],
-  todosLoadedListIds: todosLoadedListIds
+  allTodos: {},
+  todosByListId: {},
+  visibleTodos: []
 }
 
 //-----------------------------------------------------------------------------

@@ -20,12 +20,6 @@ declare global {
 		csrfToken: string
 		active: IUserActive
 		lists: IList[]
-		sublists: ISublist[] // Only the initially active list sends this
-		sublistTags: ISublistTag[] // Only the initially active list sends this
-		todos: ITodo[] // Only the initially active list sends this
-		tags: ITag[] // Only the initially active list sends this
-		todoTags: ITodoTag[] // Only the initially active list sends this
-		todoNotes: ITodoNote[] // Only the initially active list sends this
 		user: IUser
 	}
 }

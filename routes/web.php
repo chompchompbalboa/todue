@@ -29,21 +29,12 @@ Route::group([
         $accessToken = $user->createToken('authToken')->accessToken;
         // Get the user's lists
         $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
-        // Get the active list
-        $activeListId = $user->active->listId ? $user->active->listId : $user->lists()->first()->id;
-        $activeList = TodoList::find($activeListId);
         // Return the view
         return view('app')->with([
             'accessToken' => $accessToken,
             'csrfToken' => csrf_token(),
             'active' => $user->active,
             'lists' => $userLists,
-            'sublists' => $activeList ? $activeList->sublists()->get() : [],
-            'sublistTags' => $activeList ? $activeList->sublistTags()->get() : [],
-            'todos' => $activeList ? $activeList->todos()->get() : [],
-            'tags' => $activeList ? $activeList->tags()->get() : [],
-            'todoNotes' => $activeList ? $activeList->todoNotes()->get() : [],
-            'todoTags' => $activeList ? $activeList->todoTags()->get() : [],
             'user' => $user
         ]);
     })->name('app');

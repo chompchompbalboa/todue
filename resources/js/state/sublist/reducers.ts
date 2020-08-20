@@ -1,7 +1,6 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import defaultInitialData from '@/state/initialData'
 import {
   IAllSublists,
   ISublist
@@ -17,32 +16,14 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialSublistData: ISublist[] = typeof initialData !== 'undefined' ? initialData.sublists : defaultInitialData.sublists
-const getInitialState = () => {
-  let allSublists: ISublistState['allSublists'] = {}
-  let sublistsByListId: ISublistState['sublistsByListId'] = {}
-  initialSublistData.map(sublist => {
-    allSublists[sublist.id] = sublist
-    sublistsByListId = {
-      ...sublistsByListId,
-      [sublist.listId]: [
-        ...(sublistsByListId[sublist.listId] || []),
-        sublist.id
-      ]
-    }
-  })
-  return { allSublists, sublistsByListId }
-}
-const { allSublists, sublistsByListId } = getInitialState()
-
 export type ISublistState = {
   allSublists: IAllSublists
   sublistsByListId: { [listId: string]: ISublist['id'][] }
 }
 
 export const initialState: ISublistState = {
-  allSublists,
-  sublistsByListId
+  allSublists: {},
+  sublistsByListId: {}
 }
 
 //-----------------------------------------------------------------------------

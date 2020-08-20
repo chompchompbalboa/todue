@@ -1,7 +1,6 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import defaultInitialData from '@/state/initialData'
 import { 
   IAllTodoNotes,
   ITodoNote
@@ -16,29 +15,14 @@ import {
 //-----------------------------------------------------------------------------
 // Initial State
 //-----------------------------------------------------------------------------
-const initialTodoNoteData = typeof initialData !== 'undefined' ? initialData.todoNotes : defaultInitialData.todoNotes
-const getInitialState = () => {
-  let allTodoNotes: ITodoNoteState['allTodoNotes'] = {}
-  let todoNotesByTodoId: ITodoNoteState['todoNotesByTodoId'] = {}
-  initialTodoNoteData && initialTodoNoteData.forEach((todoNote: ITodoNote) => {
-    allTodoNotes[todoNote.id] = todoNote
-    todoNotesByTodoId = {
-      ...todoNotesByTodoId,
-      [todoNote.todoId]: [ ...todoNotesByTodoId[todoNote.todoId] || [], todoNote.id ]
-    }
-  })
-  return { allTodoNotes, todoNotesByTodoId }
-}
-const { allTodoNotes, todoNotesByTodoId } = getInitialState()
-
 export type ITodoNoteState = {
   allTodoNotes: IAllTodoNotes
   todoNotesByTodoId: { [todoId: string]: ITodoNote['id'][] }
 }
 
 export const initialState: ITodoNoteState = {
-  allTodoNotes: allTodoNotes,
-  todoNotesByTodoId: todoNotesByTodoId
+  allTodoNotes: {},
+  todoNotesByTodoId: {}
 }
 
 //-----------------------------------------------------------------------------

@@ -12,6 +12,7 @@ ISetTodoTagsByTodoId
 
 export { createTodoTag } from '@/state/todoTag/actions/createTodoTag'
 export { deleteTodoTag } from '@/state/todoTag/actions/deleteTodoTag'
+export { loadTodoTags } from '@/state/todoTag/actions/loadTodoTags'
 
 //-----------------------------------------------------------------------------
 // Set All Todo Tags
