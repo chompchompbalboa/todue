@@ -80,6 +80,11 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
       visibleTodos.push(todo.id)
     })
   })
+
+  // If there are no visible todos, return a header with the current date
+  if(visibleTodos.length === 0) {
+    return [ moment().format('YYYY-MM-DD') ]
+  }
   
   return visibleTodos
 }
