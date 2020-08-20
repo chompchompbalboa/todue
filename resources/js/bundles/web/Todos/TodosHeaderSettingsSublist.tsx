@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import { ISublist } from '@/state/sublist/types'
 
+import TodosHeaderSettingsSublistDeleteSublist from '@web/Todos/TodosHeaderSettingsSublistDeleteSublist'
 import TodosHeaderSettingsSublistTags from '@web/Todos/TodosHeaderSettingsSublistTags'
 
 //-----------------------------------------------------------------------------
@@ -18,6 +19,8 @@ export const TodosHeaderSettingsSublist = ({
   return (
     <Container>
       <TodosHeaderSettingsSublistTags
+        sublistId={sublistId}/>
+      <TodosHeaderSettingsSublistDeleteSublist
         sublistId={sublistId}/>
     </Container>
   )
@@ -36,7 +39,6 @@ interface ITodosHeaderSettingsSublist {
 const Container = styled.div`
   width: 100%;
   position: relative;
-  display: flex;
 `
 
 export default TodosHeaderSettingsSublist
