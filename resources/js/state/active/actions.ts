@@ -56,6 +56,7 @@ interface IUpdateActiveListId {
   nextActiveListId: IList['id']
 }
 
+let updateActiveListIdMutationTimeout: any = null
 export const updateActiveListId = (nextActiveListId: IList['id']) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     const {
@@ -63,8 +64,12 @@ export const updateActiveListId = (nextActiveListId: IList['id']) => {
         id: userActiveId
       }
     } = getState()
+    clearTimeout(updateActiveListIdMutationTimeout)
+    clearTimeout(updateActiveSublistIdMutationTimeout)
     dispatch(updateActiveListIdReducer(nextActiveListId))
-    mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: null })
+    updateActiveListIdMutationTimeout = setTimeout(() => {
+      mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: null })
+    }, 10000)
 	}
 }
 
@@ -86,6 +91,7 @@ interface IUpdateActiveSublistId {
   nextActiveSublistId: ISublist['id']
 }
 
+let updateActiveSublistIdMutationTimeout: any = null
 export const updateActiveSublistId = (nextActiveListId: IList['id'], nextActiveSublistId: ISublist['id']) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     const {
@@ -93,8 +99,12 @@ export const updateActiveSublistId = (nextActiveListId: IList['id'], nextActiveS
         id: userActiveId
       }
     } = getState()
+    clearTimeout(updateActiveListIdMutationTimeout)
+    clearTimeout(updateActiveSublistIdMutationTimeout)
     dispatch(updateActiveSublistIdReducer(nextActiveListId, nextActiveSublistId))
-    mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: nextActiveSublistId })
+    updateActiveSublistIdMutationTimeout = setTimeout(() => {
+      mutation.updateUserActive(userActiveId, { listId: nextActiveListId, sublistId: nextActiveSublistId })
+    }, 10000)
 	}
 }
 

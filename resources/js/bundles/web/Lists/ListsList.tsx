@@ -20,6 +20,7 @@ export const ListsList = ({
 }: IListsList) => {
   
   // Redux
+  const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
   const listSublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId])
   
   return (
@@ -27,16 +28,18 @@ export const ListsList = ({
       data-testid="ListsList">
       <ListsListName
         listId={listId}/>
-      <SublistContainer>
-        {listSublists && listSublists.map(sublistId => (
-          <ListsListSublist
-            key={sublistId}
-            listId={listId}
-            sublistId={sublistId}/>
-        ))}
-        <ListsListCreateSublist
-          listId={listId}/>
-      </SublistContainer>
+      {isListLoaded &&
+        <SublistContainer>
+          {listSublists && listSublists.map(sublistId => (
+            <ListsListSublist
+              key={sublistId}
+              listId={listId}
+              sublistId={sublistId}/>
+          ))}
+          <ListsListCreateSublist
+            listId={listId}/>
+        </SublistContainer>
+      }
     </Container>
   )
 }
