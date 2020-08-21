@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -23,12 +23,18 @@ export const ListsList = ({
   const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
   const listSublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId])
   
+  // State
+  const [ isSublistsVisible, setIsSublistsVisible ] = useState(true)
+  
   return (
     <Container
       data-testid="ListsList">
       <ListsListName
-        listId={listId}/>
-      {isListLoaded &&
+        listId={listId}
+        isListLoaded={isListLoaded}
+        isSublistsVisible={isSublistsVisible}
+        setIsSublistsVisible={setIsSublistsVisible}/>
+      {isListLoaded && isSublistsVisible && 
         <SublistContainer>
           {listSublists && listSublists.map(sublistId => (
             <ListsListSublist
@@ -60,7 +66,7 @@ const Container = styled.div`
 `
 
 const SublistContainer = styled.div`
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 `
 
 export default ListsList

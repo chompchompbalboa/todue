@@ -5,18 +5,24 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { CHEVRON_DOWN, CHEVRON_RIGHT } from '@/assets/icons'
+
 import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
 import { updateActiveListId } from '@/state/active/actions'
 
+import Icon from '@/components/Icon'
 import ListsListNameInput from '@web/Lists/ListsListNameInput'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 export const ListsListName = ({
-  listId
+  listId,
+  isListLoaded,
+  isSublistsVisible,
+  setIsSublistsVisible
 }: IListsListName) => {
   
   // Redux
@@ -28,7 +34,15 @@ export const ListsListName = ({
     <Container>
       <Name
         isActiveList={isActiveList}
-        onClick={() => dispatch(updateActiveListId(listId))}>
+        onClick={() => {
+          dispatch(updateActiveListId(listId))
+          isListLoaded && isActiveList && setIsSublistsVisible(!isSublistsVisible)
+        }}>
+        <IconContainer>
+          <Icon
+            icon={isListLoaded && isSublistsVisible ? CHEVRON_DOWN : CHEVRON_RIGHT}
+            size="0.75rem"/>
+        </IconContainer>
         {listName
           ? listName
           : <ListsListNameInput
@@ -43,6 +57,9 @@ export const ListsListName = ({
 //-----------------------------------------------------------------------------
 interface IListsListName {
   listId: IList['id']
+  isListLoaded: boolean
+  isSublistsVisible: boolean
+  setIsSublistsVisible(nextIsSublistsVisible: boolean): void
 }
 //-----------------------------------------------------------------------------
 // Styled Components
@@ -51,9 +68,14 @@ const Container = styled.div`
   cursor: pointer;
 `
                                
+const IconContainer = styled.div`
+  margin-right: 0.25rem;
+`
+                               
 const Name = styled.div`
   padding: 0.25rem;
   padding-left: 0.75rem;
+  display: flex;
   font-size: 1.25rem;
   font-weight: bold;
   background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(235, 235, 235)' : 'transparent' };
