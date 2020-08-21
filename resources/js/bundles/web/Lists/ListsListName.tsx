@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -29,13 +29,20 @@ export const ListsListName = ({
   const dispatch = useDispatch()
   const isActiveList = useSelector((state: IAppState) => state.active.listId === listId && state.active.sublistId === null)
   const listName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
+                               
+  // Show the sublists when the list newly active
+  useEffect(() => {
+    if(isActiveList && !isSublistsVisible) {
+      setIsSublistsVisible(true)
+    }
+  }, [ isActiveList ])
   
   return (
     <Container>
       <Name
         isActiveList={isActiveList}
         onClick={() => {
-          dispatch(updateActiveListId(listId))
+          !isActiveList && dispatch(updateActiveListId(listId))
           isListLoaded && isActiveList && setIsSublistsVisible(!isSublistsVisible)
         }}>
         <IconContainer>
