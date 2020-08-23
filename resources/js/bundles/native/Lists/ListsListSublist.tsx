@@ -50,7 +50,8 @@ const Container = styled.View``
 
 const SublistNameTouchable = styled.TouchableWithoutFeedback``
 const SublistName = styled.Text`
-  font-size: 24px;
+  font-size: 22px;
+  font-family: OpenSans_400Regular;
 `
 
 export default ListsListSublist

@@ -30,8 +30,12 @@ const Todos = () => {
     dispatch(refreshVisibleTodos())
   }, [ activeListId, activeSublistId, isActiveListLoaded ])
 
+  // Sticky header indices
+  const stickyHeaderIndices = visibleTodos.map((todoId, index) => todoId.length <= 10 ? index : null).filter(index => index !== null)
+
   return (
-    <Container>
+    <Container
+      stickyHeaderIndices={stickyHeaderIndices}>
       {visibleTodos && visibleTodos.map(todoId => {
         if(todoId === 'BACKLOG') {
           return (
@@ -62,9 +66,9 @@ const Todos = () => {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View`
+const Container = styled.ScrollView`
   height: 100%;
-  padding: 10px 20px;
+  padding: 0 20px;
   display: flex;
   background-color: rgb(240, 240, 240);
   border-top-left-radius: 20px;

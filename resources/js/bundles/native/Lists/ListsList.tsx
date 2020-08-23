@@ -89,8 +89,8 @@ const ListName = styled.View`
 
 const ListNameText = styled.Text`
   margin-left: 5px;
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 24px;
+  font-family: OpenSans_700Bold;
 `
 
 const Sublists = styled.View`

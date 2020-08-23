@@ -57,6 +57,7 @@
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@babel/plugin-syntax-class-properties": "^7.10.4",
+    "@expo-google-fonts/dev": "^0.1.0",
     "@react-native-community/async-storage": "~1.11.0",
     "@types/randomcolor": "^0.5.5",
     "@types/react-input-autosize": "^2.0.2",

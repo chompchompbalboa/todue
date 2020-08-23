@@ -55,7 +55,7 @@ const Lists = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 10px 20px;
+  padding: 7px 10px;
   background-color: white;
 `
 
@@ -68,13 +68,13 @@ const ActiveList = styled.View`
 
 const ActiveListName = styled.Text`
   margin-left: 10px;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: bold;
 `
 
 const ListsContainer = styled.View`
   display: ${ ({ isListsVisible }: IListsContainer) => isListsVisible ? 'flex' : 'none' };
-  padding: 10px;
+  padding: 5px 10px;
 `
 interface IListsContainer {
   isListsVisible: boolean

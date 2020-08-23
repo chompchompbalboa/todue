@@ -2,11 +2,12 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
-import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
+
+import TodosTodoCompleted from '@native/Todos/TodosTodoCompleted'
+import TodosTodoText from '@native/Todos/TodosTodoText'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -14,15 +15,14 @@ import { ITodo } from '@/state/todo/types'
 const TodosTodo = ({
   todoId
 }: ITodosTodo) => {
-
-  // Redux
-  const todo = useSelector((state: IAppState) => state.todo.allTodos[todoId])
-
   return (
     <Container>
-      <Text>{todo.text}</Text>
+      <TodosTodoCompleted
+        todoId={todoId}/>
+      <TodosTodoText
+        todoId={todoId}/>
     </Container>
-  );
+  )
 }
 
 //-----------------------------------------------------------------------------
@@ -36,11 +36,10 @@ interface ITodosTodo {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  margin-bottom: 2px;
-`
-
-const Text = styled.Text`
-  font-size: 20px;
+  margin-bottom: 7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
 
 export default TodosTodo
