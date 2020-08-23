@@ -6,5 +6,6 @@ export interface IUser {
 
 export interface IUserUpdates {
 	id?: IUser['id']
+  email?: IUser['email']
   name?: IUser['name']
 }

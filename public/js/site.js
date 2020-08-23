@@ -893,7 +893,7 @@ eval("\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexport
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/cabox/workspace/resources/js/bundles/web/Site.tsx */"./resources/js/bundles/web/Site.tsx");
+module.exports = __webpack_require__(/*! /Users/rocky/Library/Mobile Documents/com~apple~CloudDocs/dev/active/sites/todue/resources/js/bundles/web/Site.tsx */"./resources/js/bundles/web/Site.tsx");
 
 
 /***/ })

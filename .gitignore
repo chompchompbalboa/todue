@@ -21,3 +21,5 @@ public/js/site.js
 .env.production
 .env.staging
 .expo/packager-info.json
+
+**/*/.DS_Store

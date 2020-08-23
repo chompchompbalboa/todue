@@ -19,6 +19,7 @@ export type IListActions =
 export { createList } from '@/state/list/actions/createList'
 export { deleteList } from '@/state/list/actions/deleteList'
 export { loadList } from '@/state/list/actions/loadList'
+export { loadLists } from '@/state/list/actions/loadLists'
 export { updateList } from '@/state/list/actions/updateList'
 
 //-----------------------------------------------------------------------------

@@ -32,7 +32,7 @@ const getInitialState = () => {
 const { allLists, lists, loadedLists } = getInitialState()
 
 export type IListState = {
-  allLists: IAllLists,
+  allLists: IAllLists
   lists: IList['id'][]
   loadedLists: Set<string>
 }

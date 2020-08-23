@@ -6,6 +6,13 @@ import axios from '@/api/axios'
 import { IList } from '@/state/list/types'
 
 //-----------------------------------------------------------------------------
+// Intial Data
+//-----------------------------------------------------------------------------
+export const loadInitialData = async () => {
+	return axios.get('/api/initial-data')
+}
+
+//-----------------------------------------------------------------------------
 // Queries
 //-----------------------------------------------------------------------------
 export const loadList = async (listId: IList['id']) => {

@@ -5,6 +5,7 @@ import { mutation } from '@/api'
 
 import { IAppState } from '@/state'
 import { IThunkDispatch } from '@/state/types'
+import { IActiveState } from '@/state/active/reducers'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 import { ITodo } from '@/state/todo/types'
@@ -13,10 +14,27 @@ import { ITodo } from '@/state/todo/types'
 // Exports
 //-----------------------------------------------------------------------------
 export type IActiveActions = 
+  ILoadActive |
   IUpdateActiveIsCompletedTodosVisible |
 	IUpdateActiveListId | 
 	IUpdateActiveSublistId |
   IUpdateActiveTodoId
+
+//-----------------------------------------------------------------------------
+// Load Active
+//-----------------------------------------------------------------------------
+export const LOAD_ACTIVE = 'LOAD_ACTIVE'
+interface ILoadActive {
+  type: typeof LOAD_ACTIVE
+  nextActive: IActiveState
+}
+
+export const loadActive = (nextActive: IActiveState): IActiveActions => {
+  return {
+    type: LOAD_ACTIVE,
+    nextActive
+  }
+}
 
 //-----------------------------------------------------------------------------
 // Update Active Is Completed Todos Visible

@@ -1,26 +1,39 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
-import { useSelector } from 'react-redux'
-
-import { IAppState } from '@/state'
+import React, { useEffect, useState } from 'react'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import App from '@native/App/App'
-import Login from '@native/Login/Login'
+import Authentication from '@native/Authentication/Authentication'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 const AppRoot = () => {
 
-  // Redux
-  const isUserLoggedIn = useSelector((state: IAppState) => state.user !== null)
-  
-  if(isUserLoggedIn) {
-    return <App />
-  }
-  return <Login />
+  // State
+  const [ isUserLoggedIn, setIsUserLoggedIn ] = useState(false)
+
+  // If there's an access token stored, the user is logged in
+  useEffect(() => {
+    async function getToken() {
+      const token = await AsyncStorage.getItem('@todue/accessToken')
+      if(token) {
+        setIsUserLoggedIn(true)
+      }
+    }
+    getToken()
+  }, [])
+
+  return (
+    <SafeAreaView>
+      {isUserLoggedIn
+        ? <App />
+        : <Authentication />}
+    </SafeAreaView>
+  )
 }
 
 export default AppRoot

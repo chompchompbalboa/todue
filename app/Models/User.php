@@ -13,9 +13,9 @@ class User extends Authenticatable
     use Notifiable;
     use Traits\UsesUuid;
 
+    protected $visible = [ 'id', 'name', 'email' ];
     protected $fillable = [ 'name', 'email', 'password' ];
     protected $hidden = [ 'password', 'remember_token' ];
-    protected $with = [ 'active' ];
 
     protected $casts = [ 'email_verified_at' => 'datetime' ];
   

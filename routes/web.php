@@ -13,28 +13,12 @@ Route::group([
     'middleware' => [ 'auth' ]
 ], function () {
     Route::get('/', function () {
-        // Get the user
         $user = Auth::user();
-        if(is_null($user->active)) {
-          $user->active()->create([
-            'id' => Str::uuid()->toString(),
-            'userId' => $user->id,
-            'listId' => null,
-            'sublistId' => null,
-            'todoId' => null,
-            'isCompletedTodosVisible' => false
-          ]);
-        }
-        // Create an api access token for the user
-        $accessToken = $user->createToken('authToken')->accessToken;
-        // Get the user's lists
-        $userLists = $user->lists()->orderBy('updatedAt', 'desc')->get();
-        // Return the view
         return view('app')->with([
-            'accessToken' => $accessToken,
+            'accessToken' => $user->createToken('authToken')->accessToken,
             'csrfToken' => csrf_token(),
-            'active' => $user->active,
-            'lists' => $userLists,
+            'active' => $user->active()->first(),
+            'lists' => $user->lists()->orderBy('updatedAt', 'desc')->get(),
             'user' => $user
         ]);
     })->name('app');

@@ -10,6 +10,7 @@ import { ITodo } from '@/state/todo/types'
 
 import { 
   IActiveActions,
+  LOAD_ACTIVE,
   UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE,
   UPDATE_ACTIVE_LIST_ID,
   UPDATE_ACTIVE_SUBLIST_ID,
@@ -41,6 +42,14 @@ export const initialState: IActiveState = {
 //-----------------------------------------------------------------------------
 export const active = (state = initialState, action: IActiveActions): IActiveState => {
 	switch (action.type) {
+
+    case LOAD_ACTIVE: {
+      const { nextActive } = action
+      return {
+        ...nextActive,
+        todoId: null
+      }
+    }
 
     case UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE: {
       const { nextActiveIsCompletedTodosVisible } = action
