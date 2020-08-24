@@ -2,30 +2,25 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
+import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
-
-import TodosTodoCompleted from '@native/Todos/TodosTodoCompleted'
-import TodosTodoOpenTodoButton from '@native/Todos/TodosTodoOpenTodoButton'
-import TodosTodoText from '@native/Todos/TodosTodoText'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosTodo = ({
-  todoId,
-  setIsTodoVisible
-}: ITodosTodo) => {
+const TodoText = ({
+  todoId
+}: ITodoComponent) => {
+
+  // Redux
+  const todoText = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.text)
+
   return (
     <Container>
-      <TodosTodoCompleted
-        todoId={todoId}/>
-      <TodosTodoText
-        todoId={todoId}/>
-      <TodosTodoOpenTodoButton
-        todoId={todoId}
-        setIsTodoVisible={setIsTodoVisible}/>
+      <Text>{todoText}</Text>
     </Container>
   )
 }
@@ -33,20 +28,19 @@ const TodosTodo = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosTodo {
+interface ITodoComponent {
   todoId: ITodo['id']
-  setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  margin-bottom: 7px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 `
 
-export default TodosTodo
+const Text = styled.Text``
+
+export default TodoText

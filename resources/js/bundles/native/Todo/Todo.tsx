@@ -2,30 +2,33 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
-import { ITodo } from '@/state/todo/types'
+import { IAppState } from '@/state'
 
-import TodosTodoCompleted from '@native/Todos/TodosTodoCompleted'
-import TodosTodoOpenTodoButton from '@native/Todos/TodosTodoOpenTodoButton'
-import TodosTodoText from '@native/Todos/TodosTodoText'
+import TodoText from '@native/Todo/TodoText'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosTodo = ({
-  todoId,
+const Todo = ({
   setIsTodoVisible
-}: ITodosTodo) => {
+}: ITodoComponent) => {
+
+  // Redux
+  const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
+
   return (
     <Container>
-      <TodosTodoCompleted
-        todoId={todoId}/>
-      <TodosTodoText
-        todoId={todoId}/>
-      <TodosTodoOpenTodoButton
-        todoId={todoId}
-        setIsTodoVisible={setIsTodoVisible}/>
+      <CloseTodoTouchable
+        onPress={() => setIsTodoVisible(false)}>
+        <CloseTodo />
+      </CloseTodoTouchable>
+      <TodoDetails>
+        <TodoText
+          todoId={activeTodoId}/>
+      </TodoDetails>
     </Container>
   )
 }
@@ -33,8 +36,7 @@ const TodosTodo = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosTodo {
-  todoId: ITodo['id']
+interface ITodoComponent {
   setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
@@ -42,11 +44,24 @@ interface ITodosTodo {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  margin-bottom: 7px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 `
 
-export default TodosTodo
+const CloseTodoTouchable = styled.TouchableWithoutFeedback``
+const CloseTodo = styled.View`
+  height: 25%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+`
+
+const TodoDetails = styled.View`
+  height: 75%;
+  width: 100%;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`
+
+export default Todo

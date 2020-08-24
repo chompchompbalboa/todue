@@ -46,7 +46,9 @@ const TodosTodoText = ({
       multiline
       onBlur={() => {
         if(textInputValue) {
-          dispatch(updateTodo(todoId, { text: textInputValue }))
+          if(textInputValue !== todoText) {
+            dispatch(updateTodo(todoId, { text: textInputValue }))
+          }
         }
         else {
           dispatch(deleteTodo(todoId))
@@ -61,9 +63,11 @@ const TodosTodoText = ({
       onSubmitEditing={() => {
         if(textInputValue) {
           dispatch(createTodo(todoListId, todoId))
-          setTimeout(() => {
-            dispatch(updateTodo(todoId, { text: textInputValue }))
-          }, 100)
+          if(textInputValue !== todoText) {
+            setTimeout(() => {
+              dispatch(updateTodo(todoId, { text: textInputValue }))
+            }, 100)
+          }
         }
         else {
           dispatch(deleteTodo(todoId))

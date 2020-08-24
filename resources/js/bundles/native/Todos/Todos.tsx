@@ -16,7 +16,9 @@ import TodosTodo from '@native/Todos/TodosTodo'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const Todos = () => {
+const Todos = ({
+  setIsTodoVisible
+}: ITodos) => {
 
   // Redux
   const dispatch = useDispatch()
@@ -55,12 +57,20 @@ const Todos = () => {
           return (
             <TodosTodo 
               key={todoId}
-              todoId={todoId}/>
+              todoId={todoId}
+              setIsTodoVisible={setIsTodoVisible}/>
           )
         }
       })}
     </Container>
   );
+}
+
+//-----------------------------------------------------------------------------
+// Props
+//-----------------------------------------------------------------------------
+interface ITodos {
+  setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------

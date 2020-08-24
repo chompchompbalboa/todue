@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -15,6 +15,7 @@ import { loadActive } from '@/state/active/actions'
 import { loadList, loadLists } from '@/state/list/actions'
 
 import Lists from '@native/Lists/Lists'
+import Todo from '@native/Todo/Todo'
 import Todos from '@native/Todos/Todos'
 
 //-----------------------------------------------------------------------------
@@ -25,8 +26,12 @@ const App = () => {
   // Redux
   const dispatch = useDispatch()
   const activeListId = useSelector((state: IAppState) => state.active.listId)
+  const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
   const isInitialDataLoaded = useSelector((state: IAppState) => state.active.listId !== null)
   const isActiveListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(state.active.listId))
+
+  // State
+  const [ isTodoVisible, setIsTodoVisible ] = useState(false)
 
   // Load the active list as needed
   useEffect(() => {
@@ -46,7 +51,12 @@ const App = () => {
   return (
     <Container>
       {isInitialDataLoaded && <Lists />}
-      {isActiveListLoaded && <Todos />}
+      {isActiveListLoaded && 
+        <Todos
+          setIsTodoVisible={setIsTodoVisible}/>}
+      {isTodoVisible && activeTodoId && 
+        <Todo
+          setIsTodoVisible={setIsTodoVisible}/>}
     </Container>
   )
 }

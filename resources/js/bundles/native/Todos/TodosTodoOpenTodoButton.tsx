@@ -2,30 +2,42 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
 import { ITodo } from '@/state/todo/types'
 
-import TodosTodoCompleted from '@native/Todos/TodosTodoCompleted'
-import TodosTodoOpenTodoButton from '@native/Todos/TodosTodoOpenTodoButton'
-import TodosTodoText from '@native/Todos/TodosTodoText'
+import { Ionicons } from '@expo/vector-icons'
+
+import { updateActiveTodoId } from '@/state/active/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosTodo = ({
+const TodosTodoOpenTodoButton = ({ 
   todoId,
   setIsTodoVisible
-}: ITodosTodo) => {
+}: IProps) => {
+
+  // Redux
+  const dispatch = useDispatch()
+
   return (
     <Container>
-      <TodosTodoCompleted
-        todoId={todoId}/>
-      <TodosTodoText
-        todoId={todoId}/>
-      <TodosTodoOpenTodoButton
-        todoId={todoId}
-        setIsTodoVisible={setIsTodoVisible}/>
+      <OpenTodoTouchable
+        onPress={() => {
+          dispatch(updateActiveTodoId(todoId))
+          setIsTodoVisible(true)
+        }}>
+        <OpenTodo>
+          <IconContainer>
+            <Ionicons 
+              name="ios-more" 
+              size={24} 
+              color="rgb(150, 150, 150)" />
+          </IconContainer>
+        </OpenTodo>
+      </OpenTodoTouchable>
     </Container>
   )
 }
@@ -33,7 +45,7 @@ const TodosTodo = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosTodo {
+interface IProps {
   todoId: ITodo['id']
   setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
@@ -41,12 +53,17 @@ interface ITodosTodo {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View`
-  margin-bottom: 7px;
-  display: flex;
+const Container = styled.View``
+
+const OpenTodoTouchable = styled.TouchableWithoutFeedback``
+const OpenTodo = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 `
 
-export default TodosTodo
+const IconContainer = styled.View`
+  margin-left: 10px;
+`
+
+export default TodosTodoOpenTodoButton
