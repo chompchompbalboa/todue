@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
 import ListsListSublistNameInput from '@web/Lists/ListsListSublistNameInput'
@@ -14,6 +15,7 @@ import ListsListSublistNameInput from '@web/Lists/ListsListSublistNameInput'
 // Component
 //-----------------------------------------------------------------------------
 export const ListsListSublistName = ({
+  listId,
   sublistId
 }: IListsListSublistName) => {
   
@@ -27,6 +29,7 @@ export const ListsListSublistName = ({
             {listName}
           </Name>
         : <ListsListSublistNameInput
+            listId={listId}
             sublistId={sublistId}/>
       }
     </Container>
@@ -37,6 +40,7 @@ export const ListsListSublistName = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListSublistName {
+  listId: IList['id']
   sublistId: ISublist['id']
 }
 //-----------------------------------------------------------------------------

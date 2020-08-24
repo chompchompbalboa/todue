@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
 import {
+  createSublistDefaultTag,
   deleteSublist,
   updateSublist
 } from '@/state/sublist/actions'
@@ -17,6 +19,7 @@ import {
 // Component
 //-----------------------------------------------------------------------------
 export const ListsListSublistNameInput = ({
+  listId,
   sublistId
 }: IListsListSublistNameInput) => {
   
@@ -34,6 +37,9 @@ export const ListsListSublistNameInput = ({
     }
     else if(sublistName !== localSublistName) {
       dispatch(updateSublist(sublistId, { name: localSublistName }, { name: sublistName }))
+      if(sublistName === null) { // If we just created the sublist, create its default tag as well
+        dispatch(createSublistDefaultTag(listId, sublistId, localSublistName))
+      }
     }
   }
                                
@@ -58,6 +64,7 @@ export const ListsListSublistNameInput = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListSublistNameInput {
+  listId: IList['id']
   sublistId: ISublist['id']
 }
 //-----------------------------------------------------------------------------

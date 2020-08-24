@@ -39,7 +39,8 @@ export const createSublist = (
     const newSublist: ISublist = {
       id: createUuid(),
       listId: listId,
-      name: null
+      name: null,
+      defaultTagId: null
     }
 
     const nextAllSublists = {

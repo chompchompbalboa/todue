@@ -15,6 +15,6 @@ class TodoListSublist extends Model
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
-    protected $visible = [ 'id', 'listId', 'name' ];
-    protected $fillable = [ 'id', 'listId', 'name' ];
+    protected $visible = [ 'id', 'listId', 'name', 'defaultTagId' ];
+    protected $fillable = [ 'id', 'listId', 'name', 'defaultTagId' ];
 }

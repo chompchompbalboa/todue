@@ -24,7 +24,9 @@ export const TodosHeaderSettingsSublistTagsTag = ({
   // Redux
   const dispatch = useDispatch()
   const tagId = useSelector((state: IAppState) => state.sublistTag.allSublistTags[sublistTagId]?.tagId)
+  const isSublistDefaultTag = useSelector((state: IAppState) => state.sublist.allSublists[sublistId]?.defaultTagId === tagId)
 
+  // Handle Delete
   const handleDelete = () => {
     setTimeout(() => {
       dispatch(deleteSublistTag(sublistId, sublistTagId))
@@ -35,7 +37,7 @@ export const TodosHeaderSettingsSublistTagsTag = ({
   return (
     <Tag
       tagId={tagId}
-      handleDelete={handleDelete}/>
+      handleDelete={isSublistDefaultTag ? null : handleDelete}/>
   )
 }
 

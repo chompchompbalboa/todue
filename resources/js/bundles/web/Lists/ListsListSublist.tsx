@@ -30,6 +30,7 @@ export const ListsListSublist = ({
       isActiveSublist={isActiveSublist}
       onClick={() => dispatch(updateActiveSublistId(listId, sublistId))}>
       <ListsListSublistName
+        listId={listId}
         sublistId={sublistId}/>
     </Container>
   )

@@ -21,6 +21,9 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
       listId: activeListId,
       sublistId: activeSublistId
     },
+    sublist: {
+      allSublists
+    },
     sublistTag: {
       allSublistTags,
       sublistTagsBySublistId
@@ -34,13 +37,23 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
       todoTagsByTodoId
     }
   } = getState()
+  
+  // Set the value to return if there are no visible todos
+  const defaultReturnValue = [ moment().format('YYYY-MM-DD') ]
 
   // Get the list's todos
   const todos = (todosByListId[activeListId] || []).map(currentTodoId => allTodos[currentTodoId])
 
-  // If there are no todos, return a header with the current date
+  // If there are no todos, return the default return value
   if(todos.length === 0) {
-    return [ moment().format('YYYY-MM-DD') ]
+    return defaultReturnValue
+  }
+  
+  // If the sublist doesn't have a name, assume it's a newly created sublist 
+  // that hasn't had its default tag created yet and return the default value
+  const sublistName = allSublists[activeSublistId]?.name
+  if(sublistName === null) {
+    return defaultReturnValue
   }
   
   // Otherwise, initialize the return array
@@ -81,9 +94,9 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
     })
   })
 
-  // If there are no visible todos, return a header with the current date
+  // If there are no visible todos, return the default return value
   if(visibleTodos.length === 0) {
-    return [ moment().format('YYYY-MM-DD') ]
+    return defaultReturnValue
   }
   
   return visibleTodos

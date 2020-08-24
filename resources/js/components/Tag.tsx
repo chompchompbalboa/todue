@@ -66,7 +66,9 @@ interface IContainer {
   backgroundColor: string
 }
 
-const Text = styled.div``
+const Text = styled.div`
+  white-space: nowrap;
+`
 
 const DeleteContainer = styled.div`
   cursor: pointer;
