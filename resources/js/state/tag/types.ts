@@ -11,4 +11,5 @@ export interface ITag {
 
 export interface ITagUpdates {
   backgroundColor?: ITag['backgroundColor']
+  text?: ITag['text']
 }

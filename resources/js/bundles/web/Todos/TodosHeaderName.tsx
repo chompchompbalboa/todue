@@ -10,6 +10,7 @@ import { ISublist } from '@/state/sublist/types'
 
 import { updateList } from '@/state/list/actions'
 import { updateSublist } from '@/state/sublist/actions'
+import { updateTag } from '@/state/tag/actions'
 
 import ReactInputAutosize from 'react-input-autosize'
 
@@ -28,6 +29,7 @@ export const TodosHeaderListName = ({
     ? state.list.allLists[listId]?.name
     : state.sublist.allSublists[sublistId]?.name
   )
+  const sublistDefaultTagId = useSelector((state: IAppState) => state.sublist.allSublists[sublistId]?.defaultTagId)
  
   // State
   const [ localActiveListName, setLocalActiveListName ] = useState(activeListName)
@@ -42,9 +44,14 @@ export const TodosHeaderListName = ({
   // Complete Editing
   const completeEditing = () => {
     if(activeListName !== localActiveListName) {
-      isListOrSublist === 'LIST'
-        ? dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
-        : dispatch(updateSublist(sublistId, { name: localActiveListName }, { name: activeListName }))
+      if(isListOrSublist === 'LIST') {
+        dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
+       } else {
+         dispatch(updateSublist(sublistId, { name: localActiveListName }, { name: activeListName }))
+         if(sublistDefaultTagId) {
+            dispatch(updateTag(sublistDefaultTagId, { text: localActiveListName }, { text: activeListName }))
+         }
+      }
     }
   }
   

@@ -2,15 +2,20 @@
 // Imports
 //-----------------------------------------------------------------------------
 import { ITagState } from '@/state/tag/reducers'
-import { IAllTags } from '@/state/tag/types'
+import { 
+  IAllTags,
+  ITag,
+  ITagUpdates
+} from '@/state/tag/types'
 
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type ITagActions = ISetAllTags | ISetTagsByListId
+export type ITagActions = ISetAllTags | ISetTagsByListId | IUpdateTag
 
 export { createListTag } from '@/state/tag/actions/createListTag'
 export { loadTags } from '@/state/tag/actions/loadTags'
+export { updateTag } from '@/state/tag/actions/updateTag'
 
 //-----------------------------------------------------------------------------
 // Tag Action
@@ -41,5 +46,23 @@ export const setAllTags = (nextAllTags: IAllTags): ITagActions => {
 	return {
 		type: SET_ALL_TAGS,
 		nextAllTags
+	}
+}
+
+//-----------------------------------------------------------------------------
+// Set Lists
+//-----------------------------------------------------------------------------
+export const UPDATE_TAG = 'UPDATE_TAG'
+interface IUpdateTag {
+  type: typeof UPDATE_TAG
+  tagId: ITag['id']
+  updates: ITagUpdates
+}
+
+export const updateTagReducer = (tagId: ITag['id'], updates: ITagUpdates): ITagActions => {
+	return {
+		type: UPDATE_TAG,
+		tagId,
+    updates
 	}
 }
