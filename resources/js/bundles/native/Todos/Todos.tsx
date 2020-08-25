@@ -80,7 +80,7 @@ const Container = styled.ScrollView`
   height: 100%;
   padding: 0 20px;
   display: flex;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 250);
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 `

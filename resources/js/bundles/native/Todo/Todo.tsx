@@ -20,7 +20,9 @@ const Todo = ({
   const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
 
   return (
-    <Container>
+    <Container
+      transparent
+      animationType="slide">
       <CloseTodoTouchable
         onPress={() => setIsTodoVisible(false)}>
         <CloseTodo />
@@ -43,8 +45,7 @@ interface ITodoComponent {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View`
-  position: absolute;
+const Container = styled.Modal`
   height: 100%;
   width: 100%;
 `
@@ -53,15 +54,17 @@ const CloseTodoTouchable = styled.TouchableWithoutFeedback``
 const CloseTodo = styled.View`
   height: 25%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.25);
 `
 
 const TodoDetails = styled.View`
   height: 75%;
   width: 100%;
+  padding: 15px;
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  border-width: 1px;
+  border-color: rgb(200, 200, 200);
 `
 
 export default Todo

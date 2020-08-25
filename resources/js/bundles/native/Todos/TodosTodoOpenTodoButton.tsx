@@ -23,22 +23,21 @@ const TodosTodoOpenTodoButton = ({
   const dispatch = useDispatch()
 
   return (
-    <Container>
-      <OpenTodoTouchable
-        onPress={() => {
-          dispatch(updateActiveTodoId(todoId))
-          setIsTodoVisible(true)
-        }}>
-        <OpenTodo>
-          <IconContainer>
-            <Ionicons 
-              name="ios-more" 
-              size={24} 
-              color="rgb(150, 150, 150)" />
-          </IconContainer>
-        </OpenTodo>
-      </OpenTodoTouchable>
-    </Container>
+    <OpenTodoTouchable
+      onPress={() => {
+        dispatch(updateActiveTodoId(todoId))
+        setIsTodoVisible(true)
+      }}>
+      <OpenTodo
+        hitSlop={{top: 10, bottom: 10, left: 10, right: 20}}>
+        <IconContainer>
+          <Ionicons 
+            name="ios-more" 
+            size={24} 
+            color="rgb(150, 150, 150)" />
+        </IconContainer>
+      </OpenTodo>
+    </OpenTodoTouchable>
   )
 }
 
@@ -53,10 +52,9 @@ interface IProps {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View``
-
 const OpenTodoTouchable = styled.TouchableWithoutFeedback``
 const OpenTodo = styled.View`
+  height: 100%;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;

@@ -35,12 +35,11 @@ interface ITodoComponent {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-`
+const Container = styled.View``
 
-const Text = styled.Text``
+const Text = styled.Text`
+  font-size: 22px;
+  font-family: OpenSans_700Bold;
+`
 
 export default TodoText

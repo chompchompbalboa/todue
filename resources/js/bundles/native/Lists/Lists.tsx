@@ -32,8 +32,8 @@ const Lists = () => {
         <ActiveList>
           <AntDesign 
             name={isListsVisible ? 'caretdown' : 'caretright'}
-            size={16} 
-            color='black'/>
+            size={13} 
+            color='rgb(50, 50, 50)'/>
           <ActiveListName>
             {activeListName}
           </ActiveListName>

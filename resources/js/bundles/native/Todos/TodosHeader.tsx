@@ -31,7 +31,7 @@ interface ITodosHeader {
 const Container = styled.View`
   padding: 7px;
   margin-bottom: 5px;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(240, 240, 250);
 `
 
 const Text = styled.Text`
