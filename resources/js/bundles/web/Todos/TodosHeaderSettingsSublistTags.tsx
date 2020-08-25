@@ -24,22 +24,17 @@ export const TodosHeaderSettingsSublistTags = ({
   
   return (
     <Container>
-      <Header>
-        Tags
-      </Header>
-      <Content>
-        <TodosHeaderSettingsSublistCreateSublistTag
-          listId={listId}
-          sublistId={sublistId}/>
-          <TagsContainer>
-            {sublistTags.map(sublistTagId => (
-              <TodosHeaderSettingsSublistTagsTag
-                key={sublistTagId}
-                sublistId={sublistId}
-                sublistTagId={sublistTagId}/>
-            ))}
-          </TagsContainer>
-      </Content>
+      <TodosHeaderSettingsSublistCreateSublistTag
+        listId={listId}
+        sublistId={sublistId}/>
+        <TagsContainer>
+          {sublistTags.map(sublistTagId => (
+            <TodosHeaderSettingsSublistTagsTag
+              key={sublistTagId}
+              sublistId={sublistId}
+              sublistTagId={sublistTagId}/>
+          ))}
+        </TagsContainer>
     </Container>
   )
 }
@@ -57,11 +52,7 @@ interface ITodosHeaderSettingsSublistTags {
 const Container = styled.div`
   position: relative;
   padding: 1rem;
-`
-
-const Header = styled.div``
-
-const Content = styled.div`
+  padding-bottom: 0;
   display: flex;
   align-items: center;
 `

@@ -46,8 +46,7 @@ export const TodosHeaderListSettings = ({
       <Dropdown
         containerRef={container}
         closeDropdown={() => setIsDropdownVisible(false)}
-        isDropdownVisible={isDropdownVisible}
-        minHeight="30vh">
+        isDropdownVisible={isDropdownVisible}>
         {isListOrSublist === 'LIST'
           ? <TodosHeaderSettingsList
               listId={listId}/>

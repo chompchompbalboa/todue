@@ -22,9 +22,11 @@ export const TodosHeaderDeleteList = ({
   const dispatch = useDispatch()
 
   return (
-    <Container
-      onClick={() => dispatch(deleteList(listId))}>
-      Delete List
+    <Container>
+      <DeleteButton
+        onClick={() => dispatch(deleteList(listId))}>
+        Delete List
+      </DeleteButton>
     </Container>
   )
 }
@@ -40,9 +42,20 @@ interface ITodosHeaderDeleteList {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  padding: 0.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`
+
+const DeleteButton = styled.div`
   cursor: pointer;
   padding: 0.3rem 0.6rem;
   white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
   &:hover {
     background-color: rgb(200, 0, 0);
     color: white;

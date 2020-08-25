@@ -33,7 +33,8 @@ export const TodosHeaderSettingsSublistCreateSublistTag = ({
   return (
     <ListTagsDropdown
       listId={listId}
-      handleTagSelect={handleTagSelect}/>
+      handleTagSelect={handleTagSelect}
+      inputPlaceholder="Choose Tag"/>
   )
 }
 

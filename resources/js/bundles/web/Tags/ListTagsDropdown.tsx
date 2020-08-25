@@ -19,6 +19,7 @@ export const ListTagsDropdown = ({
   listId,
   handleTagCreate = null,
   handleTagSelect,
+  inputPlaceholder = "Choose or Create Tag"
 }: IListTagsDropdown) => {
   
   // Refs
@@ -81,7 +82,7 @@ export const ListTagsDropdown = ({
       <Container
         ref={container}>
         <StyledInput
-          placeholder="Choose or Create Tag"
+          placeholder={inputPlaceholder}
           value={inputValue}
           onFocus={() => setIsDropdownVisible(true)}
           onChange={(e: ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}/>
@@ -120,6 +121,7 @@ interface IListTagsDropdown {
   listId: IList['id']
   handleTagCreate?(tagText: string): void
   handleTagSelect(tagId: ITag['id']): void
+  inputPlaceholder?: string
 }
 
 //-----------------------------------------------------------------------------

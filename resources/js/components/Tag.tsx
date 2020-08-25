@@ -52,6 +52,7 @@ interface ITagComponent {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   margin-left: 0.35rem;
+  margin-right: 0.25rem;
   margin-bottom: 0.35rem;
   padding: 0.25rem 0.5rem;
   padding-left: 0.5rem;
@@ -72,7 +73,6 @@ const Text = styled.div`
 
 const DeleteContainer = styled.div`
   cursor: pointer;
-  margin-left: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -48,7 +48,7 @@ export const TodosHeaderListName = ({
         dispatch(updateList(listId, { name: localActiveListName }, { name: activeListName }))
        } else {
          dispatch(updateSublist(sublistId, { name: localActiveListName }, { name: activeListName }))
-         if(sublistDefaultTagId) {
+         if(sublistDefaultTagId && activeListName !== null) {
             dispatch(updateTag(sublistDefaultTagId, { text: localActiveListName }, { text: activeListName }))
          }
       }
