@@ -55,12 +55,13 @@ const Lists = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 7px 10px;
+  z-index: 10;
   background-color: white;
 `
 
 const ActiveListTouchable = styled.TouchableWithoutFeedback``
 const ActiveList = styled.View`
+  padding: 7px 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -73,8 +74,15 @@ const ActiveListName = styled.Text`
 `
 
 const ListsContainer = styled.View`
+  position: absolute;
+  width: 100%;
+  top: 100%;
   display: ${ ({ isListsVisible }: IListsContainer) => isListsVisible ? 'flex' : 'none' };
-  padding: 5px 10px;
+  padding: 5px 20px;
+  padding-bottom: 15px;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `
 interface IListsContainer {
   isListsVisible: boolean

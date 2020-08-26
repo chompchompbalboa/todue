@@ -7,6 +7,8 @@ import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
+import TodoBacklog from '@native/Todo/TodoBacklog'
+import TodoDate from '@native/Todo/TodoDate'
 import TodoText from '@native/Todo/TodoText'
 
 //-----------------------------------------------------------------------------
@@ -29,6 +31,10 @@ const Todo = ({
       </CloseTodoTouchable>
       <TodoDetails>
         <TodoText
+          todoId={activeTodoId}/>
+        <TodoDate
+          todoId={activeTodoId}/>
+        <TodoBacklog
           todoId={activeTodoId}/>
       </TodoDetails>
     </Container>
