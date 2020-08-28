@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { IAppState } from '@/state'
@@ -54,12 +54,20 @@ export const TodosHeaderListName = ({
       }
     }
   }
+                               
+  // Handle Key Press
+  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
+    if(e.key === 'Enter') {
+      completeEditing()
+    }
+  }
   
   return (
     <ReactInputAutosize
       value={localActiveListName || ''}
       onBlur={completeEditing}
       onChange={(e: ChangeEvent<HTMLInputElement>) => setLocalActiveListName(e.target.value)}
+      onKeyPress={handleKeyPress}
       inputStyle={{
         fontSize: '1.25rem',
         fontWeight: 'bold',

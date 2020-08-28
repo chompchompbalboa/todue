@@ -16,7 +16,8 @@ import { updateActiveSublistId } from '@/state/active/actions'
 //-----------------------------------------------------------------------------
 const ListsListSublist = ({
   listId,
-  sublistId
+  sublistId,
+  setIsListsVisible
 }: IListsListSublist) => {
 
   // Redux
@@ -26,7 +27,10 @@ const ListsListSublist = ({
   return (
     <Container>
       <SublistNameTouchable
-        onPress={() => dispatch(updateActiveSublistId(listId, sublistId))}>
+        onPress={() => {
+          dispatch(updateActiveSublistId(listId, sublistId))
+          setIsListsVisible(false)
+        }}>
         <SublistName>
           {sublistName}
         </SublistName>
@@ -41,6 +45,7 @@ const ListsListSublist = ({
 interface IListsListSublist {
   listId: IList['id']
   sublistId: ISublist['id']
+  setIsListsVisible(nextIsListsVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
@@ -50,8 +55,9 @@ const Container = styled.View``
 
 const SublistNameTouchable = styled.TouchableWithoutFeedback``
 const SublistName = styled.Text`
-  font-size: 22px;
+  font-size: 23px;
   font-family: OpenSans_400Regular;
+  margin-bottom: 3px;
 `
 
 export default ListsListSublist

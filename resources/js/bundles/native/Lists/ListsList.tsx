@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -10,58 +10,48 @@ import { IList } from '@/state/list/types'
 
 import { updateActiveListId } from '@/state/active/actions'
 
-import { AntDesign } from '@expo/vector-icons'
 import ListsListSublist from '@native/Lists/ListsListSublist'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 const ListsList = ({
-  listId
+  listId,
+  setIsListsVisible
 }: IListsList) => {
 
   // Redux
   const dispatch = useDispatch()
-  const isActiveList = useSelector((state: IAppState) => state.active.listId === listId)
   const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
   const listName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
   const sublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId] || [])
 
-  // State
-  const [ isSublistsVisible, setIsSublistsVisible ] = useState(isActiveList)
-
   // Handle List Name press
   const handleListNamePress = () => {
-    if(isActiveList && isListLoaded && isSublistsVisible) {
-      setIsSublistsVisible(false)
-    }
-    else {
-      setIsSublistsVisible(true)
-      dispatch(updateActiveListId(listId))
+    dispatch(updateActiveListId(listId))
+    if(isListLoaded) {
+      setIsListsVisible(false)
     }
   }
 
   return (
     <Container>
       <ListNameTouchable
-        onPress={handleListNamePress}>
+        onPress={(handleListNamePress)}>
         <ListName>
-          <AntDesign 
-          name={isSublistsVisible ? 'caretdown' : 'caretright'}
-          size={14} 
-          color='black'/>
-          <ListNameText>
+          <ListNameText
+            isListLoaded={isListLoaded}>
             {listName}
           </ListNameText>
         </ListName>
       </ListNameTouchable>
-      <Sublists
-        isSublistsVisible={isSublistsVisible}>
+      <Sublists>
         {sublists.map(sublistId => (
           <ListsListSublist
             key={sublistId}
             listId={listId}
-            sublistId={sublistId}/>
+            sublistId={sublistId}
+            setIsListsVisible={setIsListsVisible}/>
         ))}
       </Sublists>
     </Container>
@@ -73,12 +63,15 @@ const ListsList = ({
 //-----------------------------------------------------------------------------
 interface IListsList {
   listId: IList['id']
+  setIsListsVisible(nextIsListsVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View``
+const Container = styled.View`
+  margin-bottom: 10px;
+`
 
 const ListNameTouchable = styled.TouchableWithoutFeedback``
 const ListName = styled.View`
@@ -88,17 +81,18 @@ const ListName = styled.View`
 `
 
 const ListNameText = styled.Text`
-  margin-left: 5px;
   font-size: 24px;
   font-family: OpenSans_700Bold;
+  color: ${ ({ isListLoaded }: IListNameText) => isListLoaded ? 'black' : 'rgb(170, 170, 170)' };
+  margin-bottom: 5px;
 `
+interface IListNameText {
+  isListLoaded: boolean
+}
 
 const Sublists = styled.View`
-  display: ${ ({ isSublistsVisible }: ISublists) => isSublistsVisible ? 'flex' : 'none' };
-  padding-left: 26px;
+  display: flex;
+  padding-left: 15px;
 `
-interface ISublists {
-  isSublistsVisible: boolean
-}
 
 export default ListsList

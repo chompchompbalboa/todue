@@ -14,10 +14,11 @@ export const TodosTodoDate = ({
 }: ITodosTodoDate) => {
   
   const date = moment(dateString)
+  const formattedDate = date.format('dddd MMMM Do')
   
   return (
     <TodosHeader
-      text={date.format('dddd MMMM Do') + (date.isSame(moment(), 'day') ? ' (Today)' : '')}/>
+      text={date.isSame(moment(), 'day') ? 'Today' : formattedDate}/>
   )
 }
 

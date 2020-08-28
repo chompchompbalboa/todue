@@ -58,10 +58,10 @@ const OpenTodo = styled.View`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  padding-left: 10px;
 `
 
 const IconContainer = styled.View`
-  margin-left: 10px;
 `
 
 export default TodosTodoOpenTodoButton

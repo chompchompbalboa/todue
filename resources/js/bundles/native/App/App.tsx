@@ -14,6 +14,7 @@ import { IList } from '@/state/list/types'
 import { loadActive } from '@/state/active/actions'
 import { loadList, loadLists } from '@/state/list/actions'
 
+import Header from '@native/Header/Header'
 import Lists from '@native/Lists/Lists'
 import Todo from '@native/Todo/Todo'
 import Todos from '@native/Todos/Todos'
@@ -31,6 +32,7 @@ const App = () => {
   const isActiveListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(state.active.listId))
 
   // State
+  const [ isListsVisible, setIsListsVisible ] = useState(false)
   const [ isTodoVisible, setIsTodoVisible ] = useState(false)
 
   // Load the active list as needed
@@ -50,7 +52,13 @@ const App = () => {
 
   return (
     <Container>
-      {isInitialDataLoaded && <Lists />}
+      {isInitialDataLoaded && 
+        <Header
+          isListsVisible={isListsVisible}
+          setIsListsVisible={setIsListsVisible}/>}
+      {isInitialDataLoaded && isListsVisible &&
+        <Lists
+          setIsListsVisible={setIsListsVisible}/>}
       {isActiveListLoaded && 
         <Todos
           setIsTodoVisible={setIsTodoVisible}/>}

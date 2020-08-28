@@ -68,7 +68,8 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
   // Filter the todos
   const filteredTodos = todos.filter(todo => filters.every(filter => filter(todo)))
   
-  // Group the todos by date - first by dateCompleted, then dateCurrent
+  // Group the todos by date - first by dateCompleted, then dateCurrent, adding
+  // todos that don't have a dateCurrent to the backlog
   const todosGroupedByDate = groupBy(filteredTodos, todo => {
     return todo.dateCompleted 
       ? moment(todo.dateCompleted).format('YYYY-MM-DD')
