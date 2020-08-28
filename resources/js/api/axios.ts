@@ -48,7 +48,6 @@ function setBaseUrl() {
     else if (!isWeb) {
       axiosExport.defaults.baseURL = 'https://todue.app'
     }
-    axiosExport.defaults.baseURL = 'https://9891e0826b70.ngrok.io'
   }
 }
 
