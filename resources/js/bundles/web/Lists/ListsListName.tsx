@@ -83,7 +83,7 @@ const Name = styled.div`
   padding: 0.25rem;
   padding-left: 0.75rem;
   display: flex;
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: bold;
   background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(235, 235, 235)' : 'transparent' };
   border-top-left-radius: 10px;

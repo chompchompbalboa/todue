@@ -64,7 +64,7 @@ interface IListsListNameInput {
 // Styled Components
 //-----------------------------------------------------------------------------
 const StyledInput = styled.input`
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   border: none;
   outline: none;
   background-color: transparent;
