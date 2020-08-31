@@ -77,6 +77,8 @@
     "redux-thunk": "2.3.0",
     "styled-components": "^5.1.1",
     "uuid": "^3.3.3",
-    "validator": "^13.1.1"
+    "validator": "^13.1.1",
+    "@react-native-community/datetimepicker": "2.4.0",
+    "@react-native-community/picker": "1.6.0"
   }
 }

@@ -8,6 +8,7 @@ import { ITodo } from '@/state/todo/types'
 
 import TodosTodoCompleted from '@native/Todos/TodosTodoCompleted'
 import TodosTodoOpenTodoButton from '@native/Todos/TodosTodoOpenTodoButton'
+import TodosTodoPriority from '@native/Todos/TodosTodoPriority'
 import TodosTodoText from '@native/Todos/TodosTodoText'
 
 //-----------------------------------------------------------------------------
@@ -20,6 +21,8 @@ const TodosTodo = ({
   return (
     <Container>
       <TodosTodoCompleted
+        todoId={todoId}/>
+      <TodosTodoPriority
         todoId={todoId}/>
       <TodosTodoText
         todoId={todoId}/>

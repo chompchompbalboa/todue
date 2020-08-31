@@ -10,6 +10,7 @@ import Modal from '@/components/native/Modal'
 import TodoBacklog from '@native/Todo/TodoBacklog'
 import TodoDate from '@native/Todo/TodoDate'
 import TodoText from '@native/Todo/TodoText'
+import TodoPriority from '@native/Todo/TodoPriority'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -27,8 +28,12 @@ const Todo = ({
       <TodoText
         todoId={activeTodoId}/>
       <TodoDate
-        todoId={activeTodoId}/>
+        todoId={activeTodoId}
+        setIsTodoVisible={setIsTodoVisible}/>
       <TodoBacklog
+        todoId={activeTodoId}
+        setIsTodoVisible={setIsTodoVisible}/>
+      <TodoPriority
         todoId={activeTodoId}/>
     </Modal>
   )

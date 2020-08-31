@@ -1,8 +1,7 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react' 
-import moment from 'moment'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
@@ -11,32 +10,43 @@ import { ITodo } from '@/state/todo/types'
 
 import { updateTodo } from '@/state/todo/actions'
 
-import Datepicker from '@/components/native/Datepicker'
+import Timepicker from '@/components/native/Timepicker'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodoDate = ({
-  todoId,
-  setIsTodoVisible
-}: ITodoDate) => {
+export const TodoTime = ({
+  todoId
+}: ITodoTime) => {
 
   // Redux
   const dispatch = useDispatch()
-  const todoDateCurrent = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.dateCurrent)
+  const todoTimeStart = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].timeStart)
+  const todoTimeEnd = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].timeEnd)
 
   return (
     <Container>
-      <Datepicker
-        onDateChange={(nextDate: string) => {
-          setIsTodoVisible(false)
+      <Timepicker
+        label="Start Time"
+        onTimeChange={nextTime => {
           dispatch(updateTodo(todoId, 
-            { dateCurrent: moment(nextDate).format() }, 
-            { dateCurrent: todoDateCurrent },
+            { timeStart: nextTime },
+            { timeStart: todoTimeStart },
             true
           ))
         }}
-        value={todoDateCurrent}/>
+        value={todoTimeStart}/>
+      <TimeSeparator>-</TimeSeparator>
+      <Timepicker
+        label="End Time"
+        onTimeChange={nextTime => {
+          dispatch(updateTodo(todoId, 
+            { timeEnd: nextTime },
+            { timeEnd: todoTimeEnd },
+            true
+          ))
+        }}
+        value={todoTimeEnd}/>
     </Container>
   )
 }
@@ -44,9 +54,8 @@ const TodoDate = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoDate {
+interface ITodoTime {
   todoId: ITodo['id']
-  setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
@@ -54,6 +63,14 @@ interface ITodoDate {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   margin: 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `
 
-export default TodoDate
+const TimeSeparator = styled.Text`
+  padding: 0 8px;
+`
+
+export default TodoTime
