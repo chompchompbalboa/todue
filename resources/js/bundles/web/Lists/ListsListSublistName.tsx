@@ -49,7 +49,7 @@ interface IListsListSublistName {
 const Container = styled.div``
                                
 const Name = styled.div`
-  font-size: 1.15rem;
+  font-size: 1.05rem;
 `
 
 export default ListsListSublistName
