@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 
-import TodoDateTime from '@web/Todo/TodoDateTime'
+import TodoDetails from '@web/Todo/TodoDetails'
 import TodoNotes from '@web/Todo/TodoNotes'
 import TodoTags from '@web/Todo/TodoTags'
 import TodoText from '@web/Todo/TodoText'
@@ -26,7 +26,7 @@ export const Todo = () => {
           <TodoContainer>
             <TodoText
               todoId={todo.id}/>
-            <TodoDateTime
+            <TodoDetails
               todoId={todo.id}/>
             <TodoTags
               todoId={todo.id}/>
