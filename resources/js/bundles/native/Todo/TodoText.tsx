@@ -35,7 +35,10 @@ interface ITodoComponent {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View``
+const Container = styled.View`
+  background-color: white;
+  padding: 15px;
+`
 
 const Text = styled.Text`
   font-size: 22px;

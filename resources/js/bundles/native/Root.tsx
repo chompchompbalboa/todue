@@ -15,6 +15,7 @@ import thunkMiddleware, { ThunkMiddleware } from 'redux-thunk'
 import {
   useFonts,
   OpenSans_400Regular,
+  OpenSans_400Regular_Italic,
   OpenSans_700Bold
 } from '@expo-google-fonts/dev'
 
@@ -43,7 +44,11 @@ const persistedStore = persistStore(store)
 //-----------------------------------------------------------------------------
 const Root = () => {
 
-  const [ fontsLoaded ] = useFonts({ OpenSans_400Regular, OpenSans_700Bold })
+  const [ fontsLoaded ] = useFonts({ 
+    OpenSans_400Regular, 
+    OpenSans_400Regular_Italic,
+    OpenSans_700Bold 
+  })
 
   if(fontsLoaded) {
     return (

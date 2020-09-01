@@ -1,48 +1,43 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react' 
-import moment from 'moment'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
-import { updateTodo } from '@/state/todo/actions'
-
-import Datepicker from '@/components/native/Datepicker'
+import TodoNotesCreateNote from '@native/Todo/TodoNotesCreateNote'
+import TodoNotesNote from '@native/Todo/TodoNotesNote'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodoDate = ({
-  todoId,
-}: ITodoDate) => {
+export const TodoNotes = ({
+  todoId
+}: ITodoNotes) => {
 
   // Redux
-  const dispatch = useDispatch()
-  const todoDateCurrent = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.dateCurrent)
+  const todoNotes = useSelector((state: IAppState) => state.todoNote.todoNotesByTodoId[todoId] || [])
 
   return (
-    <Container>
-      <Datepicker
-        onDateChange={(nextDate: string) => {
-          dispatch(updateTodo(todoId, 
-            { dateCurrent: moment(nextDate).format() }, 
-            { dateCurrent: todoDateCurrent },
-            true
-          ))
-        }}
-        value={todoDateCurrent}/>
-    </Container>
+      <Container>
+        <TodoNotesCreateNote
+          todoId={todoId}/>
+        {todoNotes.map(todoNoteId => (
+          <TodoNotesNote
+            key={todoNoteId}
+            todoNoteId={todoNoteId}/>
+        ))}
+      </Container>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoDate {
+interface ITodoNotes {
   todoId: ITodo['id']
 }
 
@@ -50,8 +45,7 @@ interface ITodoDate {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 0 15px;
-  margin: 10px 0;
+  padding: 15px;
 `
 
-export default TodoDate
+export default TodoNotes

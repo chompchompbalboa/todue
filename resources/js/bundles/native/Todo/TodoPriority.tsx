@@ -33,6 +33,7 @@ export const TodoDateTime = ({
       <Container>
         {priorities.map(priority => (
           <PriorityTouchable
+            key={priority.text}
             onPress={() => {
               dispatch(updateTodo(todoId, 
                 { priority: priority.value },
@@ -40,7 +41,6 @@ export const TodoDateTime = ({
                 true
             ))}}>
             <Priority
-              key={priority.text}
               backgroundColor={priority.backgroundColor}
               isSelected={todoPriority === priority.value}>
               <PriorityText
@@ -65,6 +65,7 @@ interface ITodoDateTime {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
+  padding: 0 15px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;

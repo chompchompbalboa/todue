@@ -15,8 +15,7 @@ import { updateTodo } from '@/state/todo/actions'
 // Component
 //-----------------------------------------------------------------------------
 const TodoDate = ({
-  todoId,
-  setIsTodoVisible
+  todoId
 }: ITodoDate) => {
 
   // Redux
@@ -43,7 +42,6 @@ const TodoDate = ({
       <ButtonTouchable
         onPress={() => {
           //setIsTodoBacklogged(true)
-          setIsTodoVisible(false)
           setTimeout(() => {
             dispatch(updateTodo(
               todoId, 
@@ -70,7 +68,6 @@ const TodoDate = ({
 //-----------------------------------------------------------------------------
 interface ITodoDate {
   todoId: ITodo['id']
-  setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
@@ -78,6 +75,7 @@ interface ITodoDate {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   margin: 10px 0;
+  padding: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;

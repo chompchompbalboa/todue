@@ -70,7 +70,8 @@ interface IListsList {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  margin-bottom: 10px;
+  padding: 15px;
+  padding-bottom: 5px;
 `
 
 const ListNameTouchable = styled.TouchableWithoutFeedback``

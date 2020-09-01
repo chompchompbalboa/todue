@@ -4,6 +4,8 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
@@ -18,9 +20,19 @@ const Modal = ({
       onPress={() => closeModal()}>
       <CloseModal />
     </CloseModalTouchable>
-    <ModalContent>
+    <KeyboardAwareScrollView
+      extraScrollHeight={20}
+      keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
+      stickyHeaderIndices={[0]}
+      style={{
+        height: '75%',
+        width: '100%',
+        backgroundColor: 'white',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20
+      }}>
       {children}
-    </ModalContent>
+    </KeyboardAwareScrollView>
   </Container>
 )
 
@@ -44,17 +56,6 @@ const CloseModalTouchable = styled.TouchableWithoutFeedback``
 const CloseModal = styled.View`
   height: 25%;
   width: 100%;
-`
-
-const ModalContent = styled.View`
-  height: 75%;
-  width: 100%;
-  padding: 15px;
-  background-color: white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-width: 1px;
-  border-color: rgb(200, 200, 200);
 `
 
 export default Modal

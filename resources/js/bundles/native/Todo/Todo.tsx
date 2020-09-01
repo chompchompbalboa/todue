@@ -9,8 +9,9 @@ import { IAppState } from '@/state'
 import Modal from '@/components/native/Modal'
 import TodoBacklog from '@native/Todo/TodoBacklog'
 import TodoDate from '@native/Todo/TodoDate'
-import TodoText from '@native/Todo/TodoText'
+import TodoNotes from '@native/Todo/TodoNotes'
 import TodoPriority from '@native/Todo/TodoPriority'
+import TodoText from '@native/Todo/TodoText'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -28,12 +29,12 @@ const Todo = ({
       <TodoText
         todoId={activeTodoId}/>
       <TodoDate
-        todoId={activeTodoId}
-        setIsTodoVisible={setIsTodoVisible}/>
+        todoId={activeTodoId}/>
       <TodoBacklog
-        todoId={activeTodoId}
-        setIsTodoVisible={setIsTodoVisible}/>
+        todoId={activeTodoId}/>
       <TodoPriority
+        todoId={activeTodoId}/>
+      <TodoNotes
         todoId={activeTodoId}/>
     </Modal>
   )

@@ -3,12 +3,12 @@
 //-----------------------------------------------------------------------------
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
 import { refreshVisibleTodos } from '@/state/todo/actions'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import TodosDate from '@native/Todos/TodosDate'
 import TodosHeader from '@native/Todos/TodosHeader'
 import TodosTodo from '@native/Todos/TodosTodo'
@@ -36,8 +36,18 @@ const Todos = ({
   const stickyHeaderIndices = visibleTodos.map((todoId, index) => todoId.length <= 10 ? index : null).filter(index => index !== null)
 
   return (
-    <Container
-      stickyHeaderIndices={stickyHeaderIndices}>
+    <KeyboardAwareScrollView
+      keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
+      stickyHeaderIndices={stickyHeaderIndices}
+      style={{
+      height: '100%',
+      paddingLeft: 20,
+      paddingRight: 20,
+      display: 'flex',
+      backgroundColor: 'rgb(240, 240, 250)',
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      }}>
       {visibleTodos && visibleTodos.map(todoId => {
         if(todoId === 'BACKLOG') {
           return (
@@ -62,7 +72,7 @@ const Todos = ({
           )
         }
       })}
-    </Container>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -72,17 +82,5 @@ const Todos = ({
 interface ITodos {
   setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const Container = styled.ScrollView`
-  height: 100%;
-  padding: 0 20px;
-  display: flex;
-  background-color: rgb(240, 240, 250);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-`
 
 export default Todos
