@@ -7,14 +7,14 @@ import isEmail from 'validator/lib/isEmail'
 
 import { action } from '@/api'
 
-import SiteAuthenticationButton from '@web/Site/SiteAuthenticationButton'
-import SiteAuthenticationInput from '@web/Site/SiteAuthenticationInput'
-import SiteAuthenticationStatus from '@web/Site/SiteAuthenticationStatus'
+import AuthenticationButton from '@web/Authentication/AuthenticationButton'
+import AuthenticationInput from '@web/Authentication/AuthenticationInput'
+import AuthenticationStatus from '@web/Authentication/AuthenticationStatus'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const SiteAuthenticationLogin = () => {
+export const AuthenticationLogin = () => {
 
   // State
   const [ emailInputValue, setEmailInputValue ] = useState('')
@@ -52,25 +52,25 @@ export const SiteAuthenticationLogin = () => {
     <LoginForm 
       onSubmit={e => handleLoginAttempt(e)}>
       <InputsContainer>
-        <SiteAuthenticationInput
+        <AuthenticationInput
           label={"Email"}
           type="email"
           placeholder="Email"
           value={emailInputValue}
           onChange={nextValue => setEmailInputValue(nextValue)}
           isInputValueValid={emailInputValue === '' || isEmail(emailInputValue)}/>
-        <SiteAuthenticationInput
+        <AuthenticationInput
           label={"Password"}
           type="password"
           placeholder="Password"
           value={passwordInputValue}
           onChange={nextValue => setPasswordInputValue(nextValue)}
           isInputValueValid={true}/>
-        <SiteAuthenticationButton
+        <AuthenticationButton
           text={!['LOGGING_IN'].includes(loginStatus) ? 'Log In' : 'Logging In...'} />
       </InputsContainer>
       <StatusContainer>
-        <SiteAuthenticationStatus
+        <AuthenticationStatus
           status={siteSplashLoginFormStatusMessages[loginStatus]}/>
       </StatusContainer>
     </LoginForm>
@@ -123,4 +123,4 @@ const StatusContainer = styled.div`
   width: 100%;
 `
 
-export default SiteAuthenticationLogin
+export default AuthenticationLogin

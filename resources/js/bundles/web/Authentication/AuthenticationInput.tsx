@@ -7,14 +7,14 @@ import styled from 'styled-components'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const SiteAuthenticationInput = ({
+const AuthenticationInput = ({
   isInputValueValid,
   label = null,
   onChange,
   placeholder,
   type = "text",
   value
-}: ISiteAuthenticationInput) => {
+}: IAuthenticationInput) => {
 
   // State
   const [ isActiveInput, setIsActiveInput ] = useState(false)
@@ -49,7 +49,7 @@ const SiteAuthenticationInput = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ISiteAuthenticationInput {
+interface IAuthenticationInput {
   isInputValueValid: boolean
   label?: string
   onChange(nextValue: string): void
@@ -91,4 +91,4 @@ interface IStyledInput {
   isInputValueValid: boolean
 }
 
-export default SiteAuthenticationInput
+export default AuthenticationInput

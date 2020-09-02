@@ -2,41 +2,35 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-
-import SiteHeader from '@web/Site/SiteHeader'
-import SiteSplash from '@web/Site/SiteSplash'
-import SiteRow from '@web/Site/SiteRow'
-import SiteRowContent from '@web/Site/SiteRowContent'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const Site = () => {
+export const SiteRow = ({
+  children
+}: ISiteRow) => {
   return (
-      <Container>
-        <SiteHeader />
-        <SiteSplash />
-        <SiteRow>
-          <SiteRowContent>
-            Focus on the current day's to-dos
-          </SiteRowContent>
-          <SiteRowContent>
-          </SiteRowContent>
-        </SiteRow>
-      </Container>
+    <Container>
+      {children}
+    </Container>
   )
+}
+
+//-----------------------------------------------------------------------------
+// Props
+//-----------------------------------------------------------------------------
+interface ISiteRow {
+  children?: any
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
-//-----------------------------------------------------------------------------
-// Mount to DOM
-//-----------------------------------------------------------------------------
-if (document.getElementById('react-container')) {
-	ReactDOM.render(<Site />, document.getElementById('react-container'))
-}
+export default SiteRow

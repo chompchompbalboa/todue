@@ -7,27 +7,17 @@ import styled from 'styled-components'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const SiteAuthenticationStatus = ({
-  status
-}: ISiteAuthenticationStatus) => (
-  <Container>
-    {status}
-  </Container>
-)
-
-//-----------------------------------------------------------------------------
-// Props
-//-----------------------------------------------------------------------------
-interface ISiteAuthenticationStatus {
-  status: string
+export const Logo = () => {
+  return (
+      <Container>
+        ToDue
+      </Container>
+  )
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div`
-  margin-top: 0.5rem;
-  color: rgb(175, 0, 0);
-`
+const Container = styled.div``
 
-export default SiteAuthenticationStatus
+export default Logo

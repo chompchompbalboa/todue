@@ -7,23 +7,23 @@ import styled from 'styled-components'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const SiteAuthenticationChooseActiveForm = ({
-  activeSiteAction,
-  setActiveSiteAction
-}: ISiteAuthenticationChooseActiveForm) => {
+const AuthenticationChooseActiveForm = ({
+  activeForm,
+  setActiveForm
+}: IAuthenticationChooseActiveForm) => {
   return (
     <Container>
-      <ActionLink
-        isActiveSiteAction={activeSiteAction === 'REGISTER'}
-        onClick={() => setActiveSiteAction('REGISTER')}>
+      <FormLink
+        isActiveForm={activeForm === 'REGISTER'}
+        onClick={() => setActiveForm('REGISTER')}>
         Register
-      </ActionLink>
-      <ActionLinkDivider />
-      <ActionLink
-        isActiveSiteAction={activeSiteAction === 'LOGIN'}
-        onClick={() => setActiveSiteAction('LOGIN')}>
+      </FormLink>
+      <FormLinkDivider />
+      <FormLink
+        isActiveForm={activeForm === 'LOGIN'}
+        onClick={() => setActiveForm('LOGIN')}>
         Login
-      </ActionLink>
+      </FormLink>
     </Container>
   )
 }
@@ -31,9 +31,9 @@ const SiteAuthenticationChooseActiveForm = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ISiteAuthenticationChooseActiveForm {
-  activeSiteAction: 'REGISTER' | 'LOGIN',
-  setActiveSiteAction(nextActiveSiteAction: 'REGISTER' | 'LOGIN'): void
+interface IAuthenticationChooseActiveForm {
+  activeForm: 'REGISTER' | 'LOGIN',
+  setActiveForm(nextActiveForm: 'REGISTER' | 'LOGIN'): void
 }
 
 //-----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ const Container = styled.div`
   border-top-right-radius: 6px;
 `
 
-const ActionLink = styled.div`
+const FormLink = styled.div`
   cursor: pointer;
   width: 25%;
   display: flex;
@@ -57,19 +57,19 @@ const ActionLink = styled.div`
   align-items: center;
   font-size: 0.9rem;
   font-weight: bold;
-  text-decoration: ${ ({ isActiveSiteAction }: IActionLink ) => isActiveSiteAction ? 'underline' : 'none' };
+  text-decoration: ${ ({ isActiveForm }: IFormLink ) => isActiveForm ? 'underline' : 'none' };
   &:hover {
     text-decoration: underline;
   }
 `
-interface IActionLink {
-  isActiveSiteAction: boolean
+interface IFormLink {
+  isActiveForm: boolean
 }
 
-const ActionLinkDivider = styled.div`
+const FormLinkDivider = styled.div`
   height: 1rem;
   width: 1px;
   background-color: black;
 `
 
-export default SiteAuthenticationChooseActiveForm
+export default AuthenticationChooseActiveForm

@@ -2,41 +2,49 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import ReactDOM from 'react-dom'
 import styled from 'styled-components'
-
-import SiteHeader from '@web/Site/SiteHeader'
-import SiteSplash from '@web/Site/SiteSplash'
-import SiteRow from '@web/Site/SiteRow'
-import SiteRowContent from '@web/Site/SiteRowContent'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const Site = () => {
-  return (
-      <Container>
-        <SiteHeader />
-        <SiteSplash />
-        <SiteRow>
-          <SiteRowContent>
-            Focus on the current day's to-dos
-          </SiteRowContent>
-          <SiteRowContent>
-          </SiteRowContent>
-        </SiteRow>
-      </Container>
-  )
+const AuthenticationButton = ({
+  text
+}: IAuthenticationButton) => (
+  <Button>
+    {text}
+  </Button>
+)
+
+//-----------------------------------------------------------------------------
+// Props
+//-----------------------------------------------------------------------------
+interface IAuthenticationButton {
+  text: string
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
+const Button = styled.button`
+  width: 100%;
+  margin-left: 0.375rem;
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid rgb(150, 150, 150);
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background-color: rgba(220, 220, 220, 1);
+  color: black;
+  outline: none;
+  transition: background-color 0.1s;
+  &:hover {
+    background-color: white;
+    color: black;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+    margin: 0.375rem;
+  }
+`
 
-//-----------------------------------------------------------------------------
-// Mount to DOM
-//-----------------------------------------------------------------------------
-if (document.getElementById('react-container')) {
-	ReactDOM.render(<Site />, document.getElementById('react-container'))
-}
+export default AuthenticationButton

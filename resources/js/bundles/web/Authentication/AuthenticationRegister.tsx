@@ -7,15 +7,15 @@ import isEmail from 'validator/lib/isEmail'
 
 import { action } from '@/api'
 
-import SiteAuthenticationButton from '@web/Site/SiteAuthenticationButton'
-import SiteAuthenticationCheckbox from '@web/Site/SiteAuthenticationCheckbox'
-import SiteAuthenticationInput from '@web/Site/SiteAuthenticationInput'
-import SiteAuthenticationStatus from '@web/Site/SiteAuthenticationStatus'
+import AuthenticationButton from '@web/Authentication/AuthenticationButton'
+import AuthenticationCheckbox from '@web/Authentication/AuthenticationCheckbox'
+import AuthenticationInput from '@web/Authentication/AuthenticationInput'
+import AuthenticationStatus from '@web/Authentication/AuthenticationStatus'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const SiteSplashRegisterForm = () => {
+export const AuthenticationRegister = () => {
   
   // State
   const [ nameInputValue, setNameInputValue ] = useState('')
@@ -65,34 +65,34 @@ export const SiteSplashRegisterForm = () => {
   
   return (
     <RegisterForm onSubmit={e => handleRegisterAttempt(e)}>
-      <SiteAuthenticationInput
+      <AuthenticationInput
         label="Name"
         placeholder="Name"
         value={nameInputValue}
         onChange={nextValue => setNameInputValue(nextValue)}
         isInputValueValid={true}/>
-      <SiteAuthenticationInput
+      <AuthenticationInput
         label="Email"
         type="email"
         placeholder="Email"
         value={emailInputValue}
         onChange={nextValue => setEmailInputValue(nextValue)}
         isInputValueValid={emailInputValue === '' || isEmail(emailInputValue)}/>
-      <SiteAuthenticationInput
+      <AuthenticationInput
         label="Password"
         type="password"
         placeholder="Password"
         value={passwordInputValue}
         onChange={nextValue => setPasswordInputValue(nextValue)}
         isInputValueValid={true}/>
-      <SiteAuthenticationCheckbox
+      <AuthenticationCheckbox
         label="I agree to start a 30-day free trial"
         onChange={nextValue => setStartTrialCheckboxValue(nextValue)}
         checked={startTrialCheckboxValue} />
-      <SiteAuthenticationButton
+      <AuthenticationButton
         text={!['REGISTERING'].includes(registerStatus) ? 'Sign Up' : 'Signing Up...'} />
-      <SiteAuthenticationStatus
-        status={siteSplashRegisterFormStatusMessages[registerStatus]}/> 
+      <AuthenticationStatus
+        status={authenticationStatusMessages[registerStatus]}/> 
     </RegisterForm>
   )
 }
@@ -110,7 +110,7 @@ type IRegisterStatus =
   'ERROR_DURING_REGISTRATION'
   
 // Status Messages
-export const siteSplashRegisterFormStatusMessages = {
+export const authenticationStatusMessages = {
   READY: "",
   REGISTERING: "",
   NOT_ALL_FIELDS_ARE_COMPLETE: "Please enter your name, email, and password and click the checkbox above to start your free trial",
@@ -127,4 +127,4 @@ const RegisterForm = styled.form`
   width: 100%;
 `
 
-export default SiteSplashRegisterForm
+export default AuthenticationRegister
