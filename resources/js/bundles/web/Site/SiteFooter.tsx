@@ -7,33 +7,21 @@ import styled from 'styled-components'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const SiteRowContent = ({
-  children
-}: ISiteRowContent) => {
+export const SiteFooter = () => {
   return (
-    <Container>
-      {children}
-    </Container>
+      <Container>
+        (c) ToDue
+      </Container>
   )
-}
-
-//-----------------------------------------------------------------------------
-// Props
-//-----------------------------------------------------------------------------
-interface ISiteRowContent {
-  children?: any
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 50%;
-  height: 100%;
-  min-height: 30vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 1rem;
+  position: sticky;
+  top: 0;
 `
 
-export default SiteRowContent
+export default SiteFooter

@@ -20,7 +20,14 @@ export const Site = () => {
         <SiteSplash />
         <SiteRow>
           <SiteRowContent>
-            Focus on the current day's to-dos
+          </SiteRowContent>
+          <SiteRowContent>
+            Built for speed and ease-of-use
+          </SiteRowContent>
+        </SiteRow>
+        <SiteRow>
+          <SiteRowContent>
+            An opinionated feature set designed to minimize the amount of time you spend organizing your todos
           </SiteRowContent>
           <SiteRowContent>
           </SiteRowContent>
