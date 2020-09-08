@@ -13,7 +13,7 @@ import { IAppState } from '@/state'
 export const UserInfo = () => {
   
   // Redux
-  const userEmail = useSelector((state: IAppState) => state.user.email)
+  const userEmail = useSelector((state: IAppState) => state.user?.email)
   
   return (
       <Container>
