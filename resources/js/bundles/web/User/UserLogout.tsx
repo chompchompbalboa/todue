@@ -11,9 +11,11 @@ import { action } from '@/api'
 //-----------------------------------------------------------------------------
 const UserLogout = () => {
 
+  // State
   const [ isLoggingOut, setIsLoggingOut ] = useState(false)
 
-  const handleLogoutButtonClick = () => {
+  // Handle Logout
+  const handleLogout = () => {
     setIsLoggingOut(true)
     action.userLogout()
       .then(() => {
@@ -22,9 +24,11 @@ const UserLogout = () => {
   }
 
   return (
-    <Container
-      onClick={() => handleLogoutButtonClick()}>
-      {isLoggingOut ? "Logging Out..." : "Logout"}
+    <Container>
+      <LogoutButton
+        onClick={() => handleLogout()}>
+        {isLoggingOut ? "Logging Out..." : "Logout"}
+      </LogoutButton>
     </Container>
   )
 }
@@ -33,7 +37,21 @@ const UserLogout = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  padding: 0.5rem;
+`
+
+const LogoutButton = styled.div`
   cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgb(200, 0, 0);
+    color: white;
+  }
 `
 
 //-----------------------------------------------------------------------------

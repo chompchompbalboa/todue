@@ -4,7 +4,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import UserLogout from '@web/User/UserLogout'
+import UserActions from '@web/User/UserActions'
+import UserInfo from '@web/User/UserInfo'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -12,7 +13,8 @@ import UserLogout from '@web/User/UserLogout'
 export const User = () => {
   return (
       <Container>
-        <UserLogout />
+        <UserInfo />
+        <UserActions />
       </Container>
   )
 }
@@ -23,6 +25,9 @@ export const User = () => {
 const Container = styled.div`
   width: 100%;
   padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `
 
 export default User

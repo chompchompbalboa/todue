@@ -15,6 +15,7 @@ export const Dropdown = ({
   isDropdownVisible,
   minHeight = "auto",
   minWidth = "auto",
+  top = '100%'
 }: IDropdown) => {
 
   // Add event listeners when the dropdown is visible
@@ -46,7 +47,8 @@ export const Dropdown = ({
       className={className}
       isDropdownVisible={isDropdownVisible}
       minHeight={minHeight}
-      minWidth={minWidth}>
+      minWidth={minWidth}
+      top={top}>
       {children}
     </StyledDropdown>
   )
@@ -63,6 +65,7 @@ export interface IDropdown {
   isDropdownVisible: boolean
   minHeight?: string
   minWidth?: string
+  top?: string
 }
 
 //-----------------------------------------------------------------------------
@@ -72,7 +75,7 @@ const StyledDropdown = styled.div`
   z-index: 10;
   position: absolute;
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
-  top: 100%;
+  top: ${ ({ top }: IStyledDropdown ) => top };
   left: 0;
   min-width: ${ ({ minWidth }: IStyledDropdown ) => minWidth };
   min-height: ${ ({ minHeight }: IStyledDropdown ) => minHeight };
@@ -92,6 +95,7 @@ interface IStyledDropdown {
   isDropdownVisible: boolean
   minWidth: string
   minHeight: string
+  top: string
 }
 
 export default Dropdown
