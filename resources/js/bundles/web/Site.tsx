@@ -5,6 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
+import SiteFooter from '@web/Site/SiteFooter'
 import SiteHeader from '@web/Site/SiteHeader'
 import SiteSplash from '@web/Site/SiteSplash'
 import SiteRow from '@web/Site/SiteRow'
@@ -27,11 +28,26 @@ export const Site = () => {
         </SiteRow>
         <SiteRow>
           <SiteRowContent>
-            An opinionated feature set designed to minimize the amount of time you spend organizing your todos
+            Focus on today's tasks
           </SiteRowContent>
           <SiteRowContent>
           </SiteRowContent>
         </SiteRow>
+        <SiteRow>
+          <SiteRowContent>
+          </SiteRowContent>
+          <SiteRowContent>
+            Smart features save you time
+          </SiteRowContent>
+        </SiteRow>
+        <SiteRow>
+          <SiteRowContent>
+            Stop organizing, start doing
+          </SiteRowContent>
+          <SiteRowContent>
+          </SiteRowContent>
+        </SiteRow>
+        <SiteFooter />
       </Container>
   )
 }

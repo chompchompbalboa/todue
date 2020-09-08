@@ -10,7 +10,7 @@ import styled from 'styled-components'
 export const SiteFooter = () => {
   return (
       <Container>
-        (c) ToDue
+        © Daily Todo App, LLC
       </Container>
   )
 }

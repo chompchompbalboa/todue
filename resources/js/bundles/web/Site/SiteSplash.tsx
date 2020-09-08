@@ -13,7 +13,7 @@ export const SiteSplash = () => {
   return (
     <Container>
       <LeftColumn>
-        The simple yet powerful todo list
+        The todo list that simplifies everyday life
       </LeftColumn>
       <RightColumn>
         <Authentication />

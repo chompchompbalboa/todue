@@ -86,7 +86,7 @@ export const AuthenticationRegister = () => {
         onChange={nextValue => setPasswordInputValue(nextValue)}
         isInputValueValid={true}/>
       <AuthenticationCheckbox
-        label="I agree to start a 30-day free trial"
+        label="I agree to start a 7-day free trial"
         onChange={nextValue => setStartTrialCheckboxValue(nextValue)}
         checked={startTrialCheckboxValue} />
       <AuthenticationButton

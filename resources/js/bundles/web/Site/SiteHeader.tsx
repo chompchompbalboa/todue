@@ -24,6 +24,8 @@ const Container = styled.div`
   padding: 1rem;
   position: sticky;
   top: 0;
+  background-color: white;
+  border-bottom: 1px solid rgb(200, 200, 200);
 `
 
 export default SiteHeader

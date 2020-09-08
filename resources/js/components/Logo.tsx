@@ -10,7 +10,7 @@ import styled from 'styled-components'
 export const Logo = () => {
   return (
       <Container>
-        ToDue
+        Daily
       </Container>
   )
 }
