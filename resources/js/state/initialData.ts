@@ -8,7 +8,8 @@ export const initialData: IInitialData = {
     isCompletedTodosVisible: false
   },
   lists: [],
-  user: null
+  user: null,
+  userSubscription: null
 }
 
 export default initialData

@@ -7,7 +7,8 @@
       csrfToken: @json($csrfToken),
       active: @json($active),
       lists: @json($lists),
-      user: @json($user)
+      user: @json($user),
+      userSubscription: @json($userSubscription)
     }
   </script>
 @endsection

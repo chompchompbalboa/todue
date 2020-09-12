@@ -16,6 +16,7 @@ import { initialState as initialTodoState } from '@/state/todo/reducers'
 import { initialState as initialTodoNoteState } from '@/state/todoNote/reducers'
 import { initialState as initialTodoTagState } from '@/state/todoTag/reducers'
 import { initialState as initialUserState } from '@/state/user/reducers'
+import { initialState as initialUserSubscriptionState } from '@/state/userSubscription/reducers'
 
 //-----------------------------------------------------------------------------
 // Initial App State
@@ -30,7 +31,8 @@ export const initialAppState: IAppState = {
   todo: initialTodoState,
   todoNote: initialTodoNoteState,
   todoTag: initialTodoTagState,
-  user: initialUserState
+  user: initialUserState,
+  userSubscription: initialUserSubscriptionState
 }
 
 //-----------------------------------------------------------------------------

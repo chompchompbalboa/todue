@@ -23,8 +23,11 @@ class User extends Authenticatable
       return $this->hasOne('App\Models\UserActive', 'userId');
     }
 
-    public function lists()
-    {
+    public function lists() {
         return $this->belongsToMany('App\Models\TodoList', 'todoListUsers', 'userId', 'listId');
+    }
+
+    public function userSubscription() {
+      return $this->hasOne('App\Models\UserSubscription', 'userId');
     }
 }

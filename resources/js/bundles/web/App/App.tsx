@@ -2,10 +2,14 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { useHistory } from '@/hooks'
 
+import { IAppState } from '@/state' 
+
+import Billing from '@web/Billing/Billing'
 import Lists from '@web/Lists/Lists'
 import Todo from '@web/Todo/Todo'
 import Todos from '@web/Todos/Todos'
@@ -15,11 +19,18 @@ import User from '@web/User/User'
 // Component
 //-----------------------------------------------------------------------------
 export const App = () => {
+  
+  // Redux
+  const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription.type)
 
   // Listen for undo/redo
   useHistory()
 
-  return (
+  if(userSubscriptionType.includes('EXPIRED') && !userSubscriptionType.includes('GRACE_PERIOD')) {
+    return <Billing />
+  }
+  else {
+    return (
       <Container
         data-testid="App">
         <Column 
@@ -39,7 +50,8 @@ export const App = () => {
           <Todo />
         </Column>
       </Container>
-  )
+    )
+  }
 }
 
 //-----------------------------------------------------------------------------

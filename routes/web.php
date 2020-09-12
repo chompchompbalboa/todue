@@ -14,12 +14,20 @@ Route::group([
 ], function () {
     Route::get('/', function () {
         $user = Auth::user();
+        if(is_null($user->userSubscription()->first())) {
+          // Create the new UserActive
+          $user->userSubscription()->create([
+            'id' => Str::uuid()->toString(),
+            'type' => 'TRIAL'
+          ]);
+        }
         return view('app')->with([
             'accessToken' => $user->createToken('authToken')->accessToken,
             'csrfToken' => csrf_token(),
             'active' => $user->active()->first(),
             'lists' => $user->lists()->orderBy('updatedAt', 'desc')->get(),
-            'user' => $user
+            'user' => $user,
+            'userSubscription' => $user->userSubscription()->first()
         ]);
     })->name('app');
 });

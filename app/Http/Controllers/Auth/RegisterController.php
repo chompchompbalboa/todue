@@ -79,8 +79,13 @@ class RegisterController extends Controller
           'id' => Str::uuid()->toString(),
           'listId' => null,
           'sublistId' => null,
-          'todoId' => null,
           'isCompletedTodosVisible' => false
+        ]);
+        
+        // Create the new UserActive
+        $newUser->userSubscription()->create([
+          'id' => Str::uuid()->toString(),
+          'type' => 'TRIAL'
         ]);
 
         // Log the user in

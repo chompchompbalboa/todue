@@ -12,6 +12,7 @@ import todoReducer from '@/state/todo/reducers'
 import todoNoteReducer from '@/state/todoNote/reducers'
 import todoTagReducer from '@/state/todoTag/reducers'
 import userReducer from '@/state/user/reducers'
+import userSubscriptionReducer from '@/state/userSubscription/reducers'
 
 //-----------------------------------------------------------------------------
 // Combine Reducers
@@ -27,6 +28,7 @@ export const appReducer = combineReducers({
   todoNote: todoNoteReducer,
   todoTag: todoTagReducer,
   user: userReducer,
+  userSubscription: userSubscriptionReducer,
 })
 
 export type IAppState = ReturnType<typeof appReducer>

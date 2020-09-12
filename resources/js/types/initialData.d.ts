@@ -9,6 +9,7 @@ import { ITag } from '@/state/tag/types'
 import { ITodo } from '@/state/todo/types'
 import { ITodoTag } from '@/state/todoTag/types'
 import { IUser } from '@/state/user/types'
+import { IUserSubscription } from '@/state/userSubscription/types'
 
 //-----------------------------------------------------------------------------
 // Initial Data
@@ -21,6 +22,7 @@ declare global {
 		active: IUserActive
 		lists: IList[]
 		user: IUser
+    userSubscription: IUserSubscription
 	}
 }
 export {} // Typescript needs this file to be a module
