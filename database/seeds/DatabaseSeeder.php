@@ -15,11 +15,11 @@ class DatabaseSeeder extends Seeder
     {
       $users = [
         'eastmanrjr@gmail.com' => [ 'email' => 'eastmanrjr@gmail.com', 'name' => 'Rocky Eastman', 'subscriptionType' => 'LIFETIME' ],
-        'trial@quickdoapp.com' => [ 'email' => 'trial@quickdoapp.com', 'name' => 'Trial', 'subscriptionType' => 'TRIAL' ],
-        'trialexpired@quickdoapp.com' => [ 'email' => 'trialexpired@quickdoapp.com', 'name' => 'Trial Expired', 'subscriptionType' => 'TRIAL_EXPIRED' ],
-        'yearly@quickdoapp.com' => [ 'email' => 'yearly@quickdoapp.com', 'name' => 'Yearly', 'subscriptionType' => 'YEARLY' ],
-        'yearlyexpired@quickdoapp.com' => [ 'email' => 'yearlyexpired@quickdoapp.com', 'name' => 'Yearly Expired', 'subscriptionType' => 'YEARLY_EXPIRED' ],
-        'yearlyexpiredgraceperiod@quickdoapp.com' => [ 'email' => 'yearlyexpiredgraceperiod@quickdoapp.com', 'name' => 'Yearly Expired', 'subscriptionType' => 'YEARLY_EXPIRED_GRACE_PERIOD' ]
+        'trial@quickdo.app' => [ 'email' => 'trial@quickdo.app', 'name' => 'Trial', 'subscriptionType' => 'TRIAL' ],
+        'trialexpired@quickdo.app' => [ 'email' => 'trialexpired@quickdo.app', 'name' => 'Trial Expired', 'subscriptionType' => 'TRIAL_EXPIRED' ],
+        'yearly@quickdo.app' => [ 'email' => 'yearly@quickdo.app', 'name' => 'Yearly', 'subscriptionType' => 'YEARLY' ],
+        'yearlyexpired@quickdo.app' => [ 'email' => 'yearlyexpired@quickdo.app', 'name' => 'Yearly Expired', 'subscriptionType' => 'YEARLY_EXPIRED' ],
+        'yearlyexpiredgraceperiod@quickdo.app' => [ 'email' => 'yearlyexpiredgraceperiod@quickdo.app', 'name' => 'Yearly Expired', 'subscriptionType' => 'YEARLY_EXPIRED_GRACE_PERIOD' ]
       ];
 
       // Seed each user

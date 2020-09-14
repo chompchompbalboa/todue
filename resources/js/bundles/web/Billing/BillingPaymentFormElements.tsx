@@ -83,7 +83,7 @@ const BillingPaymentFormElements = () => {
       onSubmit={handleSubmit}>
       <BillingCardInput />
       <BillingSubmitButton 
-        text={isChargeBeingProcessed ? 'Processing...' : 'Purchase Subscription'}/>
+        text={isChargeBeingProcessed ? 'Processing...' : 'Purchase Subscription ($10 per year, renews automatically)'}/>
       <BillingErrorMessage
         error={stripeError}/>
     </StyledForm>
@@ -95,6 +95,10 @@ const BillingPaymentFormElements = () => {
 //-----------------------------------------------------------------------------
 const StyledForm = styled.form`
   min-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
 
 export default BillingPaymentFormElements

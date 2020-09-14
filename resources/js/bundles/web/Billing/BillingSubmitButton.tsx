@@ -40,9 +40,8 @@ const StyledButton = styled.button`
   white-space: nowrap;
   border: 1px solid rgb(150, 150, 150);
   outline: 0;
-  background-color: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'rgb(175, 175, 175)' : 'rgb(0, 150, 25)' };
+  background-color: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'rgb(175, 175, 175)' : 'rgb(0, 0, 150)' };
   color: white;
-  font-size: 0.85rem;
   border-radius: 4px;
   text-decoration: none;
   transition: all 0.15s;

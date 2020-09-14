@@ -10,7 +10,7 @@ import styled from 'styled-components'
 export const SiteFooter = () => {
   return (
       <Container>
-        © Daily Todo App, LLC
+        © QuickDo App, LLC
       </Container>
   )
 }

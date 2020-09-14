@@ -15,7 +15,6 @@ Route::group([
     Route::get('/', function () {
         $user = Auth::user();
         if(is_null($user->userSubscription()->first())) {
-          // Create the new UserActive
           $user->userSubscription()->create([
             'id' => Str::uuid()->toString(),
             'type' => 'TRIAL'

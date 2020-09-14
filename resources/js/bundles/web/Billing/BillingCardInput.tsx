@@ -30,33 +30,23 @@ const BillingCardInput = () => {
   
   return (
     <Container>
-      <CardNumberContainer>
-        <CardDetailContainer
-          width="100%">
-          <label>
-            Number:
-            <CardNumberElement 
-              options={cardElementOptions}/>
-          </label>
-        </CardDetailContainer>
-      </CardNumberContainer>
       <CardDetailsContainer>
         <CardDetailContainer
-          width="20%">
-          <label>
-            CVC:
-            <CardCvcElement
-              options={cardElementOptions}/>
-          </label>
+          width="60%">
+          <CardNumberElement 
+            options={cardElementOptions}/>
         </CardDetailContainer>
         &nbsp;&nbsp;
         <CardDetailContainer
-          width="40%">
-          <label>
-            Expiration:
-            <CardExpiryElement
-              options={cardElementOptions}/>
-          </label>
+          width="20%">
+          <CardCvcElement
+            options={cardElementOptions}/>
+        </CardDetailContainer>
+        &nbsp;&nbsp;
+        <CardDetailContainer
+          width="20%">
+          <CardExpiryElement
+            options={cardElementOptions}/>
         </CardDetailContainer>
       </CardDetailsContainer>
     </Container>
@@ -66,12 +56,15 @@ const BillingCardInput = () => {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div``
-
-const CardNumberContainer = styled.div``
+const Container = styled.div`
+  margin: 0.5rem 0;
+  width: 100%;
+`
 
 const CardDetailsContainer = styled.div`
+  margin-bottom: 0.25rem;
   display: flex;
+  justify-content: center;
 `
 
 const CardDetailContainer = styled.div`

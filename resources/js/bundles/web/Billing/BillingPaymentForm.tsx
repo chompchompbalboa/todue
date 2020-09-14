@@ -17,9 +17,6 @@ const BillingPaymentForm = () => {
 
   return (
     <Container>
-      <Header>
-        Please enter your card information: 
-      </Header>
       <Elements
         stripe={stripe}>
         <BillingPaymentFormElements />
@@ -37,10 +34,6 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-right: 1rem;
-`
-
-const Header = styled.div`
-  margin-bottom: 0.5rem;
 `
 
 //-----------------------------------------------------------------------------

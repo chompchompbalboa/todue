@@ -17,7 +17,7 @@
       userSubscription: @json($userSubscription)
     }
     const environment = {
-      stripeKey: ''
+      stripeKey: "{{ env('STRIPE_KEY') }}"
     }
   </script>
 @endsection
