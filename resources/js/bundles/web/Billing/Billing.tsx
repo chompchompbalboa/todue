@@ -6,6 +6,8 @@ import styled from 'styled-components'
 
 import BillingMessage from '@web/Billing/BillingMessage'
 
+import BillingPaymentForm from '@web/Billing/BillingPaymentForm'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
@@ -14,6 +16,7 @@ export const Billing = () => {
     <Container>
       <Content>
         <BillingMessage />
+        <BillingPaymentForm />
       </Content>
     </Container>
   )
@@ -33,8 +36,6 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
-  width: 100%;
-  height: 100%;
   background-color: white;
   border-radius: 10px;
   padding: 1rem;

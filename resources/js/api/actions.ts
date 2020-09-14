@@ -3,6 +3,8 @@
 //-----------------------------------------------------------------------------
 import axios from '@/api/axios'
 
+import { IUser } from '@/state/user/types'
+
 //-----------------------------------------------------------------------------
 // Actions
 //-----------------------------------------------------------------------------
@@ -28,4 +30,12 @@ export const userRequestAccessToken = async (email: string, password: string) =>
 		username: email,
 		password: password
 	})
+}
+
+export const userSubscriptionPurchase = async (userId: IUser['id'], stripeSetupIntentPaymentMethodId: string) => {
+  return axios.post('/user/' + userId + '/subscription/purchase/monthly', { stripeSetupIntentPaymentMethodId })
+}
+
+export const userSubscriptionCancel = async (userId: IUser['id'], password: string) => {
+  return axios.post('/user/' + userId + '/subscription/cancel/monthly', { password })
 }

@@ -21,7 +21,7 @@ import User from '@web/User/User'
 export const App = () => {
   
   // Redux
-  const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription.type)
+  const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription?.type || 'TRIAL')
 
   // Listen for undo/redo
   useHistory()

@@ -19,7 +19,7 @@ export const Billing = () => {
   const billingMessages = {
     TRIAL: '',
     TRIAL_EXPIRED: 'Your trial has expired. Please enter your billing information below.',
-    YEARLY: '',
+    YEARLY: 'Please enter your new credit card information below',
     YEARLY_EXPIRED: 'Your subscription has expired. Please enter your billing information below.',
     YEARLY_EXPIRED_GRACE_PERIOD: ''
   }

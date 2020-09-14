@@ -1,5 +1,11 @@
 @extends('layout')
 
+@section('head')
+    @if(in_array($userSubscription->type, ['TRIAL_EXPIRED', 'YEARLY_EXPIRED']))
+      <script src="https://js.stripe.com/v3/"></script>
+    @endif
+@endsection
+
 @section('data')
   <script>
     const initialData = {
@@ -9,6 +15,9 @@
       lists: @json($lists),
       user: @json($user),
       userSubscription: @json($userSubscription)
+    }
+    const environment = {
+      stripeKey: ''
     }
   </script>
 @endsection
