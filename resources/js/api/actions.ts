@@ -23,8 +23,8 @@ export const userRegister = async (name: string, email: string, password: string
 export const userRequestAccessToken = async (email: string, password: string) => {
 	return axios.post('/oauth/token', { 
 		grant_type: 'password',
-		client_id: '91593722-5429-4a0d-a7d0-38845fa59afd',
-		client_secret: '4Oq04JFIuT5DX6mkTekSAmz6tYQKJnEMPklmy224',
+		client_id: '9183d461-362d-4861-811e-4f8d66be4924',
+		client_secret: 'btPcIXiNqsLxcJFBwzoA34MgRYdIDJB546AN5i3s',
 		username: email,
 		password: password
 	})

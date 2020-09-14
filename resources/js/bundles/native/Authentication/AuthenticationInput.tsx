@@ -35,6 +35,7 @@ const SiteAuthenticationInput = ({
         <Label>{label}:</Label>
       }
       <StyledInput
+        autoCapitalize={type === "email" ? "none" : "sentences"}
         isInputValueValid={isActiveInput || isInputValueValid}
         onChangeText={nextText => onChange(nextText)}
         onFocus={handleInputFocus}

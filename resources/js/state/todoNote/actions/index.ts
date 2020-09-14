@@ -7,12 +7,27 @@ import { ITodoNoteState } from '@/state/todoNote/reducers'
 // Exports
 //-----------------------------------------------------------------------------
 export type ITodoNoteActions = 
+IClearState |
 ISetAllTodoNotes |
 ISetTodoNotesByTodoId
 
 export { createTodoNote } from '@/state/todoNote/actions/createTodoNote'
 export { deleteTodoNote } from '@/state/todoNote/actions/deleteTodoNote'
 export { loadTodoNotes } from '@/state/todoNote/actions/loadTodoNotes'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): ITodoNoteActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Set All Todo Notes

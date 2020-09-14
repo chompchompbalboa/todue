@@ -16,7 +16,7 @@ const loadedInitialData = isWeb ? initialData : defaultInitialData
 //-----------------------------------------------------------------------------
 // Attach tokens to request
 //-----------------------------------------------------------------------------
-async function attachTokensToRequest() {
+export async function attachTokensToRequest() {
   if (axiosExport?.defaults?.headers?.common) {
     axiosExport.defaults.headers.common['Accept'] = 'application/json'
     axiosExport.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
@@ -32,7 +32,9 @@ async function attachTokensToRequest() {
     }
     else {
       const accessToken = await AsyncStorage.getItem('@todue/accessToken')
-      axiosExport.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
+      if(accessToken) {
+        axiosExport.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
+      }
     }
   }
 }
@@ -43,7 +45,7 @@ async function attachTokensToRequest() {
 function setBaseUrl() {
   if(axiosExport.defaults) {
     if(typeof __DEV__ !== 'undefined' && __DEV__ && !isWeb) {
-      axiosExport.defaults.baseURL = 'https://3f40f60ea720.ngrok.io'
+      axiosExport.defaults.baseURL = 'https://64800eb3b5c9.ngrok.io'
     }
     else if (!isWeb) {
       axiosExport.defaults.baseURL = 'https://todue.app'

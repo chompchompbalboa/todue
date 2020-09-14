@@ -7,12 +7,27 @@ import { ISublistTagState } from '@/state/sublistTag/reducers'
 // Exports
 //-----------------------------------------------------------------------------
 export type ISublistTagActions = 
+IClearState |
 ISetAllSublistTags |
 ISetSublistTagsBySublistId
 
 export { createSublistTag } from '@/state/sublistTag/actions/createSublistTag'
 export { deleteSublistTag } from '@/state/sublistTag/actions/deleteSublistTag'
 export { loadSublistTags } from '@/state/sublistTag/actions/loadSublistTags'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): ISublistTagActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Set All Sublist Tags

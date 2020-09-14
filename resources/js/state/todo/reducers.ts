@@ -8,6 +8,7 @@ import {
 
 import { 
   ITodoActions,
+  CLEAR_STATE,
   SET_ALL_TODOS,
   SET_TODOS_BY_LIST_ID,
   SET_VISIBLE_TODOS,
@@ -34,6 +35,10 @@ export const initialState: ITodoState = {
 //-----------------------------------------------------------------------------
 export const example = (state = initialState, action: ITodoActions): ITodoState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_TODOS: {
       const { nextAllTodos } = action

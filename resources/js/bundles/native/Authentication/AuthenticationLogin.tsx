@@ -8,6 +8,7 @@ import styled from 'styled-components/native'
 import isEmail from 'validator/lib/isEmail'
 
 import { action } from '@/api'
+import { attachTokensToRequest } from '@/api/axios'
 
 import { updateUser } from '@/state/user/actions'
 
@@ -46,10 +47,13 @@ export const AuthenticationLogin = () => {
         .then(response => {
           AsyncStorage.setItem('@todue/accessToken', response.data.access_token)
           AsyncStorage.setItem('@todue/refreshToken', response.data.refresh_token)
-          dispatch(updateUser({ email: emailInputValue }))
+          attachTokensToRequest().then(() => {
+            dispatch(updateUser({ email: emailInputValue }))
+          })
         })
-        .catch(response => {
-          console.log(response)
+        .catch(() => {
+          AsyncStorage.removeItem('@todue/accessToken')
+          AsyncStorage.removeItem('@todue/refreshToken')
           setTimeout(() => {
             setLoginStatus('ERROR_DURING_LOGIN')
           }, 500)

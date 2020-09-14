@@ -8,6 +8,7 @@ import {
 
 import { 
   ITodoTagActions,
+  CLEAR_STATE,
   SET_ALL_TODO_TAGS,
   SET_TODO_TAGS_BY_TODO_ID
 } from '@/state/todoTag/actions'
@@ -30,6 +31,10 @@ export const initialState: ITodoTagState = {
 //-----------------------------------------------------------------------------
 export const tag = (state = initialState, action: ITodoTagActions): ITodoTagState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_TODO_TAGS: {
       const { nextAllTodoTags } = action

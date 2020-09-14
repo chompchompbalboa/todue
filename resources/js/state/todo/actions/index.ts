@@ -12,6 +12,7 @@ import {
 // Exports
 //-----------------------------------------------------------------------------
 export type ITodoActions = 
+IClearState |
 ISetAllTodos | 
 ISetTodosByListId |
 ISetVisibleTodos |
@@ -23,6 +24,20 @@ export { loadTodos } from '@/state/todo/actions/loadTodos'
 export { updateTodo } from '@/state/todo/actions/updateTodo'
 
 export { refreshVisibleTodos } from '@/state/todo/actions/refreshVisibleTodos'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): ITodoActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Set All Todos

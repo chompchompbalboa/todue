@@ -9,6 +9,7 @@ import {
 
 import { 
   IListActions,
+  CLEAR_STATE,
   SET_ALL_LISTS,
   SET_LISTS,
   SET_LOADED_LISTS,
@@ -48,6 +49,14 @@ export const initialState: IListState = {
 //-----------------------------------------------------------------------------
 export const example = (state = initialState, action: IListActions): IListState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return {
+        allLists: {},
+        lists: [],
+        loadedLists: new Set()
+      }
+    }
 
     case SET_ALL_LISTS: {
       const { nextAllLists } = action

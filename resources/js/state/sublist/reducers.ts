@@ -8,6 +8,7 @@ import {
 
 import { 
   ISublistActions,
+  CLEAR_STATE,
   SET_ALL_SUBLISTS,
   SET_SUBLISTS_BY_LIST_ID,
   UPDATE_SUBLIST
@@ -31,6 +32,10 @@ export const initialState: ISublistState = {
 //-----------------------------------------------------------------------------
 export const example = (state = initialState, action: ISublistActions): ISublistState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_SUBLISTS: {
       const { nextAllLists } = action

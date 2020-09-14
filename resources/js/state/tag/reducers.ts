@@ -8,6 +8,7 @@ import {
 
 import { 
   ITagActions,
+  CLEAR_STATE,
   SET_ALL_TAGS,
   SET_TAGS_BY_LIST_ID,
   UPDATE_TAG
@@ -31,6 +32,10 @@ export const initialState: ITagState = {
 //-----------------------------------------------------------------------------
 export const tag = (state = initialState, action: ITagActions): ITagState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_TAGS: {
       const { nextAllTags } = action

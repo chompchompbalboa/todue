@@ -14,11 +14,27 @@ import { ITodo } from '@/state/todo/types'
 // Exports
 //-----------------------------------------------------------------------------
 export type IActiveActions = 
+  IClearState |
   ILoadActive |
   IUpdateActiveIsCompletedTodosVisible |
 	IUpdateActiveListId | 
 	IUpdateActiveSublistId |
   IUpdateActiveTodoId
+
+  //-----------------------------------------------------------------------------
+  // Clear State
+  //-----------------------------------------------------------------------------
+  export const CLEAR_STATE = 'CLEAR_STATE'
+  interface IClearState {
+    type: typeof CLEAR_STATE
+  }
+  
+  export const clearState = (): IActiveActions => {
+    return {
+      type: CLEAR_STATE
+    }
+  }
+  
 
 //-----------------------------------------------------------------------------
 // Load Active

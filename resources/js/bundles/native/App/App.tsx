@@ -28,6 +28,7 @@ const App = () => {
   const dispatch = useDispatch()
   const activeListId = useSelector((state: IAppState) => state.active.listId)
   const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
+  const isUserLoggedIn = useSelector((state: IAppState) => state.user.email !== null)
   const isInitialDataLoaded = useSelector((state: IAppState) => state.active.listId !== null)
   const isActiveListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(state.active.listId))
 
@@ -37,16 +38,18 @@ const App = () => {
 
   // Load the active list as needed
   useEffect(() => {
-    if(!isInitialDataLoaded) {
-      query.loadInitialData().then((response: any) => {
-        if(response.status === 200) {
-          dispatch(loadLists(response.data.lists as IList[]))
-          dispatch(loadActive(response.data.active as IActiveState))
-        }
-      })
-    }
-    else if(!isActiveListLoaded) {
-      dispatch(loadList(activeListId))
+    if(isUserLoggedIn) {
+      if(!isInitialDataLoaded) {
+        query.loadInitialData().then((response: any) => {
+          if(response.status === 200) {
+            dispatch(loadLists(response.data.lists as IList[]))
+            dispatch(loadActive(response.data.active as IActiveState))
+          }
+        })
+      }
+      else if(!isActiveListLoaded) {
+        dispatch(loadList(activeListId))
+      }
     }
   }, [ activeListId, isInitialDataLoaded, isActiveListLoaded ])
 

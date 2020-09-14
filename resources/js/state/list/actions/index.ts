@@ -11,6 +11,7 @@ import {
 // Exports
 //-----------------------------------------------------------------------------
 export type IListActions = 
+  IClearState |
   ISetAllLists | 
   ISetLists | 
   ISetLoadedLists |
@@ -21,6 +22,22 @@ export { deleteList } from '@/state/list/actions/deleteList'
 export { loadList } from '@/state/list/actions/loadList'
 export { loadLists } from '@/state/list/actions/loadLists'
 export { updateList } from '@/state/list/actions/updateList'
+
+export { clearLoadedLists } from '@/state/list/actions/clearLoadedLists'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): IListActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Set All Lists

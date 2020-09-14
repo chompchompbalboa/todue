@@ -11,11 +11,29 @@ import {
 //-----------------------------------------------------------------------------
 // Exports
 //-----------------------------------------------------------------------------
-export type ITagActions = ISetAllTags | ISetTagsByListId | IUpdateTag
+export type ITagActions = 
+	IClearState | 
+	ISetAllTags | 
+	ISetTagsByListId | 
+	IUpdateTag
 
 export { createListTag } from '@/state/tag/actions/createListTag'
 export { loadTags } from '@/state/tag/actions/loadTags'
 export { updateTag } from '@/state/tag/actions/updateTag'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): ITagActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Tag Action

@@ -8,6 +8,7 @@ import {
 
 import { 
   ISublistTagActions,
+  CLEAR_STATE,
   SET_ALL_SUBLIST_TAGS,
   SET_SUBLIST_TAGS_BY_SUBLIST_ID
 } from '@/state/sublistTag/actions'
@@ -30,6 +31,10 @@ export const initialState: ISublistTagState = {
 //-----------------------------------------------------------------------------
 export const tag = (state = initialState, action: ISublistTagActions): ISublistTagState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_SUBLIST_TAGS: {
       const { nextAllSublistTags } = action

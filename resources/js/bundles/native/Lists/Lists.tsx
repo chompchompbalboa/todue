@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 import { IAppState } from '@/state'
 
+import AuthenticationLogout from '@native/Authentication/AuthenticationLogout'
 import ListsList from '@native/Lists/ListsList'
 import Modal from '@/components/native/Modal'
 
@@ -28,6 +29,7 @@ const Lists = ({
           listId={listId}
           setIsListsVisible={setIsListsVisible}/>
       ))}
+      <AuthenticationLogout />
     </Modal>
   )
 }

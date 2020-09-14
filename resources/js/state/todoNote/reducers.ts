@@ -8,6 +8,7 @@ import {
 
 import { 
   ITodoNoteActions,
+  CLEAR_STATE,
   SET_ALL_TODO_NOTES,
   SET_TODO_NOTES_BY_TODO_ID
 } from '@/state/todoNote/actions'
@@ -30,6 +31,10 @@ export const initialState: ITodoNoteState = {
 //-----------------------------------------------------------------------------
 export const todoNote = (state = initialState, action: ITodoNoteActions): ITodoNoteState => {
 	switch (action.type) {
+
+    case CLEAR_STATE: {
+      return initialState
+    }
 
     case SET_ALL_TODO_NOTES: {
       const { nextAllTodoNotes } = action

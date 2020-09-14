@@ -7,12 +7,27 @@ import { ITodoTagState } from '@/state/todoTag/reducers'
 // Exports
 //-----------------------------------------------------------------------------
 export type ITodoTagActions = 
+IClearState |
 ISetAllTodoTags |
 ISetTodoTagsByTodoId
 
 export { createTodoTag } from '@/state/todoTag/actions/createTodoTag'
 export { deleteTodoTag } from '@/state/todoTag/actions/deleteTodoTag'
 export { loadTodoTags } from '@/state/todoTag/actions/loadTodoTags'
+
+//-----------------------------------------------------------------------------
+// Clear State
+//-----------------------------------------------------------------------------
+export const CLEAR_STATE = 'CLEAR_STATE'
+interface IClearState {
+  type: typeof CLEAR_STATE
+}
+
+export const clearState = (): ITodoTagActions => {
+	return {
+		type: CLEAR_STATE
+	}
+}
 
 //-----------------------------------------------------------------------------
 // Set All Todo Tags
