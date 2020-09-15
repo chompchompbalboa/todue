@@ -5,7 +5,7 @@
     <title>QuickDo - The Todo List That Simplifies Everday Life</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css', true )}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css', env('ASSETS_REQUIRE_HTTP') !== null ? !env('ASSETS_REQUIRE_HTTP') : true )}}">
     @yield('head')
   </head>
   <body>

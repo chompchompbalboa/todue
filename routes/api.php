@@ -12,7 +12,7 @@ Route::group([
     'middleware' => [ 'auth:api' ]
 ], function () {  
 
-    // Initial data
+    // Initial data for native
     Route::get('/initial-data', function () {
         $user = Auth::user();
         return ([
@@ -30,6 +30,9 @@ Route::group([
     Route::post('/todo/restore/{todo}', 'TodoController@restore');
     Route::post('/todo/note/restore/{note}', 'TodoNoteController@restore');
     Route::post('/todo/tag/restore/{tag}', 'TodoTagController@restore');
+  
+    // Subscriptions
+    Route::post('/user/{user}/subscription/purchase', 'UserSubscriptionController@purchase');
 
     // Resource Controllers
     Route::resources([

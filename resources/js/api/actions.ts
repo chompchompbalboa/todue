@@ -33,9 +33,9 @@ export const userRequestAccessToken = async (email: string, password: string) =>
 }
 
 export const userSubscriptionPurchase = async (userId: IUser['id'], stripeSetupIntentPaymentMethodId: string) => {
-  return axios.post('/user/' + userId + '/subscription/purchase/monthly', { stripeSetupIntentPaymentMethodId })
+  return axios.post('/api/user/' + userId + '/subscription/purchase', { stripeSetupIntentPaymentMethodId })
 }
 
 export const userSubscriptionCancel = async (userId: IUser['id'], password: string) => {
-  return axios.post('/user/' + userId + '/subscription/cancel/monthly', { password })
+  return axios.post('/api/user/' + userId + '/subscription/cancel', { password })
 }
