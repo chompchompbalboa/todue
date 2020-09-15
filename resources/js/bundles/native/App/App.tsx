@@ -28,7 +28,7 @@ const App = () => {
   const dispatch = useDispatch()
   const activeListId = useSelector((state: IAppState) => state.active.listId)
   const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
-  const isUserLoggedIn = useSelector((state: IAppState) => state.user.email !== null)
+  const isUserLoggedIn = useSelector((state: IAppState) => state.user?.email !== null)
   const isInitialDataLoaded = useSelector((state: IAppState) => state.active.listId !== null)
   const isActiveListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(state.active.listId))
 

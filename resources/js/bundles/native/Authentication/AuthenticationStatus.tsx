@@ -29,10 +29,13 @@ interface ISiteAuthenticationStatus {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   margin-top: 8px;
-  color: rgb(175, 0, 0);
 `
 
 const Status = styled.Text`
+  font-size: 16px;
+  font-family: OpenSans_400Regular;
+  color: rgb(200, 0, 0);
+  text-align: center;
 `
 
 export default SiteAuthenticationStatus

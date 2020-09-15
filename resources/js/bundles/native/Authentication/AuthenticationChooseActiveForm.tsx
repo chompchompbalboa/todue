@@ -13,21 +13,26 @@ const AuthenticationChooseActiveForm = ({
 }: IAuthenticationChooseActiveForm) => {
   return (
     <Container>
-      <FormLinkTouchable
-        onPress={() => setActiveForm('REGISTER')}>
-        <FormLink
-          isActiveForm={activeForm === 'REGISTER'}>
-          Register
-        </FormLink>
-      </FormLinkTouchable>
-      <FormLinkDivider />
-      <FormLinkTouchable
-        onPress={() => setActiveForm('LOGIN')}>
-        <FormLink
-          isActiveForm={activeForm === 'LOGIN'}>
-          Login
-        </FormLink>
-      </FormLinkTouchable>
+      {activeForm === 'LOGIN' &&
+        <FormLinkTouchable
+          onPress={() => setActiveForm('REGISTER')}>
+          <FormLink>
+            <FormLinkText>
+              &larr; Back To Sign Up
+            </FormLinkText>
+          </FormLink>
+        </FormLinkTouchable>
+      }
+      {activeForm === 'REGISTER' &&
+        <FormLinkTouchable
+          onPress={() => setActiveForm('LOGIN')}>
+          <FormLink>
+            <FormLinkText>
+              Have An Account? Log In Instead &rarr;
+            </FormLinkText>
+          </FormLink>
+        </FormLinkTouchable>
+      }
     </Container>
   )
 }
@@ -44,35 +49,26 @@ interface IAuthenticationChooseActiveForm {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 16px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(250, 250, 250);
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
 `
 
 const FormLinkTouchable = styled.TouchableWithoutFeedback`
 `
-const FormLink = styled.Text`
+const FormLink = styled.View`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: ${ ({ isActiveForm }: IFormLink ) => isActiveForm ? 'underline' : 'none' };
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 `
-interface IFormLink {
-  isActiveForm: boolean
-}
 
-const FormLinkDivider = styled.View`
-  margin: 0 16px;
-  height: 16px;
-  width: 1px;
-  background-color: black;
+const FormLinkText = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  font-family: OpenSans_400Regular;
 `
 
 export default AuthenticationChooseActiveForm

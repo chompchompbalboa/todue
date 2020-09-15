@@ -18,7 +18,6 @@ import AuthenticationStatus from '@web/Authentication/AuthenticationStatus'
 export const AuthenticationRegister = () => {
   
   // State
-  const [ nameInputValue, setNameInputValue ] = useState('')
   const [ emailInputValue, setEmailInputValue ] = useState('')
   const [ passwordInputValue, setPasswordInputValue ] = useState('')
   const [ startTrialCheckboxValue, setStartTrialCheckboxValue ] = useState(false)
@@ -28,7 +27,7 @@ export const AuthenticationRegister = () => {
   const handleRegisterAttempt = (e: FormEvent) => {
     e.preventDefault()
     setRegisterStatus('REGISTERING')
-    if(emailInputValue === '' || nameInputValue === '' || passwordInputValue === '') {
+    if(emailInputValue === '' || passwordInputValue === '') {
       setTimeout(() => {
         setRegisterStatus('NOT_ALL_FIELDS_ARE_COMPLETE')
       }, 500)
@@ -44,7 +43,7 @@ export const AuthenticationRegister = () => {
       }, 500)
     }
     else {
-      action.userRegister(nameInputValue, emailInputValue, passwordInputValue)
+      action.userRegister(emailInputValue, passwordInputValue)
         .then(() => {
           window.location.reload()
         })
@@ -65,12 +64,6 @@ export const AuthenticationRegister = () => {
   
   return (
     <RegisterForm onSubmit={e => handleRegisterAttempt(e)}>
-      <AuthenticationInput
-        label="Name"
-        placeholder="Name"
-        value={nameInputValue}
-        onChange={nextValue => setNameInputValue(nextValue)}
-        isInputValueValid={true}/>
       <AuthenticationInput
         label="Email"
         type="email"
@@ -113,7 +106,7 @@ type IRegisterStatus =
 export const authenticationStatusMessages = {
   READY: "",
   REGISTERING: "",
-  NOT_ALL_FIELDS_ARE_COMPLETE: "Please enter your name, email, and password and click the checkbox above to start your free trial",
+  NOT_ALL_FIELDS_ARE_COMPLETE: "Please enter your email and password to start your free trial",
   NOT_VALID_EMAIL: "Please enter a valid email address",
   START_TRIAL_CHECKBOX_NOT_CHECKED: "Please click the checkbox above to start your free trial",
   EMAIL_ALREADY_IN_USE: "That email address is already in use",

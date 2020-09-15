@@ -9,7 +9,6 @@ import styled from 'styled-components/native'
 //-----------------------------------------------------------------------------
 const SiteAuthenticationInput = ({
   isInputValueValid,
-  label = null,
   onChange,
   placeholder,
   type = "text",
@@ -31,9 +30,6 @@ const SiteAuthenticationInput = ({
 
   return (
     <Container>
-      {label &&
-        <Label>{label}:</Label>
-      }
       <StyledInput
         autoCapitalize={type === "email" ? "none" : "sentences"}
         isInputValueValid={isActiveInput || isInputValueValid}
@@ -52,7 +48,6 @@ const SiteAuthenticationInput = ({
 //-----------------------------------------------------------------------------
 interface ISiteAuthenticationInput {
   isInputValueValid: boolean
-  label?: string
   onChange(nextValue: string): void
   placeholder: string
   type?: string
@@ -70,18 +65,14 @@ const Container = styled.View`
   align-items: center;
 `
 
-const Label = styled.Text`
-  width: 100%;
-`
-
 const StyledInput = styled.TextInput`
   width: 100%;
   margin: 6px;
-  padding: 8px 4px;
-  border: none;
-  border: ${ ({ isInputValueValid }: IStyledInput ) => isInputValueValid ? '1px solid rgb(150, 150, 150)' : '1px solid red'};
-  border-radius: 4px;
-  font-size: 14px;
+  padding: 10px 8px;
+  border: ${ ({ isInputValueValid }: IStyledInput ) => isInputValueValid ? '1px solid rgb(180, 180, 180)' : '1px solid red'};
+  border-radius: 10px;
+  font-size: 17px;
+  font-family: OpenSans_400Regular;
 `
 interface IStyledInput {
   isInputValueValid: boolean

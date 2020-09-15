@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 import { IAppState } from '@/state'
 
 import App from '@native/App/App'
-import Authentication from '@native/Authentication/Authentication'
+import Splash from '@native/Splash/Splash'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 //-----------------------------------------------------------------------------
@@ -37,10 +37,11 @@ const AppRoot = () => {
   }, [ userEmail ])
 
   return (
-    <SafeAreaView>
+    <SafeAreaView
+      edges={[ 'left', 'top', 'right' ]}>
       {isUserLoggedIn
         ? <App />
-        : <Authentication />}
+        : <Splash />}
     </SafeAreaView>
   )
 }

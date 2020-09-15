@@ -65,16 +65,14 @@ export const AuthenticationLogin = () => {
     <LoginForm>
       <InputsContainer>
         <AuthenticationInput
-          label={"Email"}
           type="email"
-          placeholder="Email"
+          placeholder="Email..."
           value={emailInputValue}
           onChange={nextValue => setEmailInputValue(nextValue)}
           isInputValueValid={emailInputValue === '' || isEmail(emailInputValue)}/>
         <AuthenticationInput
-          label={"Password"}
           type="password"
-          placeholder="Password"
+          placeholder="Password..."
           value={passwordInputValue}
           onChange={nextValue => setPasswordInputValue(nextValue)}
           isInputValueValid={true}/>

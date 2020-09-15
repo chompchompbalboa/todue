@@ -18,8 +18,8 @@ export const userLogout = async () => {
 	})
 }
 
-export const userRegister = async (name: string, email: string, password: string) => {
-	return axios.post('/user/register', { name, email, password })
+export const userRegister = async (email: string, password: string) => {
+	return axios.post('/user/register', { email, password })
 }
 
 export const userRequestAccessToken = async (email: string, password: string) => {

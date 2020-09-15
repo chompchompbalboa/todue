@@ -11,12 +11,14 @@ const IAuthenticationButton = ({
   text,
   handleButtonPress
 }: IIAuthenticationButton) => (
-  <Button
+  <ButtonTouchable
     onPress={handleButtonPress}>
-    <ButtonText>
-      {text}
-    </ButtonText>
-  </Button>
+    <Button>
+      <ButtonText>
+        {text}
+      </ButtonText>
+    </Button>
+  </ButtonTouchable>
 )
 
 //-----------------------------------------------------------------------------
@@ -30,21 +32,22 @@ interface IIAuthenticationButton {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Button = styled.TouchableWithoutFeedback`
+const ButtonTouchable = styled.TouchableWithoutFeedback``
+const Button = styled.View`
   width: 100%;
-  margin-left: 0.375rem;
-  padding: 0.5rem 1.25rem;
+  margin-top: 10px;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(150, 150, 150);
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: rgba(220, 220, 220, 1);
-  color: black;
+  border-radius: 10px;
+  background-color: rgba(100, 175, 250, 1);
 `
 
 const ButtonText = styled.Text`
+  font-size: 16px;
+  font-family: OpenSans_700Bold;
+  color: white;
 `
 
 export default IAuthenticationButton

@@ -13,17 +13,17 @@ import AuthenticationRegister from '@native/Authentication/AuthenticationRegiste
 //-----------------------------------------------------------------------------
 export const Authentication = () => {
 
-  const [ activeForm, setActiveForm ] = useState('LOGIN' as 'REGISTER' | 'LOGIN')
+  const [ activeForm, setActiveForm ] = useState('REGISTER' as 'REGISTER' | 'LOGIN')
 
   return (
     <Container>
-      <AuthenticationChooseActiveForm
-        activeForm={activeForm}
-        setActiveForm={setActiveForm}/>
       <Forms>
         {activeForm === 'LOGIN' && <AuthenticationLogin />}
         {activeForm === 'REGISTER' && <AuthenticationRegister />}
       </Forms>
+      <AuthenticationChooseActiveForm
+        activeForm={activeForm}
+        setActiveForm={setActiveForm}/>
     </Container>
   )
 }
@@ -32,13 +32,10 @@ export const Authentication = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 16px;
-  color: black;
 `
 
 const Forms = styled.View`
   padding: 24px;
-  background-color: rgb(230, 230, 230);
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
 `

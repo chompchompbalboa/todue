@@ -62,14 +62,13 @@ class RegisterController extends Controller
       else {
         // Validate the inputs and get the new user's information
         $newUserInfo = $request->validate([
-            'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string'],
         ]);
 
         // Create the new user
         $newUser = User::create([
-          'name' => $newUserInfo['name'],
+          'name' => '',
           'email' => $newUserInfo['email'],
           'password' => Hash::make($newUserInfo['password'])
         ]);
