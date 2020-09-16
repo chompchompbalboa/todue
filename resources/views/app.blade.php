@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('head')
-    @if(in_array($userSubscription->type, ['TRIAL_EXPIRED', 'YEARLY_EXPIRED']))
+    @if(in_array($userSubscription->type, ['TRIAL', 'TRIAL_EXPIRED', 'YEARLY_EXPIRED']))
       <script src="https://js.stripe.com/v3/"></script>
     @endif
 @endsection
@@ -16,7 +16,7 @@
       user: @json($user),
       userSubscription: @json($userSubscription)
     }
-    @if(in_array($userSubscription->type, ['TRIAL_EXPIRED', 'YEARLY_EXPIRED']))
+    @if(in_array($userSubscription->type, [ 'TRIAL', 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ]))
       const environment = {
         stripeKey: "{{ env('STRIPE_KEY') }}"
       }

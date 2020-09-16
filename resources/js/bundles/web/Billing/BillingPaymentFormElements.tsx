@@ -60,7 +60,8 @@ const BillingPaymentFormElements = () => {
         action.userSubscriptionPurchase(userId, setupIntent.payment_method)
           .then(() => {
             dispatch(updateUserSubscription({ 
-              type: 'YEARLY'
+              type: 'YEARLY',
+              provider: 'STRIPE'
             }))
           })
           .catch(() => {

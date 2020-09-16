@@ -19,7 +19,7 @@ class UserSubscription extends Model
     protected $appends = [ 'stripeSetupIntentClientSecret' ];
   
     public function getStripeSetupIntentClientSecretAttribute() {
-      if(in_array($this->type, [ 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ])) {
+      if(in_array($this->type, [ 'TRIAL', 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ])) {
         $stripeSetupIntent = $this->user()->createSetupIntent();
         return $stripeSetupIntent->client_secret;
       }

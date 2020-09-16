@@ -17,7 +17,7 @@ export const Billing = () => {
   
   // Billing Messages
   const billingMessages = {
-    TRIAL: 'Please enter your credit card information. Your subscription will start immediately.',
+    TRIAL: "Please enter your billing information to begin a subscription. Your card will be charged and your subscription will start immediately.",
     TRIAL_EXPIRED: 'Your trial has expired. Please enter your billing information to resume access.',
     YEARLY: 'Please enter your new credit card information.',
     YEARLY_EXPIRED: 'Your subscription has expired. Please enter your billing information to resume access.',

@@ -16,7 +16,7 @@ class UserSubscriptionController extends Controller
       try {
         $user->createOrGetStripeCustomer();
         $userSubscription = $user->userSubscription()->first();
-        if(in_array($userSubscription->type, [ 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ])) {
+        if(in_array($userSubscription->type, [ 'TRIAL', 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ])) {
           if($user->newSubscription('yearly', env('STRIPE_YEARLY_PLAN_ID'))->create($stripeSetupIntentPaymentMethodId)) {
             $this->purchaseSuccess($userSubscription);
             return response()->json($userSubscription->toArray(), 200);
@@ -37,7 +37,7 @@ class UserSubscriptionController extends Controller
   
   public function stripeBillingPortalUrl(User $user) {
     $userSubscription = $user->userSubscription()->first();
-    if(in_array($userSubscription->type, [ 'YEARLY', 'YEARLY_EXPIRED_GRACE_PERIOD' ])) {
+    if(in_array($userSubscription->type, [ 'YEARLY' ])) {
       if($userSubscription->provider === 'STRIPE') {
         return $user->billingPortalUrl(route('app'));
       }

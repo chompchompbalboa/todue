@@ -6,6 +6,7 @@ import styled from 'styled-components'
 
 import UserActions from '@web/User/UserActions'
 import UserInfo from '@web/User/UserInfo'
+import UserTrialStatus from '@web/User/UserTrialStatus'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -13,8 +14,11 @@ import UserInfo from '@web/User/UserInfo'
 export const User = () => {
   return (
       <Container>
-        <UserInfo />
-        <UserActions />
+        <UserTrialStatus />
+        <UserInfoContainer>
+          <UserInfo />
+          <UserActions />
+        </UserInfoContainer>
       </Container>
   )
 }
@@ -23,8 +27,11 @@ export const User = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  width: 100%;
   padding: 1rem;
+`
+
+const UserInfoContainer = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

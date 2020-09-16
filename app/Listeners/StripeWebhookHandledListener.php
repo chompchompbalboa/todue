@@ -83,13 +83,6 @@ class StripeWebhookHandledListener
             $userSubscription->provider = 'STRIPE';
           }
         }
-        // YEARLY
-        if($userSubscription->type === 'YEARLY') {
-          if($stripeCustomerStatus === 'incomplete_expired') {
-            $userSubscription->type = 'YEARLY_EXPIRED';
-            $userSubscription->provider = null;
-          }
-        }
         // YEARLY_EXPIRED
         if($userSubscription->type === 'YEARLY_EXPIRED') {
           if($stripeCustomerStatus === 'active') {
@@ -114,11 +107,7 @@ class StripeWebhookHandledListener
       if(isset($userSubscription, $stripeCustomerStatus)) {
         // YEARLY
         if($userSubscription->type === 'YEARLY') {
-          if($stripeCustomerStatus === 'canceled') {
-            $userSubscription->type = 'YEARLY_EXPIRED';
-            $userSubscription->provider = null;
-          }
-          if($stripeCustomerStatus === 'incomplete_expired') {
+          if($stripeCustomerStatus === 'canceled' || $stripeCustomerStatus === 'incomplete_expired') {
             $userSubscription->type = 'YEARLY_EXPIRED';
             $userSubscription->provider = null;
           }
