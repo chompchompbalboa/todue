@@ -9,6 +9,7 @@ import { IAppState } from '@/state'
 
 import ListsCreateList from '@web/Lists/ListsCreateList'
 import ListsList from '@web/Lists/ListsList'
+import Logo from '@/components/Logo'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -20,6 +21,10 @@ export const Lists = () => {
                                
   return (
       <Container>
+        <LogoContainer>
+          <Logo
+            fontSize="1.1rem"/>
+        </LogoContainer>
         <ListsCreateList />
         {lists.map(listId => (
           <ListsList
@@ -34,8 +39,15 @@ export const Lists = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  padding-top: 2rem;
   width: 100%;
+`
+
+const LogoContainer = styled.div`
+  padding: 1.5rem;
+  padding-left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 export default Lists

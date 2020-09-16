@@ -36,19 +36,19 @@ interface IBillingSubmitButton {
 const StyledButton = styled.button`
   cursor: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'not-allowed' : 'pointer' };
   min-width: 6rem;
-  padding: 0.5rem;
+  padding: 0.5rem 0.7rem;
   white-space: nowrap;
-  border: 1px solid rgb(150, 150, 150);
+  border: none;
   outline: 0;
-  background-color: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'rgb(175, 175, 175)' : 'rgb(0, 0, 150)' };
+  background-color: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'rgb(175, 175, 175)' : 'rgba(100, 175, 250, 1)' };
   color: white;
+  font-weight: bold;
   border-radius: 4px;
   text-decoration: none;
   transition: all 0.15s;
   opacity: 1;
   &:hover {
     background-color: ${ ({ isDisabled }: IStyledButton) => isDisabled ? 'rgb(175, 175, 175)' : 'rgb(0, 150, 25)' };
-    border: ${ ({ isDisabled }: IStyledButton) => isDisabled ? '1px solid rgb(150, 150, 150)' : '1px solid rgb(0, 150, 25)' };
   }
 `
 interface IStyledButton {

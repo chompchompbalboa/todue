@@ -4,6 +4,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { CHECK } from '@/assets/icons'
+
+import Icon from '@/components/Icon'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
@@ -11,10 +15,15 @@ export const Logo = ({
   fontSize = '1rem'
 }: ILogo) => {
   return (
-      <Container
+    <Container>
+      <Icon
+        icon={CHECK}
+        size={fontSize}/>
+      <Text
         fontSize={fontSize}>
         QuickDo
-      </Container>
+      </Text>
+    </Container>
   )
 }
 
@@ -29,10 +38,16 @@ interface ILogo {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  font-size: ${ ({ fontSize }: IContainer) => fontSize };
+  display: flex;
+  align-items: center;
+`
+
+const Text = styled.div`
+  margin-left: 0.35rem;
+  font-size: ${ ({ fontSize }: IText) => fontSize };
   font-weight: bold;
 `
-interface IContainer {
+interface IText {
   fontSize: string
 }
 

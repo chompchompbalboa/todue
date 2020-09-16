@@ -16,9 +16,10 @@ export const Billing = () => {
   return (
     <Container>
       <Content>
-        <Logo 
-          fontSize="1.25rem"/>
-        <Divider />
+        <LogoContainer>
+          <Logo 
+            fontSize="1.25rem"/>
+        </LogoContainer>
         <BillingMessage />
         <BillingPaymentForm />
         <BillingLogout />
@@ -50,11 +51,13 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Divider = styled.div`
-  margin: 0.35rem 0;
-  height: 1px;
-  background-color: black;
-  width: 2rem;
+const LogoContainer = styled.div`
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `
+
 
 export default Billing
