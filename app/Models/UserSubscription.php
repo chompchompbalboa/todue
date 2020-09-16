@@ -14,16 +14,14 @@ class UserSubscription extends Model
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt';
 
-    protected $visible = [ 'id', 'type', 'stripeSetupIntentClientSecret' ];
-    protected $fillable = [ 'id', 'type' ];
+    protected $visible = [ 'id', 'type', 'provider', 'stripeSetupIntentClientSecret' ];
+    protected $fillable = [ 'id', 'type', 'provider' ];
     protected $appends = [ 'stripeSetupIntentClientSecret' ];
   
     public function getStripeSetupIntentClientSecretAttribute() {
       if(in_array($this->type, [ 'TRIAL_EXPIRED', 'YEARLY_EXPIRED' ])) {
-        if($user = $this->user()) {
-          $stripeSetupIntent = $user->createSetupIntent();
-          return $stripeSetupIntent->client_secret;
-        }
+        $stripeSetupIntent = $this->user()->createSetupIntent();
+        return $stripeSetupIntent->client_secret;
       }
       return null;
     }

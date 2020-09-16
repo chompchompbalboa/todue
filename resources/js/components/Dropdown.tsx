@@ -8,6 +8,7 @@ import styled from 'styled-components'
 // Component
 //-----------------------------------------------------------------------------
 export const Dropdown = ({ 
+  bottom = 'auto',
   children,
   className,
   containerRef,
@@ -44,6 +45,7 @@ export const Dropdown = ({
 
   return (
     <StyledDropdown
+      bottom={bottom}
       className={className}
       isDropdownVisible={isDropdownVisible}
       minHeight={minHeight}
@@ -58,6 +60,7 @@ export const Dropdown = ({
 // Props
 //-----------------------------------------------------------------------------
 export interface IDropdown {
+  bottom?: string
   className?: string
   containerRef: RefObject<HTMLElement>
   children?: any
@@ -75,7 +78,8 @@ const StyledDropdown = styled.div`
   z-index: 10;
   position: absolute;
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
-  top: ${ ({ top }: IStyledDropdown ) => top };
+  top: ${ ({ bottom, top }: IStyledDropdown ) => bottom !== 'auto' ? 'auto' : top };
+  bottom: ${ ({ bottom }: IStyledDropdown ) => bottom };
   left: 0;
   min-width: ${ ({ minWidth }: IStyledDropdown ) => minWidth };
   min-height: ${ ({ minHeight }: IStyledDropdown ) => minHeight };
@@ -92,6 +96,7 @@ const StyledDropdown = styled.div`
 	}
 `
 interface IStyledDropdown {
+  bottom: string
   isDropdownVisible: boolean
   minWidth: string
   minHeight: string

@@ -24,11 +24,9 @@ const UserLogout = () => {
   }
 
   return (
-    <Container>
-      <LogoutButton
-        onClick={() => handleLogout()}>
-        {isLoggingOut ? "Logging Out..." : "Logout"}
-      </LogoutButton>
+    <Container
+      onClick={() => handleLogout()}>
+      {isLoggingOut ? "Logging Out..." : "Logout"}
     </Container>
   )
 }
@@ -37,20 +35,11 @@ const UserLogout = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  padding: 0.5rem;
-`
-
-const LogoutButton = styled.div`
   cursor: pointer;
   padding: 0.3rem 0.6rem;
   white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
   &:hover {
-    background-color: rgb(200, 0, 0);
-    color: white;
+    background-color: rgb(240, 240, 240);
   }
 `
 

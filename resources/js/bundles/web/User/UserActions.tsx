@@ -9,6 +9,7 @@ import { SETTINGS } from '@/assets/icons'
 import Dropdown from '@/components/Dropdown'
 import Icon from '@/components/Icon'
 import UserLogout from '@web/User/UserLogout'
+import UserManageSubscription from '@web/User/UserManageSubscription'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -31,10 +32,12 @@ export const User = () => {
           size="0.9rem"/>
       </OpenDropdownButton>
       <Dropdown
+        bottom="100%"
         closeDropdown={() => setIsDropdownVisible(false)}
         containerRef={container}
-        isDropdownVisible={isDropdownVisible}
-        top="calc(-100% + -2rem)">
+        isDropdownVisible={isDropdownVisible}>
+        <UserManageSubscription 
+          closeDropdown={() => setIsDropdownVisible(false)}/>
         <UserLogout />
       </Dropdown>
     </Container>
@@ -53,7 +56,7 @@ const OpenDropdownButton = styled.div`
   cursor: pointer;
   color: rgb(50, 50, 50);
   &:hover {
-    background-color: rgb(200, 200, 200);
+    background-color: rgb(240, 240, 240);
     color: black;
   }
 `

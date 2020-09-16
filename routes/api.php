@@ -33,6 +33,7 @@ Route::group([
   
     // Subscriptions
     Route::post('/user/{user}/subscription/purchase', 'UserSubscriptionController@purchase');
+    Route::post('/user/{user}/subscription/stripe-billing-portal-url', 'UserSubscriptionController@stripeBillingPortalUrl');
 
     // Resource Controllers
     Route::resources([

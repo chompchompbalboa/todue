@@ -39,3 +39,7 @@ export const userSubscriptionPurchase = async (userId: IUser['id'], stripeSetupI
 export const userSubscriptionCancel = async (userId: IUser['id'], password: string) => {
   return axios.post('/api/user/' + userId + '/subscription/cancel', { password })
 }
+
+export const userSubscriptionGetStripeBillingPortalUrl = async (userId: IUser['id']) => {
+  return axios.post('/api/user/' + userId + '/subscription/stripe-billing-portal-url')
+}

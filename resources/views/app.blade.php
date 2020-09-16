@@ -16,9 +16,11 @@
       user: @json($user),
       userSubscription: @json($userSubscription)
     }
-    const environment = {
-      stripeKey: "{{ env('STRIPE_KEY') }}"
-    }
+    @if(in_array($userSubscription->type, ['TRIAL_EXPIRED', 'YEARLY_EXPIRED']))
+      const environment = {
+        stripeKey: "{{ env('STRIPE_KEY') }}"
+      }
+    @endif
   </script>
 @endsection
 

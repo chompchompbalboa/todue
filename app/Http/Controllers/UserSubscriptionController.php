@@ -30,8 +30,20 @@ class UserSubscriptionController extends Controller
   public function purchaseSuccess(UserSubscription $userSubscription)
   {
       $userSubscription->type = 'YEARLY';
+      $userSubscription->provider = 'STRIPE';
       $userSubscription->save();
       return $userSubscription;
+  }
+  
+  public function stripeBillingPortalUrl(User $user) {
+    $userSubscription = $user->userSubscription()->first();
+    if(in_array($userSubscription->type, [ 'YEARLY', 'YEARLY_EXPIRED_GRACE_PERIOD' ])) {
+      if($userSubscription->provider === 'STRIPE') {
+        return $user->billingPortalUrl(route('app'));
+      }
+      return null;
+    }
+    return null;
   }
 
     public function update(Request $request, UserSubscription $subscription)
