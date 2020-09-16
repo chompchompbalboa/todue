@@ -20,7 +20,7 @@ const UserManageSubscription = ({
   const [ isOpeningStripeBillingPortal, setIsOpeningStripeBillingPortal ] = useState(false)
   
   // Redux
-  const userId = useSelector((state: IAppState) => state.user.id)
+  const userId = useSelector((state: IAppState) => state.user?.id)
   
   // Open Stripe Billing Portal
   const openStripeBillingPortal = () => {
