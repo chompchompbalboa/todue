@@ -81,7 +81,7 @@ class RegisterController extends Controller
           'isCompletedTodosVisible' => false
         ]);
         
-        // Create the new UserActive
+        // Create the new UserSubscription
         $newUser->userSubscription()->create([
           'id' => Str::uuid()->toString(),
           'type' => 'TRIAL'

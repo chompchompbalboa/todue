@@ -30,7 +30,7 @@ class UserSubscription extends Model
   
     public function getTrialEndDateAttribute() {
       if($this->type === 'TRIAL') {
-        $userCreatedDate = new Carbon($this->user()->created_at);
+        $userCreatedDate = new Carbon($this->createdAt);
         return $userCreatedDate->add(7, 'days')->toDateTimeString();
       }
       return null;

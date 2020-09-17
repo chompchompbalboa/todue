@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
-use App\Models\TodoList;
-
 //-----------------------------------------------------------------------------
 // App
 //-----------------------------------------------------------------------------
@@ -14,12 +12,6 @@ Route::group([
 ], function () {
     Route::get('/', function () {
         $user = Auth::user();
-        if(is_null($user->userSubscription()->first())) {
-          $user->userSubscription()->create([
-            'id' => Str::uuid()->toString(),
-            'type' => 'TRIAL'
-          ]);
-        }
         return view('app')->with([
             'accessToken' => $user->createToken('authToken')->accessToken,
             'csrfToken' => csrf_token(),
