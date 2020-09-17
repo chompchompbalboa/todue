@@ -54,12 +54,12 @@ interface IHeader {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   z-index: 10;
-  background-color: white;
 `
 
 const ActiveListTouchable = styled.TouchableWithoutFeedback``
 const ActiveList = styled.View`
-  padding: 7px 20px;
+  padding: 10px 20px;
+  padding-top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

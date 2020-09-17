@@ -70,7 +70,7 @@ export const AuthenticationRegister = () => {
         isInputValueValid={true}/>
       <AuthenticationButton
         handleButtonPress={handleRegisterAttempt}
-        text={!['REGISTERING'].includes(registerStatus) ? 'Sign Up' : 'Signing Up...'} />
+        text={!['REGISTERING'].includes(registerStatus) ? 'Create New Account' : 'Creating...'} />
       <AuthenticationStatus
         status={AuthenticationRegisterStatusMessages[registerStatus]}/> 
     </RegisterForm>

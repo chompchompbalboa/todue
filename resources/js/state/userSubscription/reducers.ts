@@ -4,7 +4,8 @@
 import defaultInitialData from '@/state/initialData'
 import { IUserSubscription } from '@/state/userSubscription/types'
 import { 
-  IUserSubscriptionActions, 
+	IUserSubscriptionActions, 
+	LOAD_USER_SUBSCRIPTION,
   UPDATE_USER_SUBSCRIPTION
 } from '@/state/userSubscription/actions'
 
@@ -18,6 +19,11 @@ export const initialState: IUserSubscription = typeof initialData !== 'undefined
 //-----------------------------------------------------------------------------
 export const userSubscriptionReducer = (state = initialState, action: IUserSubscriptionActions): IUserSubscription => {
 	switch (action.type) {
+
+    case LOAD_USER_SUBSCRIPTION: {
+      const { nextUserSubscription } = action
+      return nextUserSubscription
+    }
     
 		case UPDATE_USER_SUBSCRIPTION: {
 			const { updates } = action

@@ -7,12 +7,13 @@ import AsyncStorage from '@react-native-community/async-storage'
 import styled from 'styled-components/native'
 
 import { clearLoadedLists } from '@/state/list/actions'
-import { updateUser } from '@/state/user/actions'
+import { loadUser } from '@/state/user/actions'
+import { loadUserSubscription } from '@/state/userSubscription/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const AuthenticationLogin = () => {
+export const AuthenticationLogout = () => {
 
   // Redux
   const dispatch = useDispatch()
@@ -20,12 +21,13 @@ export const AuthenticationLogin = () => {
   // State
   const [ isLoggingOut, setIsLoggingOut ] = useState(false)
   
-  // Handle Login Attempt
+  // Handle Logout Attempt
   const handleLogout = () => {
     setIsLoggingOut(true)
     AsyncStorage.removeItem('@todue/refreshToken')
     AsyncStorage.removeItem('@todue/accessToken').then(() => {
-      dispatch(updateUser({ id: null, email: null }))
+      dispatch(loadUser({ id: null, email: null }))
+      dispatch(loadUserSubscription({ id: null, type: null, provider: null }))
       dispatch(clearLoadedLists())
     })
   }
@@ -59,4 +61,4 @@ const Logout = styled.Text`
   text-align: center;
 `
 
-export default AuthenticationLogin
+export default AuthenticationLogout

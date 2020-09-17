@@ -28,8 +28,8 @@ const Modal = ({
         height: '75%',
         width: '100%',
         backgroundColor: 'white',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20
+        borderWidth: 1,
+        borderColor: 'rgb(220, 220, 220)'
       }}>
       {children}
     </KeyboardAwareScrollView>

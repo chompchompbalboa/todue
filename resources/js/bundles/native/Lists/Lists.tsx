@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
@@ -23,12 +24,14 @@ const Lists = ({
   return (
     <Modal
       closeModal={() => setIsListsVisible(false)}>
-      {lists.map(listId => (
-        <ListsList
-          key={listId}
-          listId={listId}
-          setIsListsVisible={setIsListsVisible}/>
-      ))}
+      <ListsContainer>
+        {lists.map(listId => (
+          <ListsList
+            key={listId}
+            listId={listId}
+            setIsListsVisible={setIsListsVisible}/>
+        ))}
+      </ListsContainer>
       <AuthenticationLogout />
     </Modal>
   )
@@ -40,5 +43,12 @@ const Lists = ({
 interface ILists {
   setIsListsVisible(nextIsListsVisible: boolean): void
 }
+
+//-----------------------------------------------------------------------------
+// Styled Components
+//-----------------------------------------------------------------------------
+const ListsContainer = styled.View`
+  background-color: white;
+`
 
 export default Lists

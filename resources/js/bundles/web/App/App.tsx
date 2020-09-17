@@ -26,7 +26,7 @@ export const App = () => {
   // Listen for undo/redo
   useHistory()
 
-  if(userSubscriptionType.includes('EXPIRED') && !userSubscriptionType.includes('GRACE_PERIOD')) {
+  if(userSubscriptionType.includes('EXPIRED')) {
     return <Billing />
   }
   else {

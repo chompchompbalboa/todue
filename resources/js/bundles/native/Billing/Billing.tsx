@@ -4,39 +4,26 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
+import AuthenticationLogout from '@native/Authentication/AuthenticationLogout'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosHeader = ({
-  text
-}: ITodosHeader) => {
+export const Billing = () => {
 
   return (
     <Container>
-      <Text>{text}</Text>
+      <AuthenticationLogout />
     </Container>
   )
-}
-
-//-----------------------------------------------------------------------------
-// Props
-//-----------------------------------------------------------------------------
-interface ITodosHeader {
-  text: string
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 7px;
-  margin-bottom: 5px;
-  background-color: rgb(245, 245, 245);
+  height: 100%;
+  justify-content: center;
 `
 
-const Text = styled.Text`
-  font-size: 24px;
-  font-family: OpenSans_700Bold;
-`
-
-export default TodosHeader
+export default Billing

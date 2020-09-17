@@ -44,9 +44,9 @@ const Todos = ({
       paddingLeft: 20,
       paddingRight: 20,
       display: 'flex',
-      backgroundColor: 'rgb(240, 240, 250)',
-      borderTopLeftRadius: 20,
-      borderTopRightRadius: 20,
+      backgroundColor: 'rgb(245, 245, 245)',
+      borderColor: 'rgb(220, 220, 220)',
+      borderWidth: 1
       }}>
       {visibleTodos && visibleTodos.map(todoId => {
         if(todoId === 'BACKLOG') {

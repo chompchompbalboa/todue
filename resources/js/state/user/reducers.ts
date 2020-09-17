@@ -4,7 +4,8 @@
 import defaultInitialData from '@/state/initialData'
 import { IUser } from '@/state/user/types'
 import { 
-  IUserActions, 
+	IUserActions, 
+	LOAD_USER,
   UPDATE_USER
 } from '@/state/user/actions'
 
@@ -18,6 +19,11 @@ export const initialState: IUser = typeof initialData !== 'undefined' ? initialD
 //-----------------------------------------------------------------------------
 export const userReducer = (state = initialState, action: IUserActions): IUser => {
 	switch (action.type) {
+
+    case LOAD_USER: {
+      const { nextUser } = action
+      return nextUser
+    }
     
 		case UPDATE_USER: {
 			const { updates } = action

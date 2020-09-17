@@ -18,7 +18,8 @@ Route::group([
         return ([
             'active' => $user->active()->first(),
             'lists' => $user->lists()->orderBy('updatedAt', 'desc')->get(),
-            'user' => $user
+            'user' => $user,
+            'userSubscription' => $user->userSubscription()->first()
         ]);
     });
   
