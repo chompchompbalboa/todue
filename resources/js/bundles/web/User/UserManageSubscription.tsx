@@ -27,7 +27,7 @@ const UserManageSubscription = ({
   // Redux
   const userId = useSelector((state: IAppState) => state.user?.id)
   const userSubscriptionProvider = useSelector((state: IAppState) => state.userSubscription?.provider)
-  const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription?.type)
+  const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription?.type || 'TRIAL')
                              
   // Handle Click
   const handleClick = () => {

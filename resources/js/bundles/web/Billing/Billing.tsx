@@ -14,7 +14,8 @@ import Logo from '@/components/Logo'
 // Component
 //-----------------------------------------------------------------------------
 export const Billing = ({
-  closeBilling
+  closeBilling,
+  isLogoutVisible = false
 }: IBilling) => {
   return (
     <Alert
@@ -25,7 +26,7 @@ export const Billing = ({
       </LogoContainer>
       <BillingMessage />
       <BillingPaymentForm />
-      <BillingLogout />
+      {isLogoutVisible && <BillingLogout />}
     </Alert>
   )
 }
@@ -35,6 +36,7 @@ export const Billing = ({
 //-----------------------------------------------------------------------------
 interface IBilling {
   closeBilling?(): void
+  isLogoutVisible?: boolean
 }
 
 //-----------------------------------------------------------------------------

@@ -27,7 +27,7 @@ export const App = () => {
   useHistory()
 
   if(userSubscriptionType.includes('EXPIRED')) {
-    return <Billing />
+    return <Billing isLogoutVisible={true}/>
   }
   else {
     return (
