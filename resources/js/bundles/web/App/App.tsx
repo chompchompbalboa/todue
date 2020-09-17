@@ -35,7 +35,8 @@ export const App = () => {
         data-testid="App">
         <Column 
           backgroundColor="rgb(255, 255, 255)"
-          width="20rem">
+          width="20rem"
+          zIndex="100">
           <ColumnContainer>
             <Lists />
             <User />
@@ -66,6 +67,7 @@ const Container = styled.div`
 `
 
 const Column = styled.div`
+  z-index: ${ ({ zIndex = '1' }: IColumn ) => zIndex };
   width: ${ ({ width }: IColumn ) => width };
   height: 100%;
   background-color: ${ ({ backgroundColor = 'transparent' }: IColumn ) => backgroundColor };
@@ -73,6 +75,7 @@ const Column = styled.div`
 interface IColumn {
   backgroundColor?: string
   width: string
+  zIndex?: string
 }
 
 const ColumnContainer = styled.div`
