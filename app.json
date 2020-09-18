@@ -17,10 +17,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "app.quickdo"
     },
     "web": {
       "favicon": "./public/assets/native/favicon.png"
-    }
+    },
+    "android": {
+      "package": "app.quickdo"
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }
