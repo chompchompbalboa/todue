@@ -67,10 +67,6 @@ const App = () => {
 
   return (
     <Container>
-      {isInitialDataLoaded && 
-        <Header
-          isListsVisible={isListsVisible}
-          setIsListsVisible={setIsListsVisible}/>}
       {isInitialDataLoaded && isListsVisible &&
         <Lists
           setIsListsVisible={setIsListsVisible}/>}
@@ -80,6 +76,10 @@ const App = () => {
       {isTodoVisible && activeTodoId && 
         <Todo
           setIsTodoVisible={setIsTodoVisible}/>}
+      {isInitialDataLoaded && 
+        <Header
+          isListsVisible={isListsVisible}
+          setIsListsVisible={setIsListsVisible}/>}
     </Container>
   )
 }

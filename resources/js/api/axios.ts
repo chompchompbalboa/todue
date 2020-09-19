@@ -45,7 +45,7 @@ export async function attachTokensToRequest() {
 function setBaseUrl() {
   if(axiosExport.defaults) {
     if(typeof __DEV__ !== 'undefined' && __DEV__ && !isWeb) {
-      axiosExport.defaults.baseURL = 'https://2545dc279271.ngrok.io'
+      axiosExport.defaults.baseURL = 'https://cd22e657b063.ngrok.io'
     }
     else if (!isWeb) {
       axiosExport.defaults.baseURL = 'https://todue.app'

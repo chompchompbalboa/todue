@@ -20,19 +20,29 @@ const Modal = ({
       onPress={() => closeModal()}>
       <CloseModal />
     </CloseModalTouchable>
-    <KeyboardAwareScrollView
-      extraScrollHeight={20}
-      keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
-      stickyHeaderIndices={[0]}
+    <Content
       style={{
-        height: '75%',
+        height: '100%',
         width: '100%',
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: 'rgb(220, 220, 220)'
+        shadowOpacity: 0.75,
+        shadowRadius: 10,
+        shadowColor: 'rgb(150, 150, 150)',
+        shadowOffset: { height: 0, width: 0 },
       }}>
-      {children}
-    </KeyboardAwareScrollView>
+        <KeyboardAwareScrollView
+          extraScrollHeight={20}
+          keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
+          stickyHeaderIndices={[0]}
+          style={{
+            height: '75%',
+            width: '100%',
+            backgroundColor: 'white',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+          }}>
+          {children}
+          </KeyboardAwareScrollView>
+    </Content>
   </Container>
 )
 
@@ -57,5 +67,7 @@ const CloseModal = styled.View`
   height: 25%;
   width: 100%;
 `
+
+const Content = styled.View``
 
 export default Modal

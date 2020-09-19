@@ -7,36 +7,25 @@ import styled from 'styled-components/native'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosHeader = ({
-  text
-}: ITodosHeader) => {
+export const BillingInAppPurchase = () => {
 
   return (
     <Container>
-      <Text>{text}</Text>
+      <Text>
+        You owe me money, motherfucker. Pay your damn bills.
+      </Text>
     </Container>
   )
-}
-
-//-----------------------------------------------------------------------------
-// Props
-//-----------------------------------------------------------------------------
-interface ITodosHeader {
-  text: string
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 7px;
-  margin-bottom: 5px;
-  background-color: rgb(250, 250, 250);
+  justify-content: center;
+  text-align: center;
 `
 
-const Text = styled.Text`
-  font-size: 24px;
-  font-family: OpenSans_700Bold;
-`
+const Text = styled.Text``
 
-export default TodosHeader
+export default BillingInAppPurchase

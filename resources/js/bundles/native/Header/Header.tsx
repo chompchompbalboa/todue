@@ -24,7 +24,13 @@ const Header = ({
   )
 
   return (
-    <Container>
+    <Container
+    style={{
+      shadowOpacity: 0.75,
+      shadowRadius: 10,
+      shadowColor: 'rgb(200, 200, 200)',
+      shadowOffset: { height: 0, width: 0 },
+    }}>
       <ActiveListTouchable
         onPress={() => setIsListsVisible(!isListsVisible)}>
         <ActiveList>
@@ -54,12 +60,16 @@ interface IHeader {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   z-index: 10;
+  background-color: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 `
 
 const ActiveListTouchable = styled.TouchableWithoutFeedback``
 const ActiveList = styled.View`
-  padding: 10px 20px;
-  padding-top: 0;
+  padding: 20px;
+  padding-top: 15px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -67,7 +77,7 @@ const ActiveList = styled.View`
 `
 
 const ActiveListName = styled.Text`
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
 `
 

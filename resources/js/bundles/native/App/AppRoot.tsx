@@ -56,7 +56,7 @@ const AppRoot = () => {
 const Background = styled.View`
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: rgb(250, 250, 250);
 `
 
 export default AppRoot
