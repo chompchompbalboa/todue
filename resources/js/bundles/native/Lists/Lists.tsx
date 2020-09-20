@@ -7,6 +7,7 @@ import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
+import ListsCreateList from '@native/Lists/ListsCreateList'
 import ListsList from '@native/Lists/ListsList'
 import Modal from '@/components/native/Modal'
 
@@ -30,6 +31,7 @@ const Lists = ({
             listId={listId}
             setIsListsVisible={setIsListsVisible}/>
         ))}
+        <ListsCreateList />
       </ListsContainer>
     </Modal>
   )
@@ -47,6 +49,7 @@ interface ILists {
 //-----------------------------------------------------------------------------
 const ListsContainer = styled.View`
   background-color: white;
+  padding: 20px;
 `
 
 export default Lists

@@ -2,14 +2,13 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
-import { updateActiveListId } from '@/state/active/actions'
-
+import ListsListName from '@native/Lists/ListsListName'
 import ListsListSublist from '@native/Lists/ListsListSublist'
 
 //-----------------------------------------------------------------------------
@@ -21,30 +20,13 @@ const ListsList = ({
 }: IListsList) => {
 
   // Redux
-  const dispatch = useDispatch()
-  const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
-  const listName = useSelector((state: IAppState) => state.list.allLists[listId]?.name)
   const sublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId] || [])
-
-  // Handle List Name press
-  const handleListNamePress = () => {
-    dispatch(updateActiveListId(listId))
-    if(isListLoaded) {
-      setIsListsVisible(false)
-    }
-  }
 
   return (
     <Container>
-      <ListNameTouchable
-        onPress={(handleListNamePress)}>
-        <ListName>
-          <ListNameText
-            isListLoaded={isListLoaded}>
-            {listName}
-          </ListNameText>
-        </ListName>
-      </ListNameTouchable>
+      <ListsListName
+        listId={listId}
+        setIsListsVisible={setIsListsVisible}/>
       <Sublists>
         {sublists.map(sublistId => (
           <ListsListSublist
@@ -70,26 +52,7 @@ interface IListsList {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 15px;
-  padding-bottom: 5px;
 `
-
-const ListNameTouchable = styled.TouchableWithoutFeedback``
-const ListName = styled.View`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-
-const ListNameText = styled.Text`
-  font-size: 24px;
-  font-family: OpenSans_700Bold;
-  color: ${ ({ isListLoaded }: IListNameText) => isListLoaded ? 'black' : 'rgb(170, 170, 170)' };
-  margin-bottom: 5px;
-`
-interface IListNameText {
-  isListLoaded: boolean
-}
 
 const Sublists = styled.View`
   display: flex;

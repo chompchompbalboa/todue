@@ -86,6 +86,13 @@ const App = () => {
       {isSettingsVisible && 
         <Settings
           setIsSettingsVisible={setIsSettingsVisible}/>}
+      {isInitialDataLoaded && activeListId === null &&
+        <NoListContainer>
+          <NoListText>
+            Press the "Lists" tab below to load a list or create a new list
+          </NoListText>
+        </NoListContainer>
+      }
     </Container>
   )
 }
@@ -97,6 +104,22 @@ const Container = styled.View`
   width: 100%;
   height: 100%;
   display: flex;
+`
+
+const NoListContainer = styled.View`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+`
+
+const NoListText = styled.Text`
+  text-align: center;
+  font-size: 20px;
+  font-family: OpenSans_400Regular;
+  color: rgb(50, 50, 50);
 `
 
 export default App
