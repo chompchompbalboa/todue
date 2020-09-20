@@ -2,10 +2,9 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import styled from 'styled-components/native'
 
-import AuthenticationLogout from '@native/Authentication/AuthenticationLogout'
 import Modal from '@/components/native/Modal'
+import SettingsUser from '@native/Settings/SettingsUser'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -17,9 +16,7 @@ const Settings = ({
   return (
     <Modal
       closeModal={() => setIsSettingsVisible(false)}>
-      <LogoutContainer>
-        <AuthenticationLogout />
-      </LogoutContainer>
+      <SettingsUser />
     </Modal>
   )
 }
@@ -30,12 +27,5 @@ const Settings = ({
 interface ISettings {
   setIsSettingsVisible(nextIsSettingsVisible: boolean): void
 }
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const LogoutContainer = styled.View`
-  padding: 16px;
-`
 
 export default Settings

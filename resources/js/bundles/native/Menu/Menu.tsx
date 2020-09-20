@@ -37,11 +37,11 @@ const Menu = ({
           justifyContent="space-between"
           width="62%">
           <ActiveListName>
-            {activeListName}
+            {activeListName || 'Lists'}
           </ActiveListName>
           <FontAwesome 
             name="list-ul" 
-            size={25} 
+            size={20} 
             color="black" />
         </MenuItem>
       </MenuItemTouchable>
@@ -50,7 +50,7 @@ const Menu = ({
           width="19%">
           <FontAwesome5 
             name="plus" 
-            size={25} 
+            size={20} 
             color="black" />
         </MenuItem>
       </MenuItemTouchable>
@@ -60,7 +60,7 @@ const Menu = ({
           width="18%">
           <FontAwesome
             name="gear" 
-            size={25} 
+            size={20} 
             color="black" />
         </MenuItem>
       </MenuItemTouchable>
@@ -101,8 +101,8 @@ const MenuItem = styled.View`
   justify-content: ${ ({ justifyContent = 'center' }: IMenuItem) => justifyContent };
   align-items: center;
   background-color: white;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 `
 interface IMenuItem {
   justifyContent?: string

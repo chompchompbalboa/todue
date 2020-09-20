@@ -40,11 +40,11 @@ const Todos = ({
       keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
       stickyHeaderIndices={stickyHeaderIndices}
       style={{
-      height: '100%',
-      paddingLeft: 20,
-      paddingRight: 20,
-      display: 'flex',
-      backgroundColor: 'rgb(250, 250, 250)'
+        height: '100%',
+        paddingLeft: 20,
+        paddingRight: 20,
+        display: 'flex',
+        backgroundColor: 'rgb(250, 250, 250)'
       }}>
       {visibleTodos && visibleTodos.map(todoId => {
         if(todoId === 'BACKLOG') {

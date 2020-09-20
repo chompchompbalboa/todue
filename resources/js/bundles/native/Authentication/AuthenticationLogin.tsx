@@ -13,42 +13,42 @@ import { attachTokensToRequest } from '@/api/axios'
 import { updateUser } from '@/state/user/actions'
 
 import AuthenticationButton from '@native/Authentication/AuthenticationButton'
-import AuthenticationInput from '@native/Authentication/AuthenticationInput'
 import AuthenticationStatus from '@native/Authentication/AuthenticationStatus'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const AuthenticationLogin = () => {
+export const AuthenticationLogin = ({
+  email,
+  password
+}: IAuthenticationLogin) => {
 
   // Redux
   const dispatch = useDispatch()
 
   // State
-  const [ emailInputValue, setEmailInputValue ] = useState('')
-  const [ passwordInputValue, setPasswordInputValue ] = useState('')
   const [ loginStatus, setLoginStatus ] = useState('READY' as ILoginStatus)
   
   // Handle Login Attempt
   const handleLoginAttempt = () => {
     setLoginStatus('LOGGING_IN')
-    if(emailInputValue === '' || passwordInputValue === '') {
+    if(email === '' || password === '') {
       setTimeout(() => {
         setLoginStatus('NOT_ALL_FIELDS_ARE_COMPLETE')
       }, 500)
     }
-    else if (!isEmail(emailInputValue)) {
+    else if (!isEmail(email)) {
       setTimeout(() => {
         setLoginStatus('NOT_VALID_EMAIL')
       }, 500)
     }
     else {
-      action.userRequestAccessToken(emailInputValue, passwordInputValue)
+      action.userRequestAccessToken(email, password)
         .then(response => {
           AsyncStorage.setItem('@todue/accessToken', response.data.access_token)
           AsyncStorage.setItem('@todue/refreshToken', response.data.refresh_token)
           attachTokensToRequest().then(() => {
-            dispatch(updateUser({ email: emailInputValue }))
+            dispatch(updateUser({ email: email }))
           })
         })
         .catch(() => {
@@ -63,27 +63,11 @@ export const AuthenticationLogin = () => {
   
   return (
     <LoginForm>
-      <InputsContainer>
-        <AuthenticationInput
-          type="email"
-          placeholder="Email..."
-          value={emailInputValue}
-          onChange={nextValue => setEmailInputValue(nextValue)}
-          isInputValueValid={emailInputValue === '' || isEmail(emailInputValue)}/>
-        <AuthenticationInput
-          type="password"
-          placeholder="Password..."
-          value={passwordInputValue}
-          onChange={nextValue => setPasswordInputValue(nextValue)}
-          isInputValueValid={true}/>
-        <AuthenticationButton
-          handleButtonPress={handleLoginAttempt}
-          text={!['LOGGING_IN'].includes(loginStatus) ? 'Log In' : 'Logging In...'} />
-      </InputsContainer>
-      <StatusContainer>
-        <AuthenticationStatus
-          status={SplashLoginFormStatusMessages[loginStatus]}/>
-      </StatusContainer>
+      <AuthenticationButton
+        handleButtonPress={handleLoginAttempt}
+        text={!['LOGGING_IN'].includes(loginStatus) ? 'Log In' : 'Logging In...'} />
+      <AuthenticationStatus
+        status={SplashLoginFormStatusMessages[loginStatus]}/>
     </LoginForm>
   )
 }
@@ -91,6 +75,11 @@ export const AuthenticationLogin = () => {
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
+interface IAuthenticationLogin {
+  email: string
+  password: string
+}
+
 type ILoginStatus = 
   'READY' | 
   'NOT_ALL_FIELDS_ARE_COMPLETE' |
@@ -117,18 +106,6 @@ const LoginForm = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-
-const InputsContainer = styled.View`
-  width: 100%;
-  display: flex;
-  flex-direction: column; 
-  justify-content: center;
-  align-items: center;
-`
-
-const StatusContainer = styled.View`
-  width: 100%;
 `
 
 export default AuthenticationLogin
