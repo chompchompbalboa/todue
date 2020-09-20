@@ -18,10 +18,11 @@ import { loadList, loadLists } from '@/state/list/actions'
 import { loadUser } from '@/state/user/actions'
 import { loadUserSubscription } from '@/state/userSubscription/actions'
 
-import Header from '@native/Header/Header'
 import Lists from '@native/Lists/Lists'
+import Menu from '@native/Menu/Menu'
 import Todo from '@native/Todo/Todo'
 import Todos from '@native/Todos/Todos'
+import Settings from '@native/Settings/Settings'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -38,6 +39,7 @@ const App = () => {
   // State
   const [ isInitialDataLoaded, setIsInitialDataLoaded ] = useState(false)
   const [ isListsVisible, setIsListsVisible ] = useState(false)
+  const [ isSettingsVisible, setIsSettingsVisible ] = useState(false)
   const [ isTodoVisible, setIsTodoVisible ] = useState(false)
 
   // Load the initial data as needed
@@ -68,6 +70,10 @@ const App = () => {
 
   return (
     <Container>
+      {isInitialDataLoaded && 
+        <Menu
+          setIsListsVisible={setIsListsVisible}
+          setIsSettingsVisible={setIsSettingsVisible}/>}
       {isInitialDataLoaded && isListsVisible &&
         <Lists
           setIsListsVisible={setIsListsVisible}/>}
@@ -77,10 +83,9 @@ const App = () => {
       {isTodoVisible && activeTodoId && 
         <Todo
           setIsTodoVisible={setIsTodoVisible}/>}
-      {isInitialDataLoaded && 
-        <Header
-          isListsVisible={isListsVisible}
-          setIsListsVisible={setIsListsVisible}/>}
+      {isSettingsVisible && 
+        <Settings
+          setIsSettingsVisible={setIsSettingsVisible}/>}
     </Container>
   )
 }

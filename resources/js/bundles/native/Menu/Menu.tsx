@@ -7,15 +7,15 @@ import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
-import { Ionicons } from '@expo/vector-icons'
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const Header = ({
-  isListsVisible,
-  setIsListsVisible
-}: IHeader) => {
+const Menu = ({
+  setIsListsVisible,
+  setIsSettingsVisible
+}: IMenu) => {
 
   // Redux
   const activeListName = useSelector((state: IAppState) => state.active.sublistId
@@ -31,18 +31,39 @@ const Header = ({
       shadowColor: 'rgb(200, 200, 200)',
       shadowOffset: { height: 0, width: 0 },
     }}>
-      <ActiveListTouchable
-        onPress={() => setIsListsVisible(!isListsVisible)}>
-        <ActiveList>
+      <MenuItemTouchable
+        onPress={() => setIsListsVisible(true)}>
+        <MenuItem
+          justifyContent="space-between"
+          width="62%">
           <ActiveListName>
             {activeListName}
           </ActiveListName>
-          <Ionicons 
-            name="ios-more" 
-            size={24} 
-            color="rgb(150, 150, 150)" />
-        </ActiveList>
-      </ActiveListTouchable>
+          <FontAwesome 
+            name="list-ul" 
+            size={25} 
+            color="black" />
+        </MenuItem>
+      </MenuItemTouchable>
+      <MenuItemTouchable>
+        <MenuItem
+          width="19%">
+          <FontAwesome5 
+            name="plus" 
+            size={25} 
+            color="black" />
+        </MenuItem>
+      </MenuItemTouchable>
+      <MenuItemTouchable
+        onPress={() => setIsSettingsVisible(true)}>
+        <MenuItem
+          width="18%">
+          <FontAwesome
+            name="gear" 
+            size={25} 
+            color="black" />
+        </MenuItem>
+      </MenuItemTouchable>
     </Container>
   )
 }
@@ -50,39 +71,47 @@ const Header = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface IHeader {
-  isListsVisible: boolean
+interface IMenu {
   setIsListsVisible(nextIsListsVisible: boolean): void
+  setIsSettingsVisible(nextIsSettingsVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
+  margin-left: 1.5%;
+  width: 97%;
   z-index: 10;
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  background-color: white;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-`
-
-const ActiveListTouchable = styled.TouchableWithoutFeedback``
-const ActiveList = styled.View`
-  padding: 20px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 `
+
+const MenuItemTouchable = styled.TouchableWithoutFeedback``
+const MenuItem = styled.View`
+  width: ${ ({ width }: IMenuItem) => width };
+  padding: 20px;
+  padding-top: 15px;
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: ${ ({ justifyContent = 'center' }: IMenuItem) => justifyContent };
+  align-items: center;
+  background-color: white;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+`
+interface IMenuItem {
+  justifyContent?: string
+  width: string
+}
 
 const ActiveListName = styled.Text`
-  font-size: 26px;
-  font-weight: bold;
+  font-size: 21px;
+  font-family: OpenSans_700Bold;
 `
 
-export default Header
+export default Menu

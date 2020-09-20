@@ -73,6 +73,7 @@ const StyledInput = styled.TextInput`
   border-radius: 10px;
   font-size: 17px;
   font-family: OpenSans_400Regular;
+  color: black;
 `
 interface IStyledInput {
   isInputValueValid: boolean
