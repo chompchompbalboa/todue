@@ -32,7 +32,9 @@ const Lists = ({
             setIsListsVisible={setIsListsVisible}/>
         ))}
       </ListsContainer>
-      <AuthenticationLogout />
+      <LogoutContainer>
+        <AuthenticationLogout />
+      </LogoutContainer>
     </Modal>
   )
 }
@@ -49,6 +51,10 @@ interface ILists {
 //-----------------------------------------------------------------------------
 const ListsContainer = styled.View`
   background-color: white;
+`
+
+const LogoutContainer = styled.View`
+  padding: 16px;
 `
 
 export default Lists

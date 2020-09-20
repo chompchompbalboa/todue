@@ -46,5 +46,6 @@ Route::group([
       'todo/note' => 'TodoNoteController',
       'todo/tag' => 'TodoTagController',
       'user/active' => 'UserActiveController',
+      'user/subscription' => 'UserSubscriptionController',
     ]);
 });

@@ -1,6 +1,10 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
+import { mutation } from '@/api'
+
+import { IAppState } from '@/state'
+import { IThunkDispatch } from '@/state/types'
 import { 
 	IUserSubscription,
 	IUserSubscriptionUpdates 
@@ -38,7 +42,21 @@ interface IUpdateUserSubscription {
 	updates: IUserSubscriptionUpdates
 }
 
-export const updateUserSubscription = (updates: IUserSubscriptionUpdates): IUserSubscriptionActions => {
+export const updateUserSubscription = (updates: IUserSubscriptionUpdates, skipDatabaseUpdate: boolean = true) => {
+	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
+    dispatch(updateUserSubscriptionReducer(updates))
+		if(!skipDatabaseUpdate) {
+			const {
+				userSubscription: {
+					id: userSubscriptionId
+				}
+			} = getState()
+			mutation.updateUserSubscription(userSubscriptionId, updates)
+		}
+	}
+}
+
+export const updateUserSubscriptionReducer = (updates: IUserSubscriptionUpdates): IUserSubscriptionActions => {
 	return {
 		type: UPDATE_USER_SUBSCRIPTION,
 		updates: updates,

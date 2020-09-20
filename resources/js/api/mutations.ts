@@ -29,6 +29,10 @@ import {
 	ITodoNoteUpdates 
 } from '@/state/todoNote/types'
 import { ITodoTag } from '@/state/todoTag/types'
+import { 
+	IUserSubscription,
+	IUserSubscriptionUpdates
+} from '@/state/userSubscription/types'
 
 //-----------------------------------------------------------------------------
 // Lists
@@ -160,4 +164,11 @@ export const restoreTodoTag = async (todoTagId: ITodoTag['id']) => {
 //-----------------------------------------------------------------------------
 export const updateUserActive = async (userActiveId: IUserActive['id'], updates: IUserActiveUpdates) => {
 	return axios.patch('/api/user/active/' + userActiveId, updates)
+}
+
+//-----------------------------------------------------------------------------
+// User Subscription
+//-----------------------------------------------------------------------------
+export const updateUserSubscription = async (userSubscriptionId: IUserSubscription['id'], updates: IUserSubscriptionUpdates) => {
+	return axios.patch('/api/user/subscription/' + userSubscriptionId, updates)
 }

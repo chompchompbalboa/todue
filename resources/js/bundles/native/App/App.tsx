@@ -32,17 +32,17 @@ const App = () => {
   const dispatch = useDispatch()
   const activeListId = useSelector((state: IAppState) => state.active.listId)
   const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
-  const isInitialDataLoaded = useSelector((state: IAppState) => state.active.listId !== null)
   const isActiveListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(state.active.listId))
   const userEmail = useSelector((state: IAppState) => state.user?.email)
 
   // State
+  const [ isInitialDataLoaded, setIsInitialDataLoaded ] = useState(false)
   const [ isListsVisible, setIsListsVisible ] = useState(false)
   const [ isTodoVisible, setIsTodoVisible ] = useState(false)
 
   // Load the initial data as needed
   useEffect(() => {
-    if(userEmail !== null && !isInitialDataLoaded) {
+    if(!isInitialDataLoaded && userEmail !== null) {
       loadInitialData()
     }
   }, [ isInitialDataLoaded, userEmail ])
@@ -61,6 +61,7 @@ const App = () => {
         dispatch(loadActive(response.data.active as IActiveState))
         dispatch(loadUser(response.data.user as IUser))
         dispatch(loadUserSubscription(response.data.userSubscription as IUserSubscription))
+        setIsInitialDataLoaded(true)
       }
     })
   }

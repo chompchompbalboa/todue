@@ -60,6 +60,10 @@ interface IHeader {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   z-index: 10;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   background-color: white;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

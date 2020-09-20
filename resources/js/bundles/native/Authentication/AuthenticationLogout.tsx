@@ -49,16 +49,19 @@ export const AuthenticationLogout = () => {
 //-----------------------------------------------------------------------------
 const ContainerTouchable = styled.TouchableWithoutFeedback``
 const Container = styled.View`
-  padding: 20px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: rgb(200, 0, 0);
 `
 
 const Logout = styled.Text`
-  background-color: rgb(200, 0, 0);
-  color: white;
-  padding: 10px 0;
-  font-family: OpenSans_700Bold;
-  font-size: 20px;
-  text-align: center;
+font-size: 16px;
+font-family: OpenSans_700Bold;
+color: white;
 `
 
 export default AuthenticationLogout

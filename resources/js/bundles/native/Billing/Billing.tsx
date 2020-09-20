@@ -21,6 +21,13 @@ export const Billing = () => {
     async function connectIap() {
       const connectionAttempt = await InAppPurchases.connectAsync()
       if(connectionAttempt.responseCode === IAPResponseCode.OK) {
+        /*
+        if(connectionAttempt.results && connectionAttempt.results.length > 0) {
+          connectionAttempt.results.forEach(result => {
+            console.log(result)
+          })
+        }
+        */
         setIsIapConnected(true)
       }
     }
@@ -30,7 +37,8 @@ export const Billing = () => {
 
   return (
     <Container>
-      {isIapConnected && <BillingInAppPurchase />}
+    <BillingInAppPurchase
+      isIapConnected={isIapConnected}/>
       <AuthenticationLogout />
     </Container>
   )
@@ -42,6 +50,7 @@ export const Billing = () => {
 const Container = styled.View`
   height: 100%;
   justify-content: center;
+  padding: 16px;
 `
 
 export default Billing
