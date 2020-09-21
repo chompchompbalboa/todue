@@ -4,12 +4,6 @@
     "slug": "todue-native",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./public/assets/native/icon.png",
-    "splash": {
-      "image": "./public/assets/native/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -17,6 +11,12 @@
       "**/*"
     ],
     "ios": {
+      "icon": "./public/assets/native/icon.png",
+      "splash": {
+        "image": "./public/assets/native/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
       "supportsTablet": true,
       "bundleIdentifier": "app.quickdo"
     },
@@ -24,6 +24,12 @@
       "favicon": "./public/assets/native/favicon.png"
     },
     "android": {
+      "icon": "./public/assets/native/icon.png",
+      "splash": {
+        "image": "./public/assets/native/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      },
       "package": "app.quickdo"
     },
     "entryPoint": "node_modules/expo/AppEntry.js"

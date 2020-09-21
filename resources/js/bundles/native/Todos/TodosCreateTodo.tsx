@@ -49,6 +49,7 @@ const Text = styled.Text`
   font-family: OpenSans_400Regular_Italic;
   font-size: 20px;
   color: rgb(120, 120, 120);
+  margin-left: 10px;
 `
 
 export default TodosCreateTodo

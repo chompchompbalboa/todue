@@ -40,7 +40,7 @@ const TodosTodoText = ({
   return (
     <TextInput
       autoFocus={textInputValue === null}
-      blurOnSubmit
+      blurOnSubmit={false}
       editable={!isTodoCompleted}
       isTodoCompleted={isTodoCompleted}
       multiline
@@ -54,7 +54,10 @@ const TodosTodoText = ({
           dispatch(deleteTodo(todoId))
         }
       }}
-      onChangeText={(nextValue: string) => setTextInputValue(nextValue)}
+      onChangeText={(nextValue: string) => {
+        const trimmedNextValue = nextValue.split('\n').join('')
+        setTextInputValue(trimmedNextValue)
+      }}
       onKeyPress={(e: any) => {
         if([null, ''].includes(textInputValue) && e.nativeEvent.key === 'Backspace') {
           dispatch(deleteTodo(todoId))
@@ -64,9 +67,7 @@ const TodosTodoText = ({
         if(textInputValue) {
           dispatch(createTodo(todoListId, todoId))
           if(textInputValue !== todoText) {
-            setTimeout(() => {
-              dispatch(updateTodo(todoId, { text: textInputValue }))
-            }, 100)
+            dispatch(updateTodo(todoId, { text: textInputValue }))
           }
         }
         else {
