@@ -12,6 +12,7 @@ import { IList } from '@/state/list/types'
 import { ITodo } from '@/state/todo/types'
 import { ITodoTag } from '@/state/todoTag/types'
 
+import { updateActiveTodoId } from '@/state/active/actions'
 import { createHistoryStep } from '@/state/history/actions'
 import { 
   setAllTodos,
@@ -28,13 +29,15 @@ import {
 //-----------------------------------------------------------------------------
 export const createTodo = (
   listId: IList['id'],
-  insertAfterTodoId?: ITodo['id']
+  insertAfterTodoId?: ITodo['id'],
+  makeNewTodoActiveTodo: boolean = false
 ) => {
 	return async (dispatch: IThunkDispatch, getState: () => IAppState) => {
     
     const {
       active: {
-        sublistId: activeSublistId
+        sublistId: activeSublistId,
+        todoId: activeTodoId
       },
       sublistTag: {
         allSublistTags,
@@ -136,6 +139,7 @@ export const createTodo = (
       dispatch(setTodoTagsByTodoId(nextTodoTagsByTodoId))
       dispatch(setTodosByListId(nextTodosByListId))
       dispatch(setVisibleTodos(nextVisibleTodos))
+      makeNewTodoActiveTodo && dispatch(updateActiveTodoId(newTodo.id))
       if(!isHistoryStep) {
         mutation.createTodo(newTodo).then(() => {
           newTodoTags.forEach(newTodoTag => {
@@ -158,6 +162,7 @@ export const createTodo = (
       dispatch(setTodoTagsByTodoId(todoTagsByTodoId))
       dispatch(setAllTodoTags(allTodoTags))
       dispatch(setAllTodos(allTodos))
+      makeNewTodoActiveTodo && dispatch(updateActiveTodoId(activeTodoId))
       mutation.deleteTodo(newTodo.id)
       newTodoTags.forEach(newTodoTag => {
         mutation.deleteTodoTag(newTodoTag.id)
