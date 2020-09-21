@@ -22,7 +22,7 @@ const Modal = ({
     </CloseModalTouchable>
     <Content
       style={{
-        height: '100%',
+        height: '75%',
         width: '100%',
         shadowOpacity: 0.75,
         shadowRadius: 10,
@@ -32,9 +32,8 @@ const Modal = ({
         <KeyboardAwareScrollView
           extraScrollHeight={20}
           keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
-          stickyHeaderIndices={[0]}
           style={{
-            height: '75%',
+            height: '100%',
             width: '100%',
             backgroundColor: 'white',
             borderTopLeftRadius: 10,

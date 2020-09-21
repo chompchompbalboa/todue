@@ -37,7 +37,7 @@ const Container = styled.View`
 
 const CreateList = styled.Text`
   font-size: 24px;
-  font-family: OpenSans_700Bold;
+  font-family: OpenSans_700Bold_Italic;
 `
 
 export default ListsCreateList

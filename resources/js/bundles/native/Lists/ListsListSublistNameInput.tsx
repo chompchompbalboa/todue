@@ -2,40 +2,54 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
+import { IAppState } from '@/state'
+import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
-import { updateSublist } from '@/state/sublist/actions'
+import { 
+  createSublistDefaultTag,
+  deleteSublist,
+  updateSublist 
+} from '@/state/sublist/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const ListsListNameInput = ({
+const ListsListSublistNameInput = ({
+  listId,
   sublistId
-}: IListsListNameInput) => {
+}: IListsListSublistNameInput) => {
 
   // Redux
   const dispatch = useDispatch()
+  const sublistName = useSelector((state: IAppState) => state.sublist.allSublists[sublistId]?.name)
 
   // State
-  const [ textInputValue, setTextInputValue ] = useState('')
+  const [ textInputValue, setTextInputValue ] = useState(sublistName)
 
-  // Update List Name
-  const updateListName = () => {
-    if(textInputValue) {
-      dispatch(updateSublist(sublistId, { name: textInputValue }))
+  // Complete Editing
+  const completeEditing = () => {
+    if(textInputValue === null) {
+      dispatch(deleteSublist(sublistId))
+    }
+    else if(sublistName !== textInputValue) {
+      dispatch(updateSublist(sublistId, { name: textInputValue }, { name: sublistName }))
+      if(sublistName === null) { // If we just created the sublist, create its default tag as well
+        dispatch(createSublistDefaultTag(listId, sublistId, textInputValue))
+      }
     }
   }
 
   return (
     <TextInput
       autoFocus
-      onBlur={updateListName}
+      onBlur={completeEditing}
       onChangeText={(nextValue: string) => setTextInputValue(nextValue)}
-      onSubmitEditing={updateListName}
-      placeholder="List Name..."
+      onSubmitEditing={completeEditing}
+      placeholder="Sublist Name..."
       value={textInputValue}/>
   )
 }
@@ -43,7 +57,8 @@ const ListsListNameInput = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface IListsListNameInput {
+interface IListsListSublistNameInput {
+  listId: IList['id']
   sublistId: ISublist['id']
 }
 
@@ -51,9 +66,10 @@ interface IListsListNameInput {
 // Styled Components
 //-----------------------------------------------------------------------------
 const TextInput = styled.TextInput`
+  padding: 1px 0;
   font-size: 20px;
   font-family: OpenSans_400Regular;
   color: black;
 `
 
-export default ListsListNameInput
+export default ListsListSublistNameInput

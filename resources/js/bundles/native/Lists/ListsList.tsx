@@ -22,23 +22,26 @@ const ListsList = ({
 
   // Redux
   const sublists = useSelector((state: IAppState) => state.sublist.sublistsByListId[listId] || [])
+  const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
 
   return (
     <Container>
       <ListsListName
         listId={listId}
         setIsListsVisible={setIsListsVisible}/>
-      <Sublists>
-        {sublists.map(sublistId => (
-          <ListsListSublist
-            key={sublistId}
-            listId={listId}
-            sublistId={sublistId}
-            setIsListsVisible={setIsListsVisible}/>
-        ))}
-        <ListsListCreateSublist
-          listId={listId}/>
-      </Sublists>
+      {isListLoaded &&
+        <Sublists>
+          {sublists.map(sublistId => (
+            <ListsListSublist
+              key={sublistId}
+              listId={listId}
+              sublistId={sublistId}
+              setIsListsVisible={setIsListsVisible}/>
+          ))}
+          <ListsListCreateSublist
+            listId={listId}/>
+        </Sublists>
+      }
     </Container>
   );
 }

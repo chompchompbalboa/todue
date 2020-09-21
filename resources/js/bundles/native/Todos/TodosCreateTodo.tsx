@@ -7,29 +7,25 @@ import styled from 'styled-components/native'
 
 import { IList } from '@/state/list/types'
 
-import { createSublist } from '@/state/sublist/actions'
-import { refreshVisibleTodos } from '@/state/todo/actions'
+import { createTodo } from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const ListsCreateSublist = ({
+export const TodosCreateTodo = ({
   listId
-}: IListsListCreateSublist) => {
-  
+}: ITodosCreateTodo) => {
+
   // Redux
   const dispatch = useDispatch()
-  
+
   return (
     <ContainerTouchable
-      onPress={() => {
-        dispatch(createSublist(listId))
-        dispatch(refreshVisibleTodos())
-      }}>
+      onPress={() => dispatch(createTodo(listId))}>
       <Container>
-        <CreateSublist>
-          New Sublist +
-        </CreateSublist>
+        <Text>
+          Press Here To Add A New Todo...
+        </Text>
       </Container>
     </ContainerTouchable>
   )
@@ -38,7 +34,7 @@ export const ListsCreateSublist = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-export interface IListsListCreateSublist {
+interface ITodosCreateTodo {
   listId: IList['id']
 }
 
@@ -49,9 +45,10 @@ const ContainerTouchable = styled.TouchableWithoutFeedback``
 const Container = styled.View`
 `
 
-const CreateSublist = styled.Text`
+const Text = styled.Text`
   font-family: OpenSans_400Regular_Italic;
   font-size: 20px;
+  color: rgb(120, 120, 120);
 `
 
-export default ListsCreateSublist
+export default TodosCreateTodo

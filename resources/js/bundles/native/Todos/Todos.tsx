@@ -9,6 +9,7 @@ import { IAppState } from '@/state'
 import { refreshVisibleTodos } from '@/state/todo/actions'
 
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import TodosCreateTodo from '@native/Todos/TodosCreateTodo'
 import TodosDate from '@native/Todos/TodosDate'
 import TodosHeader from '@native/Todos/TodosHeader'
 import TodosTodo from '@native/Todos/TodosTodo'
@@ -70,6 +71,9 @@ const Todos = ({
           )
         }
       })}
+      {visibleTodos && visibleTodos.length === 1 && 
+        <TodosCreateTodo
+          listId={activeListId}/>}
     </KeyboardAwareScrollView>
   );
 }

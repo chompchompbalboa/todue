@@ -35,6 +35,7 @@ const ListsListSublistName = ({
     <Container>
       {sublistName === null 
         ? <ListsListSublistNameInput
+            listId={listId}
             sublistId={sublistId}/>
         : <SublistNameTouchable
             onPress={handleSublistNamePress}>
@@ -66,6 +67,7 @@ const Container = styled.View`
 
 const SublistNameTouchable = styled.TouchableWithoutFeedback``
 const SublistName = styled.View`
+  padding: 1px 0;
   display: flex;
   flex-direction: row;
   align-items: center;

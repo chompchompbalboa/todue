@@ -20,8 +20,8 @@ export const TodosTodosCreateTodo = ({
   const dispatch = useDispatch()
 
   return (
-      <Container
-        onClick={() => dispatch(createTodo(listId))}/>
+    <Container
+      onClick={() => dispatch(createTodo(listId))}/>
   )
 }
 

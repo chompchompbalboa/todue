@@ -86,8 +86,11 @@ export const createSublistDefaultTag = (
       [sublistId]: nextSublistTags
     }))
     
-    dispatch(updateSublist(sublistId, { defaultTagId: newTag.id }))
+    
 
-    mutation.createListTag(newTag).then(() => mutation.createListSublistTag(newSublistTag))
+    mutation.createListTag(newTag).then(() => {
+      dispatch(updateSublist(sublistId, { defaultTagId: newTag.id }))
+      mutation.createListSublistTag(newSublistTag)
+    })
 	}
 }

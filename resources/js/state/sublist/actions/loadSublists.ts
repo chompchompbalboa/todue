@@ -33,7 +33,7 @@ export const loadSublists = (
       nextSublistsByListId = {
         ...nextSublistsByListId,
         [sublist.listId]: [
-          ...(nextSublistsByListId[sublist.listId] || []),
+          ...(nextSublistsByListId[sublist.listId] || []).filter(currentSublistId => currentSublistId !== sublist.id),
           sublist.id
         ]
       }

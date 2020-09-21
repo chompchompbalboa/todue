@@ -47,7 +47,7 @@ interface ILists {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const ListsContainer = styled.View`
+const ListsContainer = styled.ScrollView`
   background-color: white;
   padding: 20px;
 `

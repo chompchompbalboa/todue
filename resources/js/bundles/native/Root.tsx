@@ -16,7 +16,8 @@ import {
   useFonts,
   OpenSans_400Regular,
   OpenSans_400Regular_Italic,
-  OpenSans_700Bold
+  OpenSans_700Bold,
+  OpenSans_700Bold_Italic
 } from '@expo-google-fonts/dev'
 
 import { appReducer, IAppState } from '@/state'
@@ -47,7 +48,8 @@ const Root = () => {
   const [ fontsLoaded ] = useFonts({ 
     OpenSans_400Regular, 
     OpenSans_400Regular_Italic,
-    OpenSans_700Bold 
+    OpenSans_700Bold,
+    OpenSans_700Bold_Italic
   })
 
   if(fontsLoaded) {
