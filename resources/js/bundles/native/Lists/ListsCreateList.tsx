@@ -32,6 +32,7 @@ export const ListsCreateList = () => {
 //-----------------------------------------------------------------------------
 const ContainerTouchable = styled.TouchableWithoutFeedback``
 const Container = styled.View`
+  margin-bottom: 15px;
 `
 
 const CreateList = styled.Text`

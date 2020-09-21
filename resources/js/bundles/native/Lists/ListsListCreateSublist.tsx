@@ -2,44 +2,56 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
 import { IList } from '@/state/list/types'
-import { ISublist } from '@/state/sublist/types'
 
-import ListsListSublistName from '@native/Lists/ListsListSublistName'
+import { createSublist } from '@/state/sublist/actions'
+import { refreshVisibleTodos } from '@/state/todo/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const ListsListSublist = ({
-  listId,
-  sublistId,
-  setIsListsVisible
-}: IListsListSublist) => {
-
+export const ListsCreateSublist = ({
+  listId
+}: IListsListCreateSublist) => {
+  
+  // Redux
+  const dispatch = useDispatch()
+  
   return (
-    <Container>
-      <ListsListSublistName
-        listId={listId}
-        sublistId={sublistId}
-        setIsListsVisible={setIsListsVisible}/>
-    </Container>
-  );
+    <ContainerTouchable
+      onPress={() => {
+        dispatch(createSublist(listId))
+        dispatch(refreshVisibleTodos())
+      }}>
+      <Container>
+        <CreateSublist>
+          New Sublist +
+        </CreateSublist>
+      </Container>
+    </ContainerTouchable>
+  )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface IListsListSublist {
+export interface IListsListCreateSublist {
   listId: IList['id']
-  sublistId: ISublist['id']
-  setIsListsVisible(nextIsListsVisible: boolean): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View``
+const ContainerTouchable = styled.TouchableWithoutFeedback``
+const Container = styled.View`
+`
 
-export default ListsListSublist
+const CreateSublist = styled.Text`
+  font-family: OpenSans_400Regular;
+  font-size: 20px;
+`
+
+export default ListsCreateSublist

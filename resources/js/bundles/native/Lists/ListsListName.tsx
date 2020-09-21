@@ -63,9 +63,7 @@ interface IListsListName {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.View`
-  margin-bottom: 5px;
-`
+const Container = styled.View``
 
 const ListNameTouchable = styled.TouchableWithoutFeedback``
 const ListName = styled.View`
@@ -78,7 +76,6 @@ const ListNameText = styled.Text`
   font-size: 24px;
   font-family: OpenSans_700Bold;
   color: ${ ({ isListLoaded }: IListNameText) => isListLoaded ? 'black' : 'rgb(170, 170, 170)' };
-  margin-bottom: 5px;
 `
 interface IListNameText {
   isListLoaded: boolean

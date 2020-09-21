@@ -8,6 +8,7 @@ import styled from 'styled-components/native'
 import { IAppState } from '@/state'
 import { IList } from '@/state/list/types'
 
+import ListsListCreateSublist from '@native/Lists/ListsListCreateSublist'
 import ListsListName from '@native/Lists/ListsListName'
 import ListsListSublist from '@native/Lists/ListsListSublist'
 
@@ -35,6 +36,8 @@ const ListsList = ({
             sublistId={sublistId}
             setIsListsVisible={setIsListsVisible}/>
         ))}
+        <ListsListCreateSublist
+          listId={listId}/>
       </Sublists>
     </Container>
   );
@@ -52,6 +55,7 @@ interface IListsList {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
+  margin-bottom: 10px;
 `
 
 const Sublists = styled.View`

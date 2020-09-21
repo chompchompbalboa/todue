@@ -25,13 +25,13 @@ const Lists = ({
     <Modal
       closeModal={() => setIsListsVisible(false)}>
       <ListsContainer>
+        <ListsCreateList />
         {lists.map(listId => (
           <ListsList
             key={listId}
             listId={listId}
             setIsListsVisible={setIsListsVisible}/>
         ))}
-        <ListsCreateList />
       </ListsContainer>
     </Modal>
   )

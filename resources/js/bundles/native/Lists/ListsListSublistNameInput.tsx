@@ -5,15 +5,15 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components/native'
 
-import { IList } from '@/state/list/types'
+import { ISublist } from '@/state/sublist/types'
 
-import { updateList } from '@/state/list/actions'
+import { updateSublist } from '@/state/sublist/actions'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 const ListsListNameInput = ({
-  listId
+  sublistId
 }: IListsListNameInput) => {
 
   // Redux
@@ -25,7 +25,7 @@ const ListsListNameInput = ({
   // Update List Name
   const updateListName = () => {
     if(textInputValue) {
-      dispatch(updateList(listId, { name: textInputValue }))
+      dispatch(updateSublist(sublistId, { name: textInputValue }))
     }
   }
 
@@ -44,15 +44,15 @@ const ListsListNameInput = ({
 // Props
 //-----------------------------------------------------------------------------
 interface IListsListNameInput {
-  listId: IList['id']
+  sublistId: ISublist['id']
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const TextInput = styled.TextInput`
-  font-size: 24px;
-  font-family: OpenSans_700Bold;
+  font-size: 20px;
+  font-family: OpenSans_400Regular;
   color: black;
 `
 
