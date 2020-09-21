@@ -31,7 +31,6 @@ const Modal = ({
       }}>
         <KeyboardAwareScrollView
           extraScrollHeight={20}
-          keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
           style={{
             height: '100%',
             width: '100%',

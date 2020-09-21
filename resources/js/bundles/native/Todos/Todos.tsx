@@ -38,7 +38,6 @@ const Todos = ({
 
   return (
     <KeyboardAwareScrollView
-      keyboardOpeningTime={Number.MAX_SAFE_INTEGER}
       stickyHeaderIndices={stickyHeaderIndices}
       style={{
         height: '100%',
