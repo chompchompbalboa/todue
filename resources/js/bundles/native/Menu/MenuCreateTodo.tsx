@@ -22,7 +22,9 @@ const MenuCreateTodo = () => {
   return (
     <MenuItem
       icon="plus"
-      onPress={() => dispatch(createTodo(activeListId, null, true))}
+      onPress={() => {
+        dispatch(createTodo(activeListId, null, true))
+      }}
       justifyContent="center"
       width="19%" />
   )

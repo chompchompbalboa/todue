@@ -50,12 +50,12 @@ interface IProps {
 const Container = styled.TouchableWithoutFeedback``
 
 const Checkbox = styled.View`
-margin-right: 10px;
-width: 28px;
-height: 28px;
-border-radius: 28px;
-border: 1px solid ${({ isCompleted }: ICheckbox) => (isCompleted ? 'rgb(0, 168, 25)' : 'rgb(100, 100, 100)')};
-background-color: ${({ isCompleted }: ICheckbox) => isCompleted ? 'rgb(0, 168, 25)' : 'transparent'};
+  margin-right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  border: 1px solid ${({ isCompleted }: ICheckbox) => (isCompleted ? 'rgb(0, 168, 25)' : 'rgb(100, 100, 100)')};
+  background-color: ${({ isCompleted }: ICheckbox) => isCompleted ? 'rgb(0, 168, 25)' : 'transparent'};
 `
 interface ICheckbox {
   isCompleted: boolean

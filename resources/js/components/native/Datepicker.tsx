@@ -26,8 +26,10 @@ export const Datepicker = ({
 
   // Build the array to display the dates
   let currentMonthDatesArray = []
-  const isValueInCurrentMonth = localValue && currentMonth.year() === moment(localValue).year() && currentMonth.month() === moment(localValue).month()
-  const localValueDate = localValue && moment(localValue).date()
+  const isValueInCurrentMonth = currentMonth.year() === moment(value).year() && currentMonth.month() === moment(value).month()
+  const isCurrentMonthTodaysMonth = currentMonth.year() === moment().year() && currentMonth.month() === moment().month()
+  const todaysDate = moment().date()
+  const localValueDate = moment(localValue).date()
   let daysInCurrentMonth = currentMonth.daysInMonth()
   const firstDayOfCurrentMonth = currentMonth.startOf('month').day()
   let previousMonthsDate = 0
@@ -77,7 +79,8 @@ export const Datepicker = ({
               }
             }}>
             <DatepickerDateView
-              isSelected={isValueInCurrentMonth && localValueDate === currentDate}>
+              isSelected={isValueInCurrentMonth && localValueDate === currentDate}
+              isTodaysDate={isCurrentMonthTodaysMonth && currentDate === todaysDate}>
               <DatepickerDate
                 isSelected={isValueInCurrentMonth && localValueDate === currentDate}>
                 {currentDate}
@@ -133,7 +136,7 @@ const GoToNextMonth = styled(ChangeCurrentMonth)`
 const CurrentMonth = styled.Text`
   display: flex;
   font-size: 20px;
-  font-family: OpenSans_700Bold;
+  font-family: OpenSans_600SemiBold;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -152,10 +155,11 @@ const DatepickerDateView = styled.View`
   justify-content: center;
   align-items: center;
   border-radius: 100px;
-  background-color: ${ ({ isSelected }: IDatePickerDateView) => isSelected ? 'rgb(0, 168, 25)' : 'transparent'};
+  background-color: ${ ({ isSelected, isTodaysDate }: IDatePickerDateView) => isSelected ? 'rgb(0, 168, 25)' : (isTodaysDate ? 'rgb(238, 238, 238)' : 'transparent')};
 `
 interface IDatePickerDateView {
   isSelected: boolean
+  isTodaysDate: boolean
 }
 
 const DatepickerDate = styled.Text`

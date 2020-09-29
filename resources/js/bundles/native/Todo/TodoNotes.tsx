@@ -22,15 +22,15 @@ export const TodoNotes = ({
   const todoNotes = useSelector((state: IAppState) => state.todoNote.todoNotesByTodoId[todoId] || [])
 
   return (
-      <Container>
-        <TodoNotesCreateNote
-          todoId={todoId}/>
-        {todoNotes.map(todoNoteId => (
-          <TodoNotesNote
-            key={todoNoteId}
-            todoNoteId={todoNoteId}/>
-        ))}
-      </Container>
+    <Container>
+      <TodoNotesCreateNote
+        todoId={todoId}/>
+      {todoNotes.map(todoNoteId => (
+        <TodoNotesNote
+          key={todoNoteId}
+          todoNoteId={todoNoteId}/>
+      ))}
+    </Container>
   )
 }
 
@@ -45,7 +45,8 @@ interface ITodoNotes {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 15px;
+  padding: 20px;
+  padding-top: 0;
 `
 
 export default TodoNotes

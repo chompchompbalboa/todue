@@ -18,6 +18,7 @@ const TodosTodo = ({
   todoId,
   setIsTodoVisible
 }: ITodosTodo) => {
+
   return (
     <Container>
       <TodosTodoCompleted
@@ -46,7 +47,6 @@ interface ITodosTodo {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   margin-bottom: 7px;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

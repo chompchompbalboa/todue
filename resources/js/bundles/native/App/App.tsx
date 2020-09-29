@@ -74,18 +74,18 @@ const App = () => {
         <Menu
           setIsListsVisible={setIsListsVisible}
           setIsSettingsVisible={setIsSettingsVisible}/>}
-      {isInitialDataLoaded && isListsVisible &&
-        <Lists
-          setIsListsVisible={setIsListsVisible}/>}
+      <Lists
+        isListsVisible={isInitialDataLoaded && isListsVisible}
+        setIsListsVisible={setIsListsVisible}/>
+      <Todo
+        isTodoVisible={activeTodoId && isTodoVisible}
+        setIsTodoVisible={setIsTodoVisible}/>
+      <Settings
+        isSettingsVisible={isSettingsVisible}
+        setIsSettingsVisible={setIsSettingsVisible}/>
       {isActiveListLoaded && 
         <Todos
           setIsTodoVisible={setIsTodoVisible}/>}
-      {isTodoVisible && activeTodoId && 
-        <Todo
-          setIsTodoVisible={setIsTodoVisible}/>}
-      {isSettingsVisible && 
-        <Settings
-          setIsSettingsVisible={setIsSettingsVisible}/>}
       {isInitialDataLoaded && activeListId === null &&
         <NoListContainer>
           <NoListText>

@@ -39,7 +39,7 @@ export const TodoNotesCreateNote = ({
       <StyledTextInput
         blurOnSubmit
         multiline
-        placeholder="Add a Note"
+        placeholder="Press Here To Add a Note..."
         onChangeText={(nextText) => setTextInputValue(nextText)}
         onSubmitEditing={handleCreateTodoNote}
         scrollEnabled={false}

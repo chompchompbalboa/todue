@@ -10,12 +10,14 @@ import { ITodo } from '@/state/todo/types'
 
 import { updateTodo } from '@/state/todo/actions'
 
+import TodoItem from '@native/Todo/TodoItem'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoDateTime = ({
+export const TodoPriority = ({
   todoId
-}: ITodoDateTime) => {
+}: ITodoPriority) => {
 
   // Redux
   const dispatch = useDispatch()
@@ -23,41 +25,48 @@ export const TodoDateTime = ({
   
   // Priorities
   const priorities = [
-    { value: null, text: "None", backgroundColor: "rgb(150, 150, 150)" },
-    { value: 1, text: "Low", backgroundColor: "rgb(255, 200, 0)" },
-    { value: 2, text: "Medium", backgroundColor: "rgb(250, 150, 50)" },
-    { value: 3, text: "High", backgroundColor: "rgb(200, 0, 0)" },
+    { value: null, text: "-", backgroundColor: "rgb(150, 150, 150)" },
+    { value: 1, text: "!", backgroundColor: "rgb(255, 200, 0)" },
+    { value: 2, text: "!!", backgroundColor: "rgb(250, 150, 50)" },
+    { value: 3, text: "!!!", backgroundColor: "rgb(200, 0, 0)" },
   ]
 
-  return (
-      <Container>
-        {priorities.map(priority => (
-          <PriorityTouchable
-            key={priority.text}
-            onPress={() => {
-              dispatch(updateTodo(todoId, 
-                { priority: priority.value },
-                { priority: todoPriority },
-                true
-            ))}}>
-            <Priority
-              backgroundColor={priority.backgroundColor}
+  const components = () => 
+    <Container>
+      {priorities.map(priority => (
+        <PriorityTouchable
+          key={priority.text}
+          onPress={() => {
+            dispatch(updateTodo(todoId, 
+              { priority: priority.value },
+              { priority: todoPriority },
+              true
+          ))}}>
+          <Priority
+            backgroundColor={priority.backgroundColor}
+            isSelected={todoPriority === priority.value}>
+            <PriorityText
               isSelected={todoPriority === priority.value}>
-              <PriorityText
-                isSelected={todoPriority === priority.value}>
-                {priority.text}
-              </PriorityText>
-            </Priority>
-          </PriorityTouchable>
-        ))}
-      </Container>
+              {priority.text}
+            </PriorityText>
+          </Priority>
+        </PriorityTouchable>
+      ))}
+    </Container>
+
+  false && console.log(components)
+
+  return (
+    <TodoItem
+      icon="star"
+      label="Priority"/>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoDateTime {
+interface ITodoPriority {
   todoId: ITodo['id']
 }
 
@@ -93,4 +102,4 @@ interface IPriorityText {
   isSelected: boolean
 }
 
-export default TodoDateTime
+export default TodoPriority

@@ -16,6 +16,7 @@ import {
   useFonts,
   OpenSans_400Regular,
   OpenSans_400Regular_Italic,
+  OpenSans_600SemiBold,
   OpenSans_700Bold,
   OpenSans_700Bold_Italic
 } from '@expo-google-fonts/dev'
@@ -48,6 +49,7 @@ const Root = () => {
   const [ fontsLoaded ] = useFonts({ 
     OpenSans_400Regular, 
     OpenSans_400Regular_Italic,
+    OpenSans_600SemiBold,
     OpenSans_700Bold,
     OpenSans_700Bold_Italic
   })

@@ -15,6 +15,7 @@ import Modal from '@/components/native/Modal'
 // Component
 //-----------------------------------------------------------------------------
 const Lists = ({
+  isListsVisible,
   setIsListsVisible
 }: ILists) => {
 
@@ -23,7 +24,8 @@ const Lists = ({
 
   return (
     <Modal
-      closeModal={() => setIsListsVisible(false)}>
+      closeModal={() => setIsListsVisible(false)}
+      isVisible={isListsVisible}>
       <ListsContainer>
         <ListsCreateList />
         {lists.map(listId => (
@@ -41,6 +43,7 @@ const Lists = ({
 // Props
 //-----------------------------------------------------------------------------
 interface ILists {
+  isListsVisible: boolean
   setIsListsVisible(nextIsListsVisible: boolean): void
 }
 

@@ -25,7 +25,7 @@ export const Timepicker = ({
   
   // Get Times
   const getTimes = () => {
-    let times: string[] = [ null ]
+    let times: string[] = []
     let currentHour = 0
     let currentMinute = 0
     while(currentHour <= 23 && currentMinute <= 45) {
@@ -51,11 +51,16 @@ export const Timepicker = ({
   ))
 
   return (
-      <Picker
-        selectedValue={value ? datetime.twentyFourHourToTwelveHour(value) : label}
-        onValueChange={handleTimeChange}>
-          {times}
-      </Picker>
+    <Picker
+      onValueChange={handleTimeChange}
+      selectedValue={value ? datetime.twentyFourHourToTwelveHour(value) : label}
+      style={{ 
+        width: '50%', 
+        height: '100%',
+        overflow: 'hidden'
+      }}>
+        {times}
+    </Picker>
   )
 }
 

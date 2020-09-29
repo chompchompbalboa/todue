@@ -37,7 +37,8 @@ interface ITodoComponent {
 //-----------------------------------------------------------------------------
 const Container = styled.View`
   background-color: white;
-  padding: 15px;
+  padding: 18px;
+  padding-bottom: 10px;
 `
 
 const Text = styled.Text`

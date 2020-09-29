@@ -3,6 +3,7 @@
 //-----------------------------------------------------------------------------
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
@@ -73,6 +74,7 @@ const Todos = ({
       {visibleTodos && visibleTodos.length === 1 && 
         <TodosCreateTodo
           listId={activeListId}/>}
+      <BottomPadding />
     </KeyboardAwareScrollView>
   );
 }
@@ -83,5 +85,12 @@ const Todos = ({
 interface ITodos {
   setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
+
+//-----------------------------------------------------------------------------
+// Styled Components
+//-----------------------------------------------------------------------------
+const BottomPadding = styled.View`
+  height: 200px;
+`
 
 export default Todos

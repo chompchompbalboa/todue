@@ -10,12 +10,14 @@ import SettingsUser from '@native/Settings/SettingsUser'
 // Component
 //-----------------------------------------------------------------------------
 const Settings = ({
+  isSettingsVisible,
   setIsSettingsVisible
 }: ISettings) => {
 
   return (
     <Modal
-      closeModal={() => setIsSettingsVisible(false)}>
+      closeModal={() => setIsSettingsVisible(false)}
+      isVisible={isSettingsVisible}>
       <SettingsUser />
     </Modal>
   )
@@ -25,6 +27,7 @@ const Settings = ({
 // Props
 //-----------------------------------------------------------------------------
 interface ISettings {
+  isSettingsVisible: boolean
   setIsSettingsVisible(nextIsSettingsVisible: boolean): void
 }
 
