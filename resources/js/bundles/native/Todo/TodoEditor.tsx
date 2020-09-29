@@ -3,12 +3,10 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import { Animated } from 'react-native'
-import styled from 'styled-components/native'
 
 import { ITodo } from '@/state/todo/types'
 import { IActiveEditor } from '@native/Todo/Todo'
 
-import GestureRecognizer from 'react-native-swipe-gestures'
 import TodoEditorDate from '@native/Todo/TodoEditorDate'
 
 //-----------------------------------------------------------------------------
@@ -17,7 +15,6 @@ import TodoEditorDate from '@native/Todo/TodoEditorDate'
 const TodoEditor = ({
   todoId,
   activeEditor,
-  closeEditor,
   editorLeft
 }: ITodoEditor) => {
 
@@ -31,12 +28,9 @@ const TodoEditor = ({
         paddingLeft: 20,
         paddingRight: 20
       }}>
-      <StyledGestureRecognizer
-        onSwipeRight={closeEditor}>
-        <TodoEditorDate
-          todoId={todoId}
-          isVisible={activeEditor === 'DATE'}/>
-      </StyledGestureRecognizer>
+      <TodoEditorDate
+        todoId={todoId}
+        isVisible={activeEditor === 'DATE'}/>
     </Animated.View>
   )
 }
@@ -47,14 +41,7 @@ const TodoEditor = ({
 interface ITodoEditor {
   todoId: ITodo['id']
   activeEditor: IActiveEditor
-  closeEditor(): void
   editorLeft: Animated.Value
 }
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const StyledGestureRecognizer = styled(GestureRecognizer)`
-`
 
 export default TodoEditor

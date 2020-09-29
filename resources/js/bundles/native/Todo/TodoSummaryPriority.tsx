@@ -15,9 +15,9 @@ import TodoItem from '@native/Todo/TodoItem'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoPriority = ({
+export const TodoSummaryPriority = ({
   todoId
-}: ITodoPriority) => {
+}: ITodoSummaryPriority) => {
 
   // Redux
   const dispatch = useDispatch()
@@ -31,42 +31,40 @@ export const TodoPriority = ({
     { value: 3, text: "!!!", backgroundColor: "rgb(200, 0, 0)" },
   ]
 
-  const components = () => 
-    <Container>
-      {priorities.map(priority => (
-        <PriorityTouchable
-          key={priority.text}
-          onPress={() => {
-            dispatch(updateTodo(todoId, 
-              { priority: priority.value },
-              { priority: todoPriority },
-              true
-          ))}}>
-          <Priority
-            backgroundColor={priority.backgroundColor}
-            isSelected={todoPriority === priority.value}>
-            <PriorityText
-              isSelected={todoPriority === priority.value}>
-              {priority.text}
-            </PriorityText>
-          </Priority>
-        </PriorityTouchable>
-      ))}
-    </Container>
-
-  false && console.log(components)
-
   return (
     <TodoItem
       icon="star"
-      label="Priority"/>
+      label="Priority">
+      <Container>
+        {priorities.map(priority => (
+          <PriorityTouchable
+            key={priority.text}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            onPress={() => {
+              dispatch(updateTodo(todoId, 
+                { priority: priority.value },
+                { priority: todoPriority },
+                true
+            ))}}>
+            <Priority
+              backgroundColor={priority.backgroundColor}
+              isSelected={todoPriority === priority.value}>
+              <PriorityText
+                isSelected={todoPriority === priority.value}>
+                {priority.text}
+              </PriorityText>
+            </Priority>
+          </PriorityTouchable>
+        ))}
+      </Container>
+    </TodoItem>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoPriority {
+interface ITodoSummaryPriority {
   todoId: ITodo['id']
 }
 
@@ -74,19 +72,18 @@ interface ITodoPriority {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  padding: 0 15px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
 `
 
 const PriorityTouchable = styled.TouchableWithoutFeedback``
 const Priority = styled.View`
-  margin-right: 4px;
-  padding: 10px 15px;
+  margin-left: 15px;
+  padding: 0px 8px;
   background-color: ${ ({ backgroundColor, isSelected }: IPriority ) => isSelected ? backgroundColor : 'transparent' };
-  border-radius: 10px;
+  border-radius: 5px;
 `
 interface IPriority {
   backgroundColor: string
@@ -94,12 +91,12 @@ interface IPriority {
 }
 
 const PriorityText = styled.Text`
-  font-size: 20px;
-  font-family: OpenSans_400Regular;
+  font-size: 22px;
+  font-family: OpenSans_600SemiBold;
   color: ${ ({ isSelected }: IPriorityText ) => isSelected ? 'white' : 'black' };
 `
 interface IPriorityText {
   isSelected: boolean
 }
 
-export default TodoPriority
+export default TodoSummaryPriority

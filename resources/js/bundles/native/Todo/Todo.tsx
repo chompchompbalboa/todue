@@ -8,6 +8,7 @@ import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 
+import GestureRecognizer from 'react-native-swipe-gestures'
 import Modal from '@/components/native/Modal'
 import TodoEditor from '@native/Todo/TodoEditor'
 import TodoSummary from '@native/Todo/TodoSummary'
@@ -63,17 +64,19 @@ const Todo = ({
 
   // Close Editor
   const closeEditor = () => {  
-    Animated.timing(editorLeft, {
-      useNativeDriver: false,
-      toValue: windowWidth,
-      duration: EDITOR_OPEN_CLOSE_DURATION
-    }).start()
-    Animated.timing(summaryLeft, {
-      useNativeDriver: false,
-      toValue: 0,
-      duration: EDITOR_OPEN_CLOSE_DURATION
-    }).start()
-    setTimeout(() => setActiveEditor(null), EDITOR_OPEN_CLOSE_DURATION + 50)
+    if(activeEditor !== null) {
+      Animated.timing(editorLeft, {
+        useNativeDriver: false,
+        toValue: windowWidth,
+        duration: EDITOR_OPEN_CLOSE_DURATION
+      }).start()
+      Animated.timing(summaryLeft, {
+        useNativeDriver: false,
+        toValue: 0,
+        duration: EDITOR_OPEN_CLOSE_DURATION
+      }).start()
+      setTimeout(() => setActiveEditor(null), EDITOR_OPEN_CLOSE_DURATION + 50)
+    }
   }
 
   return (
@@ -83,7 +86,8 @@ const Todo = ({
       stickyHeaderIndices={[ 0 ]}>
         <TodoText
           todoId={activeTodoId}/>
-        <TodoContent>
+        <TodoContent
+          onSwipeRight={closeEditor}>
           <TodoSummary
             todoId={activeTodoId}
             openEditor={openEditor}
@@ -91,7 +95,6 @@ const Todo = ({
           <TodoEditor
             todoId={activeTodoId}
             activeEditor={activeEditor}
-            closeEditor={closeEditor}
             editorLeft={editorLeft}/>
         </TodoContent>
     </Modal>
@@ -111,7 +114,7 @@ export type IActiveEditor = null | 'DATE' | 'TIME' | 'REMINDERS' | 'TAGS'
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const TodoContent = styled.View`
+const TodoContent = styled(GestureRecognizer)`
   position: relative;
 `
 

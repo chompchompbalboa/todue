@@ -11,7 +11,7 @@ import { IActiveEditor } from '@native/Todo/Todo'
 import { Feather } from '@expo/vector-icons'
 
 import TodoSummaryDate from '@native/Todo/TodoSummaryDate'
-import TodoPriority from '@native/Todo/TodoPriority'
+import TodoSummaryPriority from '@/bundles/native/Todo/TodoSummaryPriority'
 import TodoReminders from '@native/Todo/TodoReminders'
 import TodoTags from '@native/Todo/TodoTags'
 import TodoTime from '@native/Todo/TodoTime'
@@ -36,7 +36,7 @@ const TodoSummary = ({
       <TodoSummaryDate
         todoId={todoId}
         openEditor={openEditor}/>
-      <TodoPriority
+      <TodoSummaryPriority
         todoId={todoId}/>
       <TodoTime
         todoId={todoId}/>

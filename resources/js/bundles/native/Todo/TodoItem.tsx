@@ -10,6 +10,7 @@ import { Feather } from '@expo/vector-icons'
 // Component
 //-----------------------------------------------------------------------------
 export const TodoItem = ({
+  children,
   icon,
   label,
   onPress,
@@ -30,9 +31,9 @@ export const TodoItem = ({
             {label}
           </Label>
         </LabelContainer>
-        <Text>
-          {text || "→"}
-        </Text>
+        <ContentContainer>
+          {children || <Text>{text || "→"}</Text>}
+        </ContentContainer>
       </Container>
     </ContainerTouchable>
   )
@@ -42,6 +43,7 @@ export const TodoItem = ({
 // Props
 //-----------------------------------------------------------------------------
 interface ITodoItem {
+  children?: any
   icon: string
   label: string
   onPress?(): void
@@ -74,6 +76,12 @@ const Label = styled.Text`
 
 const LabelIcon = styled.View`
   margin-right: 10px;
+`
+
+const ContentContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
 `
 
 const Text = styled.Text`

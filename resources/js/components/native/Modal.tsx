@@ -49,7 +49,7 @@ const Modal = ({
         transform: [{
           translateY: top.interpolate({
             inputRange: [ 0, 0.5, 0.75, 1 ],
-            outputRange: [ windowHeight, windowHeight * 0.25, windowHeight * 0.125, 0 ]
+            outputRange: [ windowHeight, windowHeight * 0.25, windowHeight * 0.1, 0 ]
           })
         }],
         left: 0,
