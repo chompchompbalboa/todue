@@ -8,6 +8,7 @@ import { ITodo } from '@/state/todo/types'
 import { IActiveEditor } from '@native/Todo/Todo'
 
 import TodoEditorDate from '@native/Todo/TodoEditorDate'
+import TodoEditorHeader from '@native/Todo/TodoEditorHeader'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -15,6 +16,7 @@ import TodoEditorDate from '@native/Todo/TodoEditorDate'
 const TodoEditor = ({
   todoId,
   activeEditor,
+  closeEditor,
   editorLeft
 }: ITodoEditor) => {
 
@@ -28,6 +30,9 @@ const TodoEditor = ({
         paddingLeft: 20,
         paddingRight: 20
       }}>
+      <TodoEditorHeader
+        activeEditor={activeEditor}
+        closeEditor={closeEditor}/>
       <TodoEditorDate
         todoId={todoId}
         isVisible={activeEditor === 'DATE'}/>
@@ -41,6 +46,7 @@ const TodoEditor = ({
 interface ITodoEditor {
   todoId: ITodo['id']
   activeEditor: IActiveEditor
+  closeEditor(): void
   editorLeft: Animated.Value
 }
 

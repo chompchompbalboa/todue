@@ -7,7 +7,10 @@ import { useSelector } from 'react-redux'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
-import { IActiveEditor } from '@native/Todo/Todo'
+import { 
+  IActiveEditor,
+  editorConfig
+} from '@native/Todo/Todo'
 
 import TodoItem from '@native/Todo/TodoItem'
 
@@ -27,8 +30,8 @@ const TodoDate = ({
 
   return (
     <TodoItem
-      icon="calendar"
-      label="Date"
+      icon={editorConfig['DATE'].icon}
+      label={editorConfig['DATE'].label}
       onPress={() => openEditor('DATE')}
       text={todoDateCurrent}/>
   )

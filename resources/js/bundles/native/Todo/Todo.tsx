@@ -12,7 +12,6 @@ import GestureRecognizer from 'react-native-swipe-gestures'
 import Modal from '@/components/native/Modal'
 import TodoEditor from '@native/Todo/TodoEditor'
 import TodoSummary from '@native/Todo/TodoSummary'
-import TodoText from '@native/Todo/TodoText'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -44,7 +43,7 @@ const Todo = ({
     }
   }, [ isTodoVisible ])
 
-  // Editor Open Close Duration
+  // Editor Open/Close Duration
   const EDITOR_OPEN_CLOSE_DURATION = 150
 
   // Open Editor
@@ -82,19 +81,18 @@ const Todo = ({
   return (
     <Modal
       closeModal={() => setIsTodoVisible(false)}
-      isVisible={isTodoVisible}
-      stickyHeaderIndices={[ 0 ]}>
-        <TodoText
-          todoId={activeTodoId}/>
+      isVisible={isTodoVisible}>
         <TodoContent
           onSwipeRight={closeEditor}>
           <TodoSummary
             todoId={activeTodoId}
+            isTodoVisible={isTodoVisible}
             openEditor={openEditor}
             summaryLeft={summaryLeft}/>
           <TodoEditor
             todoId={activeTodoId}
             activeEditor={activeEditor}
+            closeEditor={closeEditor}
             editorLeft={editorLeft}/>
         </TodoContent>
     </Modal>
@@ -109,7 +107,30 @@ interface ITodoComponent {
   setIsTodoVisible(nextIsTodoVisible: boolean): void
 }
 
-export type IActiveEditor = null | 'DATE' | 'TIME' | 'REMINDERS' | 'TAGS'
+export type IActiveEditor = null | 'DATE' | 'REMINDERS' | 'TAGS' | 'TEXT' | 'TIME'
+
+export const editorConfig = {
+  TEXT: {
+    label: "Text",
+    icon: "edit-3"
+  },
+  DATE: {
+    label: "Date",
+    icon: "calendar"
+  },
+  TIME: {
+    label: "Time",
+    icon: "clock"
+  },
+  REMINDERS: {
+    label: "Reminders",
+    icon: "alert-circle"
+  },
+  TAGS: {
+    label: "Tags",
+    icon: "tag"
+  },
+}
 
 //-----------------------------------------------------------------------------
 // Styled Components

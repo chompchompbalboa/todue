@@ -2,34 +2,30 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-//import { useSelector } from 'react-redux'
 
-//import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
+
+import { editorConfig } from '@native/Todo/Todo'
 
 import TodoItem from '@native/Todo/TodoItem'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoTags = ({
-  todoId
-}: ITodoTags) => {
-
-  // Redux
-  //const todoTags = useSelector((state: IAppState) => todoId && state.todoTag.todoTagsByTodoId[todoId])
+export const TodoSummaryTags = ({
+}: ITodoSummaryTags) => {
   return (
     <TodoItem
-      icon="tag"
-      label="Tags"/>
+      icon={editorConfig['TAGS'].icon}
+      label={editorConfig['TAGS'].label}/>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoTags {
+interface ITodoSummaryTags {
   todoId: ITodo['id']
 }
 
-export default TodoTags
+export default TodoSummaryTags

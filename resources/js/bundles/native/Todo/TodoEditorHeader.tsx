@@ -6,34 +6,36 @@ import styled from 'styled-components/native'
 
 import { Feather } from '@expo/vector-icons'
 
+import { 
+  IActiveEditor,
+  editorConfig
+} from '@native/Todo/Todo'
+
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoItem = ({
-  children,
-  icon,
-  label,
-  onPress,
-  text
-}: ITodoItem) => {
+const TodoEditorHeader = ({
+  activeEditor,
+  closeEditor
+}: ITodoEditorHeader) => {
+
   return (
     <ContainerTouchable
-      onPress={onPress}>
+      onPress={closeEditor}>
       <Container>
-        <LabelContainer>
-          <LabelIcon>
-            <Feather
-              name={icon}
-              size={24}
-              color="rgb(50, 50, 50)"/>
-          </LabelIcon>
-          <Label>
-            {label}
-          </Label>
-        </LabelContainer>
-        <ContentContainer>
-          {children || <Text>{text || "-"}</Text>}
-        </ContentContainer>
+        {activeEditor &&
+          <>
+            <Icon>
+              <Feather
+                name="arrow-left"
+                size={26}
+                color="black"/>
+            </Icon>
+            <Label>
+              {editorConfig[activeEditor].label}
+            </Label>
+          </>
+        }
       </Container>
     </ContainerTouchable>
   )
@@ -42,12 +44,9 @@ export const TodoItem = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoItem {
-  children?: any
-  icon: string
-  label: string
-  onPress?(): void
-  text?: string
+interface ITodoEditorHeader {
+  activeEditor: IActiveEditor
+  closeEditor(): void
 }
 
 //-----------------------------------------------------------------------------
@@ -55,38 +54,24 @@ interface ITodoItem {
 //-----------------------------------------------------------------------------
 const ContainerTouchable = styled.TouchableWithoutFeedback``
 const Container = styled.View`
-  width: 100%;
-  padding: 10px 20px;
-  display: flex;
+  background-color: white;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 0;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
 `
 
-const LabelContainer = styled.View`
-  flex-direction: row;
-  justify-content: flex-start;
+const Icon = styled.View`
+  margin-right: 10px;
+  justify-content: center;
   align-items: center;
 `
 
 const Label = styled.Text`
-  font-size: 19px;
+  font-size: 24px;
   font-family: OpenSans_600SemiBold;
+  top: -2px;
 `
 
-const LabelIcon = styled.View`
-  margin-right: 10px;
-`
-
-const ContentContainer = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: flex-end;
-`
-
-const Text = styled.Text`
-  font-size: 20px;
-  font-family: OpenSans_400Regular;
-`
-
-export default TodoItem
+export default TodoEditorHeader

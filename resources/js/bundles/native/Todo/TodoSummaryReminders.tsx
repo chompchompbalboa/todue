@@ -5,19 +5,19 @@ import React from 'react'
 
 import { ITodo } from '@/state/todo/types'
 
+import { editorConfig } from '@native/Todo/Todo'
+
 import TodoItem from '@native/Todo/TodoItem'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 export const TodoReminders = ({
-  todoId
 }: ITodoReminders) => {
-  false && console.log(todoId)
   return (
     <TodoItem
-      icon="alert-circle"
-      label="Reminders" />
+      icon={editorConfig['REMINDERS'].icon}
+      label={editorConfig['REMINDERS'].label} />
   )
 }
 

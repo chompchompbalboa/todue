@@ -12,15 +12,17 @@ import { Feather } from '@expo/vector-icons'
 
 import TodoSummaryDate from '@native/Todo/TodoSummaryDate'
 import TodoSummaryPriority from '@/bundles/native/Todo/TodoSummaryPriority'
-import TodoReminders from '@native/Todo/TodoReminders'
-import TodoTags from '@native/Todo/TodoTags'
-import TodoTime from '@native/Todo/TodoTime'
+import TodoSummaryText from '@native/Todo/TodoSummaryText'
+import TodoSummaryTime from '@/bundles/native/Todo/TodoSummaryTime'
+import TodoSummaryReminders from '@/bundles/native/Todo/TodoSummaryReminders'
+import TodoSummaryTags from '@/bundles/native/Todo/TodoSummaryTags'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
 const TodoSummary = ({
   todoId,
+  isTodoVisible,
   openEditor,
   summaryLeft
 }: ITodoSummary) => {
@@ -30,55 +32,60 @@ const TodoSummary = ({
       style={{
         position: 'absolute',
         width: '100%',
+        paddingTop: 10,
         top: 0,
         left: summaryLeft
       }}>
+      <TodoSummaryText
+        todoId={todoId}
+        openEditor={openEditor}
+        isTodoVisible={isTodoVisible}/>
       <TodoSummaryDate
         todoId={todoId}
         openEditor={openEditor}/>
+      <TodoSummaryTime
+        todoId={todoId}/>
       <TodoSummaryPriority
         todoId={todoId}/>
-      <TodoTime
+      <TodoSummaryReminders
         todoId={todoId}/>
-      <TodoReminders
+      <TodoSummaryTags
         todoId={todoId}/>
-      <TodoTags
-        todoId={todoId}/>
-        <TodoRow>
-          <TodoButton>
-            <TodoButtonIcon>
-              <Feather
-                name="corner-up-right"
-                size={26}
-                color="rgb(50, 50, 50)"/>
-            </TodoButtonIcon>
-            <TodoButtonText>
-              Tomorrow
-            </TodoButtonText>
-          </TodoButton>
-          <TodoButton>
-            <TodoButtonIcon>
-              <Feather
-                name="inbox"
-                size={26}
-                color="rgb(50, 50, 50)"/>
-            </TodoButtonIcon>
-            <TodoButtonText>
-              Backlog
-            </TodoButtonText>
-          </TodoButton>
-          <TodoButton>
-            <TodoButtonIcon>
-              <Feather
-                name="list"
-                size={26}
-                color="rgb(50, 50, 50)"/>
-            </TodoButtonIcon>
-            <TodoButtonText>
-              Move To
-            </TodoButtonText>
-          </TodoButton>
-        </TodoRow>
+      <TodoRow>
+        <TodoButton>
+          <TodoButtonIcon>
+            <Feather
+              name="corner-up-right"
+              size={26}
+              color="rgb(50, 50, 50)"/>
+          </TodoButtonIcon>
+          <TodoButtonText>
+            Tomorrow
+          </TodoButtonText>
+        </TodoButton>
+        <TodoButton>
+          <TodoButtonIcon>
+            <Feather
+              name="inbox"
+              size={26}
+              color="rgb(50, 50, 50)"/>
+          </TodoButtonIcon>
+          <TodoButtonText>
+            Backlog
+          </TodoButtonText>
+        </TodoButton>
+        <TodoButton>
+          <TodoButtonIcon>
+            <Feather
+              name="list"
+              size={26}
+              color="rgb(50, 50, 50)"/>
+          </TodoButtonIcon>
+          <TodoButtonText>
+            Move To
+          </TodoButtonText>
+        </TodoButton>
+      </TodoRow>
     </Animated.View>
   )
 }
@@ -88,6 +95,7 @@ const TodoSummary = ({
 //-----------------------------------------------------------------------------
 interface ITodoSummary {
   todoId: ITodo['id']
+  isTodoVisible: boolean
   openEditor(nextActiveEditor: IActiveEditor): void
   summaryLeft: Animated.Value
 }

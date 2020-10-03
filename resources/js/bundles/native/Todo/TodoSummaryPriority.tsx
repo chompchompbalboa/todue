@@ -21,7 +21,7 @@ export const TodoSummaryPriority = ({
 
   // Redux
   const dispatch = useDispatch()
-  const todoPriority = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].priority)
+  const todoPriority = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId]?.priority)
   
   // Priorities
   const priorities = [

@@ -1,31 +1,36 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState }  from 'react' 
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components/native'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
-
 import { 
-  createTodo, 
-  deleteTodo,
-  updateTodo 
-} from '@/state/todo/actions'
+  IActiveEditor,
+  editorConfig
+} from '@native/Todo/Todo'
+
+import { updateTodo } from '@/state/todo/actions'
+
+import TodoItem from '@native/Todo/TodoItem'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-const TodosTodoText = ({ 
-  todoId
-}: IProps) => {
+const TodoDate = ({
+  todoId,
+  isTodoVisible,
+  openEditor
+}: ITodoDate) => {
+
+  // Refs
+  const styledTextInput = useRef(null)
 
   // Redux
   const dispatch = useDispatch()
-  const todoListId = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.listId)
   const todoText = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.text)
-  const todoDateCompleted = useSelector((state: IAppState) => state.todo.allTodos[todoId]?.dateCompleted)
 
   // State
   const [ textInputValue, setTextInputValue ] = useState(todoText as string | null)
@@ -35,55 +40,45 @@ const TodosTodoText = ({
     setTextInputValue(todoText)
   }, [ todoText ])
 
-  const isTodoCompleted = todoDateCompleted !== null
+  // Blur the input when the todo closes
+  useEffect(() => {
+    if(!isTodoVisible) {
+      styledTextInput.current.blur()
+    }
+  }, [ isTodoVisible ])
 
   return (
-    <StyledTextInput
-      autoFocus={textInputValue === null}
-      blurOnSubmit={false}
-      editable={!isTodoCompleted}
-      isTodoCompleted={isTodoCompleted}
-      multiline
-      onBlur={() => {
-        if(textInputValue) {
+    <TodoItem
+      icon={editorConfig['TEXT'].icon}
+      label={editorConfig['TEXT'].label}>
+      <StyledTextInput
+        ref={styledTextInput}
+        blurOnSubmit
+        multiline
+        onBlur={() => {
           if(textInputValue !== todoText) {
             dispatch(updateTodo(todoId, { text: textInputValue }))
           }
-        }
-        else {
-          dispatch(deleteTodo(todoId))
-        }
-      }}
-      onChangeText={(nextValue: string) => {
-        const trimmedNextValue = nextValue.split('\n').join('')
-        setTextInputValue(trimmedNextValue)
-      }}
-      onKeyPress={(e: any) => {
-        if([null, ''].includes(textInputValue) && e.nativeEvent.key === 'Backspace') {
-          dispatch(deleteTodo(todoId))
-        }
-      }}
-      onSubmitEditing={() => {
-        if(textInputValue) {
-          dispatch(createTodo(todoListId, todoId))
+        }}
+        onChangeText={(nextValue: string) => setTextInputValue(nextValue)}
+        onSubmitEditing={() => {
           if(textInputValue !== todoText) {
             dispatch(updateTodo(todoId, { text: textInputValue }))
           }
-        }
-        else {
-          dispatch(deleteTodo(todoId))
-        }
-      }}
-      scrollEnabled={false}
-      value={textInputValue}/>
+        }}
+        scrollEnabled={false}
+        value={textInputValue}/>
+    </TodoItem>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface IProps {
+interface ITodoDate {
   todoId: ITodo['id']
+  isTodoVisible: boolean
+  openEditor(nextActiveEditor: IActiveEditor): void
 }
 
 //-----------------------------------------------------------------------------
@@ -92,12 +87,10 @@ interface IProps {
 const StyledTextInput = styled.TextInput`
   flex: 1;
   padding-top: 0;
+  padding-left: 25px;
   font-size: 20px;
   font-family: OpenSans_400Regular;
-  color: ${({ isTodoCompleted }: ITextInput) => isTodoCompleted ? 'rgb(150, 150, 150)' : 'rgb(0, 0, 0)'};
+  text-align: right;
 `
-interface ITextInput {
-  isTodoCompleted: boolean
-}
 
-export default TodosTodoText
+export default TodoDate
