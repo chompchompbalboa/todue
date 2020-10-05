@@ -2,9 +2,11 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import { Picker } from '@react-native-community/picker'
+import styled from 'styled-components/native'
 
 import datetime from '@/utils/datetime'
+
+import { Picker } from '@react-native-community/picker'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -25,42 +27,60 @@ export const Timepicker = ({
   
   // Get Times
   const getTimes = () => {
-    let times: string[] = []
+    let times: { label: string, value: string }[] = []
     let currentHour = 0
     let currentMinute = 0
+    let isLabelInsertedIntoTimes = false
     while(currentHour <= 23 && currentMinute <= 45) {
-      const twentyFourHourTime = (currentHour + '').padStart(2, '0') + ':' + (currentMinute + '').padStart(2, '0')
-      const twelveHourTime = datetime.twentyFourHourToTwelveHour(twentyFourHourTime)
-      times.push(twelveHourTime)
-      if(currentMinute === 45) {
-        currentHour++
-        currentMinute = 0
+      if(currentHour === 12 && currentMinute === 0 && !isLabelInsertedIntoTimes) {
+        times.push({
+          label: "-",
+          value: null
+        })
+        isLabelInsertedIntoTimes = true
       }
       else {
-        currentMinute += 15
+        const twentyFourHourTime = (currentHour + '').padStart(2, '0') + ':' + (currentMinute + '').padStart(2, '0')
+        const twelveHourTime = datetime.twentyFourHourToTwelveHour(twentyFourHourTime)
+        times.push({
+          label: twelveHourTime,
+          value: twelveHourTime
+        })
+        if(currentMinute === 45) {
+          currentHour++
+          currentMinute = 0
+        }
+        else {
+          currentMinute += 15
+        }
       }
     }
     return times
   }
   
-  const times = getTimes().map(time => (
+  const times = getTimes().map(({ label, value }) => (
     <Picker.Item
-      key={time}
-      label={time}
-      value={time}/>
+      key={label}
+      label={label}
+      value={value}/>
   ))
 
   return (
-    <Picker
-      onValueChange={handleTimeChange}
-      selectedValue={value ? datetime.twentyFourHourToTwelveHour(value) : label}
-      style={{ 
-        width: '50%', 
-        height: '100%',
-        overflow: 'hidden'
-      }}>
-        {times}
-    </Picker>
+    <Container>
+      <Label>{label}:</Label>
+      <Picker
+        onValueChange={handleTimeChange}
+        selectedValue={value ? datetime.twentyFourHourToTwelveHour(value) : null}
+        itemStyle={{
+          fontFamily: 'OpenSans_400Regular'
+        }}
+        style={{
+          flexGrow: 1,
+          marginLeft: 20
+        }}>
+          {times}
+      </Picker>
+    </Container>
   )
 }
 
@@ -72,5 +92,19 @@ interface ITimepicker {
   onTimeChange(nextTime: string): void
   value: string
 }
+
+//-----------------------------------------------------------------------------
+// Styled Components
+//-----------------------------------------------------------------------------
+const Container = styled.View`
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+`
+
+const Label = styled.Text`
+  font-family: OpenSans_600SemiBold;
+  font-size: 18px;
+`
 
 export default Timepicker

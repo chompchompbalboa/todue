@@ -83,6 +83,9 @@ const Todo = ({
       closeModal={() => setIsTodoVisible(false)}
       isVisible={isTodoVisible}>
         <TodoContent
+          config={{
+            directionalOffsetThreshold: 50
+          }}
           onSwipeRight={closeEditor}>
           <TodoSummary
             todoId={activeTodoId}

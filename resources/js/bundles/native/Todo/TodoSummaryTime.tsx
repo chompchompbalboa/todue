@@ -9,7 +9,10 @@ import datetime from '@/utils/datetime'
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
-import { editorConfig } from '@native/Todo/Todo'
+import { 
+  IActiveEditor,
+  editorConfig
+} from '@native/Todo/Todo'
 
 import TodoItem from '@native/Todo/TodoItem'
 
@@ -17,7 +20,8 @@ import TodoItem from '@native/Todo/TodoItem'
 // Component
 //-----------------------------------------------------------------------------
 export const TodoSummaryTime = ({
-  todoId
+  todoId,
+  openEditor
 }: ITodoSummaryTime) => {
 
   // Redux
@@ -34,6 +38,7 @@ export const TodoSummaryTime = ({
     <TodoItem
       icon={editorConfig['TIME'].icon}
       label={editorConfig['TIME'].label}
+      onPress={() => openEditor('TIME')}
       text={timeText}/>
   )
 }
@@ -43,6 +48,7 @@ export const TodoSummaryTime = ({
 //-----------------------------------------------------------------------------
 interface ITodoSummaryTime {
   todoId: ITodo['id']
+  openEditor(nextActiveEditor: IActiveEditor): void
 }
 
 export default TodoSummaryTime

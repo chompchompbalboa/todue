@@ -44,7 +44,8 @@ const TodoSummary = ({
         todoId={todoId}
         openEditor={openEditor}/>
       <TodoSummaryTime
-        todoId={todoId}/>
+        todoId={todoId}
+        openEditor={openEditor}/>
       <TodoSummaryPriority
         todoId={todoId}/>
       <TodoSummaryReminders
