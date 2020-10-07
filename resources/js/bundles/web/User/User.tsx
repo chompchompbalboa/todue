@@ -27,7 +27,15 @@ export const User = () => {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  left: 0;
+  bottom: 0;
+  height: 5rem;
   padding: 1rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
 `
 
 const UserInfoContainer = styled.div`

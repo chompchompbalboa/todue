@@ -11,6 +11,7 @@ import { IAppState } from '@/state'
 
 import Billing from '@web/Billing/Billing'
 import Lists from '@web/Lists/Lists'
+import Logo from '@/components/Logo'
 import Todo from '@web/Todo/Todo'
 import Todos from '@web/Todos/Todos'
 import User from '@web/User/User'
@@ -38,6 +39,10 @@ export const App = () => {
           width="20rem"
           zIndex="100">
           <ColumnContainer>
+            <LogoContainer>
+              <Logo
+                fontSize="1.1rem"/>
+            </LogoContainer>
             <Lists />
             <User />
           </ColumnContainer>
@@ -81,9 +86,14 @@ interface IColumn {
 const ColumnContainer = styled.div`
   width: 100%;
   height: 100%;
+`
+
+const LogoContainer = styled.div`
+  width: 100%;
+  height: 5rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
 `
 
 export default App
