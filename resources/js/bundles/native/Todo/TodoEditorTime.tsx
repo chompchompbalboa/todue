@@ -28,6 +28,16 @@ const TodoEditorTime = ({
   return (
     <Container
       isVisible={isVisible}>
+      <Timepickers>
+        <Timepicker
+          label="Start Time"
+          onTimeChange={nextTimeStart => dispatch(updateTodo(todoId, { timeStart: nextTimeStart }))}
+          value={todoTimeStart}/>
+        <Timepicker
+          label="End Time"
+          onTimeChange={nextTimeEnd => dispatch(updateTodo(todoId, { timeEnd: nextTimeEnd }))}
+          value={todoTimeEnd}/>
+      </Timepickers>
       <ClearTimesTouchable
         onPress={() => dispatch(updateTodo(todoId, { timeStart: null, timeEnd: null }))}>
         <ClearTimes>
@@ -36,14 +46,6 @@ const TodoEditorTime = ({
           </ClearTimesButton>
         </ClearTimes>
       </ClearTimesTouchable>
-      <Timepicker
-        label="Start Time"
-        onTimeChange={nextTimeStart => dispatch(updateTodo(todoId, { timeStart: nextTimeStart }))}
-        value={todoTimeStart}/>
-      <Timepicker
-        label="End Time"
-        onTimeChange={nextTimeEnd => dispatch(updateTodo(todoId, { timeEnd: nextTimeEnd }))}
-        value={todoTimeEnd}/>
     </Container>
   )
 }
@@ -79,6 +81,10 @@ const ClearTimesButton = styled.Text`
   text-align: center;
   font-family: OpenSans_600SemiBold;
   font-size: 18px;
+`
+
+const Timepickers = styled.View`
+  flex-direction: row;
 `
 
 export default TodoEditorTime

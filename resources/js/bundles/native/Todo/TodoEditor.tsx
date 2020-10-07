@@ -9,6 +9,7 @@ import { IActiveEditor } from '@native/Todo/Todo'
 
 import TodoEditorDate from '@native/Todo/TodoEditorDate'
 import TodoEditorHeader from '@native/Todo/TodoEditorHeader'
+import TodoEditorTags from '@native/Todo/TodoEditorTags'
 import TodoEditorTime from '@native/Todo/TodoEditorTime'
 
 //-----------------------------------------------------------------------------
@@ -40,6 +41,9 @@ const TodoEditor = ({
       <TodoEditorTime
         todoId={todoId}
         isVisible={activeEditor === 'TIME'}/>
+      <TodoEditorTags
+        todoId={todoId}
+        isVisible={activeEditor === 'TAGS'}/>
     </Animated.View>
   )
 }

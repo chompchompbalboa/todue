@@ -33,7 +33,7 @@ export const loadTodoTags = (
       nextTodoTagsByTodoId = {
         ...nextTodoTagsByTodoId,
         [todoTag.todoId]: [
-          ...(nextTodoTagsByTodoId[todoTag.todoId] || []),
+          ...(nextTodoTagsByTodoId[todoTag.todoId] || []).filter(currentTodoTagId => currentTodoTagId !== todoTag.id),
           todoTag.id
         ]
       }

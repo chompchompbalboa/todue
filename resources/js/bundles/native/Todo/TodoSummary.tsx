@@ -51,7 +51,8 @@ const TodoSummary = ({
       <TodoSummaryReminders
         todoId={todoId}/>
       <TodoSummaryTags
-        todoId={todoId}/>
+        todoId={todoId}
+        openEditor={openEditor}/>
       <TodoRow>
         <TodoButton>
           <TodoButtonIcon>

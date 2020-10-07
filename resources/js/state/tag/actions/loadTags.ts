@@ -32,7 +32,10 @@ export const loadTags = (
       nextAllTags[tag.id] = tag
       nextTagsByListId = {
         ...nextTagsByListId,
-        [tag.listId]: [ ...nextTagsByListId[tag.listId] || [], tag.id ]
+        [tag.listId]: [ 
+          ...(nextTagsByListId[tag.listId] || []).filter(currentTagId => currentTagId !== tag.id), 
+          tag.id 
+        ]
       }
     })
 

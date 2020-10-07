@@ -34,7 +34,7 @@ export const Timepicker = ({
     while(currentHour <= 23 && currentMinute <= 45) {
       if(currentHour === 12 && currentMinute === 0 && !isLabelInsertedIntoTimes) {
         times.push({
-          label: "-",
+          label: label,
           value: null
         })
         isLabelInsertedIntoTimes = true
@@ -67,7 +67,6 @@ export const Timepicker = ({
 
   return (
     <Container>
-      <Label>{label}:</Label>
       <Picker
         onValueChange={handleTimeChange}
         selectedValue={value ? datetime.twentyFourHourToTwelveHour(value) : null}
@@ -97,14 +96,9 @@ interface ITimepicker {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.View`
-  width: 100%;
+  width: 50%;
   flex-direction: row;
   align-items: center;
-`
-
-const Label = styled.Text`
-  font-family: OpenSans_600SemiBold;
-  font-size: 18px;
 `
 
 export default Timepicker
