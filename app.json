@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "todue-native",
-    "slug": "todue-native",
+    "name": "QuickDo",
+    "slug": "quickdo-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "updates": {

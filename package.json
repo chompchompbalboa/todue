@@ -1,5 +1,5 @@
 {
-  "name": "dodate",
+  "name": "quickdo-native",
   "private": true,
   "scripts": {
     "dev": "npm run development",
