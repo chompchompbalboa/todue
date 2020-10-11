@@ -84,7 +84,7 @@ const Todo = ({
       isVisible={isTodoVisible}>
         <TodoContent
           config={{
-            directionalOffsetThreshold: 50
+            directionalOffsetThreshold: 10
           }}
           onSwipeRight={closeEditor}>
           <TodoSummary
