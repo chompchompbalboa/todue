@@ -37,17 +37,17 @@ const App = () => {
   const userEmail = useSelector((state: IAppState) => state.user?.email)
 
   // State
-  const [ isInitialDataLoaded, setIsInitialDataLoaded ] = useState(false)
+  const [ initialDataLoadStatus, setInitialDataLoadStatus ] = useState('READY' as 'READY' | 'LOADING' | 'LOADED')
   const [ isListsVisible, setIsListsVisible ] = useState(false)
   const [ isSettingsVisible, setIsSettingsVisible ] = useState(false)
   const [ isTodoVisible, setIsTodoVisible ] = useState(false)
 
   // Load the initial data as needed
   useEffect(() => {
-    if(!isInitialDataLoaded && userEmail !== null) {
+    if(initialDataLoadStatus === 'READY' && userEmail !== null) {
       loadInitialData()
     }
-  }, [ isInitialDataLoaded, userEmail ])
+  }, [ initialDataLoadStatus, userEmail ])
 
   // Load the active list as needed
   useEffect(() => {
@@ -57,25 +57,26 @@ const App = () => {
   }, [ activeListId, isActiveListLoaded ])
 
   const loadInitialData = () => {
+    setInitialDataLoadStatus('LOADING')
     query.loadInitialData().then((response: any) => {
       if(response.status === 200) {
         dispatch(loadLists(response.data.lists as IList[]))
         dispatch(loadActive(response.data.active as IActiveState))
         dispatch(loadUser(response.data.user as IUser))
         dispatch(loadUserSubscription(response.data.userSubscription as IUserSubscription))
-        setIsInitialDataLoaded(true)
+        setInitialDataLoadStatus('LOADED')
       }
     })
   }
 
   return (
     <Container>
-      {isInitialDataLoaded && 
+      {initialDataLoadStatus === 'LOADED' && 
         <Menu
           setIsListsVisible={setIsListsVisible}
           setIsSettingsVisible={setIsSettingsVisible}/>}
       <Lists
-        isListsVisible={isInitialDataLoaded && isListsVisible}
+        isListsVisible={initialDataLoadStatus === 'LOADED' && isListsVisible}
         setIsListsVisible={setIsListsVisible}/>
       <Todo
         isTodoVisible={activeTodoId && isTodoVisible}
@@ -86,7 +87,7 @@ const App = () => {
       {isActiveListLoaded && 
         <Todos
           setIsTodoVisible={setIsTodoVisible}/>}
-      {isInitialDataLoaded && activeListId === null &&
+      {initialDataLoadStatus === 'LOADED' && activeListId === null &&
         <NoListContainer>
           <NoListText>
             Press the "Lists" tab below to load a list or create a new list
