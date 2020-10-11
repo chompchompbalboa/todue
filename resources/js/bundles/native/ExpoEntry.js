@@ -1,5 +1,5 @@
-import registerRootComponent from 'expo/build/launch/registerRootComponent';
+import registerRootComponent from 'expo/build/launch/registerRootComponent'
 
-import Root from './Root';
+import Root from './Root'
 
-registerRootComponent(Root);
+registerRootComponent(Root)

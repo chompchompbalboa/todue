@@ -59,7 +59,7 @@ const Root = () => {
       <ReduxProvider 
         store={store}>
         <PersistGate 
-          loading={null} 
+          loading={null}
           persistor={persistedStore}>
           <AppRoot />
         </PersistGate>

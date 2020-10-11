@@ -2,6 +2,7 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React, { useEffect, useState } from 'react'
+//import * as SplashScreen from 'expo-splash-screen'
 import { useSelector } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage'
 import styled from 'styled-components/native'
@@ -23,12 +24,14 @@ const AppRoot = () => {
   const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription?.type || 'TRIAL')
 
   // State
+  const [ isTokenCheckComplete, setIsTokenCheckComplete ] = useState(false)
   const [ isUserLoggedIn, setIsUserLoggedIn ] = useState(false)
 
   // If there's an access token stored, the user is logged in
   useEffect(() => {
     async function getToken() {
       const token = await AsyncStorage.getItem('@todue/accessToken')
+      setIsTokenCheckComplete(true)
       if(token) {
         setIsUserLoggedIn(true)
       }
@@ -39,18 +42,21 @@ const AppRoot = () => {
     getToken()
   }, [ userEmail ])
 
-  return (
-    <Background>
-      <SafeAreaView
-        edges={[ 'left', 'top', 'right' ]}>
-        {isUserLoggedIn
-          ? !userSubscriptionType.includes('EXPIRED')
-            ? <App />
-            : <Billing />
-          : <Splash />}
-      </SafeAreaView>
-    </Background>
-  )
+  if(isTokenCheckComplete) {
+    return (
+      <Background>
+        <SafeAreaView
+          edges={[ 'left', 'top', 'right' ]}>
+          {isUserLoggedIn
+            ? !userSubscriptionType.includes('EXPIRED')
+              ? <App />
+              : <Billing />
+            : <Splash />}
+        </SafeAreaView>
+      </Background>
+    )
+  }
+  return null
 }
 
 const Background = styled.View`
