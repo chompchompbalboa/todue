@@ -13,11 +13,11 @@ class TodoListController extends Controller
   
     public function show(TodoList $list) {
       return [
-        'sublists' => $list->sublists()->get(),//
-        'sublistTags' => $list->sublistTags()->get(),//
-        'todos' => $list->todos()->get(),//
-        'tags' => $list->tags()->get(),//
-        'todoNotes' => $list->todoNotes()->get(),//
+        'sublists' => $list->sublists()->get(),
+        'sublistTags' => $list->sublistTags()->get(),
+        'todos' => $list->todos()->get(),
+        'tags' => $list->tags()->get(),
+        'todoNotes' => $list->todoNotes()->get(),
         'todoTags' => $list->todoTags()->get()
       ];
     }

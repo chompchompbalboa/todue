@@ -12,6 +12,7 @@ import { ISublist } from '@/state/sublist/types'
 import { updateActiveSublistId } from '@/state/active/actions'
 
 import ListsListSublistName from '@web/Lists/ListsListSublistName'
+import ListsListSublistDefaultTag from '@web/Lists/ListsListSublistDefaultTag'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -29,6 +30,8 @@ export const ListsListSublist = ({
     <Container
       isActiveSublist={isActiveSublist}
       onClick={() => dispatch(updateActiveSublistId(listId, sublistId))}>
+      <ListsListSublistDefaultTag
+        sublistId={sublistId}/>
       <ListsListSublistName
         listId={listId}
         sublistId={sublistId}/>
@@ -53,7 +56,7 @@ const Container = styled.div`
   padding: 0.2rem;
   padding-left: 0.75rem;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   background-color: ${ ({ isActiveSublist }: IContainer ) => isActiveSublist ? 'rgb(235, 235, 235)' : 'transparent' };
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
