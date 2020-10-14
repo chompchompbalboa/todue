@@ -71,7 +71,7 @@ interface IListsListSublistNameInput {
 // Styled Components
 //-----------------------------------------------------------------------------
 const StyledInput = styled.input`
-  font-size: 1.05rem;
+  font-size: 1rem;
   border: none;
   outline: none;
   background-color: transparent;
