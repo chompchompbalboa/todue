@@ -2,55 +2,49 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
-import TodoBacklog from '@web/Todo/TodoBacklog'
-import TodoDate from '@web/Todo/TodoDate'
-import TodoPriority from '@web/Todo/TodoPriority'
-import TodoSection from '@web/Todo/TodoSection'
-import TodoTime from '@web/Todo/TodoTime'
+import TodosTodosTodoTagsTag from '@web/Todos/TodosTodosTodoTagsTag'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoDetails = ({
+export const TodosTodosTodoTags = ({
   todoId
-}: ITodoDetails) => {
+}: ITodosTodosTodoTags) => {
+
+  // Redux
+  const todoTags = useSelector((state: IAppState) => state.todoTag.todoTagsByTodoId[todoId])
+
   return (
-    <TodoSection
-      flexDirection="column"
-      header="">
-      <TodoDate
-        todoId={todoId}/>
-      <RightColumn>
-        <TodoBacklog
-          todoId={todoId}/>
-        <TodoPriority
-          todoId={todoId}/>
-        <TodoTime
-          todoId={todoId}/>
-      </RightColumn>
-    </TodoSection>
+    <Container>
+      {todoTags && todoTags.map(todoTagId => (
+        <TodosTodosTodoTagsTag
+          key={todoTagId}
+          todoTagId={todoTagId}/>
+      ))}
+    </Container>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoDetails {
+interface ITodosTodosTodoTags {
   todoId: ITodo['id']
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const RightColumn = styled.div`
+const Container = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `
 
-export default TodoDetails
+export default TodosTodosTodoTags

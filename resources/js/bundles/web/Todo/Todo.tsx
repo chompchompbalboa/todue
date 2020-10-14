@@ -46,15 +46,12 @@ const Container = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  padding: 0.75rem;
-  padding-left: 0;
 `
 
 const TodoContainer = styled.div`
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  background-color: rgb(252, 252, 252);
+  background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 	scrollbar-width: none;
 	-ms-overflow-style: none;

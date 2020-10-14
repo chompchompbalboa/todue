@@ -41,7 +41,7 @@ const Container = styled.div`
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
-  background-color: rgb(252, 252, 252);
+  background-color: rgb(255, 255, 255);
 `
 
 export default TodoText

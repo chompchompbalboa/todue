@@ -23,13 +23,15 @@ export const TodosTodosTodoCheckbox = ({
   const todoDateCompleted = useSelector((state: IAppState) => state.todo.allTodos[todoId].dateCompleted)
 
   return (
-    <Container
-      onClick={() => 
-        todoDateCompleted !== null 
-          ? dispatch(updateTodo(todoId, { dateCompleted: null }, { dateCompleted: todoDateCompleted }, true))
-          : dispatch(updateTodo(todoId, { dateCompleted: moment().format('YYYY-MM-DD HH:ss') }, { dateCompleted: null }, true))
-      }
-      isChecked={todoDateCompleted !== null}/>
+    <Container>
+      <Checkbox
+        onClick={() => 
+          todoDateCompleted !== null 
+            ? dispatch(updateTodo(todoId, { dateCompleted: null }, { dateCompleted: todoDateCompleted }, true))
+            : dispatch(updateTodo(todoId, { dateCompleted: moment().format('YYYY-MM-DD HH:ss') }, { dateCompleted: null }, true))
+        }
+        isChecked={todoDateCompleted !== null}/>
+    </Container>
   )
 }
 
@@ -44,6 +46,12 @@ interface ITodosTodosTodoCheckbox {
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Checkbox = styled.div`
   cursor: pointer;
   margin-right: 0.5rem;
   height: 1rem;

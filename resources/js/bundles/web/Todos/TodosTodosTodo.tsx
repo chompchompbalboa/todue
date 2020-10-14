@@ -55,9 +55,9 @@ const Container = styled.div`
   padding: 0.25rem;
   padding-right: 0;
   padding-left: 0.5rem;
-  background-color: ${ ({ isActiveTodo }: IContainer ) => isActiveTodo ? 'rgb(252, 252, 252)' : 'transparent' };
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  background-color: ${ ({ isActiveTodo }: IContainer ) => isActiveTodo ? 'rgb(255, 255, 255)' : 'transparent' };
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 `
 interface IContainer {
   isActiveTodo: boolean

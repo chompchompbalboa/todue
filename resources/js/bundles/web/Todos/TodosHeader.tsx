@@ -61,7 +61,7 @@ const Container = styled.div`
   padding-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(245, 245, 250);
 `
 
 const NameAndSettings = styled.div`

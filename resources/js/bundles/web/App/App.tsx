@@ -48,11 +48,11 @@ export const App = () => {
           </ColumnContainer>
         </Column>
         <Column 
-          width="50%">
+          width="calc(100% - 30rem)">
           <Todos />
         </Column>
         <Column 
-          width="50%">
+          width="30rem">
           <Todo />
         </Column>
       </Container>
@@ -67,7 +67,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: rgb(235, 235, 235);
+  background-color: rgb(245, 245, 250);
   overflow: hidden;
 `
 
