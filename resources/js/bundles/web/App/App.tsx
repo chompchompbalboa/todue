@@ -67,7 +67,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  background-color: rgb(245, 245, 250);
+  background-color: rgb(245, 245, 249);
   overflow: hidden;
 `
 

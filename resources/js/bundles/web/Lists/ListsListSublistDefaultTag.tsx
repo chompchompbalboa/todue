@@ -56,9 +56,9 @@ const Container = styled.div`
                                
 const Tag = styled.div`
   background-color: ${ ({ backgroundColor }: ITag) => backgroundColor };
-  height: 0.7rem;
-  width: 0.7rem;
-  border-radius: 0.35rem;
+  height: 0.4rem;
+  width: 0.4rem;
+  border-radius: 0.2rem;
 `
 interface ITag {
   backgroundColor: string

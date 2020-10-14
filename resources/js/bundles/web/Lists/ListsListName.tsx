@@ -85,11 +85,11 @@ const Name = styled.div`
   display: flex;
   font-size: 1.15rem;
   font-weight: bold;
-  background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(245, 245, 245)' : 'transparent' };
+  background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(245, 245, 249)' : 'transparent' };
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   &:hover {
-    background-color: rgb(245, 245, 250);
+    background-color: rgb(245, 245, 249);
   }
 `
 interface IName {

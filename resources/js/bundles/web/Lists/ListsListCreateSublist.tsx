@@ -47,10 +47,10 @@ const Container = styled.div`
   padding-left: 0.75rem;
   font-size: 1.05rem;
   color: rgb(25, 25, 25);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   &:hover {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(245, 245, 249);
   }
 `
 
