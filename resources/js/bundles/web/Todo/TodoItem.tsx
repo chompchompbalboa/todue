@@ -57,7 +57,6 @@ const Container = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgb(200, 200, 200);
 `
 
 const LabelContainer = styled.div`

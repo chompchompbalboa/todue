@@ -17,9 +17,9 @@ import TodoItem from '@web/Todo/TodoItem'
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodoDateTime = ({
+export const TodoPriority = ({
   todoId
-}: ITodoDateTime) => {
+}: ITodoPriority) => {
 
   // Redux
   const dispatch = useDispatch()
@@ -58,7 +58,7 @@ export const TodoDateTime = ({
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodoDateTime {
+interface ITodoPriority {
   todoId: ITodo['id']
 }
 
@@ -72,6 +72,7 @@ const Priority = styled.div`
   background-color: ${ ({ backgroundColor, isSelected }: IPriority ) => isSelected ? backgroundColor : 'transparent' };
   color: ${ ({ isSelected }: IPriority ) => isSelected ? 'white' : 'black' };
   border-radius: 5px;
+  font-weight: bold;
   &:hover {
     background-color: ${ ({ backgroundColor }: IPriority ) => backgroundColor };
     color: white;
@@ -82,4 +83,4 @@ interface IPriority {
   isSelected: boolean
 }
 
-export default TodoDateTime
+export default TodoPriority
