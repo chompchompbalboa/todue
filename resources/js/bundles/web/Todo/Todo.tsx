@@ -7,12 +7,13 @@ import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 
+import TodoBacklog from '@web/Todo/TodoBacklog'
 import TodoDate from '@web/Todo/TodoDate'
-import TodoDetails from '@web/Todo/TodoDetails'
 import TodoNotes from '@web/Todo/TodoNotes'
 import TodoPriority from '@web/Todo/TodoPriority'
 import TodoTags from '@web/Todo/TodoTags'
 import TodoText from '@web/Todo/TodoText'
+import TodoTime from '@web/Todo/TodoTime'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -30,9 +31,11 @@ export const Todo = () => {
               todoId={todo.id}/>
             <TodoDate
               todoId={todo.id}/>
+            <TodoTime
+              todoId={todo.id}/>
             <TodoPriority
               todoId={todo.id}/>
-            <TodoDetails
+            <TodoBacklog
               todoId={todo.id}/>
             <TodoTags
               todoId={todo.id}/>
@@ -57,7 +60,7 @@ const Container = styled.div`
 const TodoContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
 	scrollbar-width: none;

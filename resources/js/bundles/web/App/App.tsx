@@ -41,7 +41,7 @@ export const App = () => {
           <ColumnContainer>
             <LogoContainer>
               <Logo
-                fontSize="1.1rem"/>
+                fontSize="1.3rem"/>
             </LogoContainer>
             <Lists />
             <User />

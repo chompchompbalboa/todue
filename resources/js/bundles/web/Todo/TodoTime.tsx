@@ -5,12 +5,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
+import { TIME } from '@/assets/icons'
+
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
 import { updateTodo } from '@/state/todo/actions'
 
 import Timepicker from '@/components/Timepicker'
+import TodoItem from '@web/Todo/TodoItem'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -25,7 +28,9 @@ export const TodoTime = ({
   const todoTimeEnd = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].timeEnd)
 
   return (
-    <Container>
+    <TodoItem
+      icon={TIME}
+      label="Time">
       <Timepicker
         label="Start Time"
         onTimeChange={nextTime => {
@@ -47,7 +52,7 @@ export const TodoTime = ({
           ))
         }}
         value={todoTimeEnd}/>
-    </Container>
+    </TodoItem>
   )
 }
 
@@ -61,13 +66,6 @@ interface ITodoTime {
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
-const Container = styled.div`
-  margin-top: 0.6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
 const Separator = styled.div`
   padding: 0 0.5rem;
 `

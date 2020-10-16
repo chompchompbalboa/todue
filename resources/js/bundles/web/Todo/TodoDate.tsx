@@ -53,7 +53,7 @@ export const TodoDate = ({
           onClick={() => setIsDropdownVisible(true)}>
           {todoDateCurrent
             ? moment(todoDateCurrent).format('dddd MMMM Do')
-            : '-'}
+            : 'None'}
         </DateCurrent>
         <Dropdown
           containerRef={containerRef}

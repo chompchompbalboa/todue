@@ -19,18 +19,21 @@ export const TodoItem = ({
   return (
       <Container
         onClick={onClick}>
-        <LabelContainer>
-          <LabelIcon>
-            <Icon
-              icon={icon}
-              size="1.1rem"/>
-          </LabelIcon>
-          <Label>
-            {label}
-          </Label>
-        </LabelContainer>
+          <LabelContainer>
+        {false && 
+            <LabelIcon>
+              <Icon
+                icon={icon}
+                size="1.1rem"/>
+            </LabelIcon>
+        }
+            <Label>
+              {label}
+            </Label>
+          </LabelContainer>
+        <Separator />
         <ContentContainer>
-          {children || <Text>{text || "-"}</Text>}
+          {children || <Text>{text || "None"}</Text>}
         </ContentContainer>
       </Container>
   )
@@ -66,21 +69,28 @@ const LabelContainer = styled.div`
 `
 
 const Label = styled.div`
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
+  padding-right: 0.75rem;
 `
 
 const LabelIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 0.5rem;
+  margin-right: 0.375rem;
+`
+  
+const Separator = styled.div`
+  flex-grow: 1;
+  border-bottom: 1px dashed rgb(150, 150, 150);
 `
 
 const ContentContainer = styled.div`
-  width: 100%;
   display: flex;
   justify-content: flex-end;
+  padding-left: 0.75rem;
+  text-align: right;
 `
 
 const Text = styled.div`
