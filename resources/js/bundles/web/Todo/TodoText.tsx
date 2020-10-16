@@ -3,10 +3,13 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+
+import { TEXT } from '@/assets/icons'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
+
+import TodoItem from '@web/Todo/TodoItem'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -19,9 +22,10 @@ export const TodoText = ({
   const todoText = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].text)
 
   return (
-      <Container>
-        {todoText}
-      </Container>
+    <TodoItem
+      icon={TEXT}
+      label="Text"
+      text={todoText || ''}/>
   )
 }
 
@@ -31,17 +35,5 @@ export const TodoText = ({
 interface ITodoText {
   todoId: ITodo['id']
 }
-
-//-----------------------------------------------------------------------------
-// Styled Components
-//-----------------------------------------------------------------------------
-const Container = styled.div`
-  position: sticky;
-  top: 0;
-  padding: 1rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  background-color: rgb(255, 255, 255);
-`
 
 export default TodoText

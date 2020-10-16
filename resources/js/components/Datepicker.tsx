@@ -113,7 +113,6 @@ const CurrentMonth = styled.div`
 `
 
 const DatepickerDates = styled.div`
-  margin: 0.25rem;
   width: 17.5rem;
   display: flex;
   flex-flow: row wrap;
@@ -127,11 +126,11 @@ const DatepickerDate = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  background-color: ${ ({ isSelected, isTodaysDate }: IDatePickerDate) => isSelected ? 'rgb(0, 140, 25)' : (isTodaysDate ? 'rgb(238, 238, 238)' : 'transparent')};
+  background-color: ${ ({ isSelected, isTodaysDate }: IDatePickerDate) => isSelected ? 'rgb(80, 110, 200)' : (isTodaysDate ? 'rgb(238, 238, 238)' : 'transparent')};
   color: ${ ({ isSelected }: IDatePickerDate) => isSelected ? 'white' : 'inherit'};
   font-weight: ${ ({ isSelected, isTodaysDate }: IDatePickerDate) => isTodaysDate || isSelected ? 'bold' : 'inherit'};
   &:hover {
-    background-color: ${ ({ isEmpty, isSelected }: IDatePickerDate) => isSelected ? 'rgb(0, 140, 25)' : (isEmpty ? 'transparent' : 'rgb(238, 238, 238)')};
+    background-color: ${ ({ isEmpty, isSelected }: IDatePickerDate) => isSelected ? 'rgb(80, 110, 200)' : (isEmpty ? 'transparent' : 'rgb(238, 238, 238)')};
   }
 `
 interface IDatePickerDate {

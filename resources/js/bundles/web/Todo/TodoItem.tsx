@@ -23,7 +23,7 @@ export const TodoItem = ({
           <LabelIcon>
             <Icon
               icon={icon}
-              size="1rem"/>
+              size="1.1rem"/>
           </LabelIcon>
           <Label>
             {label}

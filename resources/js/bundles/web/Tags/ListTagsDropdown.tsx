@@ -80,7 +80,8 @@ export const ListTagsDropdown = ({
 
   return (
       <Container
-        ref={container}>
+        ref={container}
+        zIndex={isDropdownVisible ? '100' : '1'}>
         <StyledInput
           placeholder={inputPlaceholder}
           value={inputValue}
@@ -129,8 +130,11 @@ interface IListTagsDropdown {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   position: relative;
-  z-index: 100;
+  z-index: ${ ({ zIndex }: IContainer) => zIndex };
 `
+interface IContainer {
+  zIndex: string
+}
 
 const StyledInput = styled.input`
   padding: 0.25rem 0;

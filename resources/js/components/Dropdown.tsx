@@ -8,15 +8,17 @@ import styled from 'styled-components'
 // Component
 //-----------------------------------------------------------------------------
 export const Dropdown = ({ 
-  bottom = 'auto',
   children,
   className,
   containerRef,
   closeDropdown,
   isDropdownVisible,
+  top = '100%',
+  left = '0',
+  bottom = 'auto',
+  right = 'auto',
   minHeight = "auto",
-  minWidth = "auto",
-  top = '100%'
+  minWidth = "auto"
 }: IDropdown) => {
 
   // Add event listeners when the dropdown is visible
@@ -45,12 +47,14 @@ export const Dropdown = ({
 
   return (
     <StyledDropdown
-      bottom={bottom}
       className={className}
       isDropdownVisible={isDropdownVisible}
+      top={top}
+      left={left}
+      bottom={bottom}
+      right={right}
       minHeight={minHeight}
-      minWidth={minWidth}
-      top={top}>
+      minWidth={minWidth}>
       {children}
     </StyledDropdown>
   )
@@ -60,15 +64,17 @@ export const Dropdown = ({
 // Props
 //-----------------------------------------------------------------------------
 export interface IDropdown {
-  bottom?: string
   className?: string
   containerRef: RefObject<HTMLElement>
   children?: any
   closeDropdown(): void
   isDropdownVisible: boolean
+  top?: string
+  left?: string
+  bottom?: string
+  right?: string
   minHeight?: string
   minWidth?: string
-  top?: string
 }
 
 //-----------------------------------------------------------------------------
@@ -79,8 +85,9 @@ const StyledDropdown = styled.div`
   position: absolute;
   display: ${ ({ isDropdownVisible }: IStyledDropdown ) => isDropdownVisible ? 'block' : 'none' };
   top: ${ ({ bottom, top }: IStyledDropdown ) => bottom !== 'auto' ? 'auto' : top };
+  left: ${ ({ left, right }: IStyledDropdown ) => right !== 'auto' ? 'auto' : left };
   bottom: ${ ({ bottom }: IStyledDropdown ) => bottom };
-  left: 0;
+  right: ${ ({ right }: IStyledDropdown ) => right };
   min-width: ${ ({ minWidth }: IStyledDropdown ) => minWidth };
   min-height: ${ ({ minHeight }: IStyledDropdown ) => minHeight };
   max-height: 50vh;
@@ -96,11 +103,13 @@ const StyledDropdown = styled.div`
 	}
 `
 interface IStyledDropdown {
+  top: string
+  left: string
   bottom: string
+  right: string
   isDropdownVisible: boolean
   minWidth: string
   minHeight: string
-  top: string
 }
 
 export default Dropdown
