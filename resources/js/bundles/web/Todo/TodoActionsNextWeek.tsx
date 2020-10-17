@@ -24,7 +24,7 @@ export const TodoActionsNextWeek = ({
   const todoDateCurrent = useSelector((state: IAppState) => todoId && state.todo.allTodos[todoId].dateCurrent)
 
   // Next Week
-  const nextWeek = todoDateCurrent
+  const nextWeek = todoDateCurrent && moment(todoDateCurrent).isAfter(moment(), 'day')
     ? moment(todoDateCurrent).add(1, 'w')
     : moment().add(1, 'w')
 

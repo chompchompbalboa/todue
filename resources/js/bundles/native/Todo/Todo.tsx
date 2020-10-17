@@ -130,7 +130,7 @@ export const editorConfig = {
     icon: "alert-circle"
   },
   TAGS: {
-    label: "Tags",
+    label: "Sublists",
     icon: "tag"
   },
 }

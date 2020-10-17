@@ -35,12 +35,12 @@ export const Todo = () => {
               todoId={todo.id}/>
             <TodoPriority
               todoId={todo.id}/>
+            <TodoTags
+              todoId={todo.id}/>
             <TodoActions
               todoId={todo.id}/>
             {false &&
               <>
-                <TodoTags
-                  todoId={todo.id}/>
                 <TodoNotes
                   todoId={todo.id}/>
               </>
