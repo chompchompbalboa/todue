@@ -94,7 +94,7 @@ const StyledDropdown = styled.div`
   background-color: rgb(250, 250, 250);
   border-radius: 5px;
   border: 1px solid rgb(180, 180, 180);
-  overflow-y: visible;
+  overflow-y: scroll;
 	scrollbar-width: none;
 	-ms-overflow-style: none;
 	&::-webkit-scrollbar {
