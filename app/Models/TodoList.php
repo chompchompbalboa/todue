@@ -42,7 +42,7 @@ class TodoList extends Model
 
     public function todoNotes()
     {
-        return $this->hasMany('App\Models\TodoNote', 'listId')->orderBy('createdAt', 'desc');
+        return $this->hasMany('App\Models\TodoNote', 'listId')->orderBy('createdAt', 'asc');
     }
 
     public function todoTags()

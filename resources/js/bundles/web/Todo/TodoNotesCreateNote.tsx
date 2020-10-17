@@ -47,14 +47,13 @@ export const TodoNotesCreateNote = ({
   return (
     <Container>
       <StyledTextarea
-        placeholder="Add a Note"
+        placeholder="Add a Note..."
         value={textareaValue}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setTextareaValue(e.target.value)}
         onKeyPress={handleTextareaKeyPress}/>
       <SubmitButton
-        isSubmitButtonVisible={!['', null].includes(textareaValue)}
         onClick={handleCreateTodoNote}>
-        Add Note
+        +
       </SubmitButton>
     </Container>
   )
@@ -76,11 +75,15 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.25rem;
+  background-color: rgb(245, 245, 249);
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid rgb(230, 230, 235);
 `
 
 const StyledTextarea = styled(ReactAutosizeTextarea)`
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.9rem;
   background: transparent;
   border: none;
   outline: none;
@@ -89,16 +92,16 @@ const StyledTextarea = styled(ReactAutosizeTextarea)`
 
 const SubmitButton = styled.div`
   margin-left: 0.25rem;
-  opacity: ${ ({ isSubmitButtonVisible }: ISubmitButton) => isSubmitButtonVisible ? '1' : '0' };
   cursor: pointer;
   padding: 0.25rem 0.5rem;
-  border-radius: 10px;
+  border-radius: 5px;
   white-space: nowrap;
-  background-color: rgb(0, 140, 25);
-  color: white;
+  color: rgb(150, 150, 150);
+  font-size: 0.95rem;
+  &:hover {
+    background-color: rgb(80, 190, 110);
+    color: white;
+  }
 `
-interface ISubmitButton {
-  isSubmitButtonVisible: boolean
-}
 
 export default TodoNotesCreateNote

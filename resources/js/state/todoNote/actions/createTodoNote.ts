@@ -41,7 +41,7 @@ export const createTodoNote = (
       createdAt: moment().format()
     }
     
-    const nextTodoNotes = [ newTodoNote.id, ...(todoNotesByTodoId[todoId] || []) ]
+    const nextTodoNotes = [ ...(todoNotesByTodoId[todoId] || []), newTodoNote.id ]
 
     dispatch(setAllTodoNotes({
       ...allTodoNotes,

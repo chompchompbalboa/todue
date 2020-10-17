@@ -39,12 +39,8 @@ export const Todo = () => {
               todoId={todo.id}/>
             <TodoActions
               todoId={todo.id}/>
-            {false &&
-              <>
-                <TodoNotes
-                  todoId={todo.id}/>
-              </>
-            }
+            <TodoNotes
+              todoId={todo.id}/>
           </TodoContainer>
         }
       </Container>

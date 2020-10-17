@@ -3,11 +3,11 @@
 //-----------------------------------------------------------------------------
 import React from 'react'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 import { ITodo } from '@/state/todo/types'
 
-import TodoSection from '@web/Todo/TodoSection'
 import TodoNotesCreateNote from '@web/Todo/TodoNotesCreateNote'
 import TodoNotesNote from '@web/Todo/TodoNotesNote'
 
@@ -22,19 +22,15 @@ export const TodoNotes = ({
   const todoNotes = useSelector((state: IAppState) => state.todoNote.todoNotesByTodoId[todoId] || [])
 
   return (
-      <TodoSection
-        alignItems="flex-start"
-        flexDirection="column"
-        header="Notes"
-        headerMarginBottom="0">
-        <TodoNotesCreateNote
-          todoId={todoId}/>
+      <Container>
         {todoNotes.map(todoNoteId => (
           <TodoNotesNote
             key={todoNoteId}
             todoNoteId={todoNoteId}/>
         ))}
-      </TodoSection>
+        <TodoNotesCreateNote
+          todoId={todoId}/>
+      </Container>
   )
 }
 
@@ -44,5 +40,12 @@ export const TodoNotes = ({
 interface ITodoNotes {
   todoId: ITodo['id']
 }
+
+//-----------------------------------------------------------------------------
+// Styled Components
+//-----------------------------------------------------------------------------
+const Container = styled.div`
+  padding: 0.5rem 1rem;
+`
 
 export default TodoNotes

@@ -7,7 +7,6 @@ import styled from 'styled-components'
 import { IList } from '@/state/list/types'
 import { ISublist } from '@/state/sublist/types'
 
-import TodosHeaderCompletedTodosToggle from '@web/Todos/TodosHeaderCompletedTodosToggle'
 import TodosHeaderSettings from '@web/Todos/TodosHeaderSettings'
 import TodosHeaderName from '@web/Todos/TodosHeaderName'
 
@@ -23,21 +22,18 @@ export const TodosHeader = ({
   const isListOrSublist = sublistId === null ? 'LIST' : 'SUBLIST'
   
   return (
-      <Container>
-        <NameAndSettings>
-          <TodosHeaderName
-            listId={listId}
-            sublistId={sublistId}
-            isListOrSublist={isListOrSublist}/>
-          <TodosHeaderSettings
-            listId={listId}
-            sublistId={sublistId}
-            isListOrSublist={isListOrSublist}/>
-        </NameAndSettings>
-        <Actions>
-          <TodosHeaderCompletedTodosToggle />
-        </Actions>
-      </Container>
+    <Container>
+      <NameAndSettings>
+        <TodosHeaderName
+          listId={listId}
+          sublistId={sublistId}
+          isListOrSublist={isListOrSublist}/>
+        <TodosHeaderSettings
+          listId={listId}
+          sublistId={sublistId}
+          isListOrSublist={isListOrSublist}/>
+      </NameAndSettings>
+    </Container>
   )
 }
 
@@ -68,7 +64,5 @@ const NameAndSettings = styled.div`
   display: flex;
   align-items: flex-end;
 `
-
-const Actions = styled.div``
 
 export default TodosHeader

@@ -43,7 +43,8 @@ export const TodoNotesNote = ({
         <DeleteButton
           onClick={() => dispatch(deleteTodoNote(todoNoteId))}>
           <Icon
-            icon={TRASH_CAN}/>
+            icon={TRASH_CAN}
+            size="0.95rem"/>
         </DeleteButton>
       </DeleteButtonContainer>
     </Container>
@@ -67,16 +68,21 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgb(245, 245, 249);
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid rgb(230, 230, 235);
 `
 
 const Note = styled.div`
 `
 
-const NoteValue = styled.div``
+const NoteValue = styled.div`
+  font-size: 0.9rem;
+`
 
 const NoteCreatedAt = styled.div`
-  font-size: 0.85rem;
-  font-style: italic;
+  font-size: 0.75rem;
 `
 
 const DeleteButtonContainer = styled.div`
@@ -89,7 +95,7 @@ const DeleteButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 5px;
   color: rgb(150, 150, 150);
   &:hover {
     background-color: rgb(180, 0, 0);

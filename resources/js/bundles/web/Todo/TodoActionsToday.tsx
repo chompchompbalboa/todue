@@ -28,6 +28,7 @@ export const TodoActionsToday = ({
 
   return (
     <TodoAction
+      isFirst
       iconText={today.format('D')}
       onClick={() => {
         dispatch(updateTodo(todoId, 

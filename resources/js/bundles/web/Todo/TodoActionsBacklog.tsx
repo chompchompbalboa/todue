@@ -30,6 +30,7 @@ export const TodoActionsBacklog = ({
   return (
     <TodoAction
       icon={BACKLOG}
+      isLast
       onClick={() => {
         dispatch(updateTodo(todoId, 
           { dateCurrent: todoDateCurrent === null ? moment().format('YYYY-MM-DD HH:mm:ss') : null, timeStart: null, timeEnd: null },
