@@ -72,6 +72,7 @@ const Priority = styled.div`
   background-color: ${ ({ backgroundColor, isSelected }: IPriority ) => isSelected ? backgroundColor : 'transparent' };
   color: ${ ({ isSelected }: IPriority ) => isSelected ? 'white' : 'black' };
   border-radius: 5px;
+  font-size: 0.95rem;
   font-weight: bold;
   &:hover {
     background-color: ${ ({ backgroundColor }: IPriority ) => backgroundColor };

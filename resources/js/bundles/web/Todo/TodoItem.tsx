@@ -20,13 +20,13 @@ export const TodoItem = ({
       <Container
         onClick={onClick}>
           <LabelContainer>
-        {false && 
+            {false && // I'm removing the icon for now, but want to leave the functionality in place in case I change my mind
             <LabelIcon>
               <Icon
                 icon={icon}
                 size="1.1rem"/>
             </LabelIcon>
-        }
+            }
             <Label>
               {label}
             </Label>
@@ -83,7 +83,8 @@ const LabelIcon = styled.div`
   
 const Separator = styled.div`
   flex-grow: 1;
-  border-bottom: 1px dashed rgb(150, 150, 150);
+  min-width: 0.25rem;
+  border-bottom: 1px solid rgb(220, 220, 230);
 `
 
 const ContentContainer = styled.div`
@@ -94,7 +95,7 @@ const ContentContainer = styled.div`
 `
 
 const Text = styled.div`
-  font-size: 1rem;
+  font-size: 0.95rem;
 `
 
 export default TodoItem

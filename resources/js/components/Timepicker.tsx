@@ -118,7 +118,7 @@ const Container = styled.div`
 
 const Time = styled.div`
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   width: 5rem;
   text-align: center;
   color: ${ ({ value }: ITime) => value ? 'black' : 'rgb(100, 100, 100)' };

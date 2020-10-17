@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 
-import TodoBacklog from '@web/Todo/TodoBacklog'
+import TodoActions from '@web/Todo/TodoActions'
 import TodoDate from '@web/Todo/TodoDate'
 import TodoNotes from '@web/Todo/TodoNotes'
 import TodoPriority from '@web/Todo/TodoPriority'
@@ -35,12 +35,16 @@ export const Todo = () => {
               todoId={todo.id}/>
             <TodoPriority
               todoId={todo.id}/>
-            <TodoBacklog
+            <TodoActions
               todoId={todo.id}/>
-            <TodoTags
-              todoId={todo.id}/>
-            <TodoNotes
-              todoId={todo.id}/>
+            {false &&
+              <>
+                <TodoTags
+                  todoId={todo.id}/>
+                <TodoNotes
+                  todoId={todo.id}/>
+              </>
+            }
           </TodoContainer>
         }
       </Container>

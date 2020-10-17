@@ -96,6 +96,7 @@ const Container = styled.div`
 const DateCurrent = styled.div`
   cursor: pointer;
   text-align: right;
+  font-size: 0.95rem;
 `
 
 export default TodoDate
