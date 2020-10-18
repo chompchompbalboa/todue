@@ -1,17 +1,21 @@
 //-----------------------------------------------------------------------------
 // Imports
 //-----------------------------------------------------------------------------
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
+
+import { TEXT, SETTINGS_GEAR } from '@/assets/icons'
 
 import { useHistory } from '@/hooks'
 
 import { IAppState } from '@/state' 
 
 import Billing from '@web/Billing/Billing'
+import Icon from '@/components/Icon'
 import Lists from '@web/Lists/Lists'
 import Logo from '@/components/Logo'
+import Settings from '@web/Settings/Settings'
 import Todo from '@web/Todo/Todo'
 import Todos from '@web/Todos/Todos'
 import User from '@web/User/User'
@@ -22,7 +26,11 @@ import User from '@web/User/User'
 export const App = () => {
   
   // Redux
+  const activeTodoId = useSelector((state: IAppState) => state.active.todoId)
   const userSubscriptionType = useSelector((state: IAppState) => state.userSubscription?.type || 'TRIAL')
+
+  // State
+  const [ activeRightColumn, setActiveRightColumn ] = useState('TODO' as 'TODO' | 'SETTINGS')
 
   // Listen for undo/redo
   useHistory()
@@ -52,8 +60,41 @@ export const App = () => {
           <Todos />
         </Column>
         <Column 
+          backgroundColor={activeTodoId ? "rgb(255, 255, 255)" : "transparent"}
           width="30rem">
-          <Todo />
+          {activeTodoId &&
+            <>
+              <Tabs>
+                <Tab
+                  isActive={activeRightColumn === 'TODO'}
+                  onClick={() => setActiveRightColumn('TODO')}>
+                  <TabIcon>
+                    <Icon
+                      icon={TEXT}/>
+                  </TabIcon>
+                  <TabText>
+                    Todo
+                  </TabText>
+                </Tab>
+                <Tab
+                  isLast
+                  isActive={activeRightColumn === 'SETTINGS'}
+                  onClick={() => setActiveRightColumn('SETTINGS')}>
+                  <TabIcon>
+                    <Icon
+                      icon={SETTINGS_GEAR}/>
+                  </TabIcon>
+                  <TabText>
+                    Settings
+                  </TabText>
+                </Tab>
+              </Tabs>
+              <TabContent>
+                {activeRightColumn === 'TODO' && <Todo />}
+                {activeRightColumn === 'SETTINGS' && <Settings />}
+              </TabContent>
+            </>
+          }
         </Column>
       </Container>
     )
@@ -83,9 +124,49 @@ interface IColumn {
   zIndex?: string
 }
 
+const Tabs = styled.div`
+  width: 100%;
+  height: 2.25rem;
+  display: flex;
+`
+
+const Tab = styled.div`
+  cursor: pointer;
+  width: 50%;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  background-color: ${ ({ isActive }: ITab) => isActive ? 'transparent' : 'rgb(245, 245, 249)' };
+  border-right: ${ ({ isLast = false }: ITab) => isLast ? 'none' : '1px solid rgb(235, 235, 240)' };
+  border-bottom: 1px solid ${ ({ isActive }: ITab) => isActive ? 'transparent' : 'rgb(235, 235, 240)' };
+`
+interface ITab {
+  isActive: boolean
+  isLast?: boolean
+}
+
+const TabText = styled.div`
+  margin-top: 0.125rem;
+  font-size: 1rem;
+  font-weight: bold;
+`
+
+const TabIcon = styled.div`
+  margin-right: 0.5rem;
+  margin-top: 0.175rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 const ColumnContainer = styled.div`
   width: 100%;
   height: 100%;
+`
+
+const TabContent = styled.div`
+  width: 100%;
+  height: calc(100% - 2.25rem);
 `
 
 const LogoContainer = styled.div`
