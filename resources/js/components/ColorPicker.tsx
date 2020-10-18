@@ -2,64 +2,50 @@
 // Imports
 //-----------------------------------------------------------------------------
 import React from 'react'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { IList } from '@/state/list/types'
-
-import {
-  deleteList
-} from '@/state/list/actions'
+import { ChromePicker } from 'react-color'
 
 //-----------------------------------------------------------------------------
 // Component
 //-----------------------------------------------------------------------------
-export const TodosHeaderDeleteList = ({
-  listId
-}: ITodosHeaderDeleteList) => {
+const ColorPicker = ({
+  activeColor,
+  onColorChange
+}: ColorPickerProps) => {
 
-  // Redux
-  const dispatch = useDispatch()
+  //const colorPickerWidth = window.innerWidth * 0.15
 
   return (
-    <Container>
-      <DeleteButton
-        onClick={() => dispatch(deleteList(listId))}>
-        Delete List
-      </DeleteButton>
-    </Container>
+      <Container>
+        <ChromePicker
+          color={activeColor}
+          onChangeComplete={nextColor => onColorChange(nextColor.hex)}/>
+      </Container>
   )
 }
 
 //-----------------------------------------------------------------------------
 // Props
 //-----------------------------------------------------------------------------
-interface ITodosHeaderDeleteList {
-  listId: IList['id']
+interface ColorPickerProps {
+  activeColor: string
+  onColorChange(nextColor: string): void
 }
 
 //-----------------------------------------------------------------------------
 // Styled Components
 //-----------------------------------------------------------------------------
 const Container = styled.div`
-  padding: 0.5rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`
-
-const DeleteButton = styled.div`
-  cursor: pointer;
-  padding: 0.3rem 0.6rem;
-  white-space: nowrap;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.625rem;
   border-radius: 5px;
-  &:hover {
-    background-color: rgb(200, 0, 0);
-    color: white;
-  }
+  background-color: rgb(250, 250, 250);
+  box-shadow: 2px 2px 15px 0px rgba(0,0,0,0.3);
 `
 
-export default TodosHeaderDeleteList
+//-----------------------------------------------------------------------------
+// Export
+//-----------------------------------------------------------------------------
+export default ColorPicker

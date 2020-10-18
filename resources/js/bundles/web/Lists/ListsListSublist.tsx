@@ -52,6 +52,7 @@ interface IListsListSublist {
 //-----------------------------------------------------------------------------
 const Container = styled.div`
   cursor: pointer;
+  z-index: 1;
   width: 100%;
   padding: 0.2rem;
   padding-left: 0.75rem;

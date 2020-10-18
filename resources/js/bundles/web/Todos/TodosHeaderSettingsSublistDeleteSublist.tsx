@@ -55,7 +55,7 @@ const DeleteButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
   &:hover {
     background-color: rgb(200, 0, 0);
     color: white;

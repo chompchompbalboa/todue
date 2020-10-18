@@ -40,20 +40,29 @@ export const ListsListName = ({
   return (
     <Container>
       <Name
-        isActiveList={isActiveList}
-        onClick={() => {
-          !isActiveList && dispatch(updateActiveListId(listId))
-          isListLoaded && isActiveList && setIsSublistsVisible(!isSublistsVisible)
-        }}>
-        <IconContainer>
+        isActiveList={isActiveList}>
+        <IconContainer
+          onClick={() => {
+            if(!isListLoaded) {
+              dispatch(updateActiveListId(listId))
+            }
+            else {
+              setIsSublistsVisible(!isSublistsVisible)
+            }
+          }}>
           <Icon
             icon={isListLoaded && isSublistsVisible ? CHEVRON_DOWN : CHEVRON_RIGHT}
             size="0.75rem"/>
         </IconContainer>
-        {listName
-          ? listName
-          : <ListsListNameInput
-              listId={listId}/>}
+        <NameContainer
+          onClick={() => {
+            !isActiveList && dispatch(updateActiveListId(listId))
+          }}>
+          {listName
+            ? listName
+            : <ListsListNameInput
+                listId={listId}/>}
+        </NameContainer>
       </Name>
     </Container>
   )
@@ -83,8 +92,6 @@ const Name = styled.div`
   padding: 0.25rem;
   padding-left: 0.75rem;
   display: flex;
-  font-size: 1.15rem;
-  font-weight: bold;
   background-color: ${ ({ isActiveList }: IName ) => isActiveList ? 'rgb(245, 245, 249)' : 'transparent' };
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -95,5 +102,11 @@ const Name = styled.div`
 interface IName {
   isActiveList: boolean
 }
+
+const NameContainer = styled.div`
+  flex-grow: 1;
+  font-size: 1.15rem;
+  font-weight: bold;
+`
 
 export default ListsListName
