@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 
-import { TEXT, SETTINGS_GEAR } from '@/assets/icons'
+import { TODO, SETTINGS_GEAR } from '@/assets/icons'
 
 import { useHistory } from '@/hooks'
 
@@ -70,7 +70,7 @@ export const App = () => {
                   onClick={() => setActiveRightColumn('TODO')}>
                   <TabIcon>
                     <Icon
-                      icon={TEXT}/>
+                      icon={TODO}/>
                   </TabIcon>
                   <TabText>
                     Todo
