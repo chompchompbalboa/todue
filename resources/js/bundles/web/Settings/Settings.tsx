@@ -4,7 +4,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import SettingsCompletedTodosToggle from '@/bundles/web/Settings/SettingsCompletedTodosToggle'
+import SettingsIsCompletedTodosVisibleToggle from '@/bundles/web/Settings/SettingsIsCompletedTodosVisibleToggle'
+import SettingsIsTodoTagsVisibleToggle from '@/bundles/web/Settings/SettingsIsTodoTagsVisibleToggle'
 
 //-----------------------------------------------------------------------------
 // Component
@@ -13,7 +14,8 @@ export const Settings = () => {
 
   return (
       <Container>
-        <SettingsCompletedTodosToggle />
+        <SettingsIsCompletedTodosVisibleToggle />
+        <SettingsIsTodoTagsVisibleToggle />
       </Container>
   )
 }

@@ -17,6 +17,7 @@ export type IActiveActions =
   IClearState |
   ILoadActive |
   IUpdateActiveIsCompletedTodosVisible |
+  IUpdateActiveIsTodoTagsVisible |
 	IUpdateActiveListId | 
 	IUpdateActiveSublistId |
   IUpdateActiveTodoId
@@ -79,6 +80,23 @@ export const updateActiveIsCompletedTodosVisibleReducer = (nextActiveIsCompleted
 		nextActiveIsCompletedTodosVisible
 	}
 }
+
+//-----------------------------------------------------------------------------
+// Update Active Is Todo Tags Visible
+//-----------------------------------------------------------------------------
+export const UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE = 'UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE'
+interface IUpdateActiveIsTodoTagsVisible {
+  type: typeof UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE
+  nextActiveIsTodoTagsVisible: boolean
+}
+
+export const updateActiveIsTodoTagsVisible = (nextActiveIsTodoTagsVisible: boolean): IActiveActions => {
+	return {
+		type: UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE,
+		nextActiveIsTodoTagsVisible
+	}
+}
+
 
 
 //-----------------------------------------------------------------------------

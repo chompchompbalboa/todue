@@ -13,6 +13,7 @@ import {
   CLEAR_STATE,
   LOAD_ACTIVE,
   UPDATE_ACTIVE_IS_COMPLETED_TODOS_VISIBLE,
+  UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE,
   UPDATE_ACTIVE_LIST_ID,
   UPDATE_ACTIVE_SUBLIST_ID,
   UPDATE_ACTIVE_TODO_ID
@@ -28,6 +29,7 @@ export type IActiveState = {
   sublistId: ISublist['id']
   todoId: ITodo['id']
   isCompletedTodosVisible: boolean
+  isTodoTagsVisible: boolean
 }
 
 export const initialState: IActiveState = {
@@ -35,7 +37,8 @@ export const initialState: IActiveState = {
   listId: initialActiveData.listId,
   sublistId: initialActiveData.sublistId,
   todoId: null,
-  isCompletedTodosVisible: initialActiveData.isCompletedTodosVisible
+  isCompletedTodosVisible: initialActiveData.isCompletedTodosVisible,
+  isTodoTagsVisible: false
 }
 
 //-----------------------------------------------------------------------------
@@ -50,7 +53,8 @@ export const active = (state = initialState, action: IActiveActions): IActiveSta
         listId: null,
         sublistId: null,
         todoId: null,
-        isCompletedTodosVisible: null
+        isCompletedTodosVisible: null,
+        isTodoTagsVisible: false
       }
     }
 
@@ -67,6 +71,14 @@ export const active = (state = initialState, action: IActiveActions): IActiveSta
       return {
         ...state,
         isCompletedTodosVisible: nextActiveIsCompletedTodosVisible
+      }
+    }
+
+    case UPDATE_ACTIVE_IS_TODO_TAGS_VISIBLE: {
+      const { nextActiveIsTodoTagsVisible } = action
+      return {
+        ...state,
+        isTodoTagsVisible: nextActiveIsTodoTagsVisible
       }
     }
 

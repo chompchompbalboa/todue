@@ -10,6 +10,7 @@ import { ITodo } from '@/state/todo/types'
 
 import TodosTodosTodoCheckbox from '@web/Todos/TodosTodosTodoCheckbox'
 import TodosTodosTodoPriority from '@web/Todos/TodosTodosTodoPriority'
+import TodosTodosTodoTags from '@web/Todos/TodosTodosTodoTags'
 import TodosTodosTodoTime from '@web/Todos/TodosTodosTodoTime'
 import TodosTodosTodoText from '@web/Todos/TodosTodosTodoText'
 
@@ -33,6 +34,8 @@ export const TodosTodosTodo = ({
         <TodosTodosTodoTime
           todoId={todoId}/>
         <TodosTodosTodoText
+          todoId={todoId}/>
+        <TodosTodosTodoTags
           todoId={todoId}/>
       </Container>
   )

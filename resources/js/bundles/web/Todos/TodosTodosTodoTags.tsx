@@ -18,17 +18,21 @@ export const TodosTodosTodoTags = ({
 }: ITodosTodosTodoTags) => {
 
   // Redux
+  const isTodoTagsVisible = useSelector((state: IAppState) => state.active.isTodoTagsVisible)
   const todoTags = useSelector((state: IAppState) => state.todoTag.todoTagsByTodoId[todoId])
 
-  return (
-    <Container>
-      {todoTags && todoTags.map(todoTagId => (
-        <TodosTodosTodoTagsTag
-          key={todoTagId}
-          todoTagId={todoTagId}/>
-      ))}
-    </Container>
-  )
+  if(isTodoTagsVisible) {
+    return (
+      <Container>
+        {todoTags && todoTags.map(todoTagId => (
+          <TodosTodosTodoTagsTag
+            key={todoTagId}
+            todoTagId={todoTagId}/>
+        ))}
+      </Container>
+    )
+  }
+  return null
 }
 
 //-----------------------------------------------------------------------------
