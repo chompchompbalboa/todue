@@ -42,7 +42,9 @@ export const resolveVisibleTodos = (getState: () => IAppState) => {
   const defaultReturnValue = [ moment().format('YYYY-MM-DD') ]
 
   // Get the list's todos
-  const todos = (todosByListId[activeListId] || []).map(currentTodoId => allTodos[currentTodoId])
+  const todos = activeListId === 'ALL_TODOS'
+    ? Object.keys(allTodos).map(currentTodoId => allTodos[currentTodoId])
+    : (todosByListId[activeListId] || []).map(currentTodoId => allTodos[currentTodoId])
 
   // If there are no todos, return the default return value
   if(todos.length === 0) {
