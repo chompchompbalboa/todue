@@ -26,9 +26,7 @@ export const TodosHeaderListName = ({
   // Redux
   const dispatch = useDispatch()
   const activeListName = useSelector((state: IAppState) => isListOrSublist === 'LIST'
-    ? listId === 'ALL_TODOS'
-      ? 'All Todos'
-      : state.list.allLists[listId]?.name
+    ? state.list.allLists[listId]?.name
     : state.sublist.allSublists[sublistId]?.name
   )
   const sublistDefaultTagId = useSelector((state: IAppState) => state.sublist.allSublists[sublistId]?.defaultTagId)

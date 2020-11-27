@@ -27,23 +27,22 @@ export const TodosTodos = ({
 
   // Redux
   const dispatch = useDispatch()
-  const isAllTodosActiveList = listId === 'ALL_TODOS'
   const isListLoaded = useSelector((state: IAppState) => state.list.loadedLists.has(listId))
   const visibleTodos = useSelector((state: IAppState) => state.todo.visibleTodos)
 
   // Load a list's todos as needed
   useEffect(() => {
-    if(!isListLoaded && !isAllTodosActiveList) {
+    if(!isListLoaded) {
       dispatch(loadList(listId))
     }
-  }, [ isAllTodosActiveList, isListLoaded ])
+  }, [ isListLoaded ])
 
   // Update the visible todos as needed
   useEffect(() => {
     dispatch(refreshVisibleTodos())
   }, [ listId, sublistId, isListLoaded ])
 
-  if(isListLoaded || isAllTodosActiveList) {
+  if(isListLoaded) {
     return (
       <Container>
         {visibleTodos && visibleTodos.map(todoId => {

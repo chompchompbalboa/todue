@@ -7,7 +7,6 @@ import styled from 'styled-components'
 
 import { IAppState } from '@/state'
 
-import ListsAllTodos from '@web/Lists/ListsAllTodos'
 import ListsCreateList from '@web/Lists/ListsCreateList'
 import ListsList from '@web/Lists/ListsList'
 
@@ -22,7 +21,6 @@ export const Lists = () => {
   return (
       <Container>
         <ListsCreateList />
-        <ListsAllTodos />
         {lists.map(listId => (
           <ListsList
             key={listId}
